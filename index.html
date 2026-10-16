@@ -370,6 +370,159 @@
     }
     .hours__note strong { color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
 
+    /* ===== Menu ===== */
+    .menu-intro {
+      display: grid;
+      gap: 0.35rem;
+      margin-bottom: var(--space-m);
+      color: var(--ink-soft);
+    }
+
+    .legend {
+      margin-bottom: var(--space-m);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: var(--step--1);
+    }
+    .legend summary {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      padding-inline: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .legend ol {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.25rem 1rem;
+      padding: 0 0.75rem 0.75rem 2rem;
+      color: var(--ink-soft);
+    }
+
+    .menu-nav {
+      position: sticky;
+      top: calc(var(--header-h) + env(safe-area-inset-top));
+      z-index: 40;
+      margin-inline: calc(var(--gutter) * -1);
+      padding: 0.6rem var(--gutter);
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+    }
+    .menu-nav ul {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0;
+      list-style: none;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .menu-nav ul::-webkit-scrollbar { display: none; }
+    .menu-nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 0.95rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: var(--step--1);
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .menu-nav a[aria-current="true"] {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--bg);
+    }
+
+    .menu-cat {
+      padding-top: var(--space-l);
+      scroll-margin-top: calc(var(--header-h) + 64px + env(safe-area-inset-top));
+    }
+    .menu-cat__title {
+      font-size: 1.6rem;
+      margin-bottom: 0.25rem;
+    }
+    .menu-cat__note {
+      color: var(--ink-soft);
+      font-size: var(--step--1);
+    }
+    .menu-group__title {
+      margin-top: var(--space-m);
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .items { padding: 0; list-style: none; }
+    .item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.1rem 1rem;
+      padding-block: 0.8rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .item__name { font-weight: 500; }
+    .item__price {
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .item__desc,
+    .item__meta,
+    .item__adds {
+      grid-column: 1 / -1;
+      font-size: var(--step--1);
+      color: var(--ink-soft);
+    }
+    .item__meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.25rem;
+    }
+    .allergens { display: inline-flex; gap: 0.2rem; }
+    .allergens span {
+      display: inline-grid;
+      place-items: center;
+      min-width: 1.35rem;
+      height: 1.35rem;
+      padding-inline: 0.2rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .badge {
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      background: #E3EBDD;
+      color: #34512F;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .extras {
+      margin-top: var(--space-s);
+      padding: 0.75rem;
+      border-radius: 10px;
+      background: var(--surface);
+      font-size: var(--step--1);
+    }
+    .extras__title {
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+    .extras ul { display: grid; gap: 0.2rem; padding: 0; list-style: none; }
+    .extras li { display: flex; justify-content: space-between; gap: 1rem; }
+    .extras li span:last-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
     /* ===== Huecos de foto ===== */
     .ph {
       display: grid;
@@ -498,7 +651,21 @@
     <section class="section" id="menu" aria-labelledby="menu-title">
       <div class="wrap">
         <h2 class="section__title" id="menu-title" data-i18n="menu.title">Il menu</h2>
-        <p class="todo">feat/menu</p>
+        <div class="menu-intro">
+          <p data-i18n="menu.options">Opzioni senza glutine e vegane, latte d’avena.</p>
+          <p data-i18n="menu.allergies">Segnalate eventuali allergie al personale.</p>
+        </div>
+
+        <details class="legend">
+          <summary data-i18n="menu.legend">Legenda allergeni</summary>
+          <ol id="allergen-legend"></ol>
+        </details>
+
+        <nav class="menu-nav" data-i18n-attr="aria-label:menu.navLabel" aria-label="Sezioni del menu">
+          <ul id="menu-nav"></ul>
+        </nav>
+
+        <div id="menu-list"></div>
       </div>
     </section>
 
@@ -596,6 +763,14 @@
           'orari.closed': 'Chiuso',
           'orari.kitchen': 'Cucina e brunch',
           'menu.title': 'Il menu',
+          'menu.options': 'Opzioni senza glutine e vegane, latte d’avena.',
+          'menu.allergies': 'Segnalate eventuali allergie al personale.',
+          'menu.legend': 'Legenda allergeni',
+          'menu.navLabel': 'Sezioni del menu',
+          'menu.allergensLabel': 'Allergeni',
+          'menu.extras': 'Extra',
+          'allergens': ['Glutine', 'Crostacei', 'Uova', 'Pesce', 'Arachidi', 'Soia', 'Latte e latticini',
+            'Frutta a guscio', 'Sedano', 'Senape', 'Sesamo', 'Solfiti', 'Lupini', 'Molluschi'],
           'caffe.title': 'Il nostro caffè',
           'shop.title': 'L’Australiano a casa tua',
           'storia.title': 'La nostra storia',
@@ -623,6 +798,14 @@
           'orari.closed': 'Closed',
           'orari.kitchen': 'Kitchen & brunch',
           'menu.title': 'Menu',
+          'menu.options': 'Gluten-free and vegan options, oat milk.',
+          'menu.allergies': 'Please let our staff know about any allergies.',
+          'menu.legend': 'Allergen key',
+          'menu.navLabel': 'Menu sections',
+          'menu.allergensLabel': 'Allergens',
+          'menu.extras': 'Extras',
+          'allergens': ['Gluten', 'Crustaceans', 'Eggs', 'Fish', 'Peanuts', 'Soy', 'Milk',
+            'Tree nuts', 'Celery', 'Mustard', 'Sesame', 'Sulphites', 'Lupin', 'Molluscs'],
           'caffe.title': 'Our coffee',
           'shop.title': 'L’Australiano at home',
           'storia.title': 'Our story',
@@ -818,6 +1001,325 @@
         document.getElementById('kitchen-hours').textContent = range(BIZ.kitchen);
       }
       document.addEventListener('langchange', renderHours);
+
+      /* ===== Menu =====
+         Fuente: carta oficial "MENU INGLESE 2026".
+         - Nombres de platos: como en la carta (versión en italiano pendiente).
+         - Descripciones IT: traducción provisoria, revisar con la carta en italiano.
+         - a: alérgenos (numeración UE 1–14). Solo donde la carta los indica.
+         - price: número, o [min, max] para rangos. */
+      var MENU = [
+        {
+          id: 'caffetteria', title: { it: 'Caffetteria', en: 'Coffee' },
+          groups: [{
+            items: [
+              { name: 'Espresso', price: 1.5 },
+              { name: 'Specialty singolo', price: 2 },
+              { name: 'Specialty doppio', price: 4 },
+              { name: 'Macchiato', price: 1.6 },
+              { name: 'Espresso dbl', price: 3 },
+              { name: 'Doppio macchiato', price: 3.5 },
+              { name: 'Piccolo', price: 2 },
+              { name: 'Cortado', price: 3.5 },
+              { name: 'Cappuccino', price: 2 },
+              { name: 'Latte macchiato', price: 2 },
+              { name: 'Flat white', price: 3.5 },
+              { name: 'Americano', price: 2 },
+              { name: 'Long Black', price: 3.5 },
+              { name: 'Mocha', price: 3 },
+              { name: 'Decaf', price: 1.6 }
+            ],
+            extras: [
+              { name: { it: 'Shot extra di espresso', en: 'Extra espresso shot' }, price: 1.5 },
+              { name: { it: 'Latte d’avena', en: 'Oat milk' }, price: 0.5 },
+              { name: { it: 'Formato grande', en: 'Large size' }, price: 1 }
+            ]
+          }]
+        },
+        {
+          id: 'filtro-freddi', title: { it: 'Filtro e freddi', en: 'Filter & iced' },
+          groups: [{
+            items: [
+              { name: 'Batch Brew', price: 4.5 },
+              { name: 'Iced coffee', price: 4 },
+              { name: 'Iced latte', price: 4.5 },
+              { name: 'Iced Mocha', price: 5.5 },
+              { name: 'Cold brew', price: 6, desc: { it: 'Di stagione', en: 'Seasonal' } }
+            ],
+            extras: [
+              { name: { it: 'Latte d’avena', en: 'Oat milk' }, price: 1 }
+            ]
+          }]
+        },
+        {
+          id: 'special', title: { it: 'Special latte e tè', en: 'Special lattes & tea' },
+          groups: [{
+            items: [
+              { name: 'Matcha latte', price: 4.5 },
+              { name: 'Chai latte', price: 4.5 },
+              { name: 'Hot chocolate', price: 4.5 },
+              { name: 'Selection hot teas', price: 4 }
+            ],
+            extras: [
+              { name: { it: 'Latte d’avena', en: 'Oat milk' }, price: 1 },
+              { name: { it: 'Versione iced', en: 'Iced' }, price: 0.5 }
+            ]
+          }]
+        },
+        {
+          id: 'brunch', title: { it: 'Brunch', en: 'Brunch' }, kitchenNote: true,
+          groups: [
+            {
+              items: [
+                { name: 'Farmer bagel', price: 13, a: [1, 7, 8],
+                  desc: { it: 'pollo, insalata, pomodoro, sottaceti, bacon, cheddar, maionese piccante',
+                          en: 'chicken, salad, tomato, pickles, bacon, cheddar cheese, spicy mayo' } },
+                { name: 'Bacon & cheese pancake', price: 10, a: [1, 3, 5, 7, 8],
+                  desc: { it: 'bacon e formaggio fuso', en: 'bacon and melted cheese' },
+                  adds: [{ name: { it: 'sciroppo d’acero', en: 'maple syrup' }, price: 1 }] },
+                { name: 'Salmon bagel', price: 11, a: [1, 7, 8, 9, 11],
+                  desc: { it: 'salmone affumicato, cetriolo, cipolle marinate, formaggio spalmabile ed erba cipollina',
+                          en: 'smoked salmon, cucumber, marinated onions, cream cheese and chives' } },
+                { name: 'BLT Bagel', price: 9.5, a: [1, 6, 7, 8, 9, 11],
+                  desc: { it: 'bacon, lattuga, pomodoro e maionese', en: 'bacon, lettuce, tomato and mayo' } },
+                { name: 'ALT Bagel', price: 9.5, a: [1, 6, 7, 8, 9, 11],
+                  desc: { it: 'avocado, lattuga, pomodoro e maionese', en: 'avocado, lettuce, tomato and mayo' } },
+                { name: 'Avocado toast 2.0', price: 16, a: [1, 4, 5, 6, 7, 8, 11],
+                  desc: { it: 'pane multicereali, hummus di barbabietola, salmone affumicato, avocado, semi misti, feta, melograno (di stagione)',
+                          en: 'multigrain bread, beetroot hummus, smoked salmon, avocado, mixed seeds, feta cheese, pomegranate (seasonal)' } },
+                { name: 'Avocado toast', price: 10, a: [1, 7, 8, 11],
+                  desc: { it: 'pane multicereali, avocado, semi misti, feta, melograno (di stagione)',
+                          en: 'multigrain bread, avocado, mixed seeds, feta cheese, pomegranate (seasonal)' } }
+              ]
+            },
+            {
+              title: { it: 'Da condividere', en: 'To share' },
+              items: [
+                { name: 'Sweet potato fries', price: 4.5 }
+              ],
+              extras: [
+                { name: { it: 'Avocado', en: 'Avocado' }, price: 3 },
+                { name: { it: 'Hummus di barbabietola', en: 'Beetroot hummus' }, price: 2.5, tags: ['vg'] },
+                { name: { it: 'Salmone affumicato', en: 'Smoked salmon' }, price: 3.5 },
+                { name: { it: 'Bacon', en: 'Bacon' }, price: 3 },
+                { name: { it: 'Pane senza glutine', en: 'Gluten-free bread' }, price: 3, tags: ['gf'] }
+              ],
+              extrasTitle: { it: 'Aggiunte', en: 'Add-ons' }
+            }
+          ]
+        },
+        {
+          id: 'dolce', title: { it: 'Dolce', en: 'Sweet' },
+          groups: [
+            {
+              items: [
+                { name: 'Nocciolotto Pancakes', price: 10,
+                  desc: { it: 'crema di nocciole, frutta fresca', en: 'hazelnut cream, fresh fruit' } },
+                { name: 'Maple Pancakes', price: 11,
+                  desc: { it: 'sciroppo d’acero, frutta fresca', en: 'maple syrup, fresh fruit' } },
+                { name: 'Yoyo Pancakes', price: 10, a: [1, 3, 5, 6, 7, 8],
+                  desc: { it: 'yogurt greco, frutta fresca, miele', en: 'greek yogurt, fresh fruit, honey' } },
+                { name: 'New York BB', price: 9.5, a: [3, 5, 6, 7, 8],
+                  desc: { it: 'banana bread, bacon, sciroppo d’acero', en: 'banana bread, bacon, maple syrup' },
+                  adds: [
+                    { name: { it: 'yogurt greco', en: 'greek yogurt' }, price: 1.5 },
+                    { name: { it: 'burro di arachidi', en: 'peanut butter' }, price: 1.5 }
+                  ] },
+                { name: 'Peanut BB', price: 10, a: [3, 5, 6, 7, 8],
+                  desc: { it: 'banana bread, yogurt greco, burro di arachidi, miele, frutta fresca',
+                          en: 'banana bread, greek yogurt, peanut butter, honey, fresh fruit' } },
+                { name: 'Granola bowl', price: 8, a: [1, 5, 6, 7, 8],
+                  desc: { it: 'yogurt, granola, miele, frutta fresca', en: 'yogurt, granola, honey, fresh fruit' } }
+              ]
+            },
+            {
+              title: { it: 'In vetrina, ogni giorno', en: 'Treats of the day, in the display' },
+              items: [
+                { name: 'Homemade cheesecake', price: 5, a: [1, 3, 5, 6, 7, 8] },
+                { name: 'Banana bread', price: 4.5, a: [3, 5, 6, 7, 8] },
+                { name: 'Carrot cake with orange frosting', price: 5, a: [1, 3, 5, 7, 8] }
+              ]
+            }
+          ]
+        },
+        {
+          id: 'succhi', title: { it: 'Succhi', en: 'Juices' },
+          groups: [
+            {
+              title: { it: 'Freschi', en: 'Fresh' },
+              items: [
+                { name: 'Detox', price: 6, desc: { it: 'mela, zenzero', en: 'apple, ginger' } },
+                { name: 'Booster', price: 6, desc: { it: 'arancia, carota, zenzero', en: 'orange, carrot, ginger' } },
+                { name: 'OJ', price: 5, desc: { it: 'spremuta d’arancia', en: 'orange juice' } }
+              ]
+            },
+            {
+              title: { it: 'Bio', en: 'Organic' },
+              items: [
+                { name: 'Pomegranate BIO', price: 4 },
+                { name: 'Peach BIO', price: 4 },
+                { name: 'Pineapple BIO', price: 4 }
+              ]
+            }
+          ]
+        },
+        {
+          id: 'bibite', title: { it: 'Bibite', en: 'Soft drinks' },
+          groups: [{
+            items: [
+              { name: 'Lemon Tea BIO', price: 4 },
+              { name: 'Peach Tea BIO', price: 4 },
+              { name: 'Lemonade', price: 4 },
+              { name: 'Tonic Water', price: 4 },
+              { name: 'Molecola', price: 3 },
+              { name: 'Molecola zero', price: 3 },
+              { name: 'Ginger beer', price: 5 },
+              { name: 'Kombucha', price: 5 }
+            ]
+          }]
+        },
+        {
+          id: 'bar', title: { it: 'Bar', en: 'Drinks' },
+          groups: [
+            {
+              items: [
+                { name: 'Craft beer', price: 6, tags: ['gfAvailable'] }
+              ]
+            },
+            {
+              title: { it: 'Vini (selezione)', en: 'Wine (selection)' },
+              items: [
+                { name: { it: 'Vino rosso o bianco', en: 'Red or white wine' }, price: 7,
+                  desc: { it: 'al calice', en: 'by the glass' } },
+                { name: 'Prosecco', price: 5, desc: { it: 'flûte', en: 'flute' } },
+                { name: { it: 'Bottiglia', en: 'Bottle' }, price: 18 }
+              ]
+            },
+            {
+              title: { it: 'Spritzando', en: 'Spritzando' },
+              items: [
+                { name: 'Spritz', price: 7, desc: { it: 'Orange, Bitter Rosso, Select', en: 'Orange, Bitter Rosso, Select' } },
+                { name: 'Americano, Negroni', price: 8 },
+                { name: 'Gin selection', price: [8, 12] }
+              ]
+            }
+          ]
+        }
+      ];
+
+      var TAGS = {
+        vg: { it: 'Vegan', en: 'Vegan' },
+        gf: { it: 'Senza glutine', en: 'Gluten free' },
+        gfAvailable: { it: 'Anche senza glutine', en: 'Gluten-free available' }
+      };
+
+      function lang() { return document.documentElement.lang === 'en' ? 'en' : 'it'; }
+      function tr(v) { return v && typeof v === 'object' && !Array.isArray(v) ? v[lang()] : v; }
+
+      function esc(str) {
+        return String(str).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      // 1.5 -> "1,50 €" (IT) / "€1.50" (EN); enteros sin decimales
+      function formatPrice(value) {
+        var whole = value % 1 === 0;
+        return new Intl.NumberFormat(lang() === 'it' ? 'it-IT' : 'en-GB', {
+          style: 'currency', currency: 'EUR',
+          minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: 2
+        }).format(value);
+      }
+      function priceText(p) {
+        if (!Array.isArray(p)) return formatPrice(p);
+        return lang() === 'it' ? p[0] + '–' + p[1] + ' €' : '€' + p[0] + '–' + p[1];
+      }
+
+      function tagsHtml(tags) {
+        return (tags || []).map(function (k) {
+          return '<span class="badge">' + esc(tr(TAGS[k])) + '</span>';
+        }).join('');
+      }
+
+      function allergensHtml(list) {
+        if (!list || !list.length) return '';
+        var names = t('allergens');
+        var label = t('menu.allergensLabel') + ': ' + list.map(function (n) { return names[n - 1]; }).join(', ');
+        return '<span class="allergens" role="img" aria-label="' + esc(label) + '">' +
+          list.map(function (n) { return '<span aria-hidden="true">' + n + '</span>'; }).join('') +
+          '</span>';
+      }
+
+      function itemHtml(it) {
+        var meta = tagsHtml(it.tags) + allergensHtml(it.a);
+        var adds = (it.adds || []).map(function (x) {
+          return '+ ' + esc(tr(x.name)) + ' ' + priceText(x.price);
+        }).join(' · ');
+        return '<li class="item">' +
+          '<span class="item__name">' + esc(tr(it.name)) + '</span>' +
+          '<span class="item__price">' + priceText(it.price) + '</span>' +
+          (it.desc ? '<span class="item__desc">' + esc(tr(it.desc)) + '</span>' : '') +
+          (adds ? '<span class="item__adds">' + adds + '</span>' : '') +
+          (meta ? '<span class="item__meta">' + meta + '</span>' : '') +
+          '</li>';
+      }
+
+      function extrasHtml(group) {
+        if (!group.extras) return '';
+        return '<div class="extras">' +
+          '<p class="extras__title">' + esc(tr(group.extrasTitle) || t('menu.extras')) + '</p><ul>' +
+          group.extras.map(function (x) {
+            return '<li><span>+ ' + esc(tr(x.name)) + ' ' + tagsHtml(x.tags) + '</span><span>' + priceText(x.price) + '</span></li>';
+          }).join('') +
+          '</ul></div>';
+      }
+
+      function renderMenu() {
+        document.getElementById('allergen-legend').innerHTML = t('allergens').map(function (n) {
+          return '<li>' + esc(n) + '</li>';
+        }).join('');
+
+        document.getElementById('menu-nav').innerHTML = MENU.map(function (cat) {
+          return '<li><a href="#m-' + cat.id + '">' + esc(tr(cat.title)) + '</a></li>';
+        }).join('');
+
+        document.getElementById('menu-list').innerHTML = MENU.map(function (cat) {
+          return '<section class="menu-cat" id="m-' + cat.id + '" aria-labelledby="m-' + cat.id + '-t">' +
+            '<h3 class="menu-cat__title" id="m-' + cat.id + '-t">' + esc(tr(cat.title)) + '</h3>' +
+            (cat.kitchenNote ? '<p class="menu-cat__note">' + range(BIZ.kitchen) + '</p>' : '') +
+            cat.groups.map(function (g) {
+              return (g.title ? '<h4 class="menu-group__title">' + esc(tr(g.title)) + '</h4>' : '') +
+                '<ul class="items">' + g.items.map(itemHtml).join('') + '</ul>' +
+                extrasHtml(g);
+            }).join('') +
+            '</section>';
+        }).join('');
+
+        observeMenu();
+      }
+      document.addEventListener('langchange', renderMenu);
+
+      // Resalta en la barra de chips la categoría visible y la mantiene a la vista
+      var menuObserver;
+      function observeMenu() {
+        if (!('IntersectionObserver' in window)) return;
+        if (menuObserver) menuObserver.disconnect();
+        menuObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.id;
+            document.querySelectorAll('#menu-nav a').forEach(function (a) {
+              var active = a.getAttribute('href') === '#' + id;
+              a.setAttribute('aria-current', String(active));
+              if (active) {
+                var nav = a.closest('ul');
+                nav.scrollTo({ left: a.offsetLeft - nav.offsetLeft - 16, behavior: 'smooth' });
+              }
+            });
+          });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        document.querySelectorAll('.menu-cat').forEach(function (el) { menuObserver.observe(el); });
+      }
 
       /* ===== Header: borde al hacer scroll ===== */
       var header = document.querySelector('.site-header');
