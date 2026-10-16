@@ -322,6 +322,54 @@
     }
     .hero .btn--ghost { color: var(--hero-ink); }
 
+    /* ===== Orari ===== */
+    .hours {
+      padding: 0;
+      list-style: none;
+      font-size: 1.05rem;
+    }
+    .hours li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-s);
+      min-height: 52px;
+      padding-inline: 0.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .hours li:last-child { border-bottom: 0; }
+    .hours__day { display: flex; align-items: center; gap: 0.6rem; }
+    .hours__time { font-variant-numeric: tabular-nums; }
+    .hours .is-closed .hours__time { color: var(--ink-soft); }
+    .hours .is-today {
+      background: var(--surface);
+      border-radius: 10px;
+      border-bottom-color: transparent;
+      font-weight: 600;
+    }
+    .tag {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .hours__note {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-s);
+      margin-top: var(--space-m);
+      padding: var(--space-s) 0.75rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--ink-soft);
+    }
+    .hours__note strong { color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+
     /* ===== Huecos de foto ===== */
     .ph {
       display: grid;
@@ -438,7 +486,11 @@
     <section class="section" id="orari" aria-labelledby="orari-title">
       <div class="wrap">
         <h2 class="section__title" id="orari-title" data-i18n="orari.title">Orari</h2>
-        <p class="todo">feat/orari</p>
+        <ul class="hours" id="hours-list"></ul>
+        <p class="hours__note">
+          <span data-i18n="orari.kitchen">Cucina e brunch</span>
+          <strong id="kitchen-hours"></strong>
+        </p>
       </div>
     </section>
 
@@ -540,6 +592,9 @@
           'status.opensTomorrow': 'Chiuso · apre domani alle {t}',
           'status.opensOn': 'Chiuso · apre {d} alle {t}',
           'orari.title': 'Orari',
+          'orari.today': 'Oggi',
+          'orari.closed': 'Chiuso',
+          'orari.kitchen': 'Cucina e brunch',
           'menu.title': 'Il menu',
           'caffe.title': 'Il nostro caffè',
           'shop.title': 'L’Australiano a casa tua',
@@ -564,6 +619,9 @@
           'status.opensTomorrow': 'Closed · opens tomorrow at {t}',
           'status.opensOn': 'Closed · opens {d} at {t}',
           'orari.title': 'Opening hours',
+          'orari.today': 'Today',
+          'orari.closed': 'Closed',
+          'orari.kitchen': 'Kitchen & brunch',
           'menu.title': 'Menu',
           'caffe.title': 'Our coffee',
           'shop.title': 'L’Australiano at home',
@@ -715,10 +773,51 @@
       }
 
       document.addEventListener('langchange', renderStatus);
+      // Refresca estado y "Oggi" (también si el teléfono vuelve de segundo plano tras medianoche)
+      function tick() { renderStatus(); renderHours(); }
       document.addEventListener('visibilitychange', function () {
-        if (!document.hidden) renderStatus();
+        if (!document.hidden) tick();
       });
-      setInterval(renderStatus, 30 * 1000);
+      setInterval(tick, 30 * 1000);
+
+      /* ===== Orari ===== */
+      var WEEK_ORDER = [1, 2, 3, 4, 5, 6, 0]; // lunes primero, como se usa en Italia
+
+      function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+      function range(pair) { return showTime(pair[0]) + '–' + showTime(pair[1]); }
+
+      var hoursList = document.getElementById('hours-list');
+      function renderHours() {
+        var today = nowInFlorence().day;
+        hoursList.innerHTML = '';
+        WEEK_ORDER.forEach(function (day) {
+          var h = BIZ.hours[day];
+          var li = document.createElement('li');
+          if (!h) li.classList.add('is-closed');
+
+          var name = document.createElement('span');
+          name.className = 'hours__day';
+          name.textContent = capitalize(t('days')[day]);
+          if (day === today) {
+            li.classList.add('is-today');
+            li.setAttribute('aria-current', 'date');
+            var tag = document.createElement('span');
+            tag.className = 'tag';
+            tag.textContent = t('orari.today');
+            name.appendChild(tag);
+          }
+
+          var time = document.createElement('span');
+          time.className = 'hours__time';
+          time.textContent = h ? range(h) : t('orari.closed');
+
+          li.appendChild(name);
+          li.appendChild(time);
+          hoursList.appendChild(li);
+        });
+        document.getElementById('kitchen-hours').textContent = range(BIZ.kitchen);
+      }
+      document.addEventListener('langchange', renderHours);
 
       /* ===== Header: borde al hacer scroll ===== */
       var header = document.querySelector('.site-header');
