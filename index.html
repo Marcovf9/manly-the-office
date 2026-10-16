@@ -705,6 +705,90 @@
       text-align: center;
     }
 
+    /* ===== Storia ===== */
+    .story__lead {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      line-height: 1.4;
+      margin-bottom: var(--space-l);
+    }
+    .story__media { margin-bottom: var(--space-l); }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: var(--space-m);
+      padding: 0 0 0 1.5rem;
+      margin-bottom: var(--space-l);
+      list-style: none;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 1px;
+      background: var(--line);
+    }
+    .timeline li { position: relative; }
+    .timeline li::before {
+      content: "";
+      position: absolute;
+      left: calc(-1.5rem + 0px);
+      top: 0.45rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1.5px solid var(--ink);
+    }
+    .timeline li:last-child::before { background: var(--accent); border-color: var(--accent); }
+    .timeline__when {
+      display: block;
+      margin-bottom: 0.15rem;
+      font-size: var(--step--1);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .quote {
+      margin-bottom: var(--space-l);
+      padding-left: var(--space-s);
+      border-left: 3px solid var(--accent);
+    }
+    .quote p {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-style: italic;
+      line-height: 1.35;
+    }
+    .quote footer {
+      margin-top: 0.4rem;
+      font-size: var(--step--1);
+      color: var(--ink-soft);
+    }
+
+    .press {
+      display: block;
+      padding: var(--space-s);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      text-decoration: none;
+    }
+    .press__kicker {
+      display: block;
+      font-size: var(--step--1);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .press__title { display: block; margin-block: 0.25rem; font-weight: 500; }
+    .press__meta { font-size: var(--step--1); color: var(--ink-soft); }
+
     /* ===== Huecos de foto ===== */
     .ph {
       display: grid;
@@ -936,7 +1020,35 @@
     <section class="section" id="storia" aria-labelledby="storia-title">
       <div class="wrap">
         <h2 class="section__title" id="storia-title" data-i18n="storia.title">La nostra storia</h2>
-        <p class="todo">feat/storia</p>
+        <p class="story__lead" data-i18n="storia.lead">Manly è un quartiere sul mare a nord di Sydney. The Office è il posto, su quella spiaggia, dove si guarda il tramonto. Da lì viene il nostro nome.</p>
+
+        <div class="ph ph--4x5 story__media">[FOTO: Maykol y Alice detrás de la barra, retrato natural, sin posar]</div>
+
+        <ol class="timeline">
+          <li>
+            <span class="timeline__when" data-i18n="storia.t1.when">Prima di partire</span>
+            <span data-i18n="storia.t1.text">Maykol, fiorentino, si forma nel caffè con Simone Guidi della torrefazione La Sosta.</span>
+          </li>
+          <li>
+            <span class="timeline__when">2016</span>
+            <span data-i18n="storia.t2.text">Si trasferisce in Australia: quattro anni nelle caffetterie, dove impara un altro modo di lavorare e di fare il caffè.</span>
+          </li>
+          <li>
+            <span class="timeline__when" data-i18n="storia.t3.when">12 luglio 2023</span>
+            <span data-i18n="storia.t3.text">Maykol e sua moglie Alice, che lavora anche in cucina, aprono MANLY The Office a San Frediano.</span>
+          </li>
+        </ol>
+
+        <blockquote class="quote">
+          <p data-i18n="storia.quote">“Non è forse il lavoro più bello del mondo?”</p>
+          <footer>— Maykol</footer>
+        </blockquote>
+
+        <a class="press" href="https://www.gamberorosso.it/notizie/storie/manly-the-office-firenze/" target="_blank" rel="noopener" data-i18n-attr="href:press.url">
+          <span class="press__kicker" data-i18n="press.kicker">Ne ha parlato Gambero Rosso</span>
+          <span class="press__title" data-i18n="press.title">Leggi l’articolo su MANLY The Office</span>
+          <span class="press__meta" data-i18n="press.meta">Michela Becchi · 19 gennaio 2024 →</span>
+        </a>
       </div>
     </section>
 
@@ -1041,6 +1153,17 @@
           'shop.fine': 'Nessun pagamento online: l’ordine si conferma su WhatsApp.',
           'shop.message': 'Ciao! Vorrei ordinare {qty} x {product} {size} {grind}, con ritiro in negozio. Mi dite come fare?',
           'storia.title': 'La nostra storia',
+          'storia.lead': 'Manly è un quartiere sul mare a nord di Sydney. The Office è il posto, su quella spiaggia, dove si guarda il tramonto. Da lì viene il nostro nome.',
+          'storia.t1.when': 'Prima di partire',
+          'storia.t1.text': 'Maykol, fiorentino, si forma nel caffè con Simone Guidi della torrefazione La Sosta.',
+          'storia.t2.text': 'Si trasferisce in Australia: quattro anni nelle caffetterie, dove impara un altro modo di lavorare e di fare il caffè.',
+          'storia.t3.when': '12 luglio 2023',
+          'storia.t3.text': 'Maykol e sua moglie Alice, che lavora anche in cucina, aprono MANLY The Office a San Frediano.',
+          'storia.quote': '“Non è forse il lavoro più bello del mondo?”',
+          'press.url': 'https://www.gamberorosso.it/notizie/storie/manly-the-office-firenze/',
+          'press.kicker': 'Ne ha parlato Gambero Rosso',
+          'press.title': 'Leggi l’articolo su MANLY The Office',
+          'press.meta': 'Michela Becchi · 19 gennaio 2024 →',
           'dove.title': 'Dove siamo'
         },
         en: {
@@ -1097,6 +1220,17 @@
           'shop.fine': 'No online payment: the order is confirmed on WhatsApp.',
           'shop.message': 'Hi! I’d like to order {qty} x {product} {size} {grind}, for pickup in store. How can I do it?',
           'storia.title': 'Our story',
+          'storia.lead': 'Manly is a beachside suburb north of Sydney. The Office is the spot on that beach where people watch the sunset. That’s where our name comes from.',
+          'storia.t1.when': 'Before leaving',
+          'storia.t1.text': 'Maykol, born in Florence, trains in coffee with Simone Guidi of the La Sosta roastery.',
+          'storia.t2.text': 'He moves to Australia: four years in cafés, learning a different way to work and to make coffee.',
+          'storia.t3.when': '12 July 2023',
+          'storia.t3.text': 'Maykol and his wife Alice, who also works in the kitchen, open MANLY The Office in San Frediano.',
+          'storia.quote': '“Isn’t this the most beautiful job in the world?”',
+          'press.url': 'https://www.gamberorossointernational.com/news/the-australian-dream-of-a-tuscan-barista-in-florence-theres-a-new-and-young-specialty-coffee-shop-to-try/',
+          'press.kicker': 'Featured in Gambero Rosso',
+          'press.title': '“The Australian dream of a Tuscan barista”',
+          'press.meta': 'Michela Becchi · 19 January 2024 →',
           'dove.title': 'Find us'
         }
       };
