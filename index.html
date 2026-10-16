@@ -194,17 +194,133 @@
       color: var(--bg);
     }
 
-    /* ===== Hero (base; se completa en feat/hero) ===== */
-    .hero { padding-block: var(--space-l) var(--space-xl); }
+    /* ===== Botones ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 48px;
+      padding: 0 1.25rem;
+      border: 1.5px solid transparent;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .15s, background-color .15s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+    .btn--primary { background: var(--accent); color: var(--accent-ink); }
+    .btn--dark { background: var(--ink); color: var(--bg); }
+    .btn--ghost { border-color: currentColor; background: transparent; }
+    .btn--block { width: 100%; }
+
+    /* ===== Hero ===== */
+    .hero {
+      --hero-ink: #FAF7F2;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      min-height: calc(100svh - var(--header-h) - env(safe-area-inset-top));
+      max-height: 900px;
+      padding-block: var(--space-l);
+      background: #2E2A1C;
+      color: var(--hero-ink);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero__media {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+    .hero__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero__media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(30, 27, 18, 0) 20%, rgba(30, 27, 18, .7) 60%, rgba(30, 27, 18, .92) 100%);
+    }
+    .hero__media .ph {
+      position: absolute;
+      inset: var(--space-m) var(--gutter) auto;
+      height: min(34%, 260px);
+      background: transparent;
+      border-color: rgba(250, 247, 242, .35);
+      color: rgba(250, 247, 242, .7);
+    }
+
+    .hero__content { position: relative; }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      min-height: 32px;
+      padding: 0.3rem 0.85rem;
+      margin-bottom: var(--space-s);
+      border-radius: 999px;
+      background: rgba(250, 247, 242, .14);
+      font-size: var(--step--1);
+      font-weight: 500;
+    }
+    .status__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #B9B29C;
+    }
+    .status[data-state="open"] .status__dot {
+      background: #8FCB82;
+      box-shadow: 0 0 0 4px rgba(143, 203, 130, .25);
+    }
+    .status[data-state="closing"] .status__dot {
+      background: #F0B44C;
+      box-shadow: 0 0 0 4px rgba(240, 180, 76, .25);
+    }
+
     .hero__title {
-      font-size: var(--step-3);
+      font-size: clamp(2.1rem, 1.2rem + 4vw, 3.4rem);
       margin-bottom: var(--space-xs);
     }
     .hero__title span { font-style: italic; }
     .hero__tagline {
       font-size: var(--step-1);
-      color: var(--ink-soft);
+      opacity: .85;
+      margin-bottom: var(--space-m);
     }
+
+    .hero__facts {
+      display: grid;
+      gap: 0.35rem;
+      padding: 0;
+      margin-bottom: var(--space-m);
+      list-style: none;
+      font-size: var(--step--1);
+    }
+    .hero__facts li { display: flex; align-items: center; gap: 0.5rem; }
+    .hero__facts svg { width: 16px; height: 16px; flex: none; opacity: .8; }
+    .hero__facts a { text-underline-offset: 3px; }
+
+    .hero__actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .hero__actions .btn {
+      padding-inline: 0.75rem;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+    @media (max-width: 350px) {
+      .hero__actions { grid-template-columns: 1fr; }
+    }
+    .hero .btn--ghost { color: var(--hero-ink); }
 
     /* ===== Huecos de foto ===== */
     .ph {
@@ -254,6 +370,14 @@
         <path d="M144 173.5 H197 V102 L185 34 M197 102 L213 81 L188 35"/>
       </g>
     </symbol>
+
+    <!-- Iconos (trazo, heredan el color del texto) -->
+    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3.2l2.6 5.5 6 .7-4.5 4.1 1.2 5.9L12 16.5l-5.3 2.9 1.2-5.9-4.5-4.1 6-.7z"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></g></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5 3.5h3.5l1.5 4.5-2.2 1.4a11 11 0 0 0 6.8 6.8l1.4-2.2 4.5 1.5V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.1 1.5 1.5 0 0 1 5 3.5z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 19.5l1.3-3.8A8 8 0 1 1 8.5 19z"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".6" fill="currentColor"/></g></symbol>
   </svg>
 
   <header class="site-header" id="top">
@@ -273,9 +397,40 @@
   <main id="contenuto">
     <!-- 1. Hero -->
     <section class="hero" id="inizio" aria-labelledby="hero-title">
-      <div class="wrap">
+      <div class="hero__media">
+        <!-- Cuando esté la foto: <img src="img/hero.jpg" alt="" fetchpriority="high"> y borrar el .ph -->
+        <div class="ph">[FOTO: la barra con la máquina de espresso, luz de mañana, formato vertical]</div>
+      </div>
+
+      <div class="wrap hero__content">
+        <p class="status" id="status" data-state="closed" aria-live="polite">
+          <span class="status__dot" aria-hidden="true"></span>
+          <span class="status__text">&nbsp;</span>
+        </p>
+
         <h1 class="hero__title" id="hero-title">MANLY <span>The Office</span></h1>
         <p class="hero__tagline" data-i18n="hero.tagline">Specialty coffee &amp; brunch a San Frediano</p>
+
+        <ul class="hero__facts">
+          <li>
+            <svg aria-hidden="true"><use href="#i-pin"/></svg>
+            <span>Via Pisana 48R · San Frediano</span>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#i-star"/></svg>
+            <a href="#" data-href="maps" target="_blank" rel="noopener" data-i18n="hero.rating">4,9 su Google · oltre 660 recensioni</a>
+          </li>
+        </ul>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#" data-href="maps" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-route"/></svg>
+            <span data-i18n="hero.directions">Come arrivare</span>
+          </a>
+          <a class="btn btn--ghost" href="#menu">
+            <span data-i18n="hero.menu">Il menu</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -341,6 +496,30 @@
     (function () {
       'use strict';
 
+      /* ===== Datos del local (única fuente de verdad) ===== */
+      var BIZ = {
+        timeZone: 'Europe/Rome',
+        phone: '+390559062024',
+        phoneDisplay: '+39 055 906 2024',
+        whatsapp: '390559062024',
+        instagram: 'manly_the_office_florence',
+        address: 'Via Pisana 48R, 50143 Firenze',
+        mapsUrl: 'https://www.google.com/maps/search/?api=1&query=' +
+          encodeURIComponent('MANLY The Office, Via Pisana 48R, 50143 Firenze'),
+        // Índice = día de la semana (0 = domingo … 6 = sábado). null = cerrado.
+        hours: [
+          ['08:00', '15:00'], // domenica
+          null,               // lunedì
+          ['08:00', '15:00'], // martedì
+          ['08:00', '15:00'], // mercoledì
+          ['08:00', '15:00'], // giovedì
+          ['08:00', '15:00'], // venerdì
+          ['08:00', '15:00']  // sabato
+        ],
+        kitchen: ['08:30', '14:30'],
+        closingSoonMinutes: 30
+      };
+
       /* ===== Textos ===== */
       var I18N = {
         it: {
@@ -349,6 +528,17 @@
           'skip': 'Vai al contenuto',
           'lang.label': 'Lingua',
           'hero.tagline': 'Specialty coffee & brunch a San Frediano',
+          'hero.rating': '4,9 su Google · oltre 660 recensioni',
+          'hero.directions': 'Come arrivare',
+          'hero.menu': 'Il menu',
+          'days': ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'],
+          'status.closesAt': 'Aperto · chiude alle {t}',
+          'status.kitchenFrom': 'Aperto · cucina dalle {t}',
+          'status.kitchenClosed': 'Aperto · cucina chiusa',
+          'status.closingIn': 'Chiude tra {n} min · cucina chiusa',
+          'status.opensToday': 'Chiuso · apre oggi alle {t}',
+          'status.opensTomorrow': 'Chiuso · apre domani alle {t}',
+          'status.opensOn': 'Chiuso · apre {d} alle {t}',
           'orari.title': 'Orari',
           'menu.title': 'Il menu',
           'caffe.title': 'Il nostro caffè',
@@ -362,6 +552,17 @@
           'skip': 'Skip to content',
           'lang.label': 'Language',
           'hero.tagline': 'Specialty coffee & brunch in San Frediano',
+          'hero.rating': '4.9 on Google · 660+ reviews',
+          'hero.directions': 'Get directions',
+          'hero.menu': 'See the menu',
+          'days': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+          'status.closesAt': 'Open · closes at {t}',
+          'status.kitchenFrom': 'Open · kitchen from {t}',
+          'status.kitchenClosed': 'Open · kitchen closed',
+          'status.closingIn': 'Closes in {n} min · kitchen closed',
+          'status.opensToday': 'Closed · opens today at {t}',
+          'status.opensTomorrow': 'Closed · opens tomorrow at {t}',
+          'status.opensOn': 'Closed · opens {d} at {t}',
           'orari.title': 'Opening hours',
           'menu.title': 'Menu',
           'caffe.title': 'Our coffee',
@@ -428,13 +629,104 @@
         applyLang(btn.dataset.lang);
       });
 
+      /* ===== Utilidades ===== */
+      function fmt(str, vars) {
+        return String(str).replace(/\{(\w+)\}/g, function (_, k) { return vars[k] != null ? vars[k] : ''; });
+      }
+
+      // '08:00' -> '8:00'
+      function showTime(hhmm) { return hhmm.replace(/^0/, ''); }
+
+      function toMinutes(hhmm) {
+        var p = hhmm.split(':');
+        return Number(p[0]) * 60 + Number(p[1]);
+      }
+
+      /* ===== Enlaces comunes ===== */
+      var LINKS = {
+        maps: BIZ.mapsUrl,
+        tel: 'tel:' + BIZ.phone,
+        instagram: 'https://www.instagram.com/' + BIZ.instagram + '/'
+      };
+      document.querySelectorAll('[data-href]').forEach(function (a) {
+        a.href = LINKS[a.getAttribute('data-href')];
+      });
+
+      /* ===== Hora de Florencia ===== */
+      // Para probar estados: ?giorno=2&ora=14:40  (giorno: 0 = domenica … 6 = sabato)
+      var demo = (function () {
+        var q = new URLSearchParams(location.search);
+        var day = q.get('giorno'), time = q.get('ora');
+        if (day === null || !/^\d{1,2}:\d{2}$/.test(time || '')) return null;
+        return { day: Number(day) % 7, minutes: toMinutes(time) };
+      })();
+
+      var WEEKDAYS = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+      var romeClock = new Intl.DateTimeFormat('en-US', {
+        timeZone: BIZ.timeZone, weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false
+      });
+
+      // Siempre la hora del local, aunque el teléfono del turista esté en otra zona horaria.
+      function nowInFlorence() {
+        if (demo) return demo;
+        var parts = {};
+        romeClock.formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
+        return {
+          day: WEEKDAYS[parts.weekday],
+          minutes: (Number(parts.hour) % 24) * 60 + Number(parts.minute)
+        };
+      }
+
+      /* ===== Estado abierto / cerrado ===== */
+      function getStatus(now) {
+        var today = BIZ.hours[now.day];
+        var m = now.minutes;
+
+        if (today && m >= toMinutes(today[0]) && m < toMinutes(today[1])) {
+          var left = toMinutes(today[1]) - m;
+          var kOpen = toMinutes(BIZ.kitchen[0]);
+          var kClose = toMinutes(BIZ.kitchen[1]);
+
+          if (left <= BIZ.closingSoonMinutes) {
+            return { state: 'closing', text: fmt(t('status.closingIn'), { n: left }) };
+          }
+          if (m < kOpen) return { state: 'open', text: fmt(t('status.kitchenFrom'), { t: showTime(BIZ.kitchen[0]) }) };
+          if (m >= kClose) return { state: 'open', text: t('status.kitchenClosed') };
+          return { state: 'open', text: fmt(t('status.closesAt'), { t: showTime(today[1]) }) };
+        }
+
+        // Cerrado: buscar la próxima apertura (hoy más tarde, mañana o el siguiente día abierto)
+        for (var i = 0; i < 8; i++) {
+          var day = (now.day + i) % 7;
+          var h = BIZ.hours[day];
+          if (!h || (i === 0 && m >= toMinutes(h[0]))) continue;
+          if (i === 0) return { state: 'closed', text: fmt(t('status.opensToday'), { t: showTime(h[0]) }) };
+          if (i === 1) return { state: 'closed', text: fmt(t('status.opensTomorrow'), { t: showTime(h[0]) }) };
+          return { state: 'closed', text: fmt(t('status.opensOn'), { d: t('days')[day], t: showTime(h[0]) }) };
+        }
+        return { state: 'closed', text: '' };
+      }
+
+      var statusEl = document.getElementById('status');
+      function renderStatus() {
+        var s = getStatus(nowInFlorence());
+        statusEl.dataset.state = s.state;
+        statusEl.querySelector('.status__text').textContent = s.text;
+      }
+
+      document.addEventListener('langchange', renderStatus);
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) renderStatus();
+      });
+      setInterval(renderStatus, 30 * 1000);
+
       /* ===== Header: borde al hacer scroll ===== */
       var header = document.querySelector('.site-header');
       function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
 
-      window.MANLY = { t: t, applyLang: applyLang };
+      window.MANLY = { t: t, applyLang: applyLang, getStatus: getStatus };
       applyLang(detectLang());
     })();
   </script>
