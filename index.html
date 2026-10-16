@@ -915,6 +915,165 @@
       color: rgba(250, 247, 242, .65);
       line-height: 1.7;
     }
+    /* ===== Navegación de escritorio (oculta en móvil) ===== */
+    .site-nav { display: none; }
+    .place { font-style: normal; }
+
+    /* ===== Tablet ===== */
+    @media (min-width: 768px) {
+      :root {
+        --gutter: 32px;
+        --max: 760px;
+        --space-xl: 6rem;
+      }
+      .pillars { grid-template-columns: repeat(3, 1fr); }
+      .place__actions { grid-template-columns: 1fr 1fr; }
+      .hero__actions { grid-template-columns: auto auto; justify-content: start; }
+      .hero__actions .btn { padding-inline: 1.5rem; }
+    }
+
+    @media (min-width: 900px) {
+      #menu-list {
+        columns: 2;
+        column-gap: 3rem;
+      }
+      .menu-cat { break-inside: avoid; }
+    }
+
+    /* ===== Escritorio ===== */
+    @media (min-width: 1024px) {
+      :root {
+        --gutter: 48px;
+        --max: 1200px;
+        --header-h: 72px;
+        --step-2: 2.75rem;
+      }
+
+      /* Header */
+      .site-header__inner { gap: var(--space-m); }
+      .brand .logo { width: 42px; height: 42px; }
+      .site-nav {
+        display: flex;
+        gap: 1.75rem;
+        margin-left: auto;
+      }
+      .site-nav a {
+        position: relative;
+        padding-block: 0.4rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .site-nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1.5px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform .25s;
+      }
+      .site-nav a:hover::after { transform: scaleX(1); }
+
+      /* Hero */
+      .hero { max-height: none; min-height: min(calc(100svh - var(--header-h)), 860px); padding-block: var(--space-xl); }
+      .hero__content { max-width: var(--max); }
+      .hero__title { font-size: clamp(3.5rem, 2rem + 4vw, 6rem); }
+      .hero__tagline { font-size: 1.5rem; max-width: 34ch; }
+      .hero__facts { display: flex; gap: 2rem; font-size: 1rem; }
+      .hero__media .ph { inset: var(--space-l) var(--gutter) var(--space-l) 55%; height: auto; }
+      .hero__content > * { max-width: 52%; }
+
+      .section__title { margin-bottom: var(--space-l); }
+
+      /* Grillas de dos columnas: la foto ocupa la columna izquierda en toda su altura */
+      .section--orari .wrap,
+      .section--caffe .wrap,
+      .section--shop .wrap,
+      .section--dove .wrap {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: clamp(3rem, 6vw, 6rem);
+        align-content: start;
+      }
+      .section--orari .wrap > *,
+      .section--caffe .wrap > *,
+      .section--shop .wrap > *,
+      .section--dove .wrap > * { grid-column: 2; }
+
+      .section--orari .wrap { grid-template-rows: min-content 1fr; }
+      .section--orari .section__title { grid-column: 1; grid-row: 1; }
+      .section--orari .hours__note { grid-column: 1; grid-row: 2; align-self: start; margin-top: 0; }
+      .section--orari .hours { grid-row: 1 / span 2; }
+
+      .section--caffe .coffee__media {
+        grid-column: 1;
+        grid-row: 1 / span 8;
+        aspect-ratio: 4 / 5;
+        margin: 0;
+        align-self: start;
+      }
+
+      .section--shop .shop__media {
+        grid-column: 1;
+        grid-row: 1 / span 4;
+        margin: 0;
+        position: sticky;
+        top: calc(var(--header-h) + var(--space-m));
+        align-self: start;
+      }
+
+      .section--dove .wrap { grid-template-rows: min-content min-content 1fr; }
+      .section--dove .section__title { grid-column: 1; grid-row: 1; }
+      .section--dove .place { grid-column: 1; grid-row: 2; }
+      .section--dove .place__actions { grid-column: 1; grid-row: 3; align-self: start; }
+      .section--dove .map { grid-row: 1 / span 4; aspect-ratio: 1 / 1; margin: 0; }
+
+      /* Carta */
+      #menu-list { columns: 3; }
+
+      /* Historia */
+      .story__lead { font-size: 2rem; max-width: 30ch; margin-bottom: var(--space-xl); }
+      .chapter {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: clamp(3rem, 6vw, 6rem);
+        align-items: center;
+      }
+      .chapter__media { margin: 0; }
+      .chapter:nth-child(even) .chapter__media { order: 2; }
+      .chapter:not(:has(.chapter__media)) .chapter__body { grid-column: 1 / -1; max-width: 640px; margin-inline: auto; text-align: center; }
+      .chapter:not(:has(.chapter__media)) .chapter__head { justify-content: center; }
+      .chapter__title { font-size: 2.1rem; }
+      .chapter__body p:not(.chapter__head) { font-size: 1.1rem; max-width: 48ch; }
+
+      .welcome {
+        margin-inline: calc(50% - 50vw);
+        padding-block: calc(var(--space-xl) * 1.3);
+      }
+
+      .quote,
+      .press { max-width: 720px; }
+      .quote p { font-size: 1.8rem; }
+
+      /* Footer */
+      .footer__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1.3fr;
+        gap: var(--space-l);
+        align-items: start;
+      }
+      .footer__links { margin-bottom: 0; }
+      .footer__legal { padding-top: 0; border-top: 0; }
+    }
+
+    @media (min-width: 1280px) {
+      .hero__content > * { max-width: 48%; }
+    }
   </style>
 </head>
 <body>
@@ -946,6 +1105,15 @@
         <svg class="logo" aria-hidden="true"><use href="#logo-manly"/></svg>
         <span class="brand__name">Manly <small>The Office</small></span>
       </a>
+
+      <nav class="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Navigazione">
+        <a href="#orari" data-i18n="orari.title">Orari</a>
+        <a href="#menu" data-i18n="menu.title">Il menu</a>
+        <a href="#caffe" data-i18n="caffe.title">Il nostro caffè</a>
+        <a href="#shop">Shop</a>
+        <a href="#storia" data-i18n="storia.title">La nostra storia</a>
+        <a href="#dove" data-i18n="dove.title">Dove siamo</a>
+      </nav>
 
       <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Lingua">
         <button type="button" data-lang="it" aria-pressed="true" lang="it">IT</button>
@@ -995,7 +1163,7 @@
     </section>
 
     <!-- 2. Orari -->
-    <section class="section" id="orari" aria-labelledby="orari-title">
+    <section class="section section--orari" id="orari" aria-labelledby="orari-title">
       <div class="wrap">
         <h2 class="section__title" id="orari-title" data-i18n="orari.title">Orari</h2>
         <ul class="hours" id="hours-list"></ul>
@@ -1007,7 +1175,7 @@
     </section>
 
     <!-- 3. Menu -->
-    <section class="section" id="menu" aria-labelledby="menu-title">
+    <section class="section section--menu" id="menu" aria-labelledby="menu-title">
       <div class="wrap">
         <h2 class="section__title" id="menu-title" data-i18n="menu.title">Il menu</h2>
         <div class="menu-intro">
@@ -1029,7 +1197,7 @@
     </section>
 
     <!-- 4. Il nostro caffè -->
-    <section class="section" id="caffe" aria-labelledby="caffe-title">
+    <section class="section section--caffe" id="caffe" aria-labelledby="caffe-title">
       <div class="wrap">
         <h2 class="section__title" id="caffe-title" data-i18n="caffe.title">Il nostro caffè</h2>
         <div class="ph ph--3x2 coffee__media">[FOTO: granos de L’Australiano sobre la barra, o la bolsa con la etiqueta D612, de cerca]</div>
@@ -1059,7 +1227,7 @@
     </section>
 
     <!-- 5. Shop -->
-    <section class="section" id="shop" aria-labelledby="shop-title">
+    <section class="section section--shop" id="shop" aria-labelledby="shop-title">
       <div class="wrap">
         <p class="section__kicker">Shop</p>
         <h2 class="section__title" id="shop-title" data-i18n="shop.title">L’Australiano a casa tua</h2>
@@ -1110,7 +1278,7 @@
     </section>
 
     <!-- 6. Storia -->
-    <section class="section" id="storia" aria-labelledby="storia-title">
+    <section class="section section--storia" id="storia" aria-labelledby="storia-title">
       <div class="wrap">
         <h2 class="section__title" id="storia-title" data-i18n="storia.title">La nostra storia</h2>
         <p class="story__lead" data-i18n="storia.lead">Manly è un quartiere sul mare a nord di Sydney. The Office è il posto, su quella spiaggia, dove si guarda il tramonto. Da lì viene il nostro nome.</p>
@@ -1187,10 +1355,10 @@
     </section>
 
     <!-- 7. Dove siamo -->
-    <section class="section" id="dove" aria-labelledby="dove-title">
+    <section class="section section--dove" id="dove" aria-labelledby="dove-title">
       <div class="wrap">
         <h2 class="section__title" id="dove-title" data-i18n="dove.title">Dove siamo</h2>
-        <address style="font-style:normal">
+        <address class="place">
           <p class="place__address">Via Pisana 48R</p>
           <p class="place__area">50143 Firenze · San Frediano</p>
         </address>
@@ -1221,9 +1389,11 @@
 
   <!-- 8. Footer -->
   <footer class="site-footer">
-    <div class="wrap">
-      <svg class="logo" aria-hidden="true"><use href="#logo-manly"/></svg>
-      <p class="footer__name">MANLY The Office</p>
+    <div class="wrap footer__grid">
+      <div class="footer__brand">
+        <svg class="logo" aria-hidden="true"><use href="#logo-manly"/></svg>
+        <p class="footer__name">MANLY The Office</p>
+      </div>
 
       <ul class="footer__links">
         <li>
@@ -1290,6 +1460,7 @@
           'meta.desc': 'Specialty coffee e brunch di scuola australiana a San Frediano, Firenze. Via Pisana 48R.',
           'skip': 'Vai al contenuto',
           'lang.label': 'Lingua',
+          'nav.label': 'Navigazione',
           'hero.tagline': 'Specialty coffee & brunch a San Frediano',
           'hero.rating': '4,9 su Google · oltre 660 recensioni',
           'hero.directions': 'Come arrivare',
@@ -1381,6 +1552,7 @@
           'meta.desc': 'Australian-style specialty coffee and brunch in San Frediano, Florence. Via Pisana 48R.',
           'skip': 'Skip to content',
           'lang.label': 'Language',
+          'nav.label': 'Navigation',
           'hero.tagline': 'Specialty coffee & brunch in San Frediano',
           'hero.rating': '4.9 on Google · 660+ reviews',
           'hero.directions': 'Get directions',
@@ -1956,11 +2128,14 @@
       document.addEventListener('langchange', renderMenu);
 
       // Resalta en la barra de chips la categoría visible y la mantiene a la vista
+      // Con la carta en columnas (≥900px) varias secciones se ven a la vez: no se resalta ninguna
       var menuObserver;
+      var menuColumns = window.matchMedia('(min-width: 900px)');
       function observeMenu() {
         if (!('IntersectionObserver' in window)) return;
         if (menuObserver) menuObserver.disconnect();
         menuObserver = new IntersectionObserver(function (entries) {
+          if (menuColumns.matches) return;
           entries.forEach(function (entry) {
             if (!entry.isIntersecting) return;
             var id = entry.target.id;
