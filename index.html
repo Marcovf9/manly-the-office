@@ -840,15 +840,6 @@
     .ph--1x1 { aspect-ratio: 1 / 1; }
     .ph--3x2 { aspect-ratio: 3 / 2; }
 
-    /* Marca de contenido pendiente (solo boceto) */
-    .todo {
-      padding: var(--space-s);
-      border-left: 3px solid var(--accent);
-      background: var(--surface);
-      font-size: var(--step--1);
-      color: var(--ink-soft);
-    }
-
     /* ===== Footer ===== */
     .site-footer {
       padding-block: var(--space-l) calc(var(--space-l) + env(safe-area-inset-bottom));
@@ -857,6 +848,34 @@
       font-size: var(--step--1);
     }
     .site-footer .logo { width: 56px; height: 56px; color: var(--bg); margin-bottom: var(--space-s); }
+    .site-footer a { color: inherit; }
+    .footer__name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: var(--space-m);
+    }
+    .footer__links {
+      display: grid;
+      gap: 0.25rem;
+      padding: 0;
+      margin-bottom: var(--space-l);
+      list-style: none;
+    }
+    .footer__links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-height: 44px;
+      font-size: 1rem;
+      text-decoration: none;
+    }
+    .footer__links svg { width: 20px; height: 20px; }
+    .footer__legal {
+      padding-top: var(--space-m);
+      border-top: 1px solid rgba(250, 247, 242, .15);
+      color: rgba(250, 247, 242, .65);
+      line-height: 1.7;
+    }
   </style>
 </head>
 <body>
@@ -1124,7 +1143,35 @@
   <footer class="site-footer">
     <div class="wrap">
       <svg class="logo" aria-hidden="true"><use href="#logo-manly"/></svg>
-      <p class="todo" style="background:transparent;color:inherit">feat/footer</p>
+      <p class="footer__name">MANLY The Office</p>
+
+      <ul class="footer__links">
+        <li>
+          <a href="#" data-href="instagram" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-camera"/></svg>
+            <span>@manly_the_office_florence</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-href="tel">
+            <svg aria-hidden="true"><use href="#i-phone"/></svg>
+            <span>+39 055 906 2024</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-href="maps" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-pin"/></svg>
+            <span>Via Pisana 48R, 50143 Firenze</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="footer__legal">
+        <p>Cozy Lab di Martino Maykol &amp; C. S.n.c.</p>
+        <p><span data-i18n="footer.seat">Sede legale</span>: Piazza dei Mezzadri 20, 50014 Fiesole (FI)</p>
+        <p>P. IVA / C.F. 07109160486</p>
+        <p>© <span id="year">2026</span> MANLY The Office</p>
+      </div>
     </div>
   </footer>
 
@@ -1228,7 +1275,8 @@
           'dove.mapNote': 'La mappa viene caricata da Google Maps.',
           'dove.mapTitle': 'Mappa: MANLY The Office, Via Pisana 48R, Firenze',
           'dove.openMaps': 'Apri in Google Maps',
-          'dove.call': 'Chiama'
+          'dove.call': 'Chiama',
+          'footer.seat': 'Sede legale'
         },
         en: {
           'meta.title': 'MANLY The Office — Specialty coffee & brunch, Florence',
@@ -1300,7 +1348,8 @@
           'dove.mapNote': 'The map is loaded from Google Maps.',
           'dove.mapTitle': 'Map: MANLY The Office, Via Pisana 48R, Florence',
           'dove.openMaps': 'Open in Google Maps',
-          'dove.call': 'Call'
+          'dove.call': 'Call',
+          'footer.seat': 'Registered office'
         }
       };
 
@@ -1944,6 +1993,8 @@
         map.innerHTML = '';
         map.appendChild(iframe);
       });
+
+      document.getElementById('year').textContent = new Date().getFullYear();
 
       /* ===== Header: borde al hacer scroll ===== */
       var header = document.querySelector('.site-header');
