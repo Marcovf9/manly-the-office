@@ -2,6 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
+  <script>document.documentElement.classList.add('js')</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>MANLY The Office — Specialty coffee &amp; brunch, Firenze</title>
   <meta name="description" content="Specialty coffee e brunch di scuola australiana a San Frediano, Firenze. Via Pisana 48R.">
@@ -246,14 +247,36 @@
       inset: 0;
       background: linear-gradient(180deg, rgba(30, 27, 18, 0) 20%, rgba(30, 27, 18, .7) 60%, rgba(30, 27, 18, .92) 100%);
     }
-    .hero__media .ph {
+    /* Collage: las fotos se separan hacia afuera al hacer scroll (ver JS) */
+    .collage {
       position: absolute;
       inset: var(--space-m) var(--gutter) auto;
-      height: min(34%, 260px);
-      background: transparent;
-      border-color: rgba(250, 247, 242, .35);
-      color: rgba(250, 247, 242, .7);
+      height: min(42%, 340px);
     }
+    .tile {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--w);
+      height: var(--h);
+      border-radius: 10px;
+      overflow: hidden;
+      will-change: transform, opacity;
+    }
+    .tile img { width: 100%; height: 100%; object-fit: cover; }
+    .tile .ph {
+      height: 100%;
+      padding: 0.4rem;
+      border-radius: inherit;
+      border-color: rgba(250, 247, 242, .3);
+      background: rgba(250, 247, 242, .06);
+      color: rgba(250, 247, 242, .7);
+      font-size: 0.62rem;
+      line-height: 1.3;
+    }
+    .js .tile { opacity: 0; transform: scale(.92); transition: opacity 1s ease, transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+    .js .is-loaded .tile { opacity: 1; transform: none; transition-delay: calc(var(--i) * 90ms); }
+    .js .is-loaded .tile.is-scrolling { transition: none; }
 
     .hero__content { position: relative; }
 
@@ -712,47 +735,86 @@
       line-height: 1.4;
       margin-bottom: var(--space-l);
     }
-    .story__media { margin-bottom: var(--space-l); }
 
-    .timeline {
-      position: relative;
+    .chapters {
       display: grid;
-      gap: var(--space-m);
-      padding: 0 0 0 1.5rem;
-      margin-bottom: var(--space-l);
+      gap: var(--space-xl);
+      padding: 0;
+      margin-bottom: var(--space-xl);
       list-style: none;
+      counter-reset: chapter;
     }
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 4px;
-      top: 0.5rem;
-      bottom: 0.5rem;
-      width: 1px;
-      background: var(--line);
+    .chapter { counter-increment: chapter; }
+    .chapter__media { margin-bottom: var(--space-m); }
+    .chapter__head {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
     }
-    .timeline li { position: relative; }
-    .timeline li::before {
-      content: "";
-      position: absolute;
-      left: calc(-1.5rem + 0px);
-      top: 0.45rem;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--bg);
-      border: 1.5px solid var(--ink);
+    .chapter__head::before {
+      content: counter(chapter, decimal-leading-zero);
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      color: var(--accent);
     }
-    .timeline li:last-child::before { background: var(--accent); border-color: var(--accent); }
-    .timeline__when {
-      display: block;
-      margin-bottom: 0.15rem;
+    .chapter__when {
       font-size: var(--step--1);
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ink-soft);
     }
+    .chapter__title {
+      font-size: 1.55rem;
+      margin-bottom: var(--space-s);
+    }
+    .chapter p + p { margin-top: 0.75rem; }
+
+    .welcome {
+      margin: 0 calc(var(--gutter) * -1) var(--space-xl);
+      padding: var(--space-xl) var(--gutter);
+      background: var(--ink);
+      color: var(--bg);
+      text-align: center;
+    }
+    .welcome p {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 1.4rem + 3vw, 3.4rem);
+      font-style: italic;
+      line-height: 1.1;
+    }
+    .welcome span {
+      display: block;
+      margin-top: var(--space-s);
+      font-size: var(--step--1);
+      opacity: .7;
+    }
+
+    .essence__title {
+      font-size: var(--step-2);
+      margin-bottom: var(--space-m);
+    }
+    .pillars {
+      display: grid;
+      gap: var(--space-s);
+      padding: 0;
+      margin-bottom: var(--space-xl);
+      list-style: none;
+    }
+    .pillar {
+      padding: var(--space-m) var(--space-s);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+    .pillar h4 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    .pillar p { color: var(--ink-soft); }
 
     .quote {
       margin-bottom: var(--space-l);
@@ -876,6 +938,250 @@
       color: rgba(250, 247, 242, .65);
       line-height: 1.7;
     }
+    /* ===== Animaciones ===== */
+    .marquee {
+      overflow: hidden;
+      padding-block: 1rem;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg);
+    }
+    .marquee__track {
+      display: flex;
+      width: max-content;
+      animation: marquee 32s linear infinite;
+    }
+    .marquee__track span {
+      padding-right: 0.6em;
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 1rem + 2vw, 2.4rem);
+      font-style: italic;
+      white-space: nowrap;
+    }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    /* Entrada del hero */
+    .js .hero__content > * {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .9s ease, transform .9s cubic-bezier(.2, .7, .2, 1);
+    }
+    .js .is-loaded .hero__content > * { opacity: 1; transform: none; }
+    .js .is-loaded .hero__content > :nth-child(2) { transition-delay: .1s; }
+    .js .is-loaded .hero__content > :nth-child(3) { transition-delay: .2s; }
+    .js .is-loaded .hero__content > :nth-child(4) { transition-delay: .3s; }
+    .js .is-loaded .hero__content > :nth-child(5) { transition-delay: .4s; }
+
+    /* Aparición al entrar en pantalla */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s ease, transform 1s cubic-bezier(.2, .7, .2, 1);
+      transition-delay: var(--delay, 0s);
+    }
+    .js .reveal.is-in { opacity: 1; transform: none; }
+
+    /* Fotos: se descubren con un recorte que se abre y un zoom suave */
+    .js .reveal-media {
+      clip-path: inset(10% 8% 10% 8% round var(--radius));
+      transition: clip-path 1.2s cubic-bezier(.2, .7, .2, 1);
+    }
+    .js .reveal-media > * { transform: scale(1.12); transition: transform 1.6s cubic-bezier(.2, .7, .2, 1); }
+    .js .reveal-media.ph { transform: scale(1.04); transition: clip-path 1.2s cubic-bezier(.2, .7, .2, 1), transform 1.6s cubic-bezier(.2, .7, .2, 1); }
+    .js .reveal-media.is-in { clip-path: inset(0 0 0 0 round var(--radius)); }
+    .js .reveal-media.is-in > *,
+    .js .reveal-media.ph.is-in { transform: none; }
+
+    /* Barra de origen que se llena */
+    .js .origin__bar span { transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+    .js .origin__bar span:last-child { transition-delay: .5s; }
+    .js .origin.is-in .origin__bar span { transform: none; }
+
+    /* Rebote del total en el shop */
+    @keyframes bump { 40% { transform: scale(1.08); } }
+    .shop__total output.bump { display: inline-block; animation: bump .35s ease; }
+
+    /* Botones y tarjetas: respuesta al pasar el mouse */
+    @media (hover: hover) {
+      .btn { transition: transform .15s, background-color .2s, box-shadow .2s; }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(30, 27, 18, .18); }
+      .pillar, .press { transition: transform .3s, box-shadow .3s; }
+      .pillar:hover, .press:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(63, 59, 42, .1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee__track { animation: none; }
+      .js .reveal, .js .reveal-media, .js .reveal-media > *, .js .tile,
+      .js .hero__content > *, .js .origin__bar span {
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* ===== Navegación de escritorio (oculta en móvil) ===== */
+    .site-nav { display: none; }
+    .place { font-style: normal; }
+
+    /* ===== Tablet ===== */
+    @media (min-width: 768px) {
+      :root {
+        --gutter: 32px;
+        --max: 760px;
+        --space-xl: 6rem;
+      }
+      .pillars { grid-template-columns: repeat(3, 1fr); }
+      .place__actions { grid-template-columns: 1fr 1fr; }
+      .hero__actions { grid-template-columns: auto auto; justify-content: start; }
+      .hero__actions .btn { padding-inline: 1.5rem; }
+    }
+
+    @media (min-width: 900px) {
+      #menu-list {
+        columns: 2;
+        column-gap: 3rem;
+      }
+      .menu-cat { break-inside: avoid; }
+    }
+
+    /* ===== Escritorio ===== */
+    @media (min-width: 1024px) {
+      :root {
+        --gutter: 48px;
+        --max: 1200px;
+        --header-h: 72px;
+        --step-2: 2.75rem;
+      }
+
+      /* Header */
+      .site-header__inner { gap: var(--space-m); }
+      .brand .logo { width: 42px; height: 42px; }
+      .site-nav {
+        display: flex;
+        gap: 1.75rem;
+        margin-left: auto;
+      }
+      .site-nav a {
+        position: relative;
+        padding-block: 0.4rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .site-nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1.5px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform .25s;
+      }
+      .site-nav a:hover::after { transform: scaleX(1); }
+
+      /* Hero */
+      .hero { max-height: none; min-height: min(calc(100svh - var(--header-h)), 860px); padding-block: var(--space-xl); }
+      .hero__content { max-width: var(--max); }
+      .hero__title { font-size: clamp(3.5rem, 2rem + 4vw, 6rem); }
+      .hero__tagline { font-size: 1.5rem; max-width: 34ch; }
+      .hero__facts { display: flex; gap: 2rem; font-size: 1rem; }
+      .collage { inset: var(--space-l) var(--gutter) var(--space-l) 54%; height: auto; }
+      .tile .ph { font-size: 0.75rem; padding: 0.75rem; }
+      .hero__media::after {
+        background: linear-gradient(90deg, rgba(30, 27, 18, .85) 0%, rgba(30, 27, 18, .35) 50%, rgba(30, 27, 18, 0) 70%);
+      }
+      .hero__content > * { max-width: 52%; }
+
+      .section__title { margin-bottom: var(--space-l); }
+
+      /* Grillas de dos columnas: la foto ocupa la columna izquierda en toda su altura */
+      .section--orari .wrap,
+      .section--caffe .wrap,
+      .section--shop .wrap,
+      .section--dove .wrap {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: clamp(3rem, 6vw, 6rem);
+        align-content: start;
+      }
+      .section--orari .wrap > *,
+      .section--caffe .wrap > *,
+      .section--shop .wrap > *,
+      .section--dove .wrap > * { grid-column: 2; }
+
+      .section--orari .wrap { grid-template-rows: min-content 1fr; }
+      .section--orari .section__title { grid-column: 1; grid-row: 1; }
+      .section--orari .hours__note { grid-column: 1; grid-row: 2; align-self: start; margin-top: 0; }
+      .section--orari .hours { grid-row: 1 / span 2; }
+
+      .section--caffe .coffee__media {
+        grid-column: 1;
+        grid-row: 1 / span 8;
+        aspect-ratio: 4 / 5;
+        margin: 0;
+        align-self: start;
+      }
+
+      .section--shop .shop__media {
+        grid-column: 1;
+        grid-row: 1 / span 4;
+        margin: 0;
+        position: sticky;
+        top: calc(var(--header-h) + var(--space-m));
+        align-self: start;
+      }
+
+      .section--dove .wrap { grid-template-rows: min-content min-content 1fr; }
+      .section--dove .section__title { grid-column: 1; grid-row: 1; }
+      .section--dove .place { grid-column: 1; grid-row: 2; }
+      .section--dove .place__actions { grid-column: 1; grid-row: 3; align-self: start; }
+      .section--dove .map { grid-row: 1 / span 4; aspect-ratio: 1 / 1; margin: 0; }
+
+      /* Carta */
+      #menu-list { columns: 3; }
+
+      /* Historia */
+      .story__lead { font-size: 2rem; max-width: 30ch; margin-bottom: var(--space-xl); }
+      .chapter {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: clamp(3rem, 6vw, 6rem);
+        align-items: center;
+      }
+      .chapter__media { margin: 0; }
+      .chapter:nth-child(even) .chapter__media { order: 2; }
+      .chapter:not(:has(.chapter__media)) .chapter__body { grid-column: 1 / -1; max-width: 640px; margin-inline: auto; text-align: center; }
+      .chapter:not(:has(.chapter__media)) .chapter__head { justify-content: center; }
+      .chapter__title { font-size: 2.1rem; }
+      .chapter__body p:not(.chapter__head) { font-size: 1.1rem; max-width: 48ch; }
+
+      .welcome {
+        margin-inline: calc(50% - 50vw);
+        padding-block: calc(var(--space-xl) * 1.3);
+      }
+
+      .quote,
+      .press { max-width: 720px; }
+      .quote p { font-size: 1.8rem; }
+
+      /* Footer */
+      .footer__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1.3fr;
+        gap: var(--space-l);
+        align-items: start;
+      }
+      .footer__links { margin-bottom: 0; }
+      .footer__legal { padding-top: 0; border-top: 0; }
+    }
+
+    @media (min-width: 1280px) {
+      .hero__content > * { max-width: 48%; }
+    }
   </style>
 </head>
 <body>
@@ -908,6 +1214,15 @@
         <span class="brand__name">Manly <small>The Office</small></span>
       </a>
 
+      <nav class="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Navigazione">
+        <a href="#orari" data-i18n="orari.title">Orari</a>
+        <a href="#menu" data-i18n="menu.title">Il menu</a>
+        <a href="#caffe" data-i18n="caffe.title">Il nostro caffè</a>
+        <a href="#shop">Shop</a>
+        <a href="#storia" data-i18n="storia.title">La nostra storia</a>
+        <a href="#dove" data-i18n="dove.title">Dove siamo</a>
+      </nav>
+
       <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Lingua">
         <button type="button" data-lang="it" aria-pressed="true" lang="it">IT</button>
         <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
@@ -919,8 +1234,14 @@
     <!-- 1. Hero -->
     <section class="hero" id="inizio" aria-labelledby="hero-title">
       <div class="hero__media">
-        <!-- Cuando esté la foto: <img src="img/hero.jpg" alt="" fetchpriority="high"> y borrar el .ph -->
-        <div class="ph">[FOTO: la barra con la máquina de espresso, luz de mañana, formato vertical]</div>
+        <!-- Collage: reemplazar cada .ph por <img src="img/..." alt=""> (la primera con fetchpriority="high") -->
+        <div class="collage" id="collage" aria-hidden="true">
+          <div class="tile" style="--x:24%;--y:6%;--w:48%;--h:84%;--i:0"><div class="ph">[FOTO: la barra con la máquina, luz de mañana]</div></div>
+          <div class="tile" style="--x:0%;--y:30%;--w:27%;--h:46%;--i:1"><div class="ph">[FOTO: latte art]</div></div>
+          <div class="tile" style="--x:75%;--y:0%;--w:25%;--h:40%;--i:2"><div class="ph">[FOTO: bolsa L’Australiano]</div></div>
+          <div class="tile" style="--x:70%;--y:50%;--w:30%;--h:46%;--i:3"><div class="ph">[FOTO: avocado toast]</div></div>
+          <div class="tile" style="--x:4%;--y:0%;--w:17%;--h:24%;--i:4"><div class="ph">[FOTO: la vidriera de Via Pisana]</div></div>
+        </div>
       </div>
 
       <div class="wrap hero__content">
@@ -955,8 +1276,15 @@
       </div>
     </section>
 
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span data-i18n="marquee">Specialty coffee · Brunch · San Frediano · L’Australiano · Dal 2023 ·</span>
+        <span data-i18n="marquee">Specialty coffee · Brunch · San Frediano · L’Australiano · Dal 2023 ·</span>
+      </div>
+    </div>
+
     <!-- 2. Orari -->
-    <section class="section" id="orari" aria-labelledby="orari-title">
+    <section class="section section--orari" id="orari" aria-labelledby="orari-title">
       <div class="wrap">
         <h2 class="section__title" id="orari-title" data-i18n="orari.title">Orari</h2>
         <ul class="hours" id="hours-list"></ul>
@@ -968,7 +1296,7 @@
     </section>
 
     <!-- 3. Menu -->
-    <section class="section" id="menu" aria-labelledby="menu-title">
+    <section class="section section--menu" id="menu" aria-labelledby="menu-title">
       <div class="wrap">
         <h2 class="section__title" id="menu-title" data-i18n="menu.title">Il menu</h2>
         <div class="menu-intro">
@@ -990,7 +1318,7 @@
     </section>
 
     <!-- 4. Il nostro caffè -->
-    <section class="section" id="caffe" aria-labelledby="caffe-title">
+    <section class="section section--caffe" id="caffe" aria-labelledby="caffe-title">
       <div class="wrap">
         <h2 class="section__title" id="caffe-title" data-i18n="caffe.title">Il nostro caffè</h2>
         <div class="ph ph--3x2 coffee__media">[FOTO: granos de L’Australiano sobre la barra, o la bolsa con la etiqueta D612, de cerca]</div>
@@ -1020,7 +1348,7 @@
     </section>
 
     <!-- 5. Shop -->
-    <section class="section" id="shop" aria-labelledby="shop-title">
+    <section class="section section--shop" id="shop" aria-labelledby="shop-title">
       <div class="wrap">
         <p class="section__kicker">Shop</p>
         <h2 class="section__title" id="shop-title" data-i18n="shop.title">L’Australiano a casa tua</h2>
@@ -1071,27 +1399,68 @@
     </section>
 
     <!-- 6. Storia -->
-    <section class="section" id="storia" aria-labelledby="storia-title">
+    <section class="section section--storia" id="storia" aria-labelledby="storia-title">
       <div class="wrap">
         <h2 class="section__title" id="storia-title" data-i18n="storia.title">La nostra storia</h2>
         <p class="story__lead" data-i18n="storia.lead">Manly è un quartiere sul mare a nord di Sydney. The Office è il posto, su quella spiaggia, dove si guarda il tramonto. Da lì viene il nostro nome.</p>
 
-        <div class="ph ph--4x5 story__media">[FOTO: Maykol y Alice detrás de la barra, retrato natural, sin posar]</div>
-
-        <ol class="timeline">
-          <li>
-            <span class="timeline__when" data-i18n="storia.t1.when">Prima di partire</span>
-            <span data-i18n="storia.t1.text">Maykol, fiorentino, si forma nel caffè con Simone Guidi della torrefazione La Sosta.</span>
+        <ol class="chapters">
+          <li class="chapter">
+            <div class="ph ph--3x2 chapter__media">[FOTO: Maykol haciendo latte art, manos y jarra de leche, de cerca]</div>
+            <div class="chapter__body">
+              <p class="chapter__head"><span class="chapter__when" data-i18n="storia.c1.when">Firenze</span></p>
+              <h3 class="chapter__title" data-i18n="storia.c1.title">Dal bancone al caffè</h3>
+              <p data-i18n="storia.c1.p1">Maykol nasce a Firenze e comincia a lavorare come barman. Poi arriva il caffè, e diventa una passione.</p>
+              <p data-i18n="storia.c1.p2">Si forma con Simone Guidi, formatore e fondatore della torrefazione La Sosta, e impara la latte art: disegnare versando il latte nella tazza.</p>
+            </div>
           </li>
-          <li>
-            <span class="timeline__when">2016</span>
-            <span data-i18n="storia.t2.text">Si trasferisce in Australia: quattro anni nelle caffetterie, dove impara un altro modo di lavorare e di fare il caffè.</span>
+          <li class="chapter">
+            <div class="ph ph--3x2 chapter__media">[FOTO: Maykol en Australia, si hay foto de archivo; si no, detalle de la máquina]</div>
+            <div class="chapter__body">
+              <p class="chapter__head"><span class="chapter__when" data-i18n="storia.c2.when">2016 · Australia</span></p>
+              <h3 class="chapter__title" data-i18n="storia.c2.title">Ricominciare dalle basi</h3>
+              <p data-i18n="storia.c2.p1">Nel 2016 parte per l’Australia con la sua compagna. Non parla inglese, ma è sicuro delle sue capacità da barista. Pensa che basti.</p>
+              <p data-i18n="storia.c2.p2">Non basta: in Australia si lavora e si fa il caffè in un modo completamente diverso. Riparte dalle basi e per quattro anni lavora nelle caffetterie australiane, dove la cultura del caffè è molto più avanti.</p>
+            </div>
           </li>
-          <li>
-            <span class="timeline__when" data-i18n="storia.t3.when">12 luglio 2023</span>
-            <span data-i18n="storia.t3.text">Maykol e sua moglie Alice, che lavora anche in cucina, aprono MANLY The Office a San Frediano.</span>
+          <li class="chapter">
+            <div class="chapter__body">
+              <p class="chapter__head"><span class="chapter__when" data-i18n="storia.c3.when">Ritorno a Firenze</span></p>
+              <h3 class="chapter__title" data-i18n="storia.c3.title">Un sogno in pausa</h3>
+              <p data-i18n="storia.c3.p1">Torna a casa con un’idea chiara: aprire un posto suo. Poi arriva il Covid, e il sogno deve aspettare.</p>
+            </div>
+          </li>
+          <li class="chapter">
+            <div class="ph ph--4x5 chapter__media">[FOTO: Maykol y Alice detrás de la barra, retrato natural, sin posar]</div>
+            <div class="chapter__body">
+              <p class="chapter__head"><span class="chapter__when" data-i18n="storia.c4.when">12 luglio 2023</span></p>
+              <h3 class="chapter__title" data-i18n="storia.c4.title">Si apre, a San Frediano</h3>
+              <p data-i18n="storia.c4.p1">Maykol e sua moglie Alice, che lavora anche in cucina, aprono MANLY The Office in Via Pisana.</p>
+              <p data-i18n="storia.c4.p2">Lo spazio è piccolo, e si fa il massimo con quello che c’è.</p>
+            </div>
           </li>
         </ol>
+
+        <div class="welcome">
+          <p lang="en">“Hey, how are you? Welcome!”</p>
+          <span data-i18n="storia.welcome">È la prima cosa che senti quando entri.</span>
+        </div>
+
+        <h3 class="essence__title" data-i18n="essenza.title">La nostra essenza</h3>
+        <ul class="pillars">
+          <li class="pillar">
+            <h4 data-i18n="essenza.p1.title">Il caffè al centro</h4>
+            <p data-i18n="essenza.p1.text">Espresso e filtro con L’Australiano di D612. Il caffè resta la vera passione di Maykol, e il centro di tutto.</p>
+          </li>
+          <li class="pillar">
+            <h4 data-i18n="essenza.p2.title">L’ospitalità ha un valore</h4>
+            <p data-i18n="essenza.p2.text">Scegliere prodotti di qualità è fondamentale. Ma la parte più difficile, e più importante, è far sentire le persone accolte e condividere con loro quello che facciamo.</p>
+          </li>
+          <li class="pillar">
+            <h4 data-i18n="essenza.p3.title">Un brunch per tutti</h4>
+            <p data-i18n="essenza.p3.text">Pancake, banana bread fatto in casa senza glutine, bagel e avocado toast. Ci sono opzioni senza glutine e vegane: proviamo ad accontentare ogni esigenza alimentare, nei limiti del possibile.</p>
+          </li>
+        </ul>
 
         <blockquote class="quote">
           <p data-i18n="storia.quote">“Non è forse il lavoro più bello del mondo?”</p>
@@ -1107,10 +1476,10 @@
     </section>
 
     <!-- 7. Dove siamo -->
-    <section class="section" id="dove" aria-labelledby="dove-title">
+    <section class="section section--dove" id="dove" aria-labelledby="dove-title">
       <div class="wrap">
         <h2 class="section__title" id="dove-title" data-i18n="dove.title">Dove siamo</h2>
-        <address style="font-style:normal">
+        <address class="place">
           <p class="place__address">Via Pisana 48R</p>
           <p class="place__area">50143 Firenze · San Frediano</p>
         </address>
@@ -1141,9 +1510,11 @@
 
   <!-- 8. Footer -->
   <footer class="site-footer">
-    <div class="wrap">
-      <svg class="logo" aria-hidden="true"><use href="#logo-manly"/></svg>
-      <p class="footer__name">MANLY The Office</p>
+    <div class="wrap footer__grid">
+      <div class="footer__brand">
+        <svg class="logo" aria-hidden="true"><use href="#logo-manly"/></svg>
+        <p class="footer__name">MANLY The Office</p>
+      </div>
 
       <ul class="footer__links">
         <li>
@@ -1210,10 +1581,12 @@
           'meta.desc': 'Specialty coffee e brunch di scuola australiana a San Frediano, Firenze. Via Pisana 48R.',
           'skip': 'Vai al contenuto',
           'lang.label': 'Lingua',
+          'nav.label': 'Navigazione',
           'hero.tagline': 'Specialty coffee & brunch a San Frediano',
           'hero.rating': '4,9 su Google · oltre 660 recensioni',
           'hero.directions': 'Come arrivare',
           'hero.menu': 'Il menu',
+          'marquee': 'Specialty coffee · Brunch · San Frediano · L’Australiano · Dal 2023 ·',
           'days': ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'],
           'status.closesAt': 'Aperto · chiude alle {t}',
           'status.kitchenFrom': 'Aperto · cucina dalle {t}',
@@ -1260,11 +1633,29 @@
           'shop.message': 'Ciao! Vorrei ordinare {qty} x {product} {size} {grind}, con ritiro in negozio. Mi dite come fare?',
           'storia.title': 'La nostra storia',
           'storia.lead': 'Manly è un quartiere sul mare a nord di Sydney. The Office è il posto, su quella spiaggia, dove si guarda il tramonto. Da lì viene il nostro nome.',
-          'storia.t1.when': 'Prima di partire',
-          'storia.t1.text': 'Maykol, fiorentino, si forma nel caffè con Simone Guidi della torrefazione La Sosta.',
-          'storia.t2.text': 'Si trasferisce in Australia: quattro anni nelle caffetterie, dove impara un altro modo di lavorare e di fare il caffè.',
-          'storia.t3.when': '12 luglio 2023',
-          'storia.t3.text': 'Maykol e sua moglie Alice, che lavora anche in cucina, aprono MANLY The Office a San Frediano.',
+          'storia.c1.when': 'Firenze',
+          'storia.c1.title': 'Dal bancone al caffè',
+          'storia.c1.p1': 'Maykol nasce a Firenze e comincia a lavorare come barman. Poi arriva il caffè, e diventa una passione.',
+          'storia.c1.p2': 'Si forma con Simone Guidi, formatore e fondatore della torrefazione La Sosta, e impara la latte art: disegnare versando il latte nella tazza.',
+          'storia.c2.when': '2016 · Australia',
+          'storia.c2.title': 'Ricominciare dalle basi',
+          'storia.c2.p1': 'Nel 2016 parte per l’Australia con la sua compagna. Non parla inglese, ma è sicuro delle sue capacità da barista. Pensa che basti.',
+          'storia.c2.p2': 'Non basta: in Australia si lavora e si fa il caffè in un modo completamente diverso. Riparte dalle basi e per quattro anni lavora nelle caffetterie australiane, dove la cultura del caffè è molto più avanti.',
+          'storia.c3.when': 'Ritorno a Firenze',
+          'storia.c3.title': 'Un sogno in pausa',
+          'storia.c3.p1': 'Torna a casa con un’idea chiara: aprire un posto suo. Poi arriva il Covid, e il sogno deve aspettare.',
+          'storia.c4.when': '12 luglio 2023',
+          'storia.c4.title': 'Si apre, a San Frediano',
+          'storia.c4.p1': 'Maykol e sua moglie Alice, che lavora anche in cucina, aprono MANLY The Office in Via Pisana.',
+          'storia.c4.p2': 'Lo spazio è piccolo, e si fa il massimo con quello che c’è.',
+          'storia.welcome': 'È la prima cosa che senti quando entri.',
+          'essenza.title': 'La nostra essenza',
+          'essenza.p1.title': 'Il caffè al centro',
+          'essenza.p1.text': 'Espresso e filtro con L’Australiano di D612. Il caffè resta la vera passione di Maykol, e il centro di tutto.',
+          'essenza.p2.title': 'L’ospitalità ha un valore',
+          'essenza.p2.text': 'Scegliere prodotti di qualità è fondamentale. Ma la parte più difficile, e più importante, è far sentire le persone accolte e condividere con loro quello che facciamo.',
+          'essenza.p3.title': 'Un brunch per tutti',
+          'essenza.p3.text': 'Pancake, banana bread fatto in casa senza glutine, bagel e avocado toast. Ci sono opzioni senza glutine e vegane: proviamo ad accontentare ogni esigenza alimentare, nei limiti del possibile.',
           'storia.quote': '“Non è forse il lavoro più bello del mondo?”',
           'press.url': 'https://www.gamberorosso.it/notizie/storie/manly-the-office-firenze/',
           'press.kicker': 'Ne ha parlato Gambero Rosso',
@@ -1283,10 +1674,12 @@
           'meta.desc': 'Australian-style specialty coffee and brunch in San Frediano, Florence. Via Pisana 48R.',
           'skip': 'Skip to content',
           'lang.label': 'Language',
+          'nav.label': 'Navigation',
           'hero.tagline': 'Specialty coffee & brunch in San Frediano',
           'hero.rating': '4.9 on Google · 660+ reviews',
           'hero.directions': 'Get directions',
           'hero.menu': 'See the menu',
+          'marquee': 'Specialty coffee · Brunch · San Frediano · L’Australiano · Since 2023 ·',
           'days': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
           'status.closesAt': 'Open · closes at {t}',
           'status.kitchenFrom': 'Open · kitchen from {t}',
@@ -1333,11 +1726,29 @@
           'shop.message': 'Hi! I’d like to order {qty} x {product} {size} {grind}, for pickup in store. How can I do it?',
           'storia.title': 'Our story',
           'storia.lead': 'Manly is a beachside suburb north of Sydney. The Office is the spot on that beach where people watch the sunset. That’s where our name comes from.',
-          'storia.t1.when': 'Before leaving',
-          'storia.t1.text': 'Maykol, born in Florence, trains in coffee with Simone Guidi of the La Sosta roastery.',
-          'storia.t2.text': 'He moves to Australia: four years in cafés, learning a different way to work and to make coffee.',
-          'storia.t3.when': '12 July 2023',
-          'storia.t3.text': 'Maykol and his wife Alice, who also works in the kitchen, open MANLY The Office in San Frediano.',
+          'storia.c1.when': 'Florence',
+          'storia.c1.title': 'From the bar to coffee',
+          'storia.c1.p1': 'Maykol is born in Florence and starts out as a bartender. Then coffee comes along, and it becomes a passion.',
+          'storia.c1.p2': 'He trains with Simone Guidi, coffee trainer and founder of the La Sosta roastery, and masters latte art: drawing patterns as the milk is poured into the cup.',
+          'storia.c2.when': '2016 · Australia',
+          'storia.c2.title': 'Back to basics',
+          'storia.c2.p1': 'In 2016 he moves to Australia with his partner. He doesn’t speak English, but he’s confident in his barista skills. He thinks that will be enough.',
+          'storia.c2.p2': 'It isn’t: Australians work and make coffee in a completely different way. He starts again from the basics and spends four years in Australian cafés, where coffee culture is far ahead.',
+          'storia.c3.when': 'Back in Florence',
+          'storia.c3.title': 'A dream on hold',
+          'storia.c3.p1': 'He comes home with one clear idea: to open his own place. Then Covid hits, and the dream has to wait.',
+          'storia.c4.when': '12 July 2023',
+          'storia.c4.title': 'Opening in San Frediano',
+          'storia.c4.p1': 'Maykol and his wife Alice, who also works in the kitchen, open MANLY The Office on Via Pisana.',
+          'storia.c4.p2': 'The space is small, and they make the most of what they have.',
+          'storia.welcome': 'The first thing you hear when you walk in.',
+          'essenza.title': 'What we’re about',
+          'essenza.p1.title': 'Coffee first',
+          'essenza.p1.text': 'Espresso and filter with L’Australiano by D612. Coffee is still Maykol’s true passion, and the heart of everything.',
+          'essenza.p2.title': 'Hospitality matters',
+          'essenza.p2.text': 'Choosing quality products is essential. But the hardest and most important part is making people feel welcome, and sharing with them what we do.',
+          'essenza.p3.title': 'Brunch for everyone',
+          'essenza.p3.text': 'Pancakes, homemade gluten-free banana bread, bagels and avocado toast. There are gluten-free and vegan options: we try to meet every dietary need, within reason.',
           'storia.quote': '“Isn’t this the most beautiful job in the world?”',
           'press.url': 'https://www.gamberorossointernational.com/news/the-australian-dream-of-a-tuscan-barista-in-florence-theres-a-new-and-young-specialty-coffee-shop-to-try/',
           'press.kicker': 'Featured in Gambero Rosso',
@@ -1840,11 +2251,14 @@
       document.addEventListener('langchange', renderMenu);
 
       // Resalta en la barra de chips la categoría visible y la mantiene a la vista
+      // Con la carta en columnas (≥900px) varias secciones se ven a la vez: no se resalta ninguna
       var menuObserver;
+      var menuColumns = window.matchMedia('(min-width: 900px)');
       function observeMenu() {
         if (!('IntersectionObserver' in window)) return;
         if (menuObserver) menuObserver.disconnect();
         menuObserver = new IntersectionObserver(function (entries) {
+          if (menuColumns.matches) return;
           entries.forEach(function (entry) {
             if (!entry.isIntersecting) return;
             var id = entry.target.id;
@@ -1952,7 +2366,14 @@
       function renderShopSummary() {
         var order = buildOrder();
         document.getElementById('qty').textContent = order.qty;
-        document.getElementById('shop-total').textContent = formatPrice(order.total);
+        var totalEl = document.getElementById('shop-total');
+        var newTotal = formatPrice(order.total);
+        if (totalEl.textContent && totalEl.textContent !== newTotal) {
+          totalEl.classList.remove('bump');
+          void totalEl.offsetWidth; // reinicia la animación
+          totalEl.classList.add('bump');
+        }
+        totalEl.textContent = newTotal;
         document.getElementById('shop-message').textContent = orderMessage(order);
         shopForm.querySelector('[data-qty="-1"]').disabled = order.qty <= PRODUCT.qty.min;
         shopForm.querySelector('[data-qty="1"]').disabled = order.qty >= PRODUCT.qty.max;
@@ -1996,6 +2417,152 @@
 
       document.getElementById('year').textContent = new Date().getFullYear();
 
+      /* ===== Animaciones =====
+         Sin librerías: IntersectionObserver para apariciones y un único listener
+         de scroll con requestAnimationFrame para el collage del hero. */
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Qué aparece al entrar en pantalla (se marca desde acá para no ensuciar el HTML)
+      var REVEAL = [
+        '.section__kicker', '.section__title', '.hours', '.hours__note',
+        '.menu-intro', '.legend', '.coffee__name', '.coffee__lead', '.origin', '.notes',
+        '.coffee__profile', '.shop__intro', '.shop__card', '.story__lead', '.chapter__body',
+        '.welcome p', '.welcome span', '.essence__title', '.pillar', '.quote', '.press',
+        '.place', '.place__actions', '.footer__grid > *'
+      ];
+      var REVEAL_MEDIA = ['.coffee__media', '.shop__media', '.chapter__media', '.map'];
+
+      var revealObserver = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) showNow(entry.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px' }) : null;
+
+      var pendingReveal = [];
+
+      function showNow(el) {
+        el.classList.add('is-in');
+        if (revealObserver) revealObserver.unobserve(el);
+        var i = pendingReveal.indexOf(el);
+        if (i !== -1) pendingReveal.splice(i, 1);
+      }
+
+      function reveal(el, cls, delay) {
+        el.classList.add(cls);
+        if (delay) el.style.setProperty('--delay', delay + 's');
+        if (revealObserver && !reduceMotion) {
+          pendingReveal.push(el);
+          revealObserver.observe(el);
+        } else {
+          el.classList.add('is-in');
+        }
+      }
+
+      // Tras un salto con un enlace, lo que quedó por encima nunca cruzó la pantalla: mostrarlo igual
+      var revealTicking = false;
+      window.addEventListener('scroll', function () {
+        if (revealTicking || !pendingReveal.length) return;
+        revealTicking = true;
+        requestAnimationFrame(function () {
+          revealTicking = false;
+          pendingReveal.slice().forEach(function (el) {
+            if (el.getBoundingClientRect().bottom < 0) showNow(el);
+          });
+        });
+      }, { passive: true });
+
+      function setupReveal() {
+        REVEAL.forEach(function (sel) {
+          document.querySelectorAll(sel).forEach(function (el) {
+            // Elementos hermanos del mismo tipo entran en cascada (pilares, columnas del footer)
+            var siblings = el.parentElement ? Array.prototype.filter.call(el.parentElement.children, function (c) {
+              return c.matches(sel);
+            }) : [];
+            var idx = siblings.indexOf(el);
+            reveal(el, 'reveal', idx > 0 ? Math.min(idx, 4) * 0.12 : 0);
+          });
+        });
+        REVEAL_MEDIA.forEach(function (sel) {
+          document.querySelectorAll(sel).forEach(function (el) { reveal(el, 'reveal-media'); });
+        });
+        revealMenu();
+      }
+
+      // La carta se vuelve a dibujar al cambiar de idioma: solo anima la primera vez
+      var menuRevealed = false;
+      function revealMenu() {
+        document.querySelectorAll('.menu-cat').forEach(function (el) {
+          if (menuRevealed) el.classList.add('reveal', 'is-in');
+          else reveal(el, 'reveal');
+        });
+        menuRevealed = true;
+      }
+      document.addEventListener('langchange', function () {
+        if (menuRevealed) revealMenu();
+      });
+
+      // Collage del hero: cada foto se aleja del centro y se desvanece mientras se baja
+      var hero = document.querySelector('.hero');
+      var tiles = Array.prototype.slice.call(document.querySelectorAll('.tile'));
+      var tileVectors = [];
+
+      function measureTiles() {
+        var box = document.getElementById('collage').getBoundingClientRect();
+        var cx = box.width / 2, cy = box.height / 2;
+        tileVectors = tiles.map(function (tile) {
+          var x = tile.offsetLeft + tile.offsetWidth / 2 - cx;
+          var y = tile.offsetTop + tile.offsetHeight / 2 - cy;
+          var len = Math.sqrt(x * x + y * y) || 1;
+          return { x: x / len, y: y / len, push: box.width * 0.9 };
+        });
+      }
+
+      var ticking = false;
+      function updateCollage() {
+        ticking = false;
+        var progress = Math.min(1, Math.max(0, window.scrollY / (hero.offsetHeight * 0.85)));
+        tiles.forEach(function (tile, i) {
+          var v = tileVectors[i];
+          if (!v) return;
+          tile.classList.toggle('is-scrolling', progress > 0);
+          if (progress === 0) {
+            tile.style.transform = '';
+            tile.style.opacity = '';
+            return;
+          }
+          var d = progress * v.push;
+          tile.style.transform = 'translate(' + (v.x * d).toFixed(1) + 'px,' + (v.y * d * 0.7).toFixed(1) + 'px) scale(' + (1 + progress * 0.15).toFixed(3) + ')';
+          tile.style.opacity = String(Math.max(0, 1 - progress * 1.3));
+        });
+      }
+
+      function onCollageScroll() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(updateCollage);
+        }
+      }
+
+      function setupAnimations() {
+        setupReveal();
+        // Doble rAF: asegura que el estado inicial se pinte antes de animar la entrada
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { hero.classList.add('is-loaded'); });
+        });
+        if (reduceMotion) return;
+        measureTiles();
+        var lastWidth = window.innerWidth;
+        window.addEventListener('resize', function () {
+          // En iPhone la barra de Safari cambia el alto al hacer scroll: solo recalcular si cambia el ancho
+          if (window.innerWidth === lastWidth) return;
+          lastWidth = window.innerWidth;
+          measureTiles();
+          updateCollage();
+        });
+        window.addEventListener('scroll', onCollageScroll, { passive: true });
+        updateCollage();
+      }
+
       /* ===== Header: borde al hacer scroll ===== */
       var header = document.querySelector('.site-header');
       function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
@@ -2004,6 +2571,7 @@
 
       window.MANLY = { t: t, applyLang: applyLang, getStatus: getStatus };
       applyLang(detectLang());
+      setupAnimations();
     })();
   </script>
 </body>
