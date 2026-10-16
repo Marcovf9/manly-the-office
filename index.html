@@ -880,8 +880,6 @@
       height: 100%;
       border: 0;
     }
-    .map__load { display: grid; justify-items: center; gap: 0.5rem; padding: var(--space-s); text-align: center; }
-    .map__note { font-size: 0.78rem; color: var(--ink-soft); }
 
     .place__actions { display: grid; gap: 0.75rem; }
     .place__actions .btn--ghost { color: var(--ink); }
@@ -1485,13 +1483,13 @@
         </address>
 
         <div class="map" id="map">
-          <div class="map__load">
-            <button type="button" class="btn btn--dark" id="map-load">
-              <svg aria-hidden="true"><use href="#i-pin"/></svg>
-              <span data-i18n="dove.showMap">Mostra la mappa</span>
-            </button>
-            <p class="map__note" data-i18n="dove.mapNote">La mappa viene caricata da Google Maps.</p>
-          </div>
+          <iframe
+            src="https://www.google.com/maps?output=embed&amp;hl=it&amp;q=MANLY%20The%20Office%2C%20Via%20Pisana%2048R%2C%2050143%20Firenze"
+            title="Mappa: MANLY The Office, Via Pisana 48R, Firenze"
+            data-i18n-attr="title:dove.mapTitle"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
         </div>
 
         <div class="place__actions">
@@ -1662,8 +1660,6 @@
           'press.title': 'Leggi l’articolo su MANLY The Office',
           'press.meta': 'Michela Becchi · 19 gennaio 2024 →',
           'dove.title': 'Dove siamo',
-          'dove.showMap': 'Mostra la mappa',
-          'dove.mapNote': 'La mappa viene caricata da Google Maps.',
           'dove.mapTitle': 'Mappa: MANLY The Office, Via Pisana 48R, Firenze',
           'dove.openMaps': 'Apri in Google Maps',
           'dove.call': 'Chiama',
@@ -1755,8 +1751,6 @@
           'press.title': '“The Australian dream of a Tuscan barista”',
           'press.meta': 'Michela Becchi · 19 January 2024 →',
           'dove.title': 'Find us',
-          'dove.showMap': 'Show the map',
-          'dove.mapNote': 'The map is loaded from Google Maps.',
           'dove.mapTitle': 'Map: MANLY The Office, Via Pisana 48R, Florence',
           'dove.openMaps': 'Open in Google Maps',
           'dove.call': 'Call',
@@ -2400,20 +2394,6 @@
       });
 
       document.addEventListener('langchange', renderShopOptions);
-
-      /* ===== Mapa: el iframe de Google se carga solo al tocar (carga rápida, sin cookies previas) ===== */
-      document.getElementById('map-load').addEventListener('click', function () {
-        var iframe = document.createElement('iframe');
-        iframe.src = 'https://www.google.com/maps?output=embed&hl=' + lang() +
-          '&q=' + encodeURIComponent('MANLY The Office, ' + BIZ.address);
-        iframe.title = t('dove.mapTitle');
-        iframe.loading = 'lazy';
-        iframe.referrerPolicy = 'no-referrer-when-downgrade';
-        iframe.allowFullscreen = true;
-        var map = document.getElementById('map');
-        map.innerHTML = '';
-        map.appendChild(iframe);
-      });
 
       document.getElementById('year').textContent = new Date().getFullYear();
 
