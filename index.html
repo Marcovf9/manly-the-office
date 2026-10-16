@@ -2,6 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
+  <script>document.documentElement.classList.add('js')</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>MANLY The Office — Specialty coffee &amp; brunch, Firenze</title>
   <meta name="description" content="Specialty coffee e brunch di scuola australiana a San Frediano, Firenze. Via Pisana 48R.">
@@ -246,14 +247,36 @@
       inset: 0;
       background: linear-gradient(180deg, rgba(30, 27, 18, 0) 20%, rgba(30, 27, 18, .7) 60%, rgba(30, 27, 18, .92) 100%);
     }
-    .hero__media .ph {
+    /* Collage: las fotos se separan hacia afuera al hacer scroll (ver JS) */
+    .collage {
       position: absolute;
       inset: var(--space-m) var(--gutter) auto;
-      height: min(34%, 260px);
-      background: transparent;
-      border-color: rgba(250, 247, 242, .35);
-      color: rgba(250, 247, 242, .7);
+      height: min(42%, 340px);
     }
+    .tile {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--w);
+      height: var(--h);
+      border-radius: 10px;
+      overflow: hidden;
+      will-change: transform, opacity;
+    }
+    .tile img { width: 100%; height: 100%; object-fit: cover; }
+    .tile .ph {
+      height: 100%;
+      padding: 0.4rem;
+      border-radius: inherit;
+      border-color: rgba(250, 247, 242, .3);
+      background: rgba(250, 247, 242, .06);
+      color: rgba(250, 247, 242, .7);
+      font-size: 0.62rem;
+      line-height: 1.3;
+    }
+    .js .tile { opacity: 0; transform: scale(.92); transition: opacity 1s ease, transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+    .js .is-loaded .tile { opacity: 1; transform: none; transition-delay: calc(var(--i) * 90ms); }
+    .js .is-loaded .tile.is-scrolling { transition: none; }
 
     .hero__content { position: relative; }
 
@@ -915,6 +938,87 @@
       color: rgba(250, 247, 242, .65);
       line-height: 1.7;
     }
+    /* ===== Animaciones ===== */
+    .marquee {
+      overflow: hidden;
+      padding-block: 1rem;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg);
+    }
+    .marquee__track {
+      display: flex;
+      width: max-content;
+      animation: marquee 32s linear infinite;
+    }
+    .marquee__track span {
+      padding-right: 0.6em;
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 1rem + 2vw, 2.4rem);
+      font-style: italic;
+      white-space: nowrap;
+    }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    /* Entrada del hero */
+    .js .hero__content > * {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .9s ease, transform .9s cubic-bezier(.2, .7, .2, 1);
+    }
+    .js .is-loaded .hero__content > * { opacity: 1; transform: none; }
+    .js .is-loaded .hero__content > :nth-child(2) { transition-delay: .1s; }
+    .js .is-loaded .hero__content > :nth-child(3) { transition-delay: .2s; }
+    .js .is-loaded .hero__content > :nth-child(4) { transition-delay: .3s; }
+    .js .is-loaded .hero__content > :nth-child(5) { transition-delay: .4s; }
+
+    /* Aparición al entrar en pantalla */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s ease, transform 1s cubic-bezier(.2, .7, .2, 1);
+      transition-delay: var(--delay, 0s);
+    }
+    .js .reveal.is-in { opacity: 1; transform: none; }
+
+    /* Fotos: se descubren con un recorte que se abre y un zoom suave */
+    .js .reveal-media {
+      clip-path: inset(10% 8% 10% 8% round var(--radius));
+      transition: clip-path 1.2s cubic-bezier(.2, .7, .2, 1);
+    }
+    .js .reveal-media > * { transform: scale(1.12); transition: transform 1.6s cubic-bezier(.2, .7, .2, 1); }
+    .js .reveal-media.ph { transform: scale(1.04); transition: clip-path 1.2s cubic-bezier(.2, .7, .2, 1), transform 1.6s cubic-bezier(.2, .7, .2, 1); }
+    .js .reveal-media.is-in { clip-path: inset(0 0 0 0 round var(--radius)); }
+    .js .reveal-media.is-in > *,
+    .js .reveal-media.ph.is-in { transform: none; }
+
+    /* Barra de origen que se llena */
+    .js .origin__bar span { transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+    .js .origin__bar span:last-child { transition-delay: .5s; }
+    .js .origin.is-in .origin__bar span { transform: none; }
+
+    /* Rebote del total en el shop */
+    @keyframes bump { 40% { transform: scale(1.08); } }
+    .shop__total output.bump { display: inline-block; animation: bump .35s ease; }
+
+    /* Botones y tarjetas: respuesta al pasar el mouse */
+    @media (hover: hover) {
+      .btn { transition: transform .15s, background-color .2s, box-shadow .2s; }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(30, 27, 18, .18); }
+      .pillar, .press { transition: transform .3s, box-shadow .3s; }
+      .pillar:hover, .press:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(63, 59, 42, .1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee__track { animation: none; }
+      .js .reveal, .js .reveal-media, .js .reveal-media > *, .js .tile,
+      .js .hero__content > *, .js .origin__bar span {
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+        transition: none !important;
+      }
+    }
+
     /* ===== Navegación de escritorio (oculta en móvil) ===== */
     .site-nav { display: none; }
     .place { font-style: normal; }
@@ -985,7 +1089,11 @@
       .hero__title { font-size: clamp(3.5rem, 2rem + 4vw, 6rem); }
       .hero__tagline { font-size: 1.5rem; max-width: 34ch; }
       .hero__facts { display: flex; gap: 2rem; font-size: 1rem; }
-      .hero__media .ph { inset: var(--space-l) var(--gutter) var(--space-l) 55%; height: auto; }
+      .collage { inset: var(--space-l) var(--gutter) var(--space-l) 54%; height: auto; }
+      .tile .ph { font-size: 0.75rem; padding: 0.75rem; }
+      .hero__media::after {
+        background: linear-gradient(90deg, rgba(30, 27, 18, .85) 0%, rgba(30, 27, 18, .35) 50%, rgba(30, 27, 18, 0) 70%);
+      }
       .hero__content > * { max-width: 52%; }
 
       .section__title { margin-bottom: var(--space-l); }
@@ -1126,8 +1234,14 @@
     <!-- 1. Hero -->
     <section class="hero" id="inizio" aria-labelledby="hero-title">
       <div class="hero__media">
-        <!-- Cuando esté la foto: <img src="img/hero.jpg" alt="" fetchpriority="high"> y borrar el .ph -->
-        <div class="ph">[FOTO: la barra con la máquina de espresso, luz de mañana, formato vertical]</div>
+        <!-- Collage: reemplazar cada .ph por <img src="img/..." alt=""> (la primera con fetchpriority="high") -->
+        <div class="collage" id="collage" aria-hidden="true">
+          <div class="tile" style="--x:24%;--y:6%;--w:48%;--h:84%;--i:0"><div class="ph">[FOTO: la barra con la máquina, luz de mañana]</div></div>
+          <div class="tile" style="--x:0%;--y:30%;--w:27%;--h:46%;--i:1"><div class="ph">[FOTO: latte art]</div></div>
+          <div class="tile" style="--x:75%;--y:0%;--w:25%;--h:40%;--i:2"><div class="ph">[FOTO: bolsa L’Australiano]</div></div>
+          <div class="tile" style="--x:70%;--y:50%;--w:30%;--h:46%;--i:3"><div class="ph">[FOTO: avocado toast]</div></div>
+          <div class="tile" style="--x:4%;--y:0%;--w:17%;--h:24%;--i:4"><div class="ph">[FOTO: la vidriera de Via Pisana]</div></div>
+        </div>
       </div>
 
       <div class="wrap hero__content">
@@ -1161,6 +1275,13 @@
         </div>
       </div>
     </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span data-i18n="marquee">Specialty coffee · Brunch · San Frediano · L’Australiano · Dal 2023 ·</span>
+        <span data-i18n="marquee">Specialty coffee · Brunch · San Frediano · L’Australiano · Dal 2023 ·</span>
+      </div>
+    </div>
 
     <!-- 2. Orari -->
     <section class="section section--orari" id="orari" aria-labelledby="orari-title">
@@ -1465,6 +1586,7 @@
           'hero.rating': '4,9 su Google · oltre 660 recensioni',
           'hero.directions': 'Come arrivare',
           'hero.menu': 'Il menu',
+          'marquee': 'Specialty coffee · Brunch · San Frediano · L’Australiano · Dal 2023 ·',
           'days': ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'],
           'status.closesAt': 'Aperto · chiude alle {t}',
           'status.kitchenFrom': 'Aperto · cucina dalle {t}',
@@ -1557,6 +1679,7 @@
           'hero.rating': '4.9 on Google · 660+ reviews',
           'hero.directions': 'Get directions',
           'hero.menu': 'See the menu',
+          'marquee': 'Specialty coffee · Brunch · San Frediano · L’Australiano · Since 2023 ·',
           'days': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
           'status.closesAt': 'Open · closes at {t}',
           'status.kitchenFrom': 'Open · kitchen from {t}',
@@ -2243,7 +2366,14 @@
       function renderShopSummary() {
         var order = buildOrder();
         document.getElementById('qty').textContent = order.qty;
-        document.getElementById('shop-total').textContent = formatPrice(order.total);
+        var totalEl = document.getElementById('shop-total');
+        var newTotal = formatPrice(order.total);
+        if (totalEl.textContent && totalEl.textContent !== newTotal) {
+          totalEl.classList.remove('bump');
+          void totalEl.offsetWidth; // reinicia la animación
+          totalEl.classList.add('bump');
+        }
+        totalEl.textContent = newTotal;
         document.getElementById('shop-message').textContent = orderMessage(order);
         shopForm.querySelector('[data-qty="-1"]').disabled = order.qty <= PRODUCT.qty.min;
         shopForm.querySelector('[data-qty="1"]').disabled = order.qty >= PRODUCT.qty.max;
@@ -2287,6 +2417,152 @@
 
       document.getElementById('year').textContent = new Date().getFullYear();
 
+      /* ===== Animaciones =====
+         Sin librerías: IntersectionObserver para apariciones y un único listener
+         de scroll con requestAnimationFrame para el collage del hero. */
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Qué aparece al entrar en pantalla (se marca desde acá para no ensuciar el HTML)
+      var REVEAL = [
+        '.section__kicker', '.section__title', '.hours', '.hours__note',
+        '.menu-intro', '.legend', '.coffee__name', '.coffee__lead', '.origin', '.notes',
+        '.coffee__profile', '.shop__intro', '.shop__card', '.story__lead', '.chapter__body',
+        '.welcome p', '.welcome span', '.essence__title', '.pillar', '.quote', '.press',
+        '.place', '.place__actions', '.footer__grid > *'
+      ];
+      var REVEAL_MEDIA = ['.coffee__media', '.shop__media', '.chapter__media', '.map'];
+
+      var revealObserver = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) showNow(entry.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px' }) : null;
+
+      var pendingReveal = [];
+
+      function showNow(el) {
+        el.classList.add('is-in');
+        if (revealObserver) revealObserver.unobserve(el);
+        var i = pendingReveal.indexOf(el);
+        if (i !== -1) pendingReveal.splice(i, 1);
+      }
+
+      function reveal(el, cls, delay) {
+        el.classList.add(cls);
+        if (delay) el.style.setProperty('--delay', delay + 's');
+        if (revealObserver && !reduceMotion) {
+          pendingReveal.push(el);
+          revealObserver.observe(el);
+        } else {
+          el.classList.add('is-in');
+        }
+      }
+
+      // Tras un salto con un enlace, lo que quedó por encima nunca cruzó la pantalla: mostrarlo igual
+      var revealTicking = false;
+      window.addEventListener('scroll', function () {
+        if (revealTicking || !pendingReveal.length) return;
+        revealTicking = true;
+        requestAnimationFrame(function () {
+          revealTicking = false;
+          pendingReveal.slice().forEach(function (el) {
+            if (el.getBoundingClientRect().bottom < 0) showNow(el);
+          });
+        });
+      }, { passive: true });
+
+      function setupReveal() {
+        REVEAL.forEach(function (sel) {
+          document.querySelectorAll(sel).forEach(function (el) {
+            // Elementos hermanos del mismo tipo entran en cascada (pilares, columnas del footer)
+            var siblings = el.parentElement ? Array.prototype.filter.call(el.parentElement.children, function (c) {
+              return c.matches(sel);
+            }) : [];
+            var idx = siblings.indexOf(el);
+            reveal(el, 'reveal', idx > 0 ? Math.min(idx, 4) * 0.12 : 0);
+          });
+        });
+        REVEAL_MEDIA.forEach(function (sel) {
+          document.querySelectorAll(sel).forEach(function (el) { reveal(el, 'reveal-media'); });
+        });
+        revealMenu();
+      }
+
+      // La carta se vuelve a dibujar al cambiar de idioma: solo anima la primera vez
+      var menuRevealed = false;
+      function revealMenu() {
+        document.querySelectorAll('.menu-cat').forEach(function (el) {
+          if (menuRevealed) el.classList.add('reveal', 'is-in');
+          else reveal(el, 'reveal');
+        });
+        menuRevealed = true;
+      }
+      document.addEventListener('langchange', function () {
+        if (menuRevealed) revealMenu();
+      });
+
+      // Collage del hero: cada foto se aleja del centro y se desvanece mientras se baja
+      var hero = document.querySelector('.hero');
+      var tiles = Array.prototype.slice.call(document.querySelectorAll('.tile'));
+      var tileVectors = [];
+
+      function measureTiles() {
+        var box = document.getElementById('collage').getBoundingClientRect();
+        var cx = box.width / 2, cy = box.height / 2;
+        tileVectors = tiles.map(function (tile) {
+          var x = tile.offsetLeft + tile.offsetWidth / 2 - cx;
+          var y = tile.offsetTop + tile.offsetHeight / 2 - cy;
+          var len = Math.sqrt(x * x + y * y) || 1;
+          return { x: x / len, y: y / len, push: box.width * 0.9 };
+        });
+      }
+
+      var ticking = false;
+      function updateCollage() {
+        ticking = false;
+        var progress = Math.min(1, Math.max(0, window.scrollY / (hero.offsetHeight * 0.85)));
+        tiles.forEach(function (tile, i) {
+          var v = tileVectors[i];
+          if (!v) return;
+          tile.classList.toggle('is-scrolling', progress > 0);
+          if (progress === 0) {
+            tile.style.transform = '';
+            tile.style.opacity = '';
+            return;
+          }
+          var d = progress * v.push;
+          tile.style.transform = 'translate(' + (v.x * d).toFixed(1) + 'px,' + (v.y * d * 0.7).toFixed(1) + 'px) scale(' + (1 + progress * 0.15).toFixed(3) + ')';
+          tile.style.opacity = String(Math.max(0, 1 - progress * 1.3));
+        });
+      }
+
+      function onCollageScroll() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(updateCollage);
+        }
+      }
+
+      function setupAnimations() {
+        setupReveal();
+        // Doble rAF: asegura que el estado inicial se pinte antes de animar la entrada
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { hero.classList.add('is-loaded'); });
+        });
+        if (reduceMotion) return;
+        measureTiles();
+        var lastWidth = window.innerWidth;
+        window.addEventListener('resize', function () {
+          // En iPhone la barra de Safari cambia el alto al hacer scroll: solo recalcular si cambia el ancho
+          if (window.innerWidth === lastWidth) return;
+          lastWidth = window.innerWidth;
+          measureTiles();
+          updateCollage();
+        });
+        window.addEventListener('scroll', onCollageScroll, { passive: true });
+        updateCollage();
+      }
+
       /* ===== Header: borde al hacer scroll ===== */
       var header = document.querySelector('.site-header');
       function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
@@ -2295,6 +2571,7 @@
 
       window.MANLY = { t: t, applyLang: applyLang, getStatus: getStatus };
       applyLang(detectLang());
+      setupAnimations();
     })();
   </script>
 </body>
