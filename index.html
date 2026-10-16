@@ -789,6 +789,41 @@
     .press__title { display: block; margin-block: 0.25rem; font-weight: 500; }
     .press__meta { font-size: var(--step--1); color: var(--ink-soft); }
 
+    /* ===== Dove siamo ===== */
+    .place__address {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      line-height: 1.2;
+    }
+    .place__area { color: var(--ink-soft); margin-bottom: var(--space-m); }
+
+    .map {
+      position: relative;
+      display: grid;
+      place-items: center;
+      aspect-ratio: 4 / 3;
+      margin-bottom: var(--space-m);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(217, 154, 59, .18) 0 18%, transparent 19%),
+        repeating-linear-gradient(0deg, transparent 0 38px, var(--line) 38px 39px),
+        repeating-linear-gradient(90deg, transparent 0 38px, var(--line) 38px 39px),
+        var(--surface);
+    }
+    .map iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .map__load { display: grid; justify-items: center; gap: 0.5rem; padding: var(--space-s); text-align: center; }
+    .map__note { font-size: 0.78rem; color: var(--ink-soft); }
+
+    .place__actions { display: grid; gap: 0.75rem; }
+    .place__actions .btn--ghost { color: var(--ink); }
+
     /* ===== Huecos de foto ===== */
     .ph {
       display: grid;
@@ -1056,7 +1091,31 @@
     <section class="section" id="dove" aria-labelledby="dove-title">
       <div class="wrap">
         <h2 class="section__title" id="dove-title" data-i18n="dove.title">Dove siamo</h2>
-        <p class="todo">feat/dove-siamo</p>
+        <address style="font-style:normal">
+          <p class="place__address">Via Pisana 48R</p>
+          <p class="place__area">50143 Firenze · San Frediano</p>
+        </address>
+
+        <div class="map" id="map">
+          <div class="map__load">
+            <button type="button" class="btn btn--dark" id="map-load">
+              <svg aria-hidden="true"><use href="#i-pin"/></svg>
+              <span data-i18n="dove.showMap">Mostra la mappa</span>
+            </button>
+            <p class="map__note" data-i18n="dove.mapNote">La mappa viene caricata da Google Maps.</p>
+          </div>
+        </div>
+
+        <div class="place__actions">
+          <a class="btn btn--primary" href="#" data-href="maps" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-route"/></svg>
+            <span data-i18n="dove.openMaps">Apri in Google Maps</span>
+          </a>
+          <a class="btn btn--ghost" href="#" data-href="tel">
+            <svg aria-hidden="true"><use href="#i-phone"/></svg>
+            <span><span data-i18n="dove.call">Chiama</span> 055 906 2024</span>
+          </a>
+        </div>
       </div>
     </section>
   </main>
@@ -1164,7 +1223,12 @@
           'press.kicker': 'Ne ha parlato Gambero Rosso',
           'press.title': 'Leggi l’articolo su MANLY The Office',
           'press.meta': 'Michela Becchi · 19 gennaio 2024 →',
-          'dove.title': 'Dove siamo'
+          'dove.title': 'Dove siamo',
+          'dove.showMap': 'Mostra la mappa',
+          'dove.mapNote': 'La mappa viene caricata da Google Maps.',
+          'dove.mapTitle': 'Mappa: MANLY The Office, Via Pisana 48R, Firenze',
+          'dove.openMaps': 'Apri in Google Maps',
+          'dove.call': 'Chiama'
         },
         en: {
           'meta.title': 'MANLY The Office — Specialty coffee & brunch, Florence',
@@ -1231,7 +1295,12 @@
           'press.kicker': 'Featured in Gambero Rosso',
           'press.title': '“The Australian dream of a Tuscan barista”',
           'press.meta': 'Michela Becchi · 19 January 2024 →',
-          'dove.title': 'Find us'
+          'dove.title': 'Find us',
+          'dove.showMap': 'Show the map',
+          'dove.mapNote': 'The map is loaded from Google Maps.',
+          'dove.mapTitle': 'Map: MANLY The Office, Via Pisana 48R, Florence',
+          'dove.openMaps': 'Open in Google Maps',
+          'dove.call': 'Call'
         }
       };
 
@@ -1861,6 +1930,20 @@
       });
 
       document.addEventListener('langchange', renderShopOptions);
+
+      /* ===== Mapa: el iframe de Google se carga solo al tocar (carga rápida, sin cookies previas) ===== */
+      document.getElementById('map-load').addEventListener('click', function () {
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.google.com/maps?output=embed&hl=' + lang() +
+          '&q=' + encodeURIComponent('MANLY The Office, ' + BIZ.address);
+        iframe.title = t('dove.mapTitle');
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.allowFullscreen = true;
+        var map = document.getElementById('map');
+        map.innerHTML = '';
+        map.appendChild(iframe);
+      });
 
       /* ===== Header: borde al hacer scroll ===== */
       var header = document.querySelector('.site-header');
