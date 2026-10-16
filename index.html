@@ -523,6 +523,58 @@
     .extras li { display: flex; justify-content: space-between; gap: 1rem; }
     .extras li span:last-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
 
+    /* ===== Il nostro caffè ===== */
+    .coffee__media { margin-bottom: var(--space-m); }
+    .coffee__name {
+      font-size: 1.75rem;
+      font-style: italic;
+      margin-bottom: var(--space-xs);
+    }
+    .coffee__lead { font-size: 1.1rem; margin-bottom: var(--space-m); }
+
+    .origin { margin-bottom: var(--space-m); }
+    .origin__bar {
+      display: flex;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    .origin__bar span:first-child { background: var(--ink); }
+    .origin__bar span:last-child { background: var(--accent); }
+    .origin__labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: var(--step--1);
+      font-variant-numeric: tabular-nums;
+    }
+    .origin__labels b { font-weight: 600; }
+
+    .notes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0;
+      margin-bottom: var(--space-s);
+      list-style: none;
+    }
+    .notes li {
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+    }
+    .coffee__profile { color: var(--ink-soft); margin-bottom: var(--space-m); }
+
+    .link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      min-height: 44px;
+      font-weight: 600;
+      text-underline-offset: 4px;
+    }
+
     /* ===== Huecos de foto ===== */
     .ph {
       display: grid;
@@ -673,7 +725,29 @@
     <section class="section" id="caffe" aria-labelledby="caffe-title">
       <div class="wrap">
         <h2 class="section__title" id="caffe-title" data-i18n="caffe.title">Il nostro caffè</h2>
-        <p class="todo">feat/il-nostro-caffe</p>
+        <div class="ph ph--3x2 coffee__media">[FOTO: granos de L’Australiano sobre la barra, o la bolsa con la etiqueta D612, de cerca]</div>
+
+        <h3 class="coffee__name">L’Australiano</h3>
+        <p class="coffee__lead" data-i18n="caffe.lead">La miscela che D612 Coffee Roasters, torrefazione fiorentina, tosta in esclusiva per noi.</p>
+
+        <div class="origin">
+          <div class="origin__bar" aria-hidden="true">
+            <span style="width:80%"></span><span style="width:20%"></span>
+          </div>
+          <p class="origin__labels">
+            <span><b>80%</b> <span data-i18n="caffe.brazil">Brasile</span></span>
+            <span><b>20%</b> <span data-i18n="caffe.ethiopia">Etiopia</span></span>
+          </p>
+        </div>
+
+        <ul class="notes" data-i18n-attr="aria-label:caffe.notesLabel" aria-label="Note di degustazione">
+          <li data-i18n="caffe.note1">Cioccolato</li>
+          <li data-i18n="caffe.note2">Nocciola</li>
+          <li data-i18n="caffe.note3">Frutti rossi</li>
+        </ul>
+        <p class="coffee__profile" data-i18n="caffe.profile">Con una leggera acidità e un buon equilibrio.</p>
+
+        <a class="link-arrow" href="#shop"><span data-i18n="caffe.cta">Portalo a casa</span> <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
@@ -772,6 +846,15 @@
           'allergens': ['Glutine', 'Crostacei', 'Uova', 'Pesce', 'Arachidi', 'Soia', 'Latte e latticini',
             'Frutta a guscio', 'Sedano', 'Senape', 'Sesamo', 'Solfiti', 'Lupini', 'Molluschi'],
           'caffe.title': 'Il nostro caffè',
+          'caffe.lead': 'La miscela che D612 Coffee Roasters, torrefazione fiorentina, tosta in esclusiva per noi.',
+          'caffe.brazil': 'Brasile',
+          'caffe.ethiopia': 'Etiopia',
+          'caffe.notesLabel': 'Note di degustazione',
+          'caffe.note1': 'Cioccolato',
+          'caffe.note2': 'Nocciola',
+          'caffe.note3': 'Frutti rossi',
+          'caffe.profile': 'Con una leggera acidità e un buon equilibrio.',
+          'caffe.cta': 'Portalo a casa',
           'shop.title': 'L’Australiano a casa tua',
           'storia.title': 'La nostra storia',
           'dove.title': 'Dove siamo'
@@ -807,6 +890,15 @@
           'allergens': ['Gluten', 'Crustaceans', 'Eggs', 'Fish', 'Peanuts', 'Soy', 'Milk',
             'Tree nuts', 'Celery', 'Mustard', 'Sesame', 'Sulphites', 'Lupin', 'Molluscs'],
           'caffe.title': 'Our coffee',
+          'caffe.lead': 'The blend D612 Coffee Roasters, a Florentine roastery, roasts exclusively for us.',
+          'caffe.brazil': 'Brazil',
+          'caffe.ethiopia': 'Ethiopia',
+          'caffe.notesLabel': 'Tasting notes',
+          'caffe.note1': 'Chocolate',
+          'caffe.note2': 'Hazelnut',
+          'caffe.note3': 'Red berries',
+          'caffe.profile': 'A touch of acidity, well balanced.',
+          'caffe.cta': 'Take it home',
           'shop.title': 'L’Australiano at home',
           'storia.title': 'Our story',
           'dove.title': 'Find us'
