@@ -896,9 +896,29 @@
       font-size: var(--step--1);
       text-align: center;
     }
-    .ph--4x5 { aspect-ratio: 4 / 5; }
+    .ph--4x5,
+    .media--4x5 { aspect-ratio: 4 / 5; }
     .ph--1x1 { aspect-ratio: 1 / 1; }
-    .ph--3x2 { aspect-ratio: 3 / 2; }
+    .ph--3x2,
+    .media--3x2 { aspect-ratio: 3 / 2; }
+
+    /* Foto o video real */
+    .media {
+      position: relative;
+      margin: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .media img,
+    .media video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .tile img { object-position: var(--focus, 50% 50%); }
 
     /* ===== Footer ===== */
     .site-footer {
@@ -1228,9 +1248,9 @@
       /* Historia */
       .story__lead { font-size: 2rem; max-width: 30ch; margin-bottom: var(--space-xl); }
       .chapter { align-items: center; }
-      .chapter__media { position: static; aspect-ratio: auto; }
-      .chapter .ph--3x2 { aspect-ratio: 3 / 2; }
-      .chapter .ph--4x5 { aspect-ratio: 4 / 5; }
+      .chapter__media { position: relative; top: auto; aspect-ratio: auto; }
+      .chapter .ph--3x2, .chapter .media--3x2 { aspect-ratio: 3 / 2; }
+      .chapter .ph--4x5, .chapter .media--4x5 { aspect-ratio: 4 / 5; }
       .chapter__title { font-size: 2.1rem; }
       .chapter__body p:not(.chapter__head) { font-size: 1.1rem; max-width: 48ch; }
 
@@ -1308,11 +1328,14 @@
       <div class="hero__media">
         <!-- Collage: reemplazar cada .ph por <img src="img/..." alt=""> (la primera con fetchpriority="high") -->
         <div class="collage" id="collage" aria-hidden="true">
-          <div class="tile tile--1" style="--i:0"><div class="ph">[FOTO: la barra con la máquina, luz de mañana]</div></div>
-          <div class="tile tile--2" style="--i:1"><div class="ph">[FOTO: latte art]</div></div>
-          <div class="tile tile--3" style="--i:2"><div class="ph">[FOTO: bolsa L’Australiano]</div></div>
-          <div class="tile tile--4" style="--i:3"><div class="ph">[FOTO: avocado toast]</div></div>
-          <div class="tile tile--5" style="--i:4"><div class="ph">[FOTO: la vidriera de Via Pisana]</div></div>
+          <!-- Provisoria. Definitiva: la barra con la máquina, luz de mañana -->
+          <div class="tile tile--1" style="--i:0"><img src="img/vidriera-cappuccino.jpg" alt="" fetchpriority="high" decoding="async"></div>
+          <div class="tile tile--2" style="--i:1"><img src="img/latte-art.jpg" alt="" decoding="async"></div>
+          <!-- Provisoria. Definitiva: la bolsa de L’Australiano -->
+          <div class="tile tile--3" style="--i:2;--focus:50% 35%"><img src="img/maykol-alice.jpg" alt="" decoding="async"></div>
+          <!-- Provisoria. Definitiva: avocado toast -->
+          <div class="tile tile--4" style="--i:3"><img src="img/pancakes.jpg" alt="" decoding="async"></div>
+          <div class="tile tile--5" style="--i:4;--focus:50% 55%"><img src="img/acquerello-vidriera.jpg" alt="" decoding="async"></div>
         </div>
       </div>
 
@@ -1393,7 +1416,10 @@
     <section class="section section--caffe" id="caffe" aria-labelledby="caffe-title">
       <div class="wrap">
         <h2 class="section__title" id="caffe-title" data-i18n="caffe.title">Il nostro caffè</h2>
-        <div class="ph ph--3x2 coffee__media">[FOTO: granos de L’Australiano sobre la barra, o la bolsa con la etiqueta D612, de cerca]</div>
+        <!-- Provisoria. Definitiva: granos de L’Australiano o la bolsa con la etiqueta D612, de cerca -->
+        <figure class="media media--3x2 coffee__media">
+          <img src="img/latte-art.jpg" alt="Cappuccino con latte art su un tavolo di legno" data-i18n-attr="alt:img.coffee" loading="lazy" decoding="async">
+        </figure>
 
         <h3 class="coffee__name">L’Australiano</h3>
         <p class="coffee__lead" data-i18n="caffe.lead">La miscela che D612 Coffee Roasters, torrefazione fiorentina, tosta in esclusiva per noi.</p>
@@ -1478,7 +1504,10 @@
 
         <ol class="chapters">
           <li class="chapter">
-            <div class="ph ph--3x2 chapter__media">[FOTO: Maykol haciendo latte art, manos y jarra de leche, de cerca]</div>
+            <figure class="media media--4x5 chapter__media">
+              <video src="img/en-la-barra.mp4" poster="img/en-la-barra.jpg" muted loop playsinline preload="metadata" data-autoplay
+                aria-label="Preparazione di un espresso al banco" data-i18n-attr="aria-label:img.ch1"></video>
+            </figure>
             <div class="chapter__body">
               <p class="chapter__head"><span class="chapter__when" data-i18n="storia.c1.when">Firenze</span></p>
               <h3 class="chapter__title" data-i18n="storia.c1.title">Dal bancone al caffè</h3>
@@ -1503,7 +1532,9 @@
             </div>
           </li>
           <li class="chapter">
-            <div class="ph ph--4x5 chapter__media">[FOTO: Maykol y Alice detrás de la barra, retrato natural, sin posar]</div>
+            <figure class="media media--4x5 chapter__media">
+              <img src="img/maykol-alice.jpg" alt="Maykol e Alice al banco di MANLY The Office" data-i18n-attr="alt:img.ch4" loading="lazy" decoding="async">
+            </figure>
             <div class="chapter__body">
               <p class="chapter__head"><span class="chapter__when" data-i18n="storia.c4.when">12 luglio 2023</span></p>
               <h3 class="chapter__title" data-i18n="storia.c4.title">Si apre, a San Frediano</h3>
@@ -1734,6 +1765,9 @@
           'press.title': 'Leggi l’articolo su MANLY The Office',
           'press.meta': 'Michela Becchi · 19 gennaio 2024 →',
           'dove.title': 'Dove siamo',
+          'img.coffee': 'Cappuccino con latte art su un tavolo di legno',
+          'img.ch1': 'Preparazione di un espresso al banco',
+          'img.ch4': 'Maykol e Alice al banco di MANLY The Office',
           'dove.mapTitle': 'Mappa: MANLY The Office, Via Pisana 48R, Firenze',
           'dove.openMaps': 'Apri in Google Maps',
           'dove.call': 'Chiama',
@@ -1825,6 +1859,9 @@
           'press.title': '“The Australian dream of a Tuscan barista”',
           'press.meta': 'Michela Becchi · 19 January 2024 →',
           'dove.title': 'Find us',
+          'img.coffee': 'Cappuccino with latte art on a wooden table',
+          'img.ch1': 'Pulling an espresso at the bar',
+          'img.ch4': 'Maykol and Alice at the counter of MANLY The Office',
           'dove.mapTitle': 'Map: MANLY The Office, Via Pisana 48R, Florence',
           'dove.openMaps': 'Open in Google Maps',
           'dove.call': 'Call',
@@ -2616,6 +2653,24 @@
         window.addEventListener('scroll', onCollageScroll, { passive: true });
         updateCollage();
       }
+
+      /* ===== Videos: se reproducen solo mientras están en pantalla ===== */
+      document.querySelectorAll('video[data-autoplay]').forEach(function (video) {
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+          video.controls = true;
+          return;
+        }
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var playing = video.play();
+              if (playing && playing.catch) playing.catch(function () { video.controls = true; });
+            } else {
+              video.pause();
+            }
+          });
+        }, { threshold: 0.25 }).observe(video);
+      });
 
       /* ===== Header: borde al hacer scroll ===== */
       var header = document.querySelector('.site-header');

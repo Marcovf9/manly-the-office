@@ -42,6 +42,23 @@ Cada hueco `.ph` tiene la sugerencia de toma. Para reemplazarlo:
 
 En el hero usar `fetchpriority="high"` en lugar de `loading="lazy"`.
 
+## Lista de fotos
+
+| # | Dónde | Foto definitiva | Estado |
+|---|-------|-----------------|--------|
+| 1 | Hero, foto grande del collage | La barra con la máquina de espresso, luz de mañana | Provisoria: cappuccino frente a la vidriera |
+| 2 | Hero, collage | Latte art | ✅ `latte-art.jpg` |
+| 3 | Hero, collage | La bolsa de L’Australiano | Provisoria: Maykol y Alice |
+| 4 | Hero, collage | Avocado toast | Provisoria: pancakes |
+| 5 | Hero, collage | La vidriera de Via Pisana | ✅ `acquerello-vidriera.jpg` (acuarela) |
+| 6 | Il nostro caffè | Granos de L’Australiano o la bolsa con la etiqueta D612, de cerca | Provisoria: latte art |
+| 7 | Shop | La bolsa de L’Australiano sobre la barra, fondo limpio, luz natural | ❌ Falta |
+| 8 | Storia 01 · Firenze | Maykol haciendo latte art, manos y jarra, de cerca | ✅ Video `en-la-barra.mp4` |
+| 9 | Storia 02 · Australia | Maykol en Australia (archivo) o detalle de la máquina | ❌ Falta |
+| 10 | Storia 04 · Apertura | Maykol y Alice detrás de la barra | ✅ `maykol-alice.jpg` |
+
+Fotos en `img/`, JPEG de hasta 1400 px. Video en H.264 sin audio (los iPhone graban en HEVC, que Chrome no reproduce).
+
 ## Probar estados del horario
 
 El indicador usa siempre la hora de Florencia. Para ver otros estados:
@@ -72,7 +89,8 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 - [ ] Precios definitivos de L'Australiano (hoy 25 € / 100 € orientativos)
 - [ ] Nombres de la carta en italiano y revisión de las descripciones IT
 - [ ] Alérgenos que faltan en la carta (Nocciolotto, Maple Pancakes, fries, bebidas)
-- [ ] Fotos del local (hero, café, shop, storia)
+- [ ] Fotos que faltan o son provisorias (ver *Lista de fotos*)
+- [ ] Permiso/crédito del autor de la acuarela de la vidriera
 - [ ] Logo en alta resolución (hoy redibujado en SVG desde captura)
 - [ ] Confirmar WhatsApp Business en el +39 055 906 2024
 - [ ] Revisión de textos por un nativo (IT / EN)
