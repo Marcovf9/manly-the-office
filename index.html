@@ -5,1538 +5,317 @@
   <script>document.documentElement.classList.add('js')</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>MANLY The Office — Specialty coffee &amp; brunch, Firenze</title>
-  <meta name="description" content="Specialty coffee e brunch di scuola australiana a San Frediano, Firenze. Via Pisana 48R.">
-  <meta name="theme-color" content="#FAF7F2">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220' fill='none' stroke='%233F3B2A' stroke-width='9'%3E%3Ccircle cx='110' cy='110' r='104'/%3E%3Cpath d='M30 37 L49 76 L85 5 V215 M85 107 L144 209 M144 7 V212 M144 173 H197 V102 L185 34'/%3E%3C/svg%3E">
+  <meta name="description" content="Caffè di specialità di scuola australiana e brunch a San Frediano, Firenze. Via Pisana 48R.">
+  <meta name="theme-color" content="#1E1D1A">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220' fill='none' stroke='%231E1D1A' stroke-width='9'%3E%3Ccircle cx='110' cy='110' r='104'/%3E%3Cpath d='M30 37 L49 76 L85 5 V215 M85 107 L144 209 M144 7 V212 M144 173 H197 V102 L185 34'/%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap">
-
-  <style>
-    /* ===== Tokens ===== */
-    :root {
-      color-scheme: light;
-
-      --bg: #FAF7F2;
-      --surface: #F2ECE2;
-      --ink: #3F3B2A;
-      --ink-soft: #76705A;
-      --line: #E2DACB;
-      --accent: #D99A3B;
-      --accent-ink: #2E2A1C;
-      --ok: #4F7A4A;
-      --warn: #B86E1F;
-      --off: #8C8670;
-
-      --font-display: "Fraunces", Georgia, serif;
-      --font-body: "Barlow", system-ui, -apple-system, sans-serif;
-
-      --step--1: 0.875rem;
-      --step-0: 1rem;
-      --step-1: 1.25rem;
-      --step-2: clamp(1.6rem, 1.3rem + 1.5vw, 2.1rem);
-      --step-3: clamp(2.2rem, 1.7rem + 2.5vw, 3.2rem);
-
-      --space-xs: 0.5rem;
-      --space-s: 1rem;
-      --space-m: 1.5rem;
-      --space-l: 2.5rem;
-      --space-xl: 4.5rem;
-
-      --gutter: 16px;
-      --max: 680px;
-      --radius: 14px;
-      --header-h: 56px;
-    }
-
-    /* ===== Base ===== */
-    *, *::before, *::after { box-sizing: border-box; }
-    * { margin: 0; }
-
-    html {
-      -webkit-text-size-adjust: 100%;
-      scroll-behavior: smooth;
-      scroll-padding-top: calc(var(--header-h) + env(safe-area-inset-top));
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--font-body);
-      font-size: var(--step-0);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    img, svg { display: block; max-width: 100%; }
-    a { color: inherit; }
-    button { font: inherit; color: inherit; }
-
-    h1, h2, h3 {
-      font-family: var(--font-display);
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-    }
-
-    :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
-    .skip-link {
-      position: absolute;
-      left: var(--gutter);
-      top: -100px;
-      z-index: 100;
-      padding: var(--space-xs) var(--space-s);
-      background: var(--ink);
-      color: var(--bg);
-      border-radius: 8px;
-    }
-    .skip-link:focus { top: calc(var(--space-xs) + env(safe-area-inset-top)); }
-
-    /* ===== Layout ===== */
-    .wrap {
-      width: 100%;
-      max-width: var(--max);
-      margin-inline: auto;
-      padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right));
-    }
-
-    .section { padding-block: var(--space-xl); }
-    .section + .section { border-top: 1px solid var(--line); }
-
-    .section__kicker {
-      font-size: var(--step--1);
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: var(--space-xs);
-    }
-    .section__title {
-      font-size: var(--step-2);
-      margin-bottom: var(--space-m);
-    }
-
-    /* ===== Header ===== */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      padding-top: env(safe-area-inset-top);
-      background: color-mix(in srgb, var(--bg) 88%, transparent);
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid transparent;
-      transition: border-color .2s;
-    }
-    .site-header.is-scrolled { border-bottom-color: var(--line); }
-
-    .site-header__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: var(--header-h);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-    }
-    .brand .logo { width: 34px; height: 34px; }
-    .brand__name {
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-    .brand__name small {
-      display: block;
-      font-size: 0.7rem;
-      letter-spacing: 0.04em;
-      text-transform: none;
-      color: var(--ink-soft);
-      line-height: 1;
-    }
-
-    .logo { color: var(--ink); }
-
-    /* ===== Selector de idioma ===== */
-    .lang-switch {
-      display: inline-flex;
-      padding: 3px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-    }
-    .lang-switch button {
-      min-width: 44px;
-      min-height: 36px;
-      padding: 0 0.75rem;
-      border: 0;
-      border-radius: 999px;
-      background: transparent;
-      font-size: var(--step--1);
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--ink-soft);
-      cursor: pointer;
-    }
-    .lang-switch button[aria-pressed="true"] {
-      background: var(--ink);
-      color: var(--bg);
-    }
-
-    /* ===== Botones ===== */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      min-height: 48px;
-      padding: 0 1.25rem;
-      border: 1.5px solid transparent;
-      border-radius: 999px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform .15s, background-color .15s;
-    }
-    .btn:active { transform: scale(0.97); }
-    .btn svg { width: 18px; height: 18px; flex: none; }
-    .btn--primary { background: var(--accent); color: var(--accent-ink); }
-    .btn--dark { background: var(--ink); color: var(--bg); }
-    .btn--ghost { border-color: currentColor; background: transparent; }
-    .btn--block { width: 100%; }
-
-    /* ===== Hero ===== */
-    .hero {
-      --hero-ink: #FAF7F2;
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      min-height: calc(100svh - var(--header-h) - env(safe-area-inset-top));
-      max-height: 900px;
-      padding-block: var(--space-l);
-      background: #2E2A1C;
-      color: var(--hero-ink);
-      overflow: hidden;
-      isolation: isolate;
-    }
-    .hero__media {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-    }
-    .hero__media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .hero__media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(30, 27, 18, 0) 20%, rgba(30, 27, 18, .7) 60%, rgba(30, 27, 18, .92) 100%);
-    }
-    /* Collage: las fotos se separan hacia afuera al hacer scroll (ver JS) */
-    .collage {
-      position: absolute;
-      inset: var(--space-m) var(--gutter) auto;
-      height: min(42%, 340px);
-    }
-    .tile {
-      position: absolute;
-      left: var(--x);
-      top: var(--y);
-      width: var(--w);
-      height: var(--h);
-      border-radius: 10px;
-      overflow: hidden;
-      will-change: transform, opacity;
-    }
-    .tile img { width: 100%; height: 100%; object-fit: cover; }
-    .tile .ph {
-      height: 100%;
-      padding: 0.4rem;
-      border-radius: inherit;
-      border-color: rgba(250, 247, 242, .3);
-      background: rgba(250, 247, 242, .06);
-      color: rgba(250, 247, 242, .7);
-      font-size: 0.62rem;
-      line-height: 1.3;
-    }
-    .js .tile { opacity: 0; transform: scale(.92); transition: opacity 1s ease, transform 1.2s cubic-bezier(.2, .7, .2, 1); }
-    .js .is-loaded .tile { opacity: 1; transform: none; transition-delay: calc(var(--i) * 90ms); }
-    .js .is-loaded .tile.is-scrolling { transition: none; }
-
-    .hero__content { position: relative; }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      min-height: 32px;
-      padding: 0.3rem 0.85rem;
-      margin-bottom: var(--space-s);
-      border-radius: 999px;
-      background: rgba(250, 247, 242, .14);
-      font-size: var(--step--1);
-      font-weight: 500;
-    }
-    .status__dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #B9B29C;
-    }
-    .status[data-state="open"] .status__dot {
-      background: #8FCB82;
-      box-shadow: 0 0 0 4px rgba(143, 203, 130, .25);
-    }
-    .status[data-state="closing"] .status__dot {
-      background: #F0B44C;
-      box-shadow: 0 0 0 4px rgba(240, 180, 76, .25);
-    }
-
-    .hero__title {
-      font-size: clamp(2.1rem, 1.2rem + 4vw, 3.4rem);
-      margin-bottom: var(--space-xs);
-    }
-    .hero__title span { font-style: italic; }
-    .hero__tagline {
-      font-size: var(--step-1);
-      opacity: .85;
-      margin-bottom: var(--space-m);
-    }
-
-    .hero__facts {
-      display: grid;
-      gap: 0.35rem;
-      padding: 0;
-      margin-bottom: var(--space-m);
-      list-style: none;
-      font-size: var(--step--1);
-    }
-    .hero__facts li { display: flex; align-items: center; gap: 0.5rem; }
-    .hero__facts svg { width: 16px; height: 16px; flex: none; opacity: .8; }
-    .hero__facts a { text-underline-offset: 3px; }
-
-    .hero__actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-    }
-    .hero__actions .btn {
-      padding-inline: 0.75rem;
-      font-size: 0.95rem;
-      white-space: nowrap;
-    }
-    @media (max-width: 350px) {
-      .hero__actions { grid-template-columns: 1fr; }
-    }
-    .hero .btn--ghost { color: var(--hero-ink); }
-
-    /* ===== Orari ===== */
-    .hours {
-      padding: 0;
-      list-style: none;
-      font-size: 1.05rem;
-    }
-    .hours li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-s);
-      min-height: 52px;
-      padding-inline: 0.75rem;
-      border-bottom: 1px solid var(--line);
-    }
-    .hours li:last-child { border-bottom: 0; }
-    .hours__day { display: flex; align-items: center; gap: 0.6rem; }
-    .hours__time { font-variant-numeric: tabular-nums; }
-    .hours .is-closed .hours__time { color: var(--ink-soft); }
-    .hours .is-today {
-      background: var(--surface);
-      border-radius: 10px;
-      border-bottom-color: transparent;
-      font-weight: 600;
-    }
-    .tag {
-      display: inline-block;
-      padding: 0.15rem 0.55rem;
-      border-radius: 999px;
-      background: var(--ink);
-      color: var(--bg);
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .hours__note {
-      display: flex;
-      justify-content: space-between;
-      gap: var(--space-s);
-      margin-top: var(--space-m);
-      padding: var(--space-s) 0.75rem;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      color: var(--ink-soft);
-    }
-    .hours__note strong { color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
-
-    /* ===== Menu ===== */
-    .menu-intro {
-      display: grid;
-      gap: 0.35rem;
-      margin-bottom: var(--space-m);
-      color: var(--ink-soft);
-    }
-
-    .legend {
-      margin-bottom: var(--space-m);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      font-size: var(--step--1);
-    }
-    .legend summary {
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-      padding-inline: 0.75rem;
-      font-weight: 500;
-      cursor: pointer;
-    }
-    .legend ol {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.25rem 1rem;
-      padding: 0 0.75rem 0.75rem 2rem;
-      color: var(--ink-soft);
-    }
-
-    .menu-nav {
-      position: sticky;
-      top: calc(var(--header-h) + env(safe-area-inset-top));
-      z-index: 40;
-      margin-inline: calc(var(--gutter) * -1);
-      padding: 0.6rem var(--gutter);
-      background: var(--bg);
-      border-bottom: 1px solid var(--line);
-    }
-    .menu-nav ul {
-      display: flex;
-      gap: 0.5rem;
-      padding: 0;
-      list-style: none;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
-    .menu-nav ul::-webkit-scrollbar { display: none; }
-    .menu-nav a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 38px;
-      padding: 0 0.95rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      font-size: var(--step--1);
-      font-weight: 500;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .menu-nav a[aria-current="true"] {
-      background: var(--ink);
-      border-color: var(--ink);
-      color: var(--bg);
-    }
-
-    .menu-cat {
-      padding-top: var(--space-l);
-      scroll-margin-top: calc(var(--header-h) + 64px + env(safe-area-inset-top));
-    }
-    .menu-cat__title {
-      font-size: 1.6rem;
-      margin-bottom: 0.25rem;
-    }
-    .menu-cat__note {
-      color: var(--ink-soft);
-      font-size: var(--step--1);
-    }
-    .menu-group__title {
-      margin-top: var(--space-m);
-      font-family: var(--font-body);
-      font-size: var(--step--1);
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-    }
-
-    .items { padding: 0; list-style: none; }
-    .item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0.1rem 1rem;
-      padding-block: 0.8rem;
-      border-bottom: 1px solid var(--line);
-    }
-    .item__name { font-weight: 500; }
-    .item__price {
-      font-weight: 500;
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-    .item__desc,
-    .item__meta,
-    .item__adds {
-      grid-column: 1 / -1;
-      font-size: var(--step--1);
-      color: var(--ink-soft);
-    }
-    .item__meta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.35rem;
-      margin-top: 0.25rem;
-    }
-    .allergens { display: inline-flex; gap: 0.2rem; }
-    .allergens span {
-      display: inline-grid;
-      place-items: center;
-      min-width: 1.35rem;
-      height: 1.35rem;
-      padding-inline: 0.2rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      font-size: 0.7rem;
-      font-variant-numeric: tabular-nums;
-    }
-    .badge {
-      padding: 0.1rem 0.5rem;
-      border-radius: 999px;
-      background: #E3EBDD;
-      color: #34512F;
-      font-size: 0.72rem;
-      font-weight: 600;
-    }
-
-    .extras {
-      margin-top: var(--space-s);
-      padding: 0.75rem;
-      border-radius: 10px;
-      background: var(--surface);
-      font-size: var(--step--1);
-    }
-    .extras__title {
-      margin-bottom: 0.25rem;
-      font-weight: 600;
-    }
-    .extras ul { display: grid; gap: 0.2rem; padding: 0; list-style: none; }
-    .extras li { display: flex; justify-content: space-between; gap: 1rem; }
-    .extras li span:last-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
-
-    /* ===== Il nostro caffè ===== */
-    .coffee__media { margin-bottom: var(--space-m); }
-    .coffee__name {
-      font-size: 1.75rem;
-      font-style: italic;
-      margin-bottom: var(--space-xs);
-    }
-    .coffee__lead { font-size: 1.1rem; margin-bottom: var(--space-m); }
-
-    .origin { margin-bottom: var(--space-m); }
-    .origin__bar {
-      display: flex;
-      height: 10px;
-      border-radius: 999px;
-      overflow: hidden;
-      margin-bottom: 0.5rem;
-    }
-    .origin__bar span:first-child { background: var(--ink); }
-    .origin__bar span:last-child { background: var(--accent); }
-    .origin__labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: var(--step--1);
-      font-variant-numeric: tabular-nums;
-    }
-    .origin__labels b { font-weight: 600; }
-
-    .notes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: 0;
-      margin-bottom: var(--space-s);
-      list-style: none;
-    }
-    .notes li {
-      padding: 0.4rem 0.9rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: #fff;
-    }
-    .coffee__profile { color: var(--ink-soft); margin-bottom: var(--space-m); }
-
-    .link-arrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      min-height: 44px;
-      font-weight: 600;
-      text-underline-offset: 4px;
-    }
-
-    /* ===== Shop ===== */
-    .shop__intro { color: var(--ink-soft); margin-bottom: var(--space-m); }
-    .shop__media { margin-bottom: var(--space-m); }
-
-    .shop__card {
-      padding: var(--space-m) var(--space-s);
-      border-radius: var(--radius);
-      background: #fff;
-      box-shadow: 0 1px 2px rgba(63, 59, 42, .06), 0 8px 24px rgba(63, 59, 42, .06);
-    }
-    .shop__product {
-      font-size: 1.5rem;
-      font-style: italic;
-      margin-bottom: var(--space-m);
-    }
-
-    .choice {
-      min-width: 0;
-      padding: 0;
-      margin: 0 0 var(--space-m);
-      border: 0;
-    }
-    .choice legend,
-    .qty__label {
-      margin-bottom: 0.5rem;
-      font-size: var(--step--1);
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-    }
-    .choice__options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
-    }
-    .opt { position: relative; cursor: pointer; }
-    .opt input {
-      position: absolute;
-      opacity: 0;
-      width: 1px;
-      height: 1px;
-    }
-    .opt__box {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 60px;
-      padding: 0.6rem 0.85rem;
-      border: 1.5px solid var(--line);
-      border-radius: 12px;
-      transition: border-color .15s, background-color .15s;
-    }
-    .opt__main { font-weight: 600; }
-    .opt__sub { font-size: var(--step--1); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-    .opt input:checked + .opt__box {
-      border-color: var(--ink);
-      background: var(--bg);
-      box-shadow: inset 0 0 0 1px var(--ink);
-    }
-    .opt input:focus-visible + .opt__box { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-    .qty {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: var(--space-m);
-    }
-    .qty__label { margin: 0; }
-    .qty__ctrl { display: flex; align-items: center; gap: 0.75rem; }
-    .qty__ctrl button {
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      border: 1.5px solid var(--line);
-      border-radius: 50%;
-      background: transparent;
-      font-size: 1.3rem;
-      line-height: 1;
-      cursor: pointer;
-    }
-    .qty__ctrl button:disabled { opacity: .35; cursor: default; }
-    .qty__ctrl output {
-      min-width: 2ch;
-      font-size: 1.25rem;
-      font-weight: 600;
-      text-align: center;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .shop__total {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      padding-top: var(--space-s);
-      margin-bottom: var(--space-xs);
-      border-top: 1px solid var(--line);
-    }
-    .shop__total output {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-variant-numeric: tabular-nums;
-    }
-    .shop__pickup {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      margin-bottom: var(--space-m);
-      font-size: var(--step--1);
-      color: var(--ink-soft);
-    }
-    .shop__pickup svg { width: 16px; height: 16px; flex: none; }
-
-    .shop__preview {
-      margin-top: var(--space-s);
-      padding: 0.75rem;
-      border-radius: 10px;
-      background: var(--surface);
-      font-size: var(--step--1);
-      color: var(--ink-soft);
-    }
-    .shop__preview q { color: var(--ink); font-style: italic; }
-    .shop__fine {
-      margin-top: var(--space-s);
-      font-size: var(--step--1);
-      color: var(--ink-soft);
-      text-align: center;
-    }
-
-    /* ===== Storia ===== */
-    .story__lead {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      line-height: 1.4;
-      margin-bottom: var(--space-l);
-    }
-
-    .chapters {
-      display: grid;
-      gap: var(--space-xl);
-      padding: 0;
-      margin-bottom: var(--space-xl);
-      list-style: none;
-      counter-reset: chapter;
-    }
-    .chapter { counter-increment: chapter; }
-    .chapter__media { margin-bottom: var(--space-m); }
-    .chapter__head {
-      display: flex;
-      align-items: baseline;
-      gap: 0.75rem;
-      margin-bottom: 0.4rem;
-    }
-    .chapter__head::before {
-      content: counter(chapter, decimal-leading-zero);
-      font-family: var(--font-display);
-      font-size: 0.95rem;
-      color: var(--accent);
-    }
-    .chapter__when {
-      font-size: var(--step--1);
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-    }
-    .chapter__title {
-      font-size: 1.55rem;
-      margin-bottom: var(--space-s);
-    }
-    .chapter p + p { margin-top: 0.75rem; }
-
-    .welcome {
-      margin: 0 calc(var(--gutter) * -1) var(--space-xl);
-      padding: var(--space-xl) var(--gutter);
-      background: var(--ink);
-      color: var(--bg);
-      text-align: center;
-    }
-    .welcome p {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 1.4rem + 3vw, 3.4rem);
-      font-style: italic;
-      line-height: 1.1;
-    }
-    .welcome span {
-      display: block;
-      margin-top: var(--space-s);
-      font-size: var(--step--1);
-      opacity: .7;
-    }
-
-    .essence__title {
-      font-size: var(--step-2);
-      margin-bottom: var(--space-m);
-    }
-    .pillars {
-      display: grid;
-      gap: var(--space-s);
-      padding: 0;
-      margin-bottom: var(--space-xl);
-      list-style: none;
-    }
-    .pillar {
-      padding: var(--space-m) var(--space-s);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: #fff;
-    }
-    .pillar h4 {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 400;
-      margin-bottom: 0.5rem;
-    }
-    .pillar p { color: var(--ink-soft); }
-
-    .quote {
-      margin-bottom: var(--space-l);
-      padding-left: var(--space-s);
-      border-left: 3px solid var(--accent);
-    }
-    .quote p {
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-style: italic;
-      line-height: 1.35;
-    }
-    .quote footer {
-      margin-top: 0.4rem;
-      font-size: var(--step--1);
-      color: var(--ink-soft);
-    }
-
-    .press {
-      display: block;
-      padding: var(--space-s);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      text-decoration: none;
-    }
-    .press__kicker {
-      display: block;
-      font-size: var(--step--1);
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-    }
-    .press__title { display: block; margin-block: 0.25rem; font-weight: 500; }
-    .press__meta { font-size: var(--step--1); color: var(--ink-soft); }
-
-    /* ===== Dove siamo ===== */
-    .place__address {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      line-height: 1.2;
-    }
-    .place__area { color: var(--ink-soft); margin-bottom: var(--space-m); }
-
-    .map {
-      position: relative;
-      display: grid;
-      place-items: center;
-      aspect-ratio: 4 / 3;
-      margin-bottom: var(--space-m);
-      border-radius: var(--radius);
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(217, 154, 59, .18) 0 18%, transparent 19%),
-        repeating-linear-gradient(0deg, transparent 0 38px, var(--line) 38px 39px),
-        repeating-linear-gradient(90deg, transparent 0 38px, var(--line) 38px 39px),
-        var(--surface);
-    }
-    .map iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    .place__actions { display: grid; gap: 0.75rem; }
-    .place__actions .btn--ghost { color: var(--ink); }
-
-    /* ===== Huecos de foto ===== */
-    .ph {
-      display: grid;
-      place-items: center;
-      padding: var(--space-s);
-      border: 1.5px dashed var(--off);
-      border-radius: var(--radius);
-      background: var(--surface);
-      color: var(--ink-soft);
-      font-size: var(--step--1);
-      text-align: center;
-    }
-    .ph--4x5,
-    .media--4x5 { aspect-ratio: 4 / 5; }
-    .ph--1x1 { aspect-ratio: 1 / 1; }
-    .ph--3x2,
-    .media--3x2 { aspect-ratio: 3 / 2; }
-
-    /* Foto o video real */
-    .media {
-      position: relative;
-      margin: 0;
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: var(--surface);
-    }
-    .media img,
-    .media video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .tile img { object-position: var(--focus, 50% 50%); }
-
-    /* ===== Footer ===== */
-    .site-footer {
-      padding-block: var(--space-l) calc(var(--space-l) + env(safe-area-inset-bottom));
-      background: var(--ink);
-      color: var(--bg);
-      font-size: var(--step--1);
-    }
-    .site-footer .logo { width: 56px; height: 56px; color: var(--bg); margin-bottom: var(--space-s); }
-    .site-footer a { color: inherit; }
-    .footer__name {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      margin-bottom: var(--space-m);
-    }
-    .footer__links {
-      display: grid;
-      gap: 0.25rem;
-      padding: 0;
-      margin-bottom: var(--space-l);
-      list-style: none;
-    }
-    .footer__links a {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      min-height: 44px;
-      font-size: 1rem;
-      text-decoration: none;
-    }
-    .footer__links svg { width: 20px; height: 20px; }
-    .footer__legal {
-      padding-top: var(--space-m);
-      border-top: 1px solid rgba(250, 247, 242, .15);
-      color: rgba(250, 247, 242, .65);
-      line-height: 1.7;
-    }
-    /* ===== Animaciones ===== */
-    .marquee {
-      overflow: hidden;
-      padding-block: 1rem;
-      border-bottom: 1px solid var(--line);
-      background: var(--bg);
-    }
-    .marquee__track {
-      display: flex;
-      width: max-content;
-      animation: marquee 32s linear infinite;
-    }
-    .marquee__track span {
-      padding-right: 0.6em;
-      font-family: var(--font-display);
-      font-size: clamp(1.4rem, 1rem + 2vw, 2.4rem);
-      font-style: italic;
-      white-space: nowrap;
-    }
-    @keyframes marquee { to { transform: translateX(-50%); } }
-
-    /* Entrada del hero */
-    .js .hero__content > * {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity .9s ease, transform .9s cubic-bezier(.2, .7, .2, 1);
-    }
-    .js .is-loaded .hero__content > * { opacity: 1; transform: none; }
-    .js .is-loaded .hero__content > :nth-child(2) { transition-delay: .1s; }
-    .js .is-loaded .hero__content > :nth-child(3) { transition-delay: .2s; }
-    .js .is-loaded .hero__content > :nth-child(4) { transition-delay: .3s; }
-    .js .is-loaded .hero__content > :nth-child(5) { transition-delay: .4s; }
-
-    /* Aparición al entrar en pantalla */
-    .js .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .9s ease, transform 1s cubic-bezier(.2, .7, .2, 1);
-      transition-delay: var(--delay, 0s);
-    }
-    .js .reveal.is-in { opacity: 1; transform: none; }
-
-    /* Fotos: se descubren con un recorte que se abre y un zoom suave */
-    .js .reveal-media {
-      clip-path: inset(10% 8% 10% 8% round var(--radius));
-      transition: clip-path 1.2s cubic-bezier(.2, .7, .2, 1);
-    }
-    .js .reveal-media > * { transform: scale(1.12); transition: transform 1.6s cubic-bezier(.2, .7, .2, 1); }
-    .js .reveal-media.ph { transform: scale(1.04); transition: clip-path 1.2s cubic-bezier(.2, .7, .2, 1), transform 1.6s cubic-bezier(.2, .7, .2, 1); }
-    .js .reveal-media.is-in { clip-path: inset(0 0 0 0 round var(--radius)); }
-    .js .reveal-media.is-in > *,
-    .js .reveal-media.ph.is-in { transform: none; }
-
-    /* Barra de origen que se llena */
-    .js .origin__bar span { transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
-    .js .origin__bar span:last-child { transition-delay: .5s; }
-    .js .origin.is-in .origin__bar span { transform: none; }
-
-    /* Rebote del total en el shop */
-    @keyframes bump { 40% { transform: scale(1.08); } }
-    .shop__total output.bump { display: inline-block; animation: bump .35s ease; }
-
-    /* Botones y tarjetas: respuesta al pasar el mouse */
-    @media (hover: hover) {
-      .btn { transition: transform .15s, background-color .2s, box-shadow .2s; }
-      .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(30, 27, 18, .18); }
-      .pillar, .press { transition: transform .3s, box-shadow .3s; }
-      .pillar:hover, .press:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(63, 59, 42, .1); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .marquee__track { animation: none; }
-      .js .reveal, .js .reveal-media, .js .reveal-media > *, .js .tile,
-      .js .hero__content > *, .js .origin__bar span {
-        opacity: 1 !important;
-        transform: none !important;
-        clip-path: none !important;
-        transition: none !important;
-      }
-    }
-
-    /* ===== Navegación de escritorio (oculta en móvil) ===== */
-    .site-nav { display: none; }
-    .place { font-style: normal; }
-
-    /* ===== Foto y texto lado a lado en todas las pantallas =====
-       Mismo diseño en iPhone y en escritorio; en móvil solo cambian tamaños. */
-    :root { --col-gap: 1rem; }
-
-    /* Hero: texto a la izquierda, collage a la derecha */
-    .hero__media::after {
-      background: linear-gradient(90deg, rgba(30, 27, 18, .9) 0%, rgba(30, 27, 18, .55) 48%, rgba(30, 27, 18, .1) 75%);
-    }
-    .collage { inset: var(--space-m) var(--gutter) var(--space-m) 57%; height: auto; }
-    .hero__content > * { max-width: 55%; }
-    /* Columna angosta y alta: fotos apiladas en zigzag */
-    .tile--1 { --x: 6%;  --y: 21%; --w: 88%; --h: 33%; }
-    .tile--2 { --x: 0%;  --y: 57%; --w: 58%; --h: 19%; }
-    .tile--3 { --x: 52%; --y: 2%;  --w: 48%; --h: 17%; }
-    .tile--4 { --x: 40%; --y: 78%; --w: 60%; --h: 21%; }
-    .tile--5 { --x: 0%;  --y: 0%;  --w: 46%; --h: 19%; }
-
-    /* Secciones en dos columnas: la foto ocupa la columna izquierda en toda su altura */
-    .section--caffe .wrap,
-    .section--shop .wrap,
-    .section--dove .wrap {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      column-gap: var(--col-gap);
-      align-content: start;
-    }
-    .section--caffe .wrap > *,
-    .section--shop .wrap > *,
-    .section--dove .wrap > * { grid-column: 2; }
-
-    .section--caffe .wrap { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
-    .section--caffe .coffee__media {
-      grid-column: 1;
-      grid-row: 1 / span 8;
-      aspect-ratio: 4 / 5;
-      margin: 0;
-      align-self: start;
-    }
-
-    .section--shop .shop__media {
-      grid-column: 1;
-      grid-row: 1 / span 4;
-      margin: 0;
-      align-self: start;
-    }
-
-    .section--dove .wrap { grid-template-rows: min-content min-content 1fr; }
-    .section--dove .section__title { grid-column: 1; grid-row: 1; }
-    .section--dove .place { grid-column: 1; grid-row: 2; }
-    .section--dove .place__actions { grid-column: 1; grid-row: 3; align-self: start; }
-    .section--dove .map { grid-row: 1 / span 4; aspect-ratio: 3 / 4; margin: 0; }
-
-    /* Historia: capítulos con foto y texto alternados */
-    .chapter {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      column-gap: var(--col-gap);
-      align-items: start;
-    }
-    .chapter__media {
-      margin: 0;
-      position: sticky;
-      top: calc(var(--header-h) + env(safe-area-inset-top) + var(--space-s));
-      aspect-ratio: 3 / 4;
-    }
-    .chapter:nth-child(even) .chapter__media { order: 2; }
-    .chapter:not(:has(.chapter__media)) .chapter__body { grid-column: 1 / -1; max-width: 640px; margin-inline: auto; text-align: center; }
-    .chapter:not(:has(.chapter__media)) .chapter__head { justify-content: center; }
-    .welcome { margin-inline: calc(50% - 50vw); }
-
-    /* Ajustes de tamaño solo para celular */
-    @media (max-width: 767px) {
-      .hero { padding-block: var(--space-m); }
-      .hero__title { font-size: clamp(1.9rem, 1.2rem + 3vw, 2.4rem); }
-      .hero__tagline { font-size: 0.98rem; margin-bottom: var(--space-s); }
-      .hero__facts { font-size: 0.8rem; }
-      .hero__facts li { align-items: flex-start; }
-      .hero__facts svg { margin-top: 0.15rem; }
-      .status { font-size: 0.75rem; padding-inline: 0.65rem; }
-      .hero__actions { grid-template-columns: 1fr; gap: 0.5rem; }
-      .hero__actions .btn { min-height: 44px; font-size: 0.9rem; }
-
-      .section--caffe .section__title,
-      .section--shop .section__title,
-      .section--dove .section__title { font-size: 1.45rem; margin-bottom: var(--space-s); }
-      .coffee__name { font-size: 1.3rem; }
-      .coffee__lead { font-size: 0.92rem; margin-bottom: var(--space-s); }
-      .origin { margin-bottom: var(--space-s); }
-      .origin__labels { font-size: 0.75rem; }
-      .notes { gap: 0.35rem; }
-      .notes li { padding: 0.25rem 0.6rem; font-size: 0.82rem; }
-      .coffee__profile { font-size: 0.88rem; margin-bottom: var(--space-xs); }
-
-      .shop__intro { font-size: 0.92rem; margin-bottom: 0; }
-      /* El formulario necesita todo el ancho para ser cómodo de tocar */
-      .section--shop .shop__card { grid-column: 1 / -1; margin-top: var(--space-m); }
-      .section--shop .shop__media { grid-row: 1 / span 3; aspect-ratio: 4 / 5; }
-
-      .place__address { font-size: 1.2rem; }
-      .place__area { font-size: 0.85rem; }
-      .place__actions { gap: 0.5rem; }
-      .place__actions .btn { min-height: 44px; padding-inline: 0.75rem; font-size: 0.82rem; }
-
-      .chapter__title { font-size: 1.2rem; margin-bottom: var(--space-xs); }
-      .chapter__body p:not(.chapter__head) { font-size: 0.9rem; }
-      .chapter__when { font-size: 0.72rem; }
-      .chapters { gap: var(--space-l); }
-    }
-
-    /* ===== Tablet ===== */
-    @media (min-width: 768px) {
-      :root {
-        --gutter: 32px;
-        --max: 760px;
-        --space-xl: 6rem;
-        --col-gap: 2rem;
-      }
-      .pillars { grid-template-columns: repeat(3, 1fr); }
-
-      .section--orari .wrap {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        grid-template-rows: min-content 1fr;
-        column-gap: var(--col-gap);
-      }
-      .section--orari .wrap > * { grid-column: 2; }
-      .section--orari .section__title { grid-column: 1; grid-row: 1; }
-      .section--orari .hours__note { grid-column: 1; grid-row: 2; align-self: start; margin-top: 0; }
-      .section--orari .hours { grid-row: 1 / span 2; }
-      .place__actions { grid-template-columns: 1fr 1fr; }
-      .hero__actions { grid-template-columns: auto auto; justify-content: start; }
-      .hero__actions .btn { padding-inline: 1.5rem; }
-    }
-
-    @media (min-width: 900px) {
-      #menu-list {
-        columns: 2;
-        column-gap: 3rem;
-      }
-      .menu-cat { break-inside: avoid; }
-    }
-
-    /* ===== Escritorio ===== */
-    @media (min-width: 1024px) {
-      :root {
-        --gutter: 48px;
-        --max: 1200px;
-        --header-h: 72px;
-        --col-gap: clamp(3rem, 6vw, 6rem);
-        --step-2: 2.75rem;
-      }
-
-      /* Header */
-      .site-header__inner { gap: var(--space-m); }
-      .brand .logo { width: 42px; height: 42px; }
-      .site-nav {
-        display: flex;
-        gap: 1.75rem;
-        margin-left: auto;
-      }
-      .site-nav a {
-        position: relative;
-        padding-block: 0.4rem;
-        font-size: 0.95rem;
-        font-weight: 500;
-        text-decoration: none;
-        white-space: nowrap;
-      }
-      .site-nav a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 1.5px;
-        background: currentColor;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform .25s;
-      }
-      .site-nav a:hover::after { transform: scaleX(1); }
-
-      /* Hero */
-      .hero { max-height: none; min-height: min(calc(100svh - var(--header-h)), 860px); padding-block: var(--space-xl); }
-      .hero__title { font-size: clamp(3.5rem, 2rem + 4vw, 6rem); }
-      .hero__tagline { font-size: 1.5rem; max-width: 34ch; }
-      .hero__facts { display: flex; gap: 2rem; font-size: 1rem; }
-      .collage { left: 54%; }
-      .tile .ph { font-size: 0.75rem; padding: 0.75rem; }
-      .hero__content > * { max-width: 52%; }
-      .tile--1 { --x: 24%; --y: 6%;  --w: 48%; --h: 84%; }
-      .tile--2 { --x: 0%;  --y: 30%; --w: 27%; --h: 46%; }
-      .tile--3 { --x: 75%; --y: 0%;  --w: 25%; --h: 40%; }
-      .tile--4 { --x: 70%; --y: 50%; --w: 30%; --h: 46%; }
-      .tile--5 { --x: 4%;  --y: 0%;  --w: 17%; --h: 24%; }
-
-      .section__title { margin-bottom: var(--space-l); }
-
-      .section--shop .shop__media { position: sticky; top: calc(var(--header-h) + var(--space-m)); }
-      .section--dove .map { aspect-ratio: 1 / 1; }
-
-      /* Carta */
-      #menu-list { columns: 3; }
-
-      /* Historia */
-      .story__lead { font-size: 2rem; max-width: 30ch; margin-bottom: var(--space-xl); }
-      .chapter { align-items: center; }
-      .chapter__media { position: relative; top: auto; aspect-ratio: auto; }
-      .chapter .ph--3x2, .chapter .media--3x2 { aspect-ratio: 3 / 2; }
-      .chapter .ph--4x5, .chapter .media--4x5 { aspect-ratio: 4 / 5; }
-      .chapter__title { font-size: 2.1rem; }
-      .chapter__body p:not(.chapter__head) { font-size: 1.1rem; max-width: 48ch; }
-
-      .welcome { padding-block: calc(var(--space-xl) * 1.3); }
-
-      .quote,
-      .press { max-width: 720px; }
-      .quote p { font-size: 1.8rem; }
-
-      /* Footer */
-      .footer__grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1.3fr;
-        gap: var(--space-l);
-        align-items: start;
-      }
-      .footer__links { margin-bottom: 0; }
-      .footer__legal { padding-top: 0; border-top: 0; }
-    }
-
-    @media (min-width: 1280px) {
-      .hero__content > * { max-width: 48%; }
-    }
-  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Jost:wght@300;400;500&display=swap">
+  <link rel="preload" as="image" href="img/acquerello-vidriera.jpg">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
 </head>
-<body>
+<body data-page="home">
   <a class="skip-link" href="#contenuto" data-i18n="skip">Vai al contenuto</a>
 
-  <!-- Logo: un solo símbolo, reutilizado con <use> -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="logo-manly" viewBox="0 0 220 220">
-      <g fill="none" stroke="currentColor" stroke-width="2.5">
-        <circle cx="110" cy="110" r="108" stroke-width="3"/>
+      <g fill="none" stroke="currentColor" stroke-width="3">
+        <circle cx="110" cy="110" r="108"/>
         <path d="M30 37.4 L49 76.5 L85 5 V215"/>
         <path d="M85 107.5 L144 209 M85 180.5 H127.4 M144 7.5 V212.5"/>
         <path d="M144 173.5 H197 V102 L185 34 M197 102 L213 81 L188 35"/>
       </g>
     </symbol>
-
-    <!-- Iconos (trazo, heredan el color del texto) -->
-    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M4 12h15M13 6l6 6-6 6"/></symbol>
     <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3.2l2.6 5.5 6 .7-4.5 4.1 1.2 5.9L12 16.5l-5.3 2.9 1.2-5.9-4.5-4.1 6-.7z"/></symbol>
-    <symbol id="i-route" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></g></symbol>
-    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5 3.5h3.5l1.5 4.5-2.2 1.4a11 11 0 0 0 6.8 6.8l1.4-2.2 4.5 1.5V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.1 1.5 1.5 0 0 1 5 3.5z"/></symbol>
-    <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 19.5l1.3-3.8A8 8 0 1 1 8.5 19z"/></symbol>
-    <symbol id="i-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".6" fill="currentColor"/></g></symbol>
   </svg>
 
-  <header class="site-header" id="top">
-    <div class="wrap site-header__inner">
-      <a class="brand" href="#top" aria-label="MANLY The Office">
-        <svg class="logo" aria-hidden="true"><use href="#logo-manly"/></svg>
-        <span class="brand__name">Manly <small>The Office</small></span>
+  <!-- Estado en vivo y dirección -->
+  <div class="topbar">
+    <div class="wrap topbar__inner">
+      <p class="status" data-status aria-live="polite">
+        <span class="status__dot" aria-hidden="true"></span>
+        <span class="status__text">&nbsp;</span>
+      </p>
+      <a href="#" data-href="maps" target="_blank" rel="noopener">Via Pisana 48R<span class="topbar__city"> · Firenze</span></a>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="wrap header__inner">
+      <button class="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Menu">
+        <span class="burger__lines" aria-hidden="true"></span>
+        <span class="burger__label" data-i18n="nav.open">Menu</span>
+      </button>
+
+      <a class="brand" href="./" aria-label="MANLY The Office">
+        <svg aria-hidden="true"><use href="#logo-manly"/></svg>
+        <span class="brand__text" aria-hidden="true">
+          <span class="brand__name">MANLY</span>
+          <span class="brand__sub">The Office</span>
+        </span>
       </a>
 
-      <nav class="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Navigazione">
-        <a href="#orari" data-i18n="orari.title">Orari</a>
-        <a href="#menu" data-i18n="menu.title">Il menu</a>
-        <a href="#caffe" data-i18n="caffe.title">Il nostro caffè</a>
-        <a href="#shop">Shop</a>
-        <a href="#storia" data-i18n="storia.title">La nostra storia</a>
-        <a href="#dove" data-i18n="dove.title">Dove siamo</a>
-      </nav>
-
-      <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Lingua">
+      <div class="lang" role="group" aria-label="Lingua" data-i18n-attr="aria-label:lang.label">
         <button type="button" data-lang="it" aria-pressed="true" lang="it">IT</button>
         <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
       </div>
     </div>
   </header>
 
-  <main id="contenuto">
-    <!-- 1. Hero -->
-    <section class="hero" id="inizio" aria-labelledby="hero-title">
-      <div class="hero__media">
-        <!-- Collage: reemplazar cada .ph por <img src="img/..." alt=""> (la primera con fetchpriority="high") -->
-        <div class="collage" id="collage" aria-hidden="true">
-          <!-- Provisoria. Definitiva: la barra con la máquina, luz de mañana -->
-          <div class="tile tile--1" style="--i:0"><img src="img/vidriera-cappuccino.jpg" alt="" fetchpriority="high" decoding="async"></div>
-          <div class="tile tile--2" style="--i:1"><img src="img/latte-art.jpg" alt="" decoding="async"></div>
-          <!-- Provisoria. Definitiva: la bolsa de L’Australiano -->
-          <div class="tile tile--3" style="--i:2;--focus:50% 35%"><img src="img/maykol-alice.jpg" alt="" decoding="async"></div>
-          <!-- Provisoria. Definitiva: avocado toast -->
-          <div class="tile tile--4" style="--i:3"><img src="img/pancakes.jpg" alt="" decoding="async"></div>
-          <div class="tile tile--5" style="--i:4;--focus:50% 55%"><img src="img/acquerello-vidriera.jpg" alt="" decoding="async"></div>
-        </div>
+  <!-- Menú hamburguesa -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <nav class="wrap drawer__nav" aria-label="Navigazione principale" data-i18n-attr="aria-label:nav.label">
+      <ol>
+        <li><a href="./#shop"><span data-i18n="nav.shop">L’Australiano</span><small data-i18n="nav.shopNote">Shop</small></a></li>
+        <li><a href="menu.html"><span data-i18n="nav.menu">Il menu</span></a></li>
+        <li><a href="./#visita"><span data-i18n="nav.visit">Orari e indirizzo</span></a></li>
+        <li><a href="./#storia"><span data-i18n="nav.story">La nostra storia</span></a></li>
+      </ol>
+    </nav>
+    <div class="wrap drawer__info">
+      <div>
+        <p class="eyebrow" data-i18n="info.visit">Vieni a trovarci</p>
+        <p>Via Pisana 48R, 50143 Firenze</p>
+        <p><a href="#" data-href="maps" target="_blank" rel="noopener" data-i18n="dove.openMaps">Apri in Google Maps</a></p>
       </div>
+      <div>
+        <p class="eyebrow" data-i18n="info.hours">Orari</p>
+        <p data-i18n="summary.week">Martedì–domenica, 8:00–15:00</p>
+        <p data-i18n="summary.monday">Lunedì chiuso</p>
+      </div>
+      <div>
+        <p class="eyebrow" data-i18n="info.contact">Contatti</p>
+        <p><a href="#" data-href="tel">+39 055 906 2024</a></p>
+        <p><a href="#" data-href="instagram" target="_blank" rel="noopener">@manly_the_office_florence</a></p>
+      </div>
+    </div>
+  </div>
 
-      <div class="wrap hero__content">
-        <p class="status" id="status" data-state="closed" aria-live="polite">
-          <span class="status__dot" aria-hidden="true"></span>
-          <span class="status__text">&nbsp;</span>
-        </p>
-
-        <h1 class="hero__title" id="hero-title">MANLY <span>The Office</span></h1>
-        <p class="hero__tagline" data-i18n="hero.tagline">Specialty coffee &amp; brunch a San Frediano</p>
-
-        <ul class="hero__facts">
-          <li>
-            <svg aria-hidden="true"><use href="#i-pin"/></svg>
-            <span>Via Pisana 48R · San Frediano</span>
-          </li>
-          <li>
-            <svg aria-hidden="true"><use href="#i-star"/></svg>
-            <a href="#" data-href="maps" target="_blank" rel="noopener" data-i18n="hero.rating">4,9 su Google · oltre 660 recensioni</a>
-          </li>
-        </ul>
-
+  <main id="contenuto">
+    <!-- Hero: la vidriera -->
+    <section class="hero" aria-labelledby="hero-title">
+      <figure class="hero__media">
+        <img src="img/acquerello-vidriera.jpg" width="1015" height="1400" fetchpriority="high"
+          alt="Illustrazione ad acquerello della vetrina di MANLY The Office in Via Pisana" data-i18n-attr="alt:hero.alt">
+      </figure>
+      <div class="hero__panel">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Specialty coffee &amp; brunch · Dal 2023</p>
+        <h1 class="hero__title" id="hero-title"><span>MANLY</span><span>The Office</span></h1>
+        <p class="hero__lead" data-i18n="hero.lead">Caffè di specialità di scuola australiana e brunch, nel cuore di San Frediano.</p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="#" data-href="maps" target="_blank" rel="noopener">
-            <svg aria-hidden="true"><use href="#i-route"/></svg>
-            <span data-i18n="hero.directions">Come arrivare</span>
-          </a>
-          <a class="btn btn--ghost" href="#menu">
-            <span data-i18n="hero.menu">Il menu</span>
-          </a>
+          <a class="btn" href="menu.html" data-i18n="hero.menu">Il menu</a>
+          <a class="btn btn--outline" href="#" data-href="maps" target="_blank" rel="noopener" data-i18n="hero.directions">Come arrivare</a>
+        </div>
+        <a class="hero__rating" href="#" data-href="maps" target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-star"/></svg>
+          <span data-i18n="hero.rating">4,9 su Google · oltre 660 recensioni</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Shop: L’Australiano -->
+    <section class="section product" id="shop" aria-labelledby="shop-title">
+      <div class="wrap product__grid">
+        <!-- Provisoria. Definitiva: la bolsa de L’Australiano sobre la barra, luz natural -->
+        <figure class="product__media">
+          <img src="img/vidriera-cappuccino.jpg" width="1052" height="1400" loading="lazy" decoding="async"
+            alt="Cappuccino davanti alla vetrina di MANLY The Office" data-i18n-attr="alt:shop.imgAlt">
+          <figcaption class="product__tag" data-i18n="shop.tag">In esclusiva per MANLY</figcaption>
+        </figure>
+
+        <div class="product__info">
+          <p class="eyebrow" data-i18n="shop.eyebrow">Shop · Il nostro caffè</p>
+          <div>
+            <h2 class="product__name" id="shop-title">L’Australiano</h2>
+            <p class="product__by" data-i18n="shop.by">Miscela della casa · Tostata da D612 Coffee Roasters, Firenze</p>
+          </div>
+          <p class="lead" data-i18n="shop.lead">La miscela che D612, torrefazione fiorentina, tosta in esclusiva per noi. La stessa che usiamo al banco, da preparare a casa.</p>
+
+          <dl class="specs">
+            <div>
+              <dt data-i18n="shop.origin">Origine</dt>
+              <dd><span data-i18n="shop.originVal">80% Brasile · 20% Etiopia</span><span class="ratio" aria-hidden="true"><span></span><span></span></span></dd>
+            </div>
+            <div>
+              <dt data-i18n="shop.notes">Note</dt>
+              <dd data-i18n="shop.notesVal">Cioccolato, nocciola, frutti rossi</dd>
+            </div>
+            <div>
+              <dt data-i18n="shop.profile">Profilo</dt>
+              <dd data-i18n="shop.profileVal">Leggera acidità, buon equilibrio</dd>
+            </div>
+          </dl>
+
+          <form id="shop-form" class="product__form" novalidate>
+            <fieldset class="choice">
+              <legend data-i18n="shop.size">Formato</legend>
+              <div class="choice__options" id="opt-size"></div>
+            </fieldset>
+            <fieldset class="choice">
+              <legend data-i18n="shop.grind">Macinatura</legend>
+              <div class="choice__options" id="opt-grind"></div>
+            </fieldset>
+
+            <div class="total">
+              <span class="eyebrow" data-i18n="shop.total">Totale</span>
+              <output id="shop-total" aria-live="polite"></output>
+            </div>
+
+            <div>
+              <span class="qty__label" id="qty-label" data-i18n="shop.qty">Quantità</span>
+              <div class="buy">
+                <div class="qty" role="group" aria-labelledby="qty-label">
+                  <button type="button" data-qty="-1" aria-label="Meno" data-i18n-attr="aria-label:shop.less">−</button>
+                  <output id="qty" aria-live="polite">1</output>
+                  <button type="button" data-qty="1" aria-label="Più" data-i18n-attr="aria-label:shop.more">+</button>
+                </div>
+                <button type="submit" class="btn btn--block" data-i18n="shop.cta">Ordina su WhatsApp</button>
+              </div>
+            </div>
+
+            <p class="product__fine" data-i18n="shop.fine">Ritiro in negozio, Via Pisana 48R. Nessun pagamento online: l’ordine si conferma su WhatsApp.</p>
+            <p class="product__preview"><span data-i18n="shop.preview">Messaggio:</span> <q id="shop-message"></q></p>
+          </form>
         </div>
       </div>
     </section>
 
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track">
-        <span data-i18n="marquee">Specialty coffee · Brunch · San Frediano · L’Australiano · Dal 2023 ·</span>
-        <span data-i18n="marquee">Specialty coffee · Brunch · San Frediano · L’Australiano · Dal 2023 ·</span>
+        <span data-i18n="marquee">Specialty coffee · Brunch · San Frediano · Firenze ·</span>
+        <span data-i18n="marquee">Specialty coffee · Brunch · San Frediano · Firenze ·</span>
+        <span data-i18n="marquee">Specialty coffee · Brunch · San Frediano · Firenze ·</span>
+        <span data-i18n="marquee">Specialty coffee · Brunch · San Frediano · Firenze ·</span>
       </div>
     </div>
 
-    <!-- 2. Orari -->
-    <section class="section section--orari" id="orari" aria-labelledby="orari-title">
+    <!-- Al banco: adelanto del menú -->
+    <section class="section offer" id="al-banco" aria-labelledby="offer-title">
       <div class="wrap">
-        <h2 class="section__title" id="orari-title" data-i18n="orari.title">Orari</h2>
-        <ul class="hours" id="hours-list"></ul>
-        <p class="hours__note">
-          <span data-i18n="orari.kitchen">Cucina e brunch</span>
-          <strong id="kitchen-hours"></strong>
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="offer.eyebrow">Al banco</p>
+          <h2 class="h-lg" id="offer-title" data-i18n="offer.title">Caffè e brunch, tutti i giorni tranne il lunedì.</h2>
+          <p class="lead" data-i18n="offer.lead">Una carta corta e curata: caffetteria di specialità, brunch fino alle 14:30 e dolci in vetrina.</p>
+        </header>
+
+        <div class="cards">
+          <article class="card">
+            <figure class="card__media">
+              <img src="img/latte-art.jpg" width="1015" height="1400" loading="lazy" decoding="async"
+                alt="Cappuccino con latte art" data-i18n-attr="alt:offer.c1.alt">
+            </figure>
+            <div class="card__body">
+              <div class="card__head">
+                <h3 class="h-md" data-i18n="offer.c1.title">Caffetteria</h3>
+                <span class="card__meta" data-i18n="offer.c1.meta">Espresso · Filtro</span>
+              </div>
+              <p data-i18n="offer.c1.text">Espresso, flat white, long black, batch brew e cold brew di stagione. Latte d’avena disponibile.</p>
+            </div>
+          </article>
+          <article class="card">
+            <!-- Provisoria. Definitiva: avocado toast -->
+            <figure class="card__media">
+              <img src="img/pancakes.jpg" width="1073" height="1400" loading="lazy" decoding="async"
+                alt="Pancake con frutti di bosco" data-i18n-attr="alt:offer.c2.alt">
+            </figure>
+            <div class="card__body">
+              <div class="card__head">
+                <h3 class="h-md" data-i18n="offer.c2.title">Brunch</h3>
+                <span class="card__meta" data-kitchen>8:30–14:30</span>
+              </div>
+              <p data-i18n="offer.c2.text">Bagel, avocado toast, pancake e banana bread. Opzioni senza glutine e vegane.</p>
+            </div>
+          </article>
+        </div>
+
+        <p class="offer__more">
+          <a class="link-arrow" href="menu.html"><span data-i18n="offer.more">Vedi il menu completo</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </p>
       </div>
     </section>
 
-    <!-- 3. Menu -->
-    <section class="section section--menu" id="menu" aria-labelledby="menu-title">
+    <!-- Orari e indirizzo -->
+    <section class="section visit" id="visita" aria-labelledby="visit-title">
       <div class="wrap">
-        <h2 class="section__title" id="menu-title" data-i18n="menu.title">Il menu</h2>
-        <div class="menu-intro">
-          <p data-i18n="menu.options">Opzioni senza glutine e vegane, latte d’avena.</p>
-          <p data-i18n="menu.allergies">Segnalate eventuali allergie al personale.</p>
-        </div>
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="visit.eyebrow">Orari e indirizzo</p>
+          <h2 class="h-lg" id="visit-title" data-i18n="visit.title">Vieni a trovarci</h2>
+        </header>
 
-        <details class="legend">
-          <summary data-i18n="menu.legend">Legenda allergeni</summary>
-          <ol id="allergen-legend"></ol>
-        </details>
+        <div class="visit__grid">
+          <div>
+            <ul class="hours" id="hours-list"></ul>
+            <p class="hours__kitchen"><span data-i18n="orari.kitchen">Cucina e brunch</span><strong data-kitchen>8:30–14:30</strong></p>
 
-        <nav class="menu-nav" data-i18n-attr="aria-label:menu.navLabel" aria-label="Sezioni del menu">
-          <ul id="menu-nav"></ul>
-        </nav>
-
-        <div id="menu-list"></div>
-      </div>
-    </section>
-
-    <!-- 4. Il nostro caffè -->
-    <section class="section section--caffe" id="caffe" aria-labelledby="caffe-title">
-      <div class="wrap">
-        <h2 class="section__title" id="caffe-title" data-i18n="caffe.title">Il nostro caffè</h2>
-        <!-- Provisoria. Definitiva: granos de L’Australiano o la bolsa con la etiqueta D612, de cerca -->
-        <figure class="media media--3x2 coffee__media">
-          <img src="img/latte-art.jpg" alt="Cappuccino con latte art su un tavolo di legno" data-i18n-attr="alt:img.coffee" loading="lazy" decoding="async">
-        </figure>
-
-        <h3 class="coffee__name">L’Australiano</h3>
-        <p class="coffee__lead" data-i18n="caffe.lead">La miscela che D612 Coffee Roasters, torrefazione fiorentina, tosta in esclusiva per noi.</p>
-
-        <div class="origin">
-          <div class="origin__bar" aria-hidden="true">
-            <span style="width:80%"></span><span style="width:20%"></span>
-          </div>
-          <p class="origin__labels">
-            <span><b>80%</b> <span data-i18n="caffe.brazil">Brasile</span></span>
-            <span><b>20%</b> <span data-i18n="caffe.ethiopia">Etiopia</span></span>
-          </p>
-        </div>
-
-        <ul class="notes" data-i18n-attr="aria-label:caffe.notesLabel" aria-label="Note di degustazione">
-          <li data-i18n="caffe.note1">Cioccolato</li>
-          <li data-i18n="caffe.note2">Nocciola</li>
-          <li data-i18n="caffe.note3">Frutti rossi</li>
-        </ul>
-        <p class="coffee__profile" data-i18n="caffe.profile">Con una leggera acidità e un buon equilibrio.</p>
-
-        <a class="link-arrow" href="#shop"><span data-i18n="caffe.cta">Portalo a casa</span> <span aria-hidden="true">→</span></a>
-      </div>
-    </section>
-
-    <!-- 5. Shop -->
-    <section class="section section--shop" id="shop" aria-labelledby="shop-title">
-      <div class="wrap">
-        <p class="section__kicker">Shop</p>
-        <h2 class="section__title" id="shop-title" data-i18n="shop.title">L’Australiano a casa tua</h2>
-        <p class="shop__intro" data-i18n="shop.intro">La stessa miscela che usiamo al banco, da preparare a casa. Scegli formato e macinatura: l’ordine parte su WhatsApp.</p>
-
-        <div class="ph ph--1x1 shop__media">[FOTO: la bolsa de L’Australiano sobre la barra, fondo limpio, luz natural]</div>
-
-        <form class="shop__card" id="shop-form" novalidate>
-          <h3 class="shop__product">L’Australiano</h3>
-
-          <fieldset class="choice">
-            <legend data-i18n="shop.size">Formato</legend>
-            <div class="choice__options" id="opt-size"></div>
-          </fieldset>
-
-          <fieldset class="choice">
-            <legend data-i18n="shop.grind">Macinatura</legend>
-            <div class="choice__options" id="opt-grind"></div>
-          </fieldset>
-
-          <div class="qty">
-            <span class="qty__label" id="qty-label" data-i18n="shop.qty">Quantità</span>
-            <div class="qty__ctrl" role="group" aria-labelledby="qty-label">
-              <button type="button" data-qty="-1" data-i18n-attr="aria-label:shop.less" aria-label="Meno">−</button>
-              <output id="qty" aria-live="polite">1</output>
-              <button type="button" data-qty="1" data-i18n-attr="aria-label:shop.more" aria-label="Più">+</button>
+            <address class="place">
+              <span class="place__street">Via Pisana 48R</span>
+              <span class="place__area">50143 Firenze · San Frediano</span>
+            </address>
+            <div class="place__actions">
+              <a class="btn" href="#" data-href="maps" target="_blank" rel="noopener" data-i18n="dove.openMaps">Apri in Google Maps</a>
+              <a class="btn btn--outline" href="#" data-href="tel"><span data-i18n="dove.call">Chiama</span>&nbsp;055 906 2024</a>
             </div>
           </div>
 
-          <div class="shop__total">
-            <span data-i18n="shop.total">Totale</span>
-            <output id="shop-total" aria-live="polite"></output>
+          <div class="map">
+            <iframe
+              src="https://www.google.com/maps?output=embed&amp;hl=it&amp;q=MANLY%20The%20Office%2C%20Via%20Pisana%2048R%2C%2050143%20Firenze"
+              title="Mappa: MANLY The Office, Via Pisana 48R, Firenze" data-i18n-attr="title:dove.mapTitle"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
           </div>
-          <p class="shop__pickup">
-            <svg aria-hidden="true"><use href="#i-pin"/></svg>
-            <span data-i18n="shop.pickup">Ritiro in negozio · Via Pisana 48R</span>
-          </p>
-
-          <button type="submit" class="btn btn--dark btn--block">
-            <svg aria-hidden="true"><use href="#i-chat"/></svg>
-            <span data-i18n="shop.cta">Ordina su WhatsApp</span>
-          </button>
-
-          <p class="shop__preview"><span data-i18n="shop.preview">Messaggio:</span> <q id="shop-message"></q></p>
-          <p class="shop__fine" data-i18n="shop.fine">Nessun pagamento online: l’ordine si conferma su WhatsApp.</p>
-        </form>
+        </div>
       </div>
     </section>
 
-    <!-- 6. Storia -->
-    <section class="section section--storia" id="storia" aria-labelledby="storia-title">
+    <!-- La nostra storia -->
+    <section class="section story" id="storia" aria-labelledby="story-title">
       <div class="wrap">
-        <h2 class="section__title" id="storia-title" data-i18n="storia.title">La nostra storia</h2>
-        <p class="story__lead" data-i18n="storia.lead">Manly è un quartiere sul mare a nord di Sydney. The Office è il posto, su quella spiaggia, dove si guarda il tramonto. Da lì viene il nostro nome.</p>
+        <div class="story__intro">
+          <figure class="story__intro-media">
+            <img src="img/maykol-alice.jpg" width="900" height="1400" loading="lazy" decoding="async"
+              alt="Maykol e Alice al banco di MANLY The Office" data-i18n-attr="alt:storia.introAlt">
+          </figure>
+          <div class="story__intro-text">
+            <p class="eyebrow" data-i18n="storia.eyebrow">La nostra storia</p>
+            <h2 class="h-xl" id="story-title" data-i18n="storia.title">Da Manly a San Frediano</h2>
+            <p class="lead" data-i18n="storia.lead">Manly è un quartiere sul mare a nord di Sydney. The Office è il posto, su quella spiaggia, dove si guarda il tramonto. Da lì viene il nostro nome.</p>
+          </div>
+        </div>
 
         <ol class="chapters">
           <li class="chapter">
-            <figure class="media media--4x5 chapter__media">
+            <figure class="chapter__media">
               <video src="img/en-la-barra.mp4" poster="img/en-la-barra.jpg" muted loop playsinline preload="metadata" data-autoplay
-                aria-label="Preparazione di un espresso al banco" data-i18n-attr="aria-label:img.ch1"></video>
+                aria-label="Preparazione di un espresso al banco" data-i18n-attr="aria-label:storia.c1.alt"></video>
             </figure>
             <div class="chapter__body">
-              <p class="chapter__head"><span class="chapter__when" data-i18n="storia.c1.when">Firenze</span></p>
+              <p class="chapter__meta"><span data-i18n="storia.c1.when">Firenze</span></p>
               <h3 class="chapter__title" data-i18n="storia.c1.title">Dal bancone al caffè</h3>
               <p data-i18n="storia.c1.p1">Maykol nasce a Firenze e comincia a lavorare come barman. Poi arriva il caffè, e diventa una passione.</p>
               <p data-i18n="storia.c1.p2">Si forma con Simone Guidi, formatore e fondatore della torrefazione La Sosta, e impara la latte art: disegnare versando il latte nella tazza.</p>
             </div>
           </li>
-          <li class="chapter">
-            <div class="ph ph--3x2 chapter__media">[FOTO: Maykol en Australia, si hay foto de archivo; si no, detalle de la máquina]</div>
+          <li class="chapter chapter--text">
             <div class="chapter__body">
-              <p class="chapter__head"><span class="chapter__when" data-i18n="storia.c2.when">2016 · Australia</span></p>
+              <p class="chapter__meta"><span data-i18n="storia.c2.when">2016 · Australia</span></p>
               <h3 class="chapter__title" data-i18n="storia.c2.title">Ricominciare dalle basi</h3>
               <p data-i18n="storia.c2.p1">Nel 2016 parte per l’Australia con la sua compagna. Non parla inglese, ma è sicuro delle sue capacità da barista. Pensa che basti.</p>
               <p data-i18n="storia.c2.p2">Non basta: in Australia si lavora e si fa il caffè in un modo completamente diverso. Riparte dalle basi e per quattro anni lavora nelle caffetterie australiane, dove la cultura del caffè è molto più avanti.</p>
             </div>
           </li>
-          <li class="chapter">
+          <li class="chapter chapter--text">
             <div class="chapter__body">
-              <p class="chapter__head"><span class="chapter__when" data-i18n="storia.c3.when">Ritorno a Firenze</span></p>
+              <p class="chapter__meta"><span data-i18n="storia.c3.when">Ritorno a Firenze</span></p>
               <h3 class="chapter__title" data-i18n="storia.c3.title">Un sogno in pausa</h3>
               <p data-i18n="storia.c3.p1">Torna a casa con un’idea chiara: aprire un posto suo. Poi arriva il Covid, e il sogno deve aspettare.</p>
             </div>
           </li>
-          <li class="chapter">
-            <figure class="media media--4x5 chapter__media">
-              <img src="img/maykol-alice.jpg" alt="Maykol e Alice al banco di MANLY The Office" data-i18n-attr="alt:img.ch4" loading="lazy" decoding="async">
-            </figure>
+          <li class="chapter chapter--text">
             <div class="chapter__body">
-              <p class="chapter__head"><span class="chapter__when" data-i18n="storia.c4.when">12 luglio 2023</span></p>
+              <p class="chapter__meta"><span data-i18n="storia.c4.when">12 luglio 2023</span></p>
               <h3 class="chapter__title" data-i18n="storia.c4.title">Si apre, a San Frediano</h3>
               <p data-i18n="storia.c4.p1">Maykol e sua moglie Alice, che lavora anche in cucina, aprono MANLY The Office in Via Pisana.</p>
               <p data-i18n="storia.c4.p2">Lo spazio è piccolo, e si fa il massimo con quello che c’è.</p>
@@ -1544,1144 +323,62 @@
           </li>
         </ol>
 
-        <div class="welcome">
+        <blockquote class="welcome">
           <p lang="en">“Hey, how are you? Welcome!”</p>
           <span data-i18n="storia.welcome">È la prima cosa che senti quando entri.</span>
-        </div>
+        </blockquote>
 
-        <h3 class="essence__title" data-i18n="essenza.title">La nostra essenza</h3>
         <ul class="pillars">
           <li class="pillar">
-            <h4 data-i18n="essenza.p1.title">Il caffè al centro</h4>
+            <h3 data-i18n="essenza.p1.title">Il caffè al centro</h3>
             <p data-i18n="essenza.p1.text">Espresso e filtro con L’Australiano di D612. Il caffè resta la vera passione di Maykol, e il centro di tutto.</p>
           </li>
           <li class="pillar">
-            <h4 data-i18n="essenza.p2.title">L’ospitalità ha un valore</h4>
+            <h3 data-i18n="essenza.p2.title">L’ospitalità ha un valore</h3>
             <p data-i18n="essenza.p2.text">Scegliere prodotti di qualità è fondamentale. Ma la parte più difficile, e più importante, è far sentire le persone accolte e condividere con loro quello che facciamo.</p>
           </li>
           <li class="pillar">
-            <h4 data-i18n="essenza.p3.title">Un brunch per tutti</h4>
-            <p data-i18n="essenza.p3.text">Pancake, banana bread fatto in casa senza glutine, bagel e avocado toast. Ci sono opzioni senza glutine e vegane: proviamo ad accontentare ogni esigenza alimentare, nei limiti del possibile.</p>
+            <h3 data-i18n="essenza.p3.title">Un brunch per tutti</h3>
+            <p data-i18n="essenza.p3.text">Pancake, banana bread fatto in casa senza glutine, bagel e avocado toast. Proviamo ad accontentare ogni esigenza alimentare, nei limiti del possibile.</p>
           </li>
         </ul>
 
-        <blockquote class="quote">
-          <p data-i18n="storia.quote">“Non è forse il lavoro più bello del mondo?”</p>
-          <footer>— Maykol</footer>
-        </blockquote>
-
         <a class="press" href="https://www.gamberorosso.it/notizie/storie/manly-the-office-firenze/" target="_blank" rel="noopener" data-i18n-attr="href:press.url">
-          <span class="press__kicker" data-i18n="press.kicker">Ne ha parlato Gambero Rosso</span>
+          <span class="eyebrow" data-i18n="press.kicker">Gambero Rosso</span>
           <span class="press__title" data-i18n="press.title">Leggi l’articolo su MANLY The Office</span>
-          <span class="press__meta" data-i18n="press.meta">Michela Becchi · 19 gennaio 2024 →</span>
+          <span class="press__meta"><span data-i18n="press.meta">Michela Becchi · 19 gennaio 2024</span> →</span>
         </a>
-      </div>
-    </section>
-
-    <!-- 7. Dove siamo -->
-    <section class="section section--dove" id="dove" aria-labelledby="dove-title">
-      <div class="wrap">
-        <h2 class="section__title" id="dove-title" data-i18n="dove.title">Dove siamo</h2>
-        <address class="place">
-          <p class="place__address">Via Pisana 48R</p>
-          <p class="place__area">50143 Firenze · San Frediano</p>
-        </address>
-
-        <div class="map" id="map">
-          <iframe
-            src="https://www.google.com/maps?output=embed&amp;hl=it&amp;q=MANLY%20The%20Office%2C%20Via%20Pisana%2048R%2C%2050143%20Firenze"
-            title="Mappa: MANLY The Office, Via Pisana 48R, Firenze"
-            data-i18n-attr="title:dove.mapTitle"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen></iframe>
-        </div>
-
-        <div class="place__actions">
-          <a class="btn btn--primary" href="#" data-href="maps" target="_blank" rel="noopener">
-            <svg aria-hidden="true"><use href="#i-route"/></svg>
-            <span data-i18n="dove.openMaps">Apri in Google Maps</span>
-          </a>
-          <a class="btn btn--ghost" href="#" data-href="tel">
-            <svg aria-hidden="true"><use href="#i-phone"/></svg>
-            <span><span data-i18n="dove.call">Chiama</span> 055 906 2024</span>
-          </a>
-        </div>
       </div>
     </section>
   </main>
 
-  <!-- 8. Footer -->
-  <footer class="site-footer">
-    <div class="wrap footer__grid">
-      <div class="footer__brand">
-        <svg class="logo" aria-hidden="true"><use href="#logo-manly"/></svg>
-        <p class="footer__name">MANLY The Office</p>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h2 data-i18n="footer.visit">Indirizzo</h2>
+          <p>Via Pisana 48R<br>50143 Firenze · San Frediano</p>
+        </div>
+        <div class="footer__col">
+          <h2 data-i18n="footer.hours">Orari</h2>
+          <p><span data-i18n="summary.week">Martedì–domenica, 8:00–15:00</span><br><span data-i18n="summary.monday">Lunedì chiuso</span></p>
+        </div>
+        <div class="footer__col">
+          <h2 data-i18n="footer.contact">Contatti</h2>
+          <p><a href="#" data-href="tel">+39 055 906 2024</a><br><a href="#" data-href="instagram" target="_blank" rel="noopener">@manly_the_office_florence</a></p>
+        </div>
       </div>
 
-      <ul class="footer__links">
-        <li>
-          <a href="#" data-href="instagram" target="_blank" rel="noopener">
-            <svg aria-hidden="true"><use href="#i-camera"/></svg>
-            <span>@manly_the_office_florence</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" data-href="tel">
-            <svg aria-hidden="true"><use href="#i-phone"/></svg>
-            <span>+39 055 906 2024</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" data-href="maps" target="_blank" rel="noopener">
-            <svg aria-hidden="true"><use href="#i-pin"/></svg>
-            <span>Via Pisana 48R, 50143 Firenze</span>
-          </a>
-        </li>
-      </ul>
+      <div class="footer__mark" aria-hidden="true">
+        <svg><use href="#logo-manly"/></svg>
+        <span>MANLY</span>
+      </div>
 
       <div class="footer__legal">
-        <p>Cozy Lab di Martino Maykol &amp; C. S.n.c.</p>
-        <p><span data-i18n="footer.seat">Sede legale</span>: Piazza dei Mezzadri 20, 50014 Fiesole (FI)</p>
-        <p>P. IVA / C.F. 07109160486</p>
-        <p>© <span id="year">2026</span> MANLY The Office</p>
+        <p>Cozy Lab di Martino Maykol &amp; C. S.n.c. · <span data-i18n="footer.seat">Sede legale</span>: Piazza dei Mezzadri 20, 50014 Fiesole (FI)</p>
+        <p>P. IVA / C.F. 07109160486 · © <span data-year>2026</span> MANLY The Office</p>
       </div>
     </div>
   </footer>
-
-  <script>
-    (function () {
-      'use strict';
-
-      /* ===== Datos del local (única fuente de verdad) ===== */
-      var BIZ = {
-        timeZone: 'Europe/Rome',
-        phone: '+390559062024',
-        phoneDisplay: '+39 055 906 2024',
-        whatsapp: '390559062024',
-        instagram: 'manly_the_office_florence',
-        address: 'Via Pisana 48R, 50143 Firenze',
-        mapsUrl: 'https://www.google.com/maps/search/?api=1&query=' +
-          encodeURIComponent('MANLY The Office, Via Pisana 48R, 50143 Firenze'),
-        // Índice = día de la semana (0 = domingo … 6 = sábado). null = cerrado.
-        hours: [
-          ['08:00', '15:00'], // domenica
-          null,               // lunedì
-          ['08:00', '15:00'], // martedì
-          ['08:00', '15:00'], // mercoledì
-          ['08:00', '15:00'], // giovedì
-          ['08:00', '15:00'], // venerdì
-          ['08:00', '15:00']  // sabato
-        ],
-        kitchen: ['08:30', '14:30'],
-        closingSoonMinutes: 30
-      };
-
-      /* ===== Textos ===== */
-      var I18N = {
-        it: {
-          'meta.title': 'MANLY The Office — Specialty coffee & brunch, Firenze',
-          'meta.desc': 'Specialty coffee e brunch di scuola australiana a San Frediano, Firenze. Via Pisana 48R.',
-          'skip': 'Vai al contenuto',
-          'lang.label': 'Lingua',
-          'nav.label': 'Navigazione',
-          'hero.tagline': 'Specialty coffee & brunch a San Frediano',
-          'hero.rating': '4,9 su Google · oltre 660 recensioni',
-          'hero.directions': 'Come arrivare',
-          'hero.menu': 'Il menu',
-          'marquee': 'Specialty coffee · Brunch · San Frediano · L’Australiano · Dal 2023 ·',
-          'days': ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'],
-          'status.closesAt': 'Aperto · chiude alle {t}',
-          'status.kitchenFrom': 'Aperto · cucina dalle {t}',
-          'status.kitchenClosed': 'Aperto · cucina chiusa',
-          'status.closingIn': 'Chiude tra {n} min · cucina chiusa',
-          'status.opensToday': 'Chiuso · apre oggi alle {t}',
-          'status.opensTomorrow': 'Chiuso · apre domani alle {t}',
-          'status.opensOn': 'Chiuso · apre {d} alle {t}',
-          'orari.title': 'Orari',
-          'orari.today': 'Oggi',
-          'orari.closed': 'Chiuso',
-          'orari.kitchen': 'Cucina e brunch',
-          'menu.title': 'Il menu',
-          'menu.options': 'Opzioni senza glutine e vegane, latte d’avena.',
-          'menu.allergies': 'Segnalate eventuali allergie al personale.',
-          'menu.legend': 'Legenda allergeni',
-          'menu.navLabel': 'Sezioni del menu',
-          'menu.allergensLabel': 'Allergeni',
-          'menu.extras': 'Extra',
-          'allergens': ['Glutine', 'Crostacei', 'Uova', 'Pesce', 'Arachidi', 'Soia', 'Latte e latticini',
-            'Frutta a guscio', 'Sedano', 'Senape', 'Sesamo', 'Solfiti', 'Lupini', 'Molluschi'],
-          'caffe.title': 'Il nostro caffè',
-          'caffe.lead': 'La miscela che D612 Coffee Roasters, torrefazione fiorentina, tosta in esclusiva per noi.',
-          'caffe.brazil': 'Brasile',
-          'caffe.ethiopia': 'Etiopia',
-          'caffe.notesLabel': 'Note di degustazione',
-          'caffe.note1': 'Cioccolato',
-          'caffe.note2': 'Nocciola',
-          'caffe.note3': 'Frutti rossi',
-          'caffe.profile': 'Con una leggera acidità e un buon equilibrio.',
-          'caffe.cta': 'Portalo a casa',
-          'shop.title': 'L’Australiano a casa tua',
-          'shop.intro': 'La stessa miscela che usiamo al banco, da preparare a casa. Scegli formato e macinatura: l’ordine parte su WhatsApp.',
-          'shop.size': 'Formato',
-          'shop.grind': 'Macinatura',
-          'shop.qty': 'Quantità',
-          'shop.less': 'Meno',
-          'shop.more': 'Più',
-          'shop.total': 'Totale',
-          'shop.pickup': 'Ritiro in negozio · Via Pisana 48R',
-          'shop.cta': 'Ordina su WhatsApp',
-          'shop.preview': 'Messaggio:',
-          'shop.fine': 'Nessun pagamento online: l’ordine si conferma su WhatsApp.',
-          'shop.message': 'Ciao! Vorrei ordinare {qty} x {product} {size} {grind}, con ritiro in negozio. Mi dite come fare?',
-          'storia.title': 'La nostra storia',
-          'storia.lead': 'Manly è un quartiere sul mare a nord di Sydney. The Office è il posto, su quella spiaggia, dove si guarda il tramonto. Da lì viene il nostro nome.',
-          'storia.c1.when': 'Firenze',
-          'storia.c1.title': 'Dal bancone al caffè',
-          'storia.c1.p1': 'Maykol nasce a Firenze e comincia a lavorare come barman. Poi arriva il caffè, e diventa una passione.',
-          'storia.c1.p2': 'Si forma con Simone Guidi, formatore e fondatore della torrefazione La Sosta, e impara la latte art: disegnare versando il latte nella tazza.',
-          'storia.c2.when': '2016 · Australia',
-          'storia.c2.title': 'Ricominciare dalle basi',
-          'storia.c2.p1': 'Nel 2016 parte per l’Australia con la sua compagna. Non parla inglese, ma è sicuro delle sue capacità da barista. Pensa che basti.',
-          'storia.c2.p2': 'Non basta: in Australia si lavora e si fa il caffè in un modo completamente diverso. Riparte dalle basi e per quattro anni lavora nelle caffetterie australiane, dove la cultura del caffè è molto più avanti.',
-          'storia.c3.when': 'Ritorno a Firenze',
-          'storia.c3.title': 'Un sogno in pausa',
-          'storia.c3.p1': 'Torna a casa con un’idea chiara: aprire un posto suo. Poi arriva il Covid, e il sogno deve aspettare.',
-          'storia.c4.when': '12 luglio 2023',
-          'storia.c4.title': 'Si apre, a San Frediano',
-          'storia.c4.p1': 'Maykol e sua moglie Alice, che lavora anche in cucina, aprono MANLY The Office in Via Pisana.',
-          'storia.c4.p2': 'Lo spazio è piccolo, e si fa il massimo con quello che c’è.',
-          'storia.welcome': 'È la prima cosa che senti quando entri.',
-          'essenza.title': 'La nostra essenza',
-          'essenza.p1.title': 'Il caffè al centro',
-          'essenza.p1.text': 'Espresso e filtro con L’Australiano di D612. Il caffè resta la vera passione di Maykol, e il centro di tutto.',
-          'essenza.p2.title': 'L’ospitalità ha un valore',
-          'essenza.p2.text': 'Scegliere prodotti di qualità è fondamentale. Ma la parte più difficile, e più importante, è far sentire le persone accolte e condividere con loro quello che facciamo.',
-          'essenza.p3.title': 'Un brunch per tutti',
-          'essenza.p3.text': 'Pancake, banana bread fatto in casa senza glutine, bagel e avocado toast. Ci sono opzioni senza glutine e vegane: proviamo ad accontentare ogni esigenza alimentare, nei limiti del possibile.',
-          'storia.quote': '“Non è forse il lavoro più bello del mondo?”',
-          'press.url': 'https://www.gamberorosso.it/notizie/storie/manly-the-office-firenze/',
-          'press.kicker': 'Ne ha parlato Gambero Rosso',
-          'press.title': 'Leggi l’articolo su MANLY The Office',
-          'press.meta': 'Michela Becchi · 19 gennaio 2024 →',
-          'dove.title': 'Dove siamo',
-          'img.coffee': 'Cappuccino con latte art su un tavolo di legno',
-          'img.ch1': 'Preparazione di un espresso al banco',
-          'img.ch4': 'Maykol e Alice al banco di MANLY The Office',
-          'dove.mapTitle': 'Mappa: MANLY The Office, Via Pisana 48R, Firenze',
-          'dove.openMaps': 'Apri in Google Maps',
-          'dove.call': 'Chiama',
-          'footer.seat': 'Sede legale'
-        },
-        en: {
-          'meta.title': 'MANLY The Office — Specialty coffee & brunch, Florence',
-          'meta.desc': 'Australian-style specialty coffee and brunch in San Frediano, Florence. Via Pisana 48R.',
-          'skip': 'Skip to content',
-          'lang.label': 'Language',
-          'nav.label': 'Navigation',
-          'hero.tagline': 'Specialty coffee & brunch in San Frediano',
-          'hero.rating': '4.9 on Google · 660+ reviews',
-          'hero.directions': 'Get directions',
-          'hero.menu': 'See the menu',
-          'marquee': 'Specialty coffee · Brunch · San Frediano · L’Australiano · Since 2023 ·',
-          'days': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-          'status.closesAt': 'Open · closes at {t}',
-          'status.kitchenFrom': 'Open · kitchen from {t}',
-          'status.kitchenClosed': 'Open · kitchen closed',
-          'status.closingIn': 'Closes in {n} min · kitchen closed',
-          'status.opensToday': 'Closed · opens today at {t}',
-          'status.opensTomorrow': 'Closed · opens tomorrow at {t}',
-          'status.opensOn': 'Closed · opens {d} at {t}',
-          'orari.title': 'Opening hours',
-          'orari.today': 'Today',
-          'orari.closed': 'Closed',
-          'orari.kitchen': 'Kitchen & brunch',
-          'menu.title': 'Menu',
-          'menu.options': 'Gluten-free and vegan options, oat milk.',
-          'menu.allergies': 'Please let our staff know about any allergies.',
-          'menu.legend': 'Allergen key',
-          'menu.navLabel': 'Menu sections',
-          'menu.allergensLabel': 'Allergens',
-          'menu.extras': 'Extras',
-          'allergens': ['Gluten', 'Crustaceans', 'Eggs', 'Fish', 'Peanuts', 'Soy', 'Milk',
-            'Tree nuts', 'Celery', 'Mustard', 'Sesame', 'Sulphites', 'Lupin', 'Molluscs'],
-          'caffe.title': 'Our coffee',
-          'caffe.lead': 'The blend D612 Coffee Roasters, a Florentine roastery, roasts exclusively for us.',
-          'caffe.brazil': 'Brazil',
-          'caffe.ethiopia': 'Ethiopia',
-          'caffe.notesLabel': 'Tasting notes',
-          'caffe.note1': 'Chocolate',
-          'caffe.note2': 'Hazelnut',
-          'caffe.note3': 'Red berries',
-          'caffe.profile': 'A touch of acidity, well balanced.',
-          'caffe.cta': 'Take it home',
-          'shop.title': 'L’Australiano at home',
-          'shop.intro': 'The same blend we use behind the counter, to brew at home. Choose size and grind: your order goes out on WhatsApp.',
-          'shop.size': 'Size',
-          'shop.grind': 'Grind',
-          'shop.qty': 'Quantity',
-          'shop.less': 'Less',
-          'shop.more': 'More',
-          'shop.total': 'Total',
-          'shop.pickup': 'Pick up in store · Via Pisana 48R',
-          'shop.cta': 'Order on WhatsApp',
-          'shop.preview': 'Message:',
-          'shop.fine': 'No online payment: the order is confirmed on WhatsApp.',
-          'shop.message': 'Hi! I’d like to order {qty} x {product} {size} {grind}, for pickup in store. How can I do it?',
-          'storia.title': 'Our story',
-          'storia.lead': 'Manly is a beachside suburb north of Sydney. The Office is the spot on that beach where people watch the sunset. That’s where our name comes from.',
-          'storia.c1.when': 'Florence',
-          'storia.c1.title': 'From the bar to coffee',
-          'storia.c1.p1': 'Maykol is born in Florence and starts out as a bartender. Then coffee comes along, and it becomes a passion.',
-          'storia.c1.p2': 'He trains with Simone Guidi, coffee trainer and founder of the La Sosta roastery, and masters latte art: drawing patterns as the milk is poured into the cup.',
-          'storia.c2.when': '2016 · Australia',
-          'storia.c2.title': 'Back to basics',
-          'storia.c2.p1': 'In 2016 he moves to Australia with his partner. He doesn’t speak English, but he’s confident in his barista skills. He thinks that will be enough.',
-          'storia.c2.p2': 'It isn’t: Australians work and make coffee in a completely different way. He starts again from the basics and spends four years in Australian cafés, where coffee culture is far ahead.',
-          'storia.c3.when': 'Back in Florence',
-          'storia.c3.title': 'A dream on hold',
-          'storia.c3.p1': 'He comes home with one clear idea: to open his own place. Then Covid hits, and the dream has to wait.',
-          'storia.c4.when': '12 July 2023',
-          'storia.c4.title': 'Opening in San Frediano',
-          'storia.c4.p1': 'Maykol and his wife Alice, who also works in the kitchen, open MANLY The Office on Via Pisana.',
-          'storia.c4.p2': 'The space is small, and they make the most of what they have.',
-          'storia.welcome': 'The first thing you hear when you walk in.',
-          'essenza.title': 'What we’re about',
-          'essenza.p1.title': 'Coffee first',
-          'essenza.p1.text': 'Espresso and filter with L’Australiano by D612. Coffee is still Maykol’s true passion, and the heart of everything.',
-          'essenza.p2.title': 'Hospitality matters',
-          'essenza.p2.text': 'Choosing quality products is essential. But the hardest and most important part is making people feel welcome, and sharing with them what we do.',
-          'essenza.p3.title': 'Brunch for everyone',
-          'essenza.p3.text': 'Pancakes, homemade gluten-free banana bread, bagels and avocado toast. There are gluten-free and vegan options: we try to meet every dietary need, within reason.',
-          'storia.quote': '“Isn’t this the most beautiful job in the world?”',
-          'press.url': 'https://www.gamberorossointernational.com/news/the-australian-dream-of-a-tuscan-barista-in-florence-theres-a-new-and-young-specialty-coffee-shop-to-try/',
-          'press.kicker': 'Featured in Gambero Rosso',
-          'press.title': '“The Australian dream of a Tuscan barista”',
-          'press.meta': 'Michela Becchi · 19 January 2024 →',
-          'dove.title': 'Find us',
-          'img.coffee': 'Cappuccino with latte art on a wooden table',
-          'img.ch1': 'Pulling an espresso at the bar',
-          'img.ch4': 'Maykol and Alice at the counter of MANLY The Office',
-          'dove.mapTitle': 'Map: MANLY The Office, Via Pisana 48R, Florence',
-          'dove.openMaps': 'Open in Google Maps',
-          'dove.call': 'Call',
-          'footer.seat': 'Registered office'
-        }
-      };
-
-      var LANGS = ['it', 'en'];
-      var STORAGE_KEY = 'manly-lang';
-
-      function t(key) {
-        var dict = I18N[document.documentElement.lang] || I18N.it;
-        return dict[key] != null ? dict[key] : key;
-      }
-
-      function readStoredLang() {
-        try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
-      }
-
-      function storeLang(lang) {
-        try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* modo privado */ }
-      }
-
-      // Italiano si el teléfono está en italiano; inglés en cualquier otro caso.
-      function detectLang() {
-        var stored = readStoredLang();
-        if (LANGS.indexOf(stored) !== -1) return stored;
-        var prefs = navigator.languages || [navigator.language || 'it'];
-        return /^it\b/i.test(prefs[0] || '') ? 'it' : 'en';
-      }
-
-      function applyLang(lang) {
-        document.documentElement.lang = lang;
-
-        document.querySelectorAll('[data-i18n]').forEach(function (el) {
-          el.textContent = t(el.getAttribute('data-i18n'));
-        });
-
-        // data-i18n-attr="atributo:clave; otro:clave"
-        document.querySelectorAll('[data-i18n-attr]').forEach(function (el) {
-          el.getAttribute('data-i18n-attr').split(';').forEach(function (pair) {
-            var parts = pair.split(':');
-            if (parts.length === 2) el.setAttribute(parts[0].trim(), t(parts[1].trim()));
-          });
-        });
-
-        document.title = t('meta.title');
-        document.querySelector('meta[name="description"]').setAttribute('content', t('meta.desc'));
-
-        document.querySelectorAll('.lang-switch button').forEach(function (btn) {
-          btn.setAttribute('aria-pressed', String(btn.dataset.lang === lang));
-        });
-
-        // Las secciones dinámicas (horario, shop) escuchan este evento para re-renderizarse
-        document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: lang } }));
-      }
-
-      document.querySelector('.lang-switch').addEventListener('click', function (e) {
-        var btn = e.target.closest('button[data-lang]');
-        if (!btn) return;
-        storeLang(btn.dataset.lang);
-        applyLang(btn.dataset.lang);
-      });
-
-      /* ===== Utilidades ===== */
-      function fmt(str, vars) {
-        return String(str).replace(/\{(\w+)\}/g, function (_, k) { return vars[k] != null ? vars[k] : ''; });
-      }
-
-      // '08:00' -> '8:00'
-      function showTime(hhmm) { return hhmm.replace(/^0/, ''); }
-
-      function toMinutes(hhmm) {
-        var p = hhmm.split(':');
-        return Number(p[0]) * 60 + Number(p[1]);
-      }
-
-      /* ===== Enlaces comunes ===== */
-      var LINKS = {
-        maps: BIZ.mapsUrl,
-        tel: 'tel:' + BIZ.phone,
-        instagram: 'https://www.instagram.com/' + BIZ.instagram + '/'
-      };
-      document.querySelectorAll('[data-href]').forEach(function (a) {
-        a.href = LINKS[a.getAttribute('data-href')];
-      });
-
-      /* ===== Hora de Florencia ===== */
-      // Para probar estados: ?giorno=2&ora=14:40  (giorno: 0 = domenica … 6 = sabato)
-      var demo = (function () {
-        var q = new URLSearchParams(location.search);
-        var day = q.get('giorno'), time = q.get('ora');
-        if (day === null || !/^\d{1,2}:\d{2}$/.test(time || '')) return null;
-        return { day: Number(day) % 7, minutes: toMinutes(time) };
-      })();
-
-      var WEEKDAYS = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
-      var romeClock = new Intl.DateTimeFormat('en-US', {
-        timeZone: BIZ.timeZone, weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false
-      });
-
-      // Siempre la hora del local, aunque el teléfono del turista esté en otra zona horaria.
-      function nowInFlorence() {
-        if (demo) return demo;
-        var parts = {};
-        romeClock.formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
-        return {
-          day: WEEKDAYS[parts.weekday],
-          minutes: (Number(parts.hour) % 24) * 60 + Number(parts.minute)
-        };
-      }
-
-      /* ===== Estado abierto / cerrado ===== */
-      function getStatus(now) {
-        var today = BIZ.hours[now.day];
-        var m = now.minutes;
-
-        if (today && m >= toMinutes(today[0]) && m < toMinutes(today[1])) {
-          var left = toMinutes(today[1]) - m;
-          var kOpen = toMinutes(BIZ.kitchen[0]);
-          var kClose = toMinutes(BIZ.kitchen[1]);
-
-          if (left <= BIZ.closingSoonMinutes) {
-            return { state: 'closing', text: fmt(t('status.closingIn'), { n: left }) };
-          }
-          if (m < kOpen) return { state: 'open', text: fmt(t('status.kitchenFrom'), { t: showTime(BIZ.kitchen[0]) }) };
-          if (m >= kClose) return { state: 'open', text: t('status.kitchenClosed') };
-          return { state: 'open', text: fmt(t('status.closesAt'), { t: showTime(today[1]) }) };
-        }
-
-        // Cerrado: buscar la próxima apertura (hoy más tarde, mañana o el siguiente día abierto)
-        for (var i = 0; i < 8; i++) {
-          var day = (now.day + i) % 7;
-          var h = BIZ.hours[day];
-          if (!h || (i === 0 && m >= toMinutes(h[0]))) continue;
-          if (i === 0) return { state: 'closed', text: fmt(t('status.opensToday'), { t: showTime(h[0]) }) };
-          if (i === 1) return { state: 'closed', text: fmt(t('status.opensTomorrow'), { t: showTime(h[0]) }) };
-          return { state: 'closed', text: fmt(t('status.opensOn'), { d: t('days')[day], t: showTime(h[0]) }) };
-        }
-        return { state: 'closed', text: '' };
-      }
-
-      var statusEl = document.getElementById('status');
-      function renderStatus() {
-        var s = getStatus(nowInFlorence());
-        statusEl.dataset.state = s.state;
-        statusEl.querySelector('.status__text').textContent = s.text;
-      }
-
-      document.addEventListener('langchange', renderStatus);
-      // Refresca estado y "Oggi" (también si el teléfono vuelve de segundo plano tras medianoche)
-      function tick() { renderStatus(); renderHours(); }
-      document.addEventListener('visibilitychange', function () {
-        if (!document.hidden) tick();
-      });
-      setInterval(tick, 30 * 1000);
-
-      /* ===== Orari ===== */
-      var WEEK_ORDER = [1, 2, 3, 4, 5, 6, 0]; // lunes primero, como se usa en Italia
-
-      function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
-      function range(pair) { return showTime(pair[0]) + '–' + showTime(pair[1]); }
-
-      var hoursList = document.getElementById('hours-list');
-      function renderHours() {
-        var today = nowInFlorence().day;
-        hoursList.innerHTML = '';
-        WEEK_ORDER.forEach(function (day) {
-          var h = BIZ.hours[day];
-          var li = document.createElement('li');
-          if (!h) li.classList.add('is-closed');
-
-          var name = document.createElement('span');
-          name.className = 'hours__day';
-          name.textContent = capitalize(t('days')[day]);
-          if (day === today) {
-            li.classList.add('is-today');
-            li.setAttribute('aria-current', 'date');
-            var tag = document.createElement('span');
-            tag.className = 'tag';
-            tag.textContent = t('orari.today');
-            name.appendChild(tag);
-          }
-
-          var time = document.createElement('span');
-          time.className = 'hours__time';
-          time.textContent = h ? range(h) : t('orari.closed');
-
-          li.appendChild(name);
-          li.appendChild(time);
-          hoursList.appendChild(li);
-        });
-        document.getElementById('kitchen-hours').textContent = range(BIZ.kitchen);
-      }
-      document.addEventListener('langchange', renderHours);
-
-      /* ===== Menu =====
-         Fuente: carta oficial "MENU INGLESE 2026".
-         - Nombres de platos: como en la carta (versión en italiano pendiente).
-         - Descripciones IT: traducción provisoria, revisar con la carta en italiano.
-         - a: alérgenos (numeración UE 1–14). Solo donde la carta los indica.
-         - price: número, o [min, max] para rangos. */
-      var MENU = [
-        {
-          id: 'caffetteria', title: { it: 'Caffetteria', en: 'Coffee' },
-          groups: [{
-            items: [
-              { name: 'Espresso', price: 1.5 },
-              { name: 'Specialty singolo', price: 2 },
-              { name: 'Specialty doppio', price: 4 },
-              { name: 'Macchiato', price: 1.6 },
-              { name: 'Espresso dbl', price: 3 },
-              { name: 'Doppio macchiato', price: 3.5 },
-              { name: 'Piccolo', price: 2 },
-              { name: 'Cortado', price: 3.5 },
-              { name: 'Cappuccino', price: 2 },
-              { name: 'Latte macchiato', price: 2 },
-              { name: 'Flat white', price: 3.5 },
-              { name: 'Americano', price: 2 },
-              { name: 'Long Black', price: 3.5 },
-              { name: 'Mocha', price: 3 },
-              { name: 'Decaf', price: 1.6 }
-            ],
-            extras: [
-              { name: { it: 'Shot extra di espresso', en: 'Extra espresso shot' }, price: 1.5 },
-              { name: { it: 'Latte d’avena', en: 'Oat milk' }, price: 0.5 },
-              { name: { it: 'Formato grande', en: 'Large size' }, price: 1 }
-            ]
-          }]
-        },
-        {
-          id: 'filtro-freddi', title: { it: 'Filtro e freddi', en: 'Filter & iced' },
-          groups: [{
-            items: [
-              { name: 'Batch Brew', price: 4.5 },
-              { name: 'Iced coffee', price: 4 },
-              { name: 'Iced latte', price: 4.5 },
-              { name: 'Iced Mocha', price: 5.5 },
-              { name: 'Cold brew', price: 6, desc: { it: 'Di stagione', en: 'Seasonal' } }
-            ],
-            extras: [
-              { name: { it: 'Latte d’avena', en: 'Oat milk' }, price: 1 }
-            ]
-          }]
-        },
-        {
-          id: 'special', title: { it: 'Special latte e tè', en: 'Special lattes & tea' },
-          groups: [{
-            items: [
-              { name: 'Matcha latte', price: 4.5 },
-              { name: 'Chai latte', price: 4.5 },
-              { name: 'Hot chocolate', price: 4.5 },
-              { name: 'Selection hot teas', price: 4 }
-            ],
-            extras: [
-              { name: { it: 'Latte d’avena', en: 'Oat milk' }, price: 1 },
-              { name: { it: 'Versione iced', en: 'Iced' }, price: 0.5 }
-            ]
-          }]
-        },
-        {
-          id: 'brunch', title: { it: 'Brunch', en: 'Brunch' }, kitchenNote: true,
-          groups: [
-            {
-              items: [
-                { name: 'Farmer bagel', price: 13, a: [1, 7, 8],
-                  desc: { it: 'pollo, insalata, pomodoro, sottaceti, bacon, cheddar, maionese piccante',
-                          en: 'chicken, salad, tomato, pickles, bacon, cheddar cheese, spicy mayo' } },
-                { name: 'Bacon & cheese pancake', price: 10, a: [1, 3, 5, 7, 8],
-                  desc: { it: 'bacon e formaggio fuso', en: 'bacon and melted cheese' },
-                  adds: [{ name: { it: 'sciroppo d’acero', en: 'maple syrup' }, price: 1 }] },
-                { name: 'Salmon bagel', price: 11, a: [1, 7, 8, 9, 11],
-                  desc: { it: 'salmone affumicato, cetriolo, cipolle marinate, formaggio spalmabile ed erba cipollina',
-                          en: 'smoked salmon, cucumber, marinated onions, cream cheese and chives' } },
-                { name: 'BLT Bagel', price: 9.5, a: [1, 6, 7, 8, 9, 11],
-                  desc: { it: 'bacon, lattuga, pomodoro e maionese', en: 'bacon, lettuce, tomato and mayo' } },
-                { name: 'ALT Bagel', price: 9.5, a: [1, 6, 7, 8, 9, 11],
-                  desc: { it: 'avocado, lattuga, pomodoro e maionese', en: 'avocado, lettuce, tomato and mayo' } },
-                { name: 'Avocado toast 2.0', price: 16, a: [1, 4, 5, 6, 7, 8, 11],
-                  desc: { it: 'pane multicereali, hummus di barbabietola, salmone affumicato, avocado, semi misti, feta, melograno (di stagione)',
-                          en: 'multigrain bread, beetroot hummus, smoked salmon, avocado, mixed seeds, feta cheese, pomegranate (seasonal)' } },
-                { name: 'Avocado toast', price: 10, a: [1, 7, 8, 11],
-                  desc: { it: 'pane multicereali, avocado, semi misti, feta, melograno (di stagione)',
-                          en: 'multigrain bread, avocado, mixed seeds, feta cheese, pomegranate (seasonal)' } }
-              ]
-            },
-            {
-              title: { it: 'Da condividere', en: 'To share' },
-              items: [
-                { name: 'Sweet potato fries', price: 4.5 }
-              ],
-              extras: [
-                { name: { it: 'Avocado', en: 'Avocado' }, price: 3 },
-                { name: { it: 'Hummus di barbabietola', en: 'Beetroot hummus' }, price: 2.5, tags: ['vg'] },
-                { name: { it: 'Salmone affumicato', en: 'Smoked salmon' }, price: 3.5 },
-                { name: { it: 'Bacon', en: 'Bacon' }, price: 3 },
-                { name: { it: 'Pane senza glutine', en: 'Gluten-free bread' }, price: 3, tags: ['gf'] }
-              ],
-              extrasTitle: { it: 'Aggiunte', en: 'Add-ons' }
-            }
-          ]
-        },
-        {
-          id: 'dolce', title: { it: 'Dolce', en: 'Sweet' },
-          groups: [
-            {
-              items: [
-                { name: 'Nocciolotto Pancakes', price: 10,
-                  desc: { it: 'crema di nocciole, frutta fresca', en: 'hazelnut cream, fresh fruit' } },
-                { name: 'Maple Pancakes', price: 11,
-                  desc: { it: 'sciroppo d’acero, frutta fresca', en: 'maple syrup, fresh fruit' } },
-                { name: 'Yoyo Pancakes', price: 10, a: [1, 3, 5, 6, 7, 8],
-                  desc: { it: 'yogurt greco, frutta fresca, miele', en: 'greek yogurt, fresh fruit, honey' } },
-                { name: 'New York BB', price: 9.5, a: [3, 5, 6, 7, 8],
-                  desc: { it: 'banana bread, bacon, sciroppo d’acero', en: 'banana bread, bacon, maple syrup' },
-                  adds: [
-                    { name: { it: 'yogurt greco', en: 'greek yogurt' }, price: 1.5 },
-                    { name: { it: 'burro di arachidi', en: 'peanut butter' }, price: 1.5 }
-                  ] },
-                { name: 'Peanut BB', price: 10, a: [3, 5, 6, 7, 8],
-                  desc: { it: 'banana bread, yogurt greco, burro di arachidi, miele, frutta fresca',
-                          en: 'banana bread, greek yogurt, peanut butter, honey, fresh fruit' } },
-                { name: 'Granola bowl', price: 8, a: [1, 5, 6, 7, 8],
-                  desc: { it: 'yogurt, granola, miele, frutta fresca', en: 'yogurt, granola, honey, fresh fruit' } }
-              ]
-            },
-            {
-              title: { it: 'In vetrina, ogni giorno', en: 'Treats of the day, in the display' },
-              items: [
-                { name: 'Homemade cheesecake', price: 5, a: [1, 3, 5, 6, 7, 8] },
-                { name: 'Banana bread', price: 4.5, a: [3, 5, 6, 7, 8] },
-                { name: 'Carrot cake with orange frosting', price: 5, a: [1, 3, 5, 7, 8] }
-              ]
-            }
-          ]
-        },
-        {
-          id: 'succhi', title: { it: 'Succhi', en: 'Juices' },
-          groups: [
-            {
-              title: { it: 'Freschi', en: 'Fresh' },
-              items: [
-                { name: 'Detox', price: 6, desc: { it: 'mela, zenzero', en: 'apple, ginger' } },
-                { name: 'Booster', price: 6, desc: { it: 'arancia, carota, zenzero', en: 'orange, carrot, ginger' } },
-                { name: 'OJ', price: 5, desc: { it: 'spremuta d’arancia', en: 'orange juice' } }
-              ]
-            },
-            {
-              title: { it: 'Bio', en: 'Organic' },
-              items: [
-                { name: 'Pomegranate BIO', price: 4 },
-                { name: 'Peach BIO', price: 4 },
-                { name: 'Pineapple BIO', price: 4 }
-              ]
-            }
-          ]
-        },
-        {
-          id: 'bibite', title: { it: 'Bibite', en: 'Soft drinks' },
-          groups: [{
-            items: [
-              { name: 'Lemon Tea BIO', price: 4 },
-              { name: 'Peach Tea BIO', price: 4 },
-              { name: 'Lemonade', price: 4 },
-              { name: 'Tonic Water', price: 4 },
-              { name: 'Molecola', price: 3 },
-              { name: 'Molecola zero', price: 3 },
-              { name: 'Ginger beer', price: 5 },
-              { name: 'Kombucha', price: 5 }
-            ]
-          }]
-        },
-        {
-          id: 'bar', title: { it: 'Bar', en: 'Drinks' },
-          groups: [
-            {
-              items: [
-                { name: 'Craft beer', price: 6, tags: ['gfAvailable'] }
-              ]
-            },
-            {
-              title: { it: 'Vini (selezione)', en: 'Wine (selection)' },
-              items: [
-                { name: { it: 'Vino rosso o bianco', en: 'Red or white wine' }, price: 7,
-                  desc: { it: 'al calice', en: 'by the glass' } },
-                { name: 'Prosecco', price: 5, desc: { it: 'flûte', en: 'flute' } },
-                { name: { it: 'Bottiglia', en: 'Bottle' }, price: 18 }
-              ]
-            },
-            {
-              title: { it: 'Spritzando', en: 'Spritzando' },
-              items: [
-                { name: 'Spritz', price: 7, desc: { it: 'Orange, Bitter Rosso, Select', en: 'Orange, Bitter Rosso, Select' } },
-                { name: 'Americano, Negroni', price: 8 },
-                { name: 'Gin selection', price: [8, 12] }
-              ]
-            }
-          ]
-        }
-      ];
-
-      var TAGS = {
-        vg: { it: 'Vegan', en: 'Vegan' },
-        gf: { it: 'Senza glutine', en: 'Gluten free' },
-        gfAvailable: { it: 'Anche senza glutine', en: 'Gluten-free available' }
-      };
-
-      function lang() { return document.documentElement.lang === 'en' ? 'en' : 'it'; }
-      function tr(v) { return v && typeof v === 'object' && !Array.isArray(v) ? v[lang()] : v; }
-
-      function esc(str) {
-        return String(str).replace(/[&<>"']/g, function (c) {
-          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-        });
-      }
-
-      // 1.5 -> "1,50 €" (IT) / "€1.50" (EN); enteros sin decimales
-      function formatPrice(value) {
-        var whole = value % 1 === 0;
-        return new Intl.NumberFormat(lang() === 'it' ? 'it-IT' : 'en-GB', {
-          style: 'currency', currency: 'EUR',
-          minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: 2
-        }).format(value);
-      }
-      function priceText(p) {
-        if (!Array.isArray(p)) return formatPrice(p);
-        return lang() === 'it' ? p[0] + '–' + p[1] + ' €' : '€' + p[0] + '–' + p[1];
-      }
-
-      function tagsHtml(tags) {
-        return (tags || []).map(function (k) {
-          return '<span class="badge">' + esc(tr(TAGS[k])) + '</span>';
-        }).join('');
-      }
-
-      function allergensHtml(list) {
-        if (!list || !list.length) return '';
-        var names = t('allergens');
-        var label = t('menu.allergensLabel') + ': ' + list.map(function (n) { return names[n - 1]; }).join(', ');
-        return '<span class="allergens" role="img" aria-label="' + esc(label) + '">' +
-          list.map(function (n) { return '<span aria-hidden="true">' + n + '</span>'; }).join('') +
-          '</span>';
-      }
-
-      function itemHtml(it) {
-        var meta = tagsHtml(it.tags) + allergensHtml(it.a);
-        var adds = (it.adds || []).map(function (x) {
-          return '+ ' + esc(tr(x.name)) + ' ' + priceText(x.price);
-        }).join(' · ');
-        return '<li class="item">' +
-          '<span class="item__name">' + esc(tr(it.name)) + '</span>' +
-          '<span class="item__price">' + priceText(it.price) + '</span>' +
-          (it.desc ? '<span class="item__desc">' + esc(tr(it.desc)) + '</span>' : '') +
-          (adds ? '<span class="item__adds">' + adds + '</span>' : '') +
-          (meta ? '<span class="item__meta">' + meta + '</span>' : '') +
-          '</li>';
-      }
-
-      function extrasHtml(group) {
-        if (!group.extras) return '';
-        return '<div class="extras">' +
-          '<p class="extras__title">' + esc(tr(group.extrasTitle) || t('menu.extras')) + '</p><ul>' +
-          group.extras.map(function (x) {
-            return '<li><span>+ ' + esc(tr(x.name)) + ' ' + tagsHtml(x.tags) + '</span><span>' + priceText(x.price) + '</span></li>';
-          }).join('') +
-          '</ul></div>';
-      }
-
-      function renderMenu() {
-        document.getElementById('allergen-legend').innerHTML = t('allergens').map(function (n) {
-          return '<li>' + esc(n) + '</li>';
-        }).join('');
-
-        document.getElementById('menu-nav').innerHTML = MENU.map(function (cat) {
-          return '<li><a href="#m-' + cat.id + '">' + esc(tr(cat.title)) + '</a></li>';
-        }).join('');
-
-        document.getElementById('menu-list').innerHTML = MENU.map(function (cat) {
-          return '<section class="menu-cat" id="m-' + cat.id + '" aria-labelledby="m-' + cat.id + '-t">' +
-            '<h3 class="menu-cat__title" id="m-' + cat.id + '-t">' + esc(tr(cat.title)) + '</h3>' +
-            (cat.kitchenNote ? '<p class="menu-cat__note">' + range(BIZ.kitchen) + '</p>' : '') +
-            cat.groups.map(function (g) {
-              return (g.title ? '<h4 class="menu-group__title">' + esc(tr(g.title)) + '</h4>' : '') +
-                '<ul class="items">' + g.items.map(itemHtml).join('') + '</ul>' +
-                extrasHtml(g);
-            }).join('') +
-            '</section>';
-        }).join('');
-
-        observeMenu();
-      }
-      document.addEventListener('langchange', renderMenu);
-
-      // Resalta en la barra de chips la categoría visible y la mantiene a la vista
-      // Con la carta en columnas (≥900px) varias secciones se ven a la vez: no se resalta ninguna
-      var menuObserver;
-      var menuColumns = window.matchMedia('(min-width: 900px)');
-      function observeMenu() {
-        if (!('IntersectionObserver' in window)) return;
-        if (menuObserver) menuObserver.disconnect();
-        menuObserver = new IntersectionObserver(function (entries) {
-          if (menuColumns.matches) return;
-          entries.forEach(function (entry) {
-            if (!entry.isIntersecting) return;
-            var id = entry.target.id;
-            document.querySelectorAll('#menu-nav a').forEach(function (a) {
-              var active = a.getAttribute('href') === '#' + id;
-              a.setAttribute('aria-current', String(active));
-              if (active) {
-                var nav = a.closest('ul');
-                nav.scrollTo({ left: a.offsetLeft - nav.offsetLeft - 16, behavior: 'smooth' });
-              }
-            });
-          });
-        }, { rootMargin: '-45% 0px -50% 0px' });
-        document.querySelectorAll('.menu-cat').forEach(function (el) { menuObserver.observe(el); });
-      }
-
-      /* ===== Shop =====
-         Flujo: selección -> objeto `order` -> CHECKOUT.start(order).
-         Hoy CHECKOUT abre WhatsApp. Para una pasarela real basta con agregar otro
-         proveedor en CHECKOUT_PROVIDERS y apuntar CHECKOUT a él: la interfaz no cambia. */
-      var PRODUCT = {
-        id: 'australiano',
-        name: 'L’Australiano',
-        // [PENDIENTE: precios definitivos] 25 € / 100 € son orientativos
-        sizes: [
-          { id: '250g', label: '250 g', msg: '250g', price: 25 },
-          { id: '1kg', label: '1 kg', msg: '1kg', price: 100 }
-        ],
-        grinds: [
-          { id: 'grani', label: { it: 'In grani', en: 'Whole beans' }, msg: { it: 'in grani', en: 'whole beans' } },
-          { id: 'macinato', label: { it: 'Macinato', en: 'Ground' }, msg: { it: 'macinato', en: 'ground' } }
-        ],
-        qty: { min: 1, max: 10 },
-        fulfilment: 'pickup'
-      };
-
-      var shopState = { size: PRODUCT.sizes[0].id, grind: PRODUCT.grinds[0].id, qty: 1 };
-
-      function findById(list, id) {
-        return list.filter(function (x) { return x.id === id; })[0];
-      }
-
-      // Pedido independiente de la interfaz y del medio de pago
-      function buildOrder() {
-        var size = findById(PRODUCT.sizes, shopState.size);
-        var grind = findById(PRODUCT.grinds, shopState.grind);
-        return {
-          productId: PRODUCT.id,
-          productName: PRODUCT.name,
-          sku: PRODUCT.id + '-' + size.id + '-' + grind.id,
-          size: size,
-          grind: grind,
-          qty: shopState.qty,
-          unitPrice: size.price,
-          total: size.price * shopState.qty,
-          currency: 'EUR',
-          fulfilment: PRODUCT.fulfilment,
-          lang: lang()
-        };
-      }
-
-      function orderMessage(order) {
-        return fmt(t('shop.message'), {
-          qty: order.qty,
-          product: order.productName,
-          size: order.size.msg,
-          grind: tr(order.grind.msg)
-        });
-      }
-
-      var CHECKOUT_PROVIDERS = {
-        whatsapp: {
-          start: function (order) {
-            var url = 'https://wa.me/' + BIZ.whatsapp + '?text=' + encodeURIComponent(orderMessage(order));
-            var win = window.open(url, '_blank');
-            if (win) win.opener = null;
-            else location.href = url;
-          }
-        }
-        // Ejemplo futuro:
-        // stripe: { start: function (order) { /* POST order al backend -> redirigir a la sesión de pago */ } }
-      };
-      var CHECKOUT = CHECKOUT_PROVIDERS.whatsapp;
-
-      var shopForm = document.getElementById('shop-form');
-
-      function optionHtml(name, opt, sub) {
-        var checked = shopState[name] === opt.id ? ' checked' : '';
-        return '<label class="opt">' +
-          '<input type="radio" name="' + name + '" value="' + opt.id + '"' + checked + '>' +
-          '<span class="opt__box"><span class="opt__main">' + esc(tr(opt.label)) + '</span>' +
-          (sub ? '<span class="opt__sub">' + sub + '</span>' : '') + '</span></label>';
-      }
-
-      function renderShopOptions() {
-        document.getElementById('opt-size').innerHTML = PRODUCT.sizes.map(function (s) {
-          return optionHtml('size', s, formatPrice(s.price));
-        }).join('');
-        document.getElementById('opt-grind').innerHTML = PRODUCT.grinds.map(function (g) {
-          return optionHtml('grind', g);
-        }).join('');
-        renderShopSummary();
-      }
-
-      function renderShopSummary() {
-        var order = buildOrder();
-        document.getElementById('qty').textContent = order.qty;
-        var totalEl = document.getElementById('shop-total');
-        var newTotal = formatPrice(order.total);
-        if (totalEl.textContent && totalEl.textContent !== newTotal) {
-          totalEl.classList.remove('bump');
-          void totalEl.offsetWidth; // reinicia la animación
-          totalEl.classList.add('bump');
-        }
-        totalEl.textContent = newTotal;
-        document.getElementById('shop-message').textContent = orderMessage(order);
-        shopForm.querySelector('[data-qty="-1"]').disabled = order.qty <= PRODUCT.qty.min;
-        shopForm.querySelector('[data-qty="1"]').disabled = order.qty >= PRODUCT.qty.max;
-      }
-
-      shopForm.addEventListener('change', function (e) {
-        if (e.target.name in shopState) {
-          shopState[e.target.name] = e.target.value;
-          renderShopSummary();
-        }
-      });
-
-      shopForm.addEventListener('click', function (e) {
-        var btn = e.target.closest('[data-qty]');
-        if (!btn) return;
-        var next = shopState.qty + Number(btn.getAttribute('data-qty'));
-        shopState.qty = Math.min(PRODUCT.qty.max, Math.max(PRODUCT.qty.min, next));
-        renderShopSummary();
-      });
-
-      shopForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        CHECKOUT.start(buildOrder());
-      });
-
-      document.addEventListener('langchange', renderShopOptions);
-
-      document.getElementById('year').textContent = new Date().getFullYear();
-
-      /* ===== Animaciones =====
-         Sin librerías: IntersectionObserver para apariciones y un único listener
-         de scroll con requestAnimationFrame para el collage del hero. */
-      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      // Qué aparece al entrar en pantalla (se marca desde acá para no ensuciar el HTML)
-      var REVEAL = [
-        '.section__kicker', '.section__title', '.hours', '.hours__note',
-        '.menu-intro', '.legend', '.coffee__name', '.coffee__lead', '.origin', '.notes',
-        '.coffee__profile', '.shop__intro', '.shop__card', '.story__lead', '.chapter__body',
-        '.welcome p', '.welcome span', '.essence__title', '.pillar', '.quote', '.press',
-        '.place', '.place__actions', '.footer__grid > *'
-      ];
-      var REVEAL_MEDIA = ['.coffee__media', '.shop__media', '.chapter__media', '.map'];
-
-      var revealObserver = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) showNow(entry.target);
-        });
-      }, { rootMargin: '0px 0px -12% 0px' }) : null;
-
-      var pendingReveal = [];
-
-      function showNow(el) {
-        el.classList.add('is-in');
-        if (revealObserver) revealObserver.unobserve(el);
-        var i = pendingReveal.indexOf(el);
-        if (i !== -1) pendingReveal.splice(i, 1);
-      }
-
-      function reveal(el, cls, delay) {
-        el.classList.add(cls);
-        if (delay) el.style.setProperty('--delay', delay + 's');
-        if (revealObserver && !reduceMotion) {
-          pendingReveal.push(el);
-          revealObserver.observe(el);
-        } else {
-          el.classList.add('is-in');
-        }
-      }
-
-      // Tras un salto con un enlace, lo que quedó por encima nunca cruzó la pantalla: mostrarlo igual
-      var revealTicking = false;
-      window.addEventListener('scroll', function () {
-        if (revealTicking || !pendingReveal.length) return;
-        revealTicking = true;
-        requestAnimationFrame(function () {
-          revealTicking = false;
-          pendingReveal.slice().forEach(function (el) {
-            if (el.getBoundingClientRect().bottom < 0) showNow(el);
-          });
-        });
-      }, { passive: true });
-
-      function setupReveal() {
-        REVEAL.forEach(function (sel) {
-          document.querySelectorAll(sel).forEach(function (el) {
-            // Elementos hermanos del mismo tipo entran en cascada (pilares, columnas del footer)
-            var siblings = el.parentElement ? Array.prototype.filter.call(el.parentElement.children, function (c) {
-              return c.matches(sel);
-            }) : [];
-            var idx = siblings.indexOf(el);
-            reveal(el, 'reveal', idx > 0 ? Math.min(idx, 4) * 0.12 : 0);
-          });
-        });
-        REVEAL_MEDIA.forEach(function (sel) {
-          document.querySelectorAll(sel).forEach(function (el) { reveal(el, 'reveal-media'); });
-        });
-        revealMenu();
-      }
-
-      // La carta se vuelve a dibujar al cambiar de idioma: solo anima la primera vez
-      var menuRevealed = false;
-      function revealMenu() {
-        document.querySelectorAll('.menu-cat').forEach(function (el) {
-          if (menuRevealed) el.classList.add('reveal', 'is-in');
-          else reveal(el, 'reveal');
-        });
-        menuRevealed = true;
-      }
-      document.addEventListener('langchange', function () {
-        if (menuRevealed) revealMenu();
-      });
-
-      // Collage del hero: cada foto se aleja del centro y se desvanece mientras se baja
-      var hero = document.querySelector('.hero');
-      var tiles = Array.prototype.slice.call(document.querySelectorAll('.tile'));
-      var tileVectors = [];
-
-      function measureTiles() {
-        var box = document.getElementById('collage').getBoundingClientRect();
-        var cx = box.width / 2, cy = box.height / 2;
-        tileVectors = tiles.map(function (tile) {
-          var x = tile.offsetLeft + tile.offsetWidth / 2 - cx;
-          var y = tile.offsetTop + tile.offsetHeight / 2 - cy;
-          var len = Math.sqrt(x * x + y * y) || 1;
-          return { x: x / len, y: y / len, push: box.width * 0.9 };
-        });
-      }
-
-      var ticking = false;
-      function updateCollage() {
-        ticking = false;
-        var progress = Math.min(1, Math.max(0, window.scrollY / (hero.offsetHeight * 0.85)));
-        tiles.forEach(function (tile, i) {
-          var v = tileVectors[i];
-          if (!v) return;
-          tile.classList.toggle('is-scrolling', progress > 0);
-          if (progress === 0) {
-            tile.style.transform = '';
-            tile.style.opacity = '';
-            return;
-          }
-          var d = progress * v.push;
-          tile.style.transform = 'translate(' + (v.x * d).toFixed(1) + 'px,' + (v.y * d * 0.7).toFixed(1) + 'px) scale(' + (1 + progress * 0.15).toFixed(3) + ')';
-          tile.style.opacity = String(Math.max(0, 1 - progress * 1.3));
-        });
-      }
-
-      function onCollageScroll() {
-        if (!ticking) {
-          ticking = true;
-          requestAnimationFrame(updateCollage);
-        }
-      }
-
-      function setupAnimations() {
-        setupReveal();
-        // Doble rAF: asegura que el estado inicial se pinte antes de animar la entrada
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () { hero.classList.add('is-loaded'); });
-        });
-        if (reduceMotion) return;
-        measureTiles();
-        var lastWidth = window.innerWidth;
-        window.addEventListener('resize', function () {
-          // En iPhone la barra de Safari cambia el alto al hacer scroll: solo recalcular si cambia el ancho
-          if (window.innerWidth === lastWidth) return;
-          lastWidth = window.innerWidth;
-          measureTiles();
-          updateCollage();
-        });
-        window.addEventListener('scroll', onCollageScroll, { passive: true });
-        updateCollage();
-      }
-
-      /* ===== Videos: se reproducen solo mientras están en pantalla ===== */
-      document.querySelectorAll('video[data-autoplay]').forEach(function (video) {
-        if (reduceMotion || !('IntersectionObserver' in window)) {
-          video.controls = true;
-          return;
-        }
-        new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              var playing = video.play();
-              if (playing && playing.catch) playing.catch(function () { video.controls = true; });
-            } else {
-              video.pause();
-            }
-          });
-        }, { threshold: 0.25 }).observe(video);
-      });
-
-      /* ===== Header: borde al hacer scroll ===== */
-      var header = document.querySelector('.site-header');
-      function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-
-      window.MANLY = { t: t, applyLang: applyLang, getStatus: getStatus };
-      applyLang(detectLang());
-      setupAnimations();
-    })();
-  </script>
 </body>
 </html>
