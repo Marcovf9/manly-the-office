@@ -98,8 +98,15 @@
     <!-- Hero: la vidriera -->
     <section class="hero" aria-labelledby="hero-title">
       <figure class="hero__media">
-        <img src="img/acquerello-vidriera.jpg" width="1015" height="1400" fetchpriority="high"
-          alt="Illustrazione ad acquerello della vetrina di MANLY The Office in Via Pisana" data-i18n-attr="alt:hero.alt">
+        <a class="hero__art" href="https://www.instagram.com/qualali_studio/" target="_blank" rel="noopener"
+          aria-label="Illustrazione di @qualali_studio: apri il suo Instagram" data-i18n-attr="aria-label:hero.artLink">
+          <img src="img/acquerello-vidriera.jpg" width="1015" height="1400" fetchpriority="high"
+            alt="Illustrazione ad acquerello della vetrina di MANLY The Office in Via Pisana" data-i18n-attr="alt:hero.alt">
+          <span class="hero__credit">
+            <span data-i18n="hero.credit">Illustrazione</span> · @qualali_studio
+            <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+          </span>
+        </a>
       </figure>
       <div class="hero__panel">
         <p class="eyebrow" data-i18n="hero.eyebrow">Specialty coffee &amp; brunch · Dal 2023</p>
@@ -135,16 +142,16 @@
 
           <dl class="specs">
             <div>
-              <dt data-i18n="shop.origin">Origine</dt>
-              <dd><span data-i18n="shop.originVal">80% Brasile · 20% Etiopia</span><span class="ratio" aria-hidden="true"><span></span><span></span></span></dd>
+              <dt data-i18n="shop.blend">Blend</dt>
+              <dd><span class="blend">80% Daniel Caldeira</span><span class="blend">20% Mutovu</span><span class="ratio" aria-hidden="true"><span></span><span></span></span></dd>
+            </div>
+            <div>
+              <dt data-i18n="shop.process">Processo</dt>
+              <dd>Natural</dd>
             </div>
             <div>
               <dt data-i18n="shop.notes">Note</dt>
-              <dd data-i18n="shop.notesVal">Cioccolato, nocciola, frutti rossi</dd>
-            </div>
-            <div>
-              <dt data-i18n="shop.profile">Profilo</dt>
-              <dd data-i18n="shop.profileVal">Leggera acidità, buon equilibrio</dd>
+              <dd data-i18n="shop.notesVal">Cioccolato, nocciola, frutti tropicali</dd>
             </div>
           </dl>
 
@@ -156,6 +163,7 @@
             <fieldset class="choice">
               <legend data-i18n="shop.grind">Macinatura</legend>
               <div class="choice__options" id="opt-grind"></div>
+              <p class="choice__note" id="grind-note" data-i18n="shop.grindNote" hidden>Per ora disponibile solo in grani.</p>
             </fieldset>
 
             <div class="total">
@@ -293,7 +301,7 @@
             <div class="chapter__body">
               <p class="chapter__meta"><span data-i18n="storia.c1.when">Firenze</span></p>
               <h3 class="chapter__title" data-i18n="storia.c1.title">Dal bancone al caffè</h3>
-              <p data-i18n="storia.c1.p1">Maykol nasce a Firenze e comincia a lavorare come barman. Poi arriva il caffè, e diventa una passione.</p>
+              <p data-i18n="storia.c1.p1">Maykol nasce a Firenze e comincia a lavorare come barman, muovendo i primi passi al Mercato Centrale. Poi arriva il caffè, e diventa una passione.</p>
               <p data-i18n="storia.c1.p2">Si forma con Simone Guidi, formatore e fondatore della torrefazione La Sosta, e impara la latte art: disegnare versando il latte nella tazza.</p>
             </div>
           </li>
@@ -376,6 +384,7 @@
       <div class="footer__legal">
         <p>Cozy Lab di Martino Maykol &amp; C. S.n.c. · <span data-i18n="footer.seat">Sede legale</span>: Piazza dei Mezzadri 20, 50014 Fiesole (FI)</p>
         <p>P. IVA / C.F. 07109160486 · © <span data-year>2026</span> MANLY The Office</p>
+        <p><span data-i18n="footer.art">Illustrazione della vetrina</span>: <a href="https://www.instagram.com/qualali_studio/" target="_blank" rel="noopener">@qualali_studio</a></p>
       </div>
     </div>
   </footer>

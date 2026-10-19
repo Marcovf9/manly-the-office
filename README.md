@@ -37,7 +37,7 @@ Hoy el proveedor es WhatsApp. Para una pasarela real se agrega otro proveedor en
 | # | Dónde | Foto definitiva | Estado |
 |---|-------|-----------------|--------|
 | 1 | Inicio | La vidriera de Via Pisana | ✅ `acquerello-vidriera.jpg` (acuarela) |
-| 2 | Shop | La bolsa de L’Australiano sobre la barra, fondo limpio, luz natural | Provisoria: diseño de la etiqueta `australiano-etichetta.jpg` |
+| 2 | Shop | La bolsa de L’Australiano sobre la barra, fondo limpio, luz natural | Etiqueta nueva `australiano-etichetta.jpg` (sirve hasta tener foto de la bolsa) |
 | 3 | Al banco · Caffetteria | Latte art | ✅ `latte-art.jpg` |
 | 4 | Al banco · Brunch | Avocado toast | Provisoria: pancakes |
 | 5 | Storia · apertura | Maykol y Alice detrás de la barra | ✅ `maykol-alice.jpg` |
@@ -74,10 +74,14 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 ## Pendientes
 
 - [ ] Precios definitivos de L'Australiano (hoy 25 € / 100 € orientativos)
-- [ ] Nombres de la carta en italiano y revisión de las descripciones IT
+- [x] Nombres y descripciones de la carta en italiano (de la carta impresa)
+- [ ] Precios que no coinciden entre carta IT e EN: avocado y pane senza glutine (2,5 € vs 3 €), New York BB (9 € vs 9,5 €). Hoy se usan los de la EN
+- [ ] Horario de brunch: la carta dice 9:30, la web usa 8:30
+- [ ] Volver a ofrecer molido: `available: true` en `PRODUCT.grinds` (assets/site.js)
 - [ ] Alérgenos que faltan en la carta (Nocciolotto, Maple Pancakes, fries, bebidas)
 - [ ] Fotos que faltan o son provisorias (ver *Lista de fotos*)
-- [ ] Permiso/crédito del autor de la acuarela de la vidriera
+- [x] Crédito y enlace a la autora de la acuarela (@qualali_studio)
+- [ ] Confirmar con @qualali_studio el permiso para usar la acuarela
 - [ ] Logo en alta resolución (hoy redibujado en SVG desde captura)
 - [ ] Confirmar WhatsApp Business en el +39 055 906 2024
 - [ ] Revisión de textos por un nativo (IT / EN)
