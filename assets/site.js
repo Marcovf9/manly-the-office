@@ -66,17 +66,18 @@
       'hero.directions': 'Come arrivare',
       'hero.rating': '4,9 su Google · oltre 660 recensioni',
       'hero.alt': 'Illustrazione ad acquerello della vetrina di MANLY The Office in Via Pisana',
+      'hero.credit': 'Illustrazione',
+      'hero.artLink': 'Illustrazione di @qualali_studio: apri il suo Instagram',
 
       'shop.eyebrow': 'Shop · Il nostro caffè',
       'shop.tag': 'In esclusiva per MANLY',
       'shop.by': 'Miscela della casa · Tostata da D612 Coffee Roasters, Firenze',
       'shop.lead': 'La miscela che D612, torrefazione fiorentina, tosta in esclusiva per noi. La stessa che usiamo al banco, da preparare a casa.',
-      'shop.origin': 'Origine',
-      'shop.originVal': '80% Brasile · 20% Etiopia',
+      'shop.blend': 'Blend',
+      'shop.process': 'Processo',
       'shop.notes': 'Note',
-      'shop.notesVal': 'Cioccolato, nocciola, frutti rossi',
-      'shop.profile': 'Profilo',
-      'shop.profileVal': 'Leggera acidità, buon equilibrio',
+      'shop.notesVal': 'Cioccolato, nocciola, frutti tropicali',
+      'shop.grindNote': 'Per ora disponibile solo in grani.',
       'shop.size': 'Formato',
       'shop.grind': 'Macinatura',
       'shop.qty': 'Quantità',
@@ -118,7 +119,7 @@
       'storia.introAlt': 'Maykol e Alice al banco di MANLY The Office',
       'storia.c1.when': 'Firenze',
       'storia.c1.title': 'Dal bancone al caffè',
-      'storia.c1.p1': 'Maykol nasce a Firenze e comincia a lavorare come barman. Poi arriva il caffè, e diventa una passione.',
+      'storia.c1.p1': 'Maykol nasce a Firenze e comincia a lavorare come barman, muovendo i primi passi al Mercato Centrale. Poi arriva il caffè, e diventa una passione.',
       'storia.c1.p2': 'Si forma con Simone Guidi, formatore e fondatore della torrefazione La Sosta, e impara la latte art: disegnare versando il latte nella tazza.',
       'storia.c1.alt': 'Preparazione di un espresso al banco',
       'storia.c2.when': '2016 · Australia',
@@ -141,18 +142,19 @@
       'essenza.p3.text': 'Pancake, banana bread fatto in casa senza glutine, bagel e avocado toast. Proviamo ad accontentare ogni esigenza alimentare, nei limiti del possibile.',
       'press.url': 'https://www.gamberorosso.it/notizie/storie/manly-the-office-firenze/',
       'press.kicker': 'Gambero Rosso',
-      'press.title': 'Leggi l’articolo su MANLY The Office',
+      'press.title': 'Il sogno australiano di un barista toscano',
       'press.meta': 'Michela Becchi · 19 gennaio 2024',
 
       'footer.visit': 'Indirizzo',
       'footer.hours': 'Orari',
       'footer.contact': 'Contatti',
       'footer.seat': 'Sede legale',
+      'footer.art': 'Illustrazione della vetrina',
 
       'menu.eyebrow': 'Caffetteria & brunch',
       'menu.title': 'Il menu',
       'menu.options': 'Opzioni senza glutine e vegane, latte d’avena.',
-      'menu.allergies': 'Segnalate eventuali allergie al personale.',
+      'menu.allergies': 'Per allergie o intolleranze rivolgersi al personale.',
       'menu.legend': 'Legenda allergeni',
       'menu.navLabel': 'Sezioni del menu',
       'menu.allergensLabel': 'Allergeni',
@@ -199,17 +201,18 @@
       'hero.directions': 'Directions',
       'hero.rating': '4.9 on Google · 660+ reviews',
       'hero.alt': 'Watercolour illustration of the MANLY The Office shopfront on Via Pisana',
+      'hero.credit': 'Illustration',
+      'hero.artLink': 'Illustration by @qualali_studio: open her Instagram',
 
       'shop.eyebrow': 'Shop · Our coffee',
       'shop.tag': 'Exclusive to MANLY',
       'shop.by': 'House blend · Roasted by D612 Coffee Roasters, Florence',
       'shop.lead': 'The blend D612, a Florentine roastery, roasts exclusively for us. The same one we use behind the counter, to brew at home.',
-      'shop.origin': 'Origin',
-      'shop.originVal': '80% Brazil · 20% Ethiopia',
+      'shop.blend': 'Blend',
+      'shop.process': 'Process',
       'shop.notes': 'Notes',
-      'shop.notesVal': 'Chocolate, hazelnut, red berries',
-      'shop.profile': 'Profile',
-      'shop.profileVal': 'A touch of acidity, well balanced',
+      'shop.notesVal': 'Chocolate, hazelnut, tropical fruits',
+      'shop.grindNote': 'Whole beans only, for now.',
       'shop.size': 'Size',
       'shop.grind': 'Grind',
       'shop.qty': 'Quantity',
@@ -251,7 +254,7 @@
       'storia.introAlt': 'Maykol and Alice at the counter of MANLY The Office',
       'storia.c1.when': 'Florence',
       'storia.c1.title': 'From the bar to coffee',
-      'storia.c1.p1': 'Maykol is born in Florence and starts out as a bartender. Then coffee comes along, and it becomes a passion.',
+      'storia.c1.p1': 'Maykol is born in Florence and starts out as a bartender, taking his first steps at the Mercato Centrale. Then coffee comes along, and it becomes a passion.',
       'storia.c1.p2': 'He trains with Simone Guidi, coffee trainer and founder of the La Sosta roastery, and masters latte art: drawing patterns as the milk is poured into the cup.',
       'storia.c1.alt': 'Pulling an espresso at the bar',
       'storia.c2.when': '2016 · Australia',
@@ -281,6 +284,7 @@
       'footer.hours': 'Hours',
       'footer.contact': 'Contact',
       'footer.seat': 'Registered office',
+      'footer.art': 'Shopfront illustration',
 
       'menu.eyebrow': 'Coffee & brunch',
       'menu.title': 'Menu',
@@ -528,7 +532,8 @@
     ],
     grinds: [
       { id: 'grani', label: { it: 'In grani', en: 'Whole beans' }, msg: { it: 'in grani', en: 'whole beans' } },
-      { id: 'macinato', label: { it: 'Macinato', en: 'Ground' }, msg: { it: 'macinato', en: 'ground' } }
+      // Por ahora solo se vende en grano: poner available: true para volver a ofrecerlo
+      { id: 'macinato', label: { it: 'Macinato', en: 'Ground' }, msg: { it: 'macinato', en: 'ground' }, available: false }
     ],
     qty: { min: 1, max: 10 },
     fulfilment: 'pickup'
@@ -608,9 +613,13 @@
       document.getElementById('opt-size').innerHTML = PRODUCT.sizes.map(function (s) {
         return optionHtml('size', s, formatPrice(s.price));
       }).join('');
-      document.getElementById('opt-grind').innerHTML = PRODUCT.grinds.map(function (g) {
+      var grinds = PRODUCT.grinds.filter(function (g) { return g.available !== false; });
+      document.getElementById('opt-grind').innerHTML = grinds.map(function (g) {
         return optionHtml('grind', g);
       }).join('');
+      // Con una sola opción, se muestra como dato fijo y una nota
+      document.getElementById('opt-grind').classList.toggle('is-single', grinds.length === 1);
+      document.getElementById('grind-note').hidden = grinds.length !== 1;
       renderSummary();
     }
 
@@ -695,27 +704,13 @@
     });
   }, { passive: true });
 
-  // Hero: la ilustración baja un poco más lento que la página (parallax suave)
+  // Hero: entrada suave de la ilustración y del texto
   function setupHero() {
     var hero = document.querySelector('.hero');
     if (!hero) return;
     requestAnimationFrame(function () {
       requestAnimationFrame(function () { hero.classList.add('is-loaded'); });
     });
-    var media = hero.querySelector('.hero__media');
-    var img = media && media.querySelector('img');
-    if (!img || reduceMotion) return;
-    var ticking = false;
-    window.addEventListener('scroll', function () {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function () {
-        ticking = false;
-        var y = window.scrollY;
-        if (y > hero.offsetHeight) return;
-        img.style.translate = '0 ' + (y * 0.18).toFixed(1) + 'px';
-      });
-    }, { passive: true });
   }
 
   // Videos: se reproducen solo mientras están en pantalla
