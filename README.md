@@ -39,7 +39,7 @@ Hoy el proveedor es WhatsApp. Para una pasarela real se agrega otro proveedor en
 | 1 | Inicio | La vidriera de Via Pisana | ✅ `acquerello-vidriera.jpg` (acuarela) |
 | 2 | Shop | La bolsa de L’Australiano sobre la barra, fondo limpio, luz natural | Etiqueta nueva `australiano-etichetta.jpg` (sirve hasta tener foto de la bolsa) |
 | 3 | Al banco · Caffetteria | Latte art | ✅ `latte-art.jpg` |
-| 4 | Al banco · Brunch | Avocado toast | Provisoria: pancakes |
+| 4 | Al banco · Brunch | Avocado toast | ✅ `avocado-toast.jpg` |
 | 5 | Storia · apertura | Maykol y Alice detrás de la barra | ✅ `maykol-alice.jpg` |
 | 6 | Storia 01 · Firenze | Maykol haciendo latte art | ✅ Video `en-la-barra.mp4` |
 | 7 | Storia 02 · Australia (opcional) | Maykol en Australia (archivo) | Sin foto: capítulo solo texto |

@@ -101,7 +101,7 @@
       'offer.c1.alt': 'Cappuccino con latte art',
       'offer.c2.title': 'Brunch',
       'offer.c2.text': 'Bagel, avocado toast, pancake e banana bread. Opzioni senza glutine e vegane.',
-      'offer.c2.alt': 'Pancake con frutti di bosco',
+      'offer.c2.alt': 'Avocado toast con salmone affumicato, feta e semi misti',
       'offer.more': 'Vedi il menu completo',
 
       'visit.eyebrow': 'Orari e indirizzo',
@@ -236,7 +236,7 @@
       'offer.c1.alt': 'Cappuccino with latte art',
       'offer.c2.title': 'Brunch',
       'offer.c2.text': 'Bagels, avocado toast, pancakes and banana bread. Gluten-free and vegan options.',
-      'offer.c2.alt': 'Pancakes with berries',
+      'offer.c2.alt': 'Avocado toast with smoked salmon, feta and mixed seeds',
       'offer.more': 'See the full menu',
 
       'visit.eyebrow': 'Hours & location',
