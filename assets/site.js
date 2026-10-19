@@ -87,7 +87,7 @@
       'shop.preview': 'Messaggio:',
       'shop.fine': 'Ritiro in negozio, Via Pisana 48R. Nessun pagamento online: l’ordine si conferma su WhatsApp.',
       'shop.message': 'Ciao! Vorrei ordinare {qty} x {product} {size} {grind}, con ritiro in negozio. Mi dite come fare?',
-      'shop.imgAlt': 'Cappuccino davanti alla vetrina di MANLY The Office',
+      'shop.imgAlt': 'Etichetta di L’Australiano, la miscela di MANLY The Office',
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Firenze ·',
 
@@ -220,7 +220,7 @@
       'shop.preview': 'Message:',
       'shop.fine': 'Pick up in store, Via Pisana 48R. No online payment: the order is confirmed on WhatsApp.',
       'shop.message': 'Hi! I’d like to order {qty} x {product} {size} {grind}, for pickup in store. How can I do it?',
-      'shop.imgAlt': 'Cappuccino in front of the MANLY The Office shopfront',
+      'shop.imgAlt': 'L’Australiano label, the MANLY The Office blend',
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Florence ·',
 
