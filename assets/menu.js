@@ -100,13 +100,12 @@
           items: [
             { name: { it: 'Patate dolci', en: 'Sweet potato fries' }, price: 4.5, tags: ['unavailable'] }
           ],
-          // [PENDIENTE: la carta italiana tiene avocado 2,5 € y pane senza glutine 2,5 €; la inglesa, 3 €]
           extras: [
-            { name: { it: 'Avocado', en: 'Avocado' }, price: 3 },
+            { name: { it: 'Avocado', en: 'Avocado' }, price: 2.5 },
             { name: { it: 'Hummus di barbabietola', en: 'Beetroot hummus' }, price: 2.5, tags: ['vg'] },
             { name: { it: 'Salmone', en: 'Smoked salmon' }, price: 3.5 },
             { name: { it: 'Bacon', en: 'Bacon' }, price: 3 },
-            { name: { it: 'Pane senza glutine', en: 'Gluten-free bread' }, price: 3, tags: ['gf'] }
+            { name: { it: 'Pane senza glutine', en: 'Gluten-free bread' }, price: 2.5, tags: ['gf'] }
           ],
           extrasTitle: { it: 'Aggiunte', en: 'Add-ons' }
         }
@@ -123,8 +122,7 @@
               desc: { it: 'sciroppo d’acero, frutta fresca', en: 'maple syrup, fresh fruit' } },
             { name: 'Yoyo Pancakes', price: 10, a: [1, 3, 5, 6, 7, 8],
               desc: { it: 'yogurt greco, frutta fresca, miele', en: 'greek yogurt, fresh fruit, honey' } },
-            // [PENDIENTE: 9 € en la carta italiana, 9,5 € en la inglesa]
-            { name: 'New York BB', price: 9.5, a: [3, 5, 6, 7, 8],
+            { name: 'New York BB', price: 9, a: [3, 5, 6, 7, 8],
               desc: { it: 'banana bread, bacon, sciroppo d’acero', en: 'banana bread, bacon, maple syrup' },
               adds: [
                 { name: { it: 'burro di arachidi', en: 'peanut butter' }, price: 1.5 },

@@ -75,13 +75,13 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 
 - [ ] Precios definitivos de L'Australiano (hoy 25 € / 100 € orientativos)
 - [x] Nombres y descripciones de la carta en italiano (de la carta impresa)
-- [ ] Precios que no coinciden entre carta IT e EN: avocado y pane senza glutine (2,5 € vs 3 €), New York BB (9 € vs 9,5 €). Hoy se usan los de la EN
+- [x] Precios: se usan los de la carta italiana (avocado y pane senza glutine 2,5 €, New York BB 9 €)
 - [ ] Horario de brunch: la carta dice 9:30, la web usa 8:30
 - [ ] Volver a ofrecer molido: `available: true` en `PRODUCT.grinds` (assets/site.js)
 - [ ] Alérgenos que faltan en la carta (Nocciolotto, Maple Pancakes, fries, bebidas)
 - [ ] Fotos que faltan o son provisorias (ver *Lista de fotos*)
 - [x] Crédito y enlace a la autora de la acuarela (@qualali_studio)
-- [ ] Confirmar con @qualali_studio el permiso para usar la acuarela
+- [x] Permiso de @qualali_studio para usar la acuarela
 - [ ] Logo en alta resolución (hoy redibujado en SVG desde captura)
 - [ ] Confirmar WhatsApp Business en el +39 055 906 2024
 - [ ] Revisión de textos por un nativo (IT / EN)
