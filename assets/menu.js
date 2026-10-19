@@ -35,7 +35,7 @@
         extras: [
           { name: { it: 'Extra shot espresso', en: 'Extra espresso shot' }, price: 1.5 },
           { name: { it: 'Latte d’avena', en: 'Oat milk' }, price: 0.5 },
-          { name: { it: 'Large size', en: 'Large size' }, price: 1 }
+          { name: 'Large size', price: 1 }
         ]
       }]
     },
@@ -209,6 +209,134 @@
     }
   ];
 
+  /* ===== Carta desde Google Sheets =====
+     Si SHEET_CSV_URL tiene la URL de la planilla publicada como CSV
+     (Archivo → Compartir → Publicar en la web → CSV), la carta se lee de ahí.
+     Si está vacía, o Google no responde, se usa MENU (arriba) como respaldo.
+     Plantilla con todas las columnas: docs/carta-google-sheets.csv */
+  var SHEET_CSV_URL = '';
+
+  // CSV con comillas, comas y saltos de línea dentro de los campos
+  function parseCSV(text) {
+    var rows = [], row = [], field = '', quoted = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (quoted) {
+        if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+        else if (c === '"') quoted = false;
+        else field += c;
+      } else if (c === '"') quoted = true;
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n' || c === '\r') {
+        if (c === '\r' && text[i + 1] === '\n') i++;
+        row.push(field); rows.push(row); row = []; field = '';
+      } else field += c;
+    }
+    if (field !== '' || row.length) { row.push(field); rows.push(row); }
+    return rows.filter(function (r) { return r.some(function (v) { return v.trim() !== ''; }); });
+  }
+
+  var SHEET_TAGS = { vegan: 'vg', senza_glutine: 'gf', anche_senza_glutine: 'gfAvailable', non_disponibile: 'unavailable' };
+
+  function both(itText, enText) {
+    itText = (itText || '').trim(); enText = (enText || '').trim();
+    if (!itText && !enText) return null;
+    if (!enText || itText === enText) return itText || enText;
+    return { it: itText || enText, en: enText };
+  }
+  // "4,5" / "4.5" / "8-12" / "8–12"
+  function parsePrice(v) {
+    v = (v || '').replace(/€/g, '').replace(/\s/g, '').replace(/,/g, '.');
+    var r = v.split(/[-–]/);
+    if (r.length === 2 && r[0] && r[1]) return [Number(r[0]), Number(r[1])];
+    var n = Number(v);
+    return isNaN(n) ? null : n;
+  }
+  function parseList(v, map) {
+    return (v || '').split(/[,;\s]+/).map(function (x) { return x.trim(); }).filter(Boolean)
+      .map(function (x) { return map ? map[x.toLowerCase()] : Number(x); })
+      .filter(function (x) { return x != null && x !== '' && !(typeof x === 'number' && isNaN(x)); });
+  }
+
+  function menuFromCsv(text) {
+    var rows = parseCSV(text);
+    var head = rows.shift().map(function (h) { return h.trim().toLowerCase(); });
+    var col = function (r, name) { var i = head.indexOf(name); return i === -1 ? '' : (r[i] || '').trim(); };
+    // Las filas se suman a su sección y grupo aunque estén desordenadas en la planilla
+    var sections = [], byId = {}, section = null, group = null, lastItem = null;
+
+    rows.forEach(function (r) {
+      var sid = col(r, 'sezione_id');
+      var nome = both(col(r, 'nome_it'), col(r, 'nome_en'));
+      var price = parsePrice(col(r, 'prezzo'));
+      if (!sid || !nome || price === null) return; // fila incompleta: se ignora
+
+      if (!byId[sid]) {
+        byId[sid] = { id: sid, title: both(col(r, 'sezione_it'), col(r, 'sezione_en')) || sid, groups: [], _groups: {} };
+        sections.push(byId[sid]);
+      }
+      if (section !== byId[sid]) lastItem = null;
+      section = byId[sid];
+      if (/^s[iì]$/i.test(col(r, 'orario_cucina'))) section.kitchenNote = true;
+
+      var key = col(r, 'gruppo_it') + '|' + col(r, 'gruppo_en');
+      if (!section._groups[key]) {
+        var g = { items: [] };
+        var gt = both(col(r, 'gruppo_it'), col(r, 'gruppo_en'));
+        if (gt) g.title = gt;
+        section._groups[key] = g;
+        section.groups.push(g);
+      }
+      if (group !== section._groups[key]) lastItem = null;
+      group = section._groups[key];
+
+      var tags = parseList(col(r, 'etichette'), SHEET_TAGS);
+      var tipo = col(r, 'tipo').toLowerCase();
+      var entry = { name: nome, price: price };
+      if (tags.length) entry.tags = tags;
+
+      if (tipo === 'extra') {
+        (group.extras = group.extras || []).push(entry);
+        var et = both(col(r, 'titolo_extra_it'), col(r, 'titolo_extra_en'));
+        if (et && !group.extrasTitle) group.extrasTitle = et;
+      } else if (tipo === 'aggiunta' && lastItem) {
+        (lastItem.adds = lastItem.adds || []).push(entry);
+      } else {
+        var desc = both(col(r, 'descrizione_it'), col(r, 'descrizione_en'));
+        if (desc) entry.desc = desc;
+        var a = parseList(col(r, 'allergeni'));
+        if (a.length) entry.a = a;
+        group.items.push(entry);
+        lastItem = entry;
+      }
+    });
+
+    // Grupos que quedaron sin platos (solo extras sueltos) no se muestran
+    sections.forEach(function (s) {
+      delete s._groups;
+      s.groups = s.groups.filter(function (g) { return g.items.length || (g.extras && g.extras.length); });
+    });
+    return sections.filter(function (s) { return s.groups.length; });
+  }
+
+  function loadSheet() {
+    if (!SHEET_CSV_URL || !window.fetch) return;
+    fetch(SHEET_CSV_URL, { cache: 'no-store' })
+      .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
+      .then(function (text) {
+        var data = menuFromCsv(text);
+        if (!data.length) throw new Error('planilla vacía');
+        MENU = data;
+        render();
+      })
+      .catch(function (err) {
+        // Se queda con la carta incluida en el código
+        if (window.console) console.warn('Carta: no se pudo leer Google Sheets (' + err.message + '), uso la versión incluida.');
+      });
+  }
+
+  M.menuFromCsv = menuFromCsv; // para pruebas
+
   var TAGS = {
     vg: { it: 'Vegan', en: 'Vegan' },
     gf: { it: 'Senza glutine', en: 'Gluten free' },
@@ -284,6 +412,7 @@
     observe();
   }
   document.addEventListener('langchange', render);
+  document.addEventListener('DOMContentLoaded', loadSheet);
 
   // Resalta la sección visible (solo en una columna; en dos columnas se ven varias a la vez)
   var observer;
