@@ -103,6 +103,10 @@
       'offer.c2.text': 'Bagel, avocado toast, pancake e banana bread. Opzioni senza glutine e vegane.',
       'offer.c2.alt': 'Avocado toast con salmone affumicato, feta e semi misti',
       'offer.more': 'Vedi il menu completo',
+      'offer.c1.gallery': 'Foto della caffetteria',
+      'offer.c2.gallery': 'Foto del brunch',
+      'slider.prev': 'Foto precedente',
+      'slider.next': 'Foto successiva',
 
       'visit.eyebrow': 'Orari e indirizzo',
       'visit.title': 'Vieni a trovarci',
@@ -238,6 +242,10 @@
       'offer.c2.text': 'Bagels, avocado toast, pancakes and banana bread. Gluten-free and vegan options.',
       'offer.c2.alt': 'Avocado toast with smoked salmon, feta and mixed seeds',
       'offer.more': 'See the full menu',
+      'offer.c1.gallery': 'Coffee photos',
+      'offer.c2.gallery': 'Brunch photos',
+      'slider.prev': 'Previous photo',
+      'slider.next': 'Next photo',
 
       'visit.eyebrow': 'Hours & location',
       'visit.title': 'Come and see us',
@@ -366,6 +374,11 @@
         var parts = pair.split(':');
         if (parts.length === 2) el.setAttribute(parts[0].trim(), t(parts[1].trim()));
       });
+    });
+
+    // Fotos con texto alternativo en los dos idiomas
+    document.querySelectorAll('[data-alt-' + value + ']').forEach(function (img) {
+      img.alt = img.getAttribute('data-alt-' + value);
     });
 
     document.title = t('meta.' + page + '.title');
@@ -733,6 +746,58 @@
     });
   }
 
+  /* ===== Carruseles =====
+     Deslizables con el dedo; flechas y contador. Avanzan solos cada 5 s solo
+     mientras se ven en pantalla, y dejan de hacerlo cuando alguien los toca. */
+  function setupSliders() {
+    document.querySelectorAll('[data-slider]').forEach(function (slider) {
+      var track = slider.querySelector('.slider__track');
+      var slides = track.children;
+      var prev = slider.querySelector('[data-slider-prev]');
+      var next = slider.querySelector('[data-slider-next]');
+      var current = slider.querySelector('[data-slider-current]');
+      var index = 0, timer = null, visible = false, touched = false;
+
+      function showCount() { current.textContent = String(index + 1).padStart(2, '0'); }
+
+      function goTo(i) {
+        index = (i + slides.length) % slides.length;
+        showCount();
+        track.scrollTo({ left: slides[index].offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
+      }
+
+      // Al deslizar con el dedo, el contador sigue a la foto visible
+      function update() {
+        index = Math.round(track.scrollLeft / track.clientWidth);
+        showCount();
+      }
+
+      var scrollTick = false;
+      track.addEventListener('scroll', function () {
+        if (scrollTick) return;
+        scrollTick = true;
+        requestAnimationFrame(function () { scrollTick = false; update(); });
+      }, { passive: true });
+
+      function stopAuto() { touched = true; clearInterval(timer); timer = null; }
+      prev.addEventListener('click', function () { stopAuto(); goTo(index - 1); });
+      next.addEventListener('click', function () { stopAuto(); goTo(index + 1); });
+      track.addEventListener('pointerdown', stopAuto, { passive: true });
+      track.addEventListener('touchstart', stopAuto, { passive: true });
+
+      if (reduceMotion || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (visible && !touched && !timer) {
+          timer = setInterval(function () { if (visible && !document.hidden) goTo(index + 1); }, 5000);
+        } else if (!visible && timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      }, { threshold: 0.6 }).observe(slider);
+    });
+  }
+
   function setupHeader() {
     var header = document.querySelector('.header');
     if (!header) return;
@@ -758,6 +823,7 @@
     applyLang(detectLang());
     setupHero();
     setupVideos();
+    setupSliders();
     setupReveal();
     setInterval(tick, 30 * 1000);
   });
