@@ -32,6 +32,46 @@ La selección genera un objeto `order` (`buildOrder()`) que se pasa a `CHECKOUT.
 Hoy el proveedor es WhatsApp. Para una pasarela real se agrega otro proveedor en
 `CHECKOUT_PROVIDERS` y se apunta `CHECKOUT` a él; la interfaz no cambia.
 
+## Carta editable desde Google Sheets
+
+La carta (`menu.html`) puede leerse de una planilla de Google, así Maykol cambia precios o platos sin tocar código.
+Si la planilla no está configurada o Google no responde, se muestra la carta incluida en `assets/menu.js`.
+
+**Configuración (una sola vez):**
+
+1. En Google Sheets: *File → Import → Upload* → `docs/carta-google-sheets.csv` → *Replace spreadsheet*.
+2. Seleccionar la columna `prezzo` → *Format → Number → Plain text* (para que "1,5" o "8-12" no se transformen).
+3. *File → Share → Publish to web* → elegir la hoja → formato **CSV** → *Publish* → copiar la URL.
+4. Pegar esa URL en `SHEET_CSV_URL` dentro de `assets/menu.js`.
+
+**Columnas:**
+
+| Columna | Qué va |
+|---|---|
+| `sezione_id` | identificador sin espacios (`caffetteria`, `brunch`…). Define el orden de las secciones |
+| `sezione_it` / `sezione_en` | nombre de la sección |
+| `orario_cucina` | `si` para mostrar el horario de cocina junto al título (brunch) |
+| `gruppo_it` / `gruppo_en` | subtítulo opcional dentro de la sección (`Da condividere`, `Bio`…) |
+| `tipo` | `piatto`, `extra` (lista al pie del grupo) o `aggiunta` (+ al plato de arriba) |
+| `nome_it` / `nome_en` | nombre; si es igual en los dos idiomas, completar solo uno |
+| `descrizione_it` / `descrizione_en` | descripción opcional |
+| `prezzo` | `4,5` · `4.5` · `8-12` |
+| `allergeni` | números UE separados por coma: `1,7,8` |
+| `etichette` | `vegan`, `senza_glutine`, `anche_senza_glutine`, `non_disponibile` |
+| `titolo_extra_it` / `titolo_extra_en` | título de la lista de extras (por defecto "Extra") |
+
+Las filas incompletas (sin sección, nombre o precio) se ignoran. Los cambios en la planilla tardan unos minutos en verse (caché de Google).
+
+## Google y vista previa al compartir
+
+- **Ficha para Google**: bloque `application/ld+json` (tipo `CafeOrCoffeeShop`) en el `<head>` de cada página,
+  con dirección, teléfono, horario, menú e Instagram. Verificable en https://search.google.com/test/rich-results
+- **Vista previa** al compartir el link (WhatsApp, Instagram, Facebook): etiquetas `og:` + `img/og-manly.jpg` (1200×630).
+- **sitemap.xml** con las dos páginas, para enviarlo en Google Search Console.
+
+Las URLs son absolutas a `https://marcovf9.github.io/manly-the-office/`. Con dominio propio hay que reemplazarlas
+en `index.html`, `menu.html` y `sitemap.xml` (buscar `marcovf9.github.io`).
+
 ## Lista de fotos
 
 | # | Dónde | Foto definitiva | Estado |
@@ -39,12 +79,20 @@ Hoy el proveedor es WhatsApp. Para una pasarela real se agrega otro proveedor en
 | 1 | Inicio | La vidriera de Via Pisana | ✅ `acquerello-vidriera.jpg` (acuarela) |
 | 2 | Shop | La bolsa de L’Australiano sobre la barra, fondo limpio, luz natural | Etiqueta nueva `australiano-etichetta.jpg` (sirve hasta tener foto de la bolsa) |
 | 3 | Al banco · Caffetteria | Carrusel de 10 fotos | ✅ `caffe-01…10.jpg` + `latte-art.jpg` |
-| 4 | Al banco · Brunch | Carrusel de 5 fotos | ✅ `avocado-toast.jpg`, `brunch-02…04.jpg`, `pancakes.jpg` |
+| 4 | Al banco · Brunch | Carrusel de 4 fotos | ✅ `avocado-toast.jpg`, `brunch-02…04.jpg` |
 | 5 | Storia · apertura | Maykol y Alice detrás de la barra | ✅ `maykol-alice.jpg` |
 | 6 | Storia 01 · Firenze | Maykol haciendo latte art | ✅ Video `en-la-barra.mp4` |
 | 7 | Storia 02 · Australia (opcional) | Maykol en Australia (archivo) | Sin foto: capítulo solo texto |
 
-Fotos en `img/`, JPEG de hasta 1400 px. Video en H.264 sin audio (los iPhone graban en HEVC, que Chrome no reproduce).
+Fotos en `img/`, cada una en dos tamaños: `nombre.jpg` (hasta 1080 px de ancho) y `nombre-640.jpg` (para celular).
+El navegador elige solo con `srcset`/`sizes`. Video en H.264 sin audio, 540×816 (los iPhone graban en HEVC, que Chrome no reproduce).
+
+Para agregar una foto nueva (macOS, sin instalar nada):
+
+```bash
+sips -s format jpeg -s formatOptions 56 --resampleWidth 1080 original.jpg --out img/nombre.jpg
+sips -s format jpeg -s formatOptions 66 --resampleWidth 640 original.jpg --out img/nombre-640.jpg
+```
 
 ## Probar estados del horario
 
@@ -73,6 +121,10 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 
 ## Pendientes
 
+- [ ] Crear la planilla de Google Sheets y pegar su URL en `SHEET_CSV_URL`
+- [ ] Revisar con Maykol los alérgenos de la carta impresa (ver notas abajo)
+- [ ] Dar de alta el sitio en Google Search Console y enviar `sitemap.xml`
+
 - [ ] Precios definitivos de L'Australiano (hoy 25 € / 100 € orientativos)
 - [x] Nombres y descripciones de la carta en italiano (de la carta impresa)
 - [x] Precios: se usan los de la carta italiana (avocado y pane senza glutine 2,5 €, New York BB 9 €)
@@ -86,3 +138,13 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 - [ ] Confirmar WhatsApp Business en el +39 055 906 2024
 - [ ] Revisión de textos por un nativo (IT / EN)
 - [ ] Envío a domicilio en el shop (hoy solo ritiro in negozio)
+
+### Notas sobre alérgenos (carta impresa)
+
+La web reproduce exactamente los alérgenos de la carta. Puntos a confirmar con la cocina:
+
+- **Salmon bagel** (1,7,8,9,11): lleva salmón ahumado pero no figura el 4 (pesce); el Avocado toast 2.0 sí lo tiene.
+- **Farmer bagel, BLT y ALT**: llevan mayonesa y no figura el 3 (uova).
+- **Nocciolotto y Maple Pancakes**: sin alérgenos en la carta; la crema de avellanas suele llevar 8 (frutta a guscio).
+- **Vinos y spritz**: suelen contener 12 (solfiti), no figura.
+- Bebidas, extras y patate dolci no tienen alérgenos indicados.
