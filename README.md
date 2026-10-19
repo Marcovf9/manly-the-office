@@ -32,6 +32,16 @@ La selección genera un objeto `order` (`buildOrder()`) que se pasa a `CHECKOUT.
 Hoy el proveedor es WhatsApp. Para una pasarela real se agrega otro proveedor en
 `CHECKOUT_PROVIDERS` y se apunta `CHECKOUT` a él; la interfaz no cambia.
 
+## Google y vista previa al compartir
+
+- **Ficha para Google**: bloque `application/ld+json` (tipo `CafeOrCoffeeShop`) en el `<head>` de cada página,
+  con dirección, teléfono, horario, menú e Instagram. Verificable en https://search.google.com/test/rich-results
+- **Vista previa** al compartir el link (WhatsApp, Instagram, Facebook): etiquetas `og:` + `img/og-manly.jpg` (1200×630).
+- **sitemap.xml** con las dos páginas, para enviarlo en Google Search Console.
+
+Las URLs son absolutas a `https://marcovf9.github.io/manly-the-office/`. Con dominio propio hay que reemplazarlas
+en `index.html`, `menu.html` y `sitemap.xml` (buscar `marcovf9.github.io`).
+
 ## Lista de fotos
 
 | # | Dónde | Foto definitiva | Estado |
