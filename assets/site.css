@@ -1039,3 +1039,87 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .slider__btn:disabled { opacity: .3; cursor: default; }
 @media (hover: hover) { .slider__btn:not(:disabled):hover { background: var(--ink); color: var(--paper); } }
 @media (prefers-reduced-motion: reduce) { .slider__track { scroll-behavior: auto; } }
+
+/* ===== Botón flotante de WhatsApp ===== */
+.wa {
+  position: fixed;
+  left: max(16px, env(safe-area-inset-left));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+}
+.wa.is-hidden { opacity: 0; transform: translateY(12px); pointer-events: none; }
+.wa__button {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(30, 29, 26, .25);
+  transition: transform .2s var(--ease);
+}
+.wa__button svg { width: 28px; height: 28px; }
+@media (hover: hover) { .wa__button:hover { transform: scale(1.06); } }
+
+.wa__bubble {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  width: min(280px, calc(100vw - 32px));
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 30px rgba(30, 29, 26, .15);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+}
+.wa__bubble.is-open { opacity: 1; transform: none; }
+.wa__bubble::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  bottom: -6px;
+  width: 10px;
+  height: 10px;
+  background: var(--paper);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transform: rotate(45deg);
+}
+.wa__msg {
+  flex: 1;
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.85rem 0 0.85rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-decoration: none;
+}
+.wa__msg strong { font-weight: 500; }
+.wa__msg span { color: var(--ink-2); }
+.wa__close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+}
+.wa__close svg { width: 16px; height: 16px; }
+@media (hover: hover) { .wa__close:hover { color: var(--ink); } }
+
+/* Que el botón no tape el final del footer */
+.footer { padding-bottom: calc(var(--space-3) + 72px + env(safe-area-inset-bottom)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .wa, .wa__bubble { transition: none; }
+}
