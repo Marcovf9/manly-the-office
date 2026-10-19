@@ -379,18 +379,35 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 }
 .hero__media {
   position: relative;
-  height: clamp(250px, 44svh, 560px);
+  height: clamp(300px, 54svh, 620px);
   overflow: hidden;
   margin: 0;
 }
+/* Anclada abajo: así siempre se ve la firma de la autora (esquina inferior derecha) */
 .hero__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 62%;
-  transform-origin: 50% 70%;
-  will-change: transform;
+  object-position: 50% 100%;
+  transform-origin: 50% 100%;
 }
+.hero__art { display: block; height: 100%; color: inherit; }
+.hero__credit {
+  position: absolute;
+  left: var(--gutter);
+  bottom: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  background: rgba(246, 242, 232, .92);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.hero__credit svg { width: 12px; height: 12px; transform: rotate(-45deg); transition: transform .25s var(--ease); }
+@media (hover: hover) { .hero__art:hover .hero__credit svg { transform: rotate(-45deg) translateX(3px); } }
 .hero__panel {
   display: flex;
   flex-direction: column;
@@ -429,7 +446,10 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .hero__rating svg { width: 12px; height: 12px; }
 
 @media (max-width: 767px) {
-  .hero__panel { gap: 0.8rem; padding-top: var(--space-3); }
+  .hero__panel { gap: 0.6rem; padding-top: 1rem; }
+  .hero__title span:first-child { font-size: 2.5rem; }
+  .hero__title span:last-child { margin-top: 0.25rem; }
+  .hero__panel > .eyebrow { display: none; }
   .hero__lead { font-size: 0.95rem; }
   .hero__actions .btn { min-height: 46px; padding-inline: 1rem; }
 }
@@ -439,7 +459,9 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
     grid-template-columns: 1fr 1fr;
     min-height: min(calc(100svh - var(--header-h) - var(--topbar-h)), 920px);
   }
-  .hero__media { height: auto; min-height: 100%; }
+  /* La columna la define el hero; la imagen la llena sin estirarlo */
+  .hero__media { height: auto; min-height: 0; }
+  .hero__art { position: absolute; inset: 0; }
   .hero__panel { padding: var(--space-5) var(--gutter); gap: var(--space-3); }
   .hero__actions .btn { flex: 0 0 auto; }
 }
@@ -964,3 +986,8 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 
 .product__form { display: grid; gap: var(--space-3); }
 .product__media--label .product__tag { top: auto; bottom: 1rem; }
+
+/* Una sola macinatura disponible: ocupa todo el ancho */
+.choice__options.is-single { grid-template-columns: 1fr; }
+.choice__note { margin-top: 0.5rem; font-size: 0.85rem; color: var(--muted); }
+.blend { display: block; white-space: nowrap; }
