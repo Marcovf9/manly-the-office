@@ -38,8 +38,8 @@ Hoy el proveedor es WhatsApp. Para una pasarela real se agrega otro proveedor en
 |---|-------|-----------------|--------|
 | 1 | Inicio | La vidriera de Via Pisana | ✅ `acquerello-vidriera.jpg` (acuarela) |
 | 2 | Shop | La bolsa de L’Australiano sobre la barra, fondo limpio, luz natural | Etiqueta nueva `australiano-etichetta.jpg` (sirve hasta tener foto de la bolsa) |
-| 3 | Al banco · Caffetteria | Latte art | ✅ `latte-art.jpg` |
-| 4 | Al banco · Brunch | Avocado toast | ✅ `avocado-toast.jpg` |
+| 3 | Al banco · Caffetteria | Carrusel de 10 fotos | ✅ `caffe-01…10.jpg` + `latte-art.jpg` |
+| 4 | Al banco · Brunch | Carrusel de 5 fotos | ✅ `avocado-toast.jpg`, `brunch-02…04.jpg`, `pancakes.jpg` |
 | 5 | Storia · apertura | Maykol y Alice detrás de la barra | ✅ `maykol-alice.jpg` |
 | 6 | Storia 01 · Firenze | Maykol haciendo latte art | ✅ Video `en-la-barra.mp4` |
 | 7 | Storia 02 · Australia (opcional) | Maykol en Australia (archivo) | Sin foto: capítulo solo texto |
@@ -76,7 +76,7 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 - [ ] Precios definitivos de L'Australiano (hoy 25 € / 100 € orientativos)
 - [x] Nombres y descripciones de la carta en italiano (de la carta impresa)
 - [x] Precios: se usan los de la carta italiana (avocado y pane senza glutine 2,5 €, New York BB 9 €)
-- [ ] Horario de brunch: la carta dice 9:30, la web usa 8:30
+- [x] Horario de brunch confirmado: 8:30–14:30
 - [ ] Volver a ofrecer molido: `available: true` en `PRODUCT.grinds` (assets/site.js)
 - [ ] Alérgenos que faltan en la carta (Nocciolotto, Maple Pancakes, fries, bebidas)
 - [ ] Fotos que faltan o son provisorias (ver *Lista de fotos*)
