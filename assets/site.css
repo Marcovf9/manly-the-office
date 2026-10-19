@@ -652,7 +652,6 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 
 @media (min-width: 768px) {
   .cards { grid-template-columns: 1fr 1fr; gap: var(--space-3); }
-  .card:nth-child(2) { margin-top: var(--space-6); }
 }
 
 /* ===== Orari e indirizzo ===== */
