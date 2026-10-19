@@ -37,7 +37,7 @@ Hoy el proveedor es WhatsApp. Para una pasarela real se agrega otro proveedor en
 | # | Dónde | Foto definitiva | Estado |
 |---|-------|-----------------|--------|
 | 1 | Inicio | La vidriera de Via Pisana | ✅ `acquerello-vidriera.jpg` (acuarela) |
-| 2 | Shop | La bolsa de L’Australiano sobre la barra, fondo limpio, luz natural | Provisoria: cappuccino frente a la vidriera |
+| 2 | Shop | La bolsa de L’Australiano sobre la barra, fondo limpio, luz natural | Provisoria: diseño de la etiqueta `australiano-etichetta.jpg` |
 | 3 | Al banco · Caffetteria | Latte art | ✅ `latte-art.jpg` |
 | 4 | Al banco · Brunch | Avocado toast | Provisoria: pancakes |
 | 5 | Storia · apertura | Maykol y Alice detrás de la barra | ✅ `maykol-alice.jpg` |
