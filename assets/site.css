@@ -454,6 +454,8 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
   background: var(--paper-2);
 }
 .product__media img { width: 100%; height: 100%; object-fit: cover; }
+/* Etiqueta: se muestra entera, con el marrón de la etiqueta como fondo */
+.product__media--label { aspect-ratio: 1284 / 1400; background: #6B4C20; }
 .product__tag {
   position: absolute;
   left: 1rem;
@@ -961,3 +963,4 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 }
 
 .product__form { display: grid; gap: var(--space-3); }
+.product__media--label .product__tag { top: auto; bottom: 1rem; }
