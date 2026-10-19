@@ -39,12 +39,20 @@ Hoy el proveedor es WhatsApp. Para una pasarela real se agrega otro proveedor en
 | 1 | Inicio | La vidriera de Via Pisana | ✅ `acquerello-vidriera.jpg` (acuarela) |
 | 2 | Shop | La bolsa de L’Australiano sobre la barra, fondo limpio, luz natural | Etiqueta nueva `australiano-etichetta.jpg` (sirve hasta tener foto de la bolsa) |
 | 3 | Al banco · Caffetteria | Carrusel de 10 fotos | ✅ `caffe-01…10.jpg` + `latte-art.jpg` |
-| 4 | Al banco · Brunch | Carrusel de 5 fotos | ✅ `avocado-toast.jpg`, `brunch-02…04.jpg`, `pancakes.jpg` |
+| 4 | Al banco · Brunch | Carrusel de 4 fotos | ✅ `avocado-toast.jpg`, `brunch-02…04.jpg` |
 | 5 | Storia · apertura | Maykol y Alice detrás de la barra | ✅ `maykol-alice.jpg` |
 | 6 | Storia 01 · Firenze | Maykol haciendo latte art | ✅ Video `en-la-barra.mp4` |
 | 7 | Storia 02 · Australia (opcional) | Maykol en Australia (archivo) | Sin foto: capítulo solo texto |
 
-Fotos en `img/`, JPEG de hasta 1400 px. Video en H.264 sin audio (los iPhone graban en HEVC, que Chrome no reproduce).
+Fotos en `img/`, cada una en dos tamaños: `nombre.jpg` (hasta 1080 px de ancho) y `nombre-640.jpg` (para celular).
+El navegador elige solo con `srcset`/`sizes`. Video en H.264 sin audio, 540×816 (los iPhone graban en HEVC, que Chrome no reproduce).
+
+Para agregar una foto nueva (macOS, sin instalar nada):
+
+```bash
+sips -s format jpeg -s formatOptions 56 --resampleWidth 1080 original.jpg --out img/nombre.jpg
+sips -s format jpeg -s formatOptions 66 --resampleWidth 640 original.jpg --out img/nombre-640.jpg
+```
 
 ## Probar estados del horario
 
