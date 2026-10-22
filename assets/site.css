@@ -172,21 +172,27 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 
 /* ===== Barra superior (estado + dirección) ===== */
 .topbar {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--ochre-deep);
+  color: var(--ink);
   font-family: var(--mono);
   font-size: 0.7rem;
   letter-spacing: 0.04em;
 }
 .topbar__inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
   min-height: var(--topbar-h);
   padding-top: env(safe-area-inset-top);
 }
-.topbar a { text-decoration: none; opacity: .8; white-space: nowrap; }
+.topbar a { text-decoration: none; opacity: .85; white-space: nowrap; }
+.topbar__address { justify-self: end; }
+.topbar__announce { font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+@media (max-width: 899px) {
+  .topbar__inner { grid-template-columns: 1fr auto; }
+  .topbar__announce { display: none; }
+}
 .topbar .status { white-space: nowrap; min-width: 0; }
 @media (max-width: 420px) {
   .topbar { font-size: 0.66rem; letter-spacing: 0; }
@@ -213,6 +219,54 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
   transition: border-color .3s;
 }
 .header.is-scrolled { border-bottom-color: var(--line); }
+
+/* Inicio: header transparente sobre el ocre del hero; sólido al bajar o con el menú abierto */
+.header--overlay { transition: background-color .3s, border-color .3s; }
+.header--overlay:not(.is-scrolled) {
+  background: color-mix(in srgb, var(--ochre) 72%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+  backdrop-filter: blur(10px) saturate(1.1);
+}
+.is-locked .header--overlay { background: var(--paper); }
+.header--overlay:not(.is-scrolled) .brand__sub,
+.header--overlay:not(.is-scrolled) .lang button:not([aria-pressed="true"]) { color: var(--ink-2); }
+.header--overlay + .drawer + main .hero { margin-top: calc(-1 * var(--header-h)); }
+
+/* Links visibles en escritorio (como D612); la hamburguesa queda para celular */
+.header__nav { display: none; }
+@media (min-width: 1100px) {
+  .header__inner { grid-template-columns: auto 1fr auto; gap: var(--space-4); }
+  .header .burger { display: none; }
+  .header__nav {
+    display: flex;
+    justify-content: center;
+    gap: clamp(1.25rem, 2.5vw, 2.5rem);
+  }
+  .header__nav a {
+    position: relative;
+    padding-block: 0.4rem;
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .header__nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s var(--ease);
+  }
+  .header__nav a:hover::after,
+  .header__nav a:focus-visible::after { transform: scaleX(1); }
+}
 .header__inner {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -379,7 +433,7 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 }
 .hero__media {
   position: relative;
-  height: clamp(300px, 54svh, 620px);
+  height: calc(clamp(300px, 54svh, 620px) + var(--header-h));
   overflow: hidden;
   margin: 0;
 }
@@ -457,12 +511,12 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 @media (min-width: 900px) {
   .hero {
     grid-template-columns: 1fr 1fr;
-    min-height: min(calc(100svh - var(--header-h) - var(--topbar-h)), 920px);
+    min-height: min(calc(100svh - var(--topbar-h)), 980px);
   }
   /* La columna la define el hero; la imagen la llena sin estirarlo */
   .hero__media { height: auto; min-height: 0; }
   .hero__art { position: absolute; inset: 0; }
-  .hero__panel { padding: var(--space-5) var(--gutter); gap: var(--space-3); }
+  .hero__panel { padding: calc(var(--space-5) + var(--header-h)) var(--gutter) var(--space-5); gap: var(--space-3); }
   .hero__actions .btn { flex: 0 0 auto; }
 }
 
@@ -1204,3 +1258,21 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 @media (min-width: 1100px) {
   .ig__grid { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; }
 }
+
+/* ===== Frase grande ===== */
+.statement {
+  padding-block: var(--space-5);
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.statement__text {
+  max-width: 28ch;
+  margin-inline: auto;
+  font-size: clamp(1.5rem, 1.1rem + 2vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.25;
+}
+
+.link-arrow svg.is-out { transform: rotate(-45deg); }
+@media (hover: hover) { .link-arrow:hover svg.is-out { transform: rotate(-45deg) translateX(3px); } }
