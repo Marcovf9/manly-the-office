@@ -31,7 +31,7 @@
   var I18N = {
     it: {
       'meta.home.title': 'MANLY The Office — Specialty coffee & brunch, Firenze',
-      'meta.home.desc': 'Caffè di specialità di scuola australiana e brunch a San Frediano, Firenze. Via Pisana 48R.',
+      'meta.home.desc': 'Specialty coffee di scuola australiana e brunch a San Frediano, Firenze. Via Pisana 48R.',
       'meta.menu.title': 'Il menu — MANLY The Office, Firenze',
       'meta.menu.desc': 'Caffetteria, brunch, dolci e bar di MANLY The Office, Via Pisana 48R, Firenze.',
       'skip': 'Vai al contenuto',
@@ -61,7 +61,7 @@
       'status.opensOn': 'Chiuso · apre {d} alle {t}',
 
       'hero.eyebrow': 'Specialty coffee & brunch · Dal 2023',
-      'hero.lead': 'Caffè di specialità di scuola australiana e brunch, nel cuore di San Frediano.',
+      'hero.lead': 'Specialty coffee di scuola australiana e brunch, nel cuore di San Frediano.',
       'hero.menu': 'Il menu',
       'hero.directions': 'Come arrivare',
       'hero.rating': '4,9 su Google · oltre 660 recensioni',
@@ -95,7 +95,7 @@
       'nav.hours': 'Orari',
       'nav.storyShort': 'Storia',
       'topbar.announce': 'L’Australiano, la nostra miscela · Ordina su WhatsApp',
-      'statement.text': 'Caffè di specialità, ospitalità australiana. A San Frediano, dal 2023.',
+      'statement.text': 'Specialty coffee, ospitalità australiana. A San Frediano, dal 2023.',
       'coffees.d612': 'Acquista da D612',
       'ig.title': 'Dal nostro Instagram',
       'ig.follow': 'Seguici su Instagram',
@@ -122,7 +122,7 @@
 
       'offer.eyebrow': 'Al banco',
       'offer.title': 'Caffè e brunch, tutti i giorni tranne il lunedì.',
-      'offer.lead': 'Una carta corta e curata: caffetteria di specialità, brunch fino alle 14:30 e dolci in vetrina.',
+      'offer.lead': 'Una carta corta e curata: specialty coffee, brunch fino alle 14:30 e dolci in vetrina.',
       'offer.c1.title': 'Caffetteria',
       'offer.c1.meta': 'Espresso · Filtro',
       'offer.c1.text': 'Espresso, flat white, long black, batch brew e cold brew di stagione. Latte d’avena disponibile.',
