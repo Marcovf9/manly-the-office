@@ -68,6 +68,12 @@ Tres filas fijas (`australiano`, `singola_origine`, `filtro`): Maykol completa n
 del singola origine y del filtro de turno. Si están vacíos, la web muestra «Chiedi al banco quale abbiamo oggi».
 URL en `COFFEES_CSV_URL` (`assets/site.js`). Requiere que la pestaña esté publicada (Publicar en la web).
 
+## Instagram
+
+Sección «Dal nostro Instagram» en `index.html` con los 6 últimos reels (código oficial de Instagram).
+Para cambiarlos, reemplazar el ID de cada reel (`/reel/ID/`) en los `blockquote`. El script de Instagram se carga
+solo cuando la sección está cerca de la pantalla.
+
 ## Google y vista previa al compartir
 
 - **Ficha para Google**: bloque `application/ld+json` (tipo `CafeOrCoffeeShop`) en el `<head>` de cada página,
@@ -127,7 +133,8 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 
 ## Pendientes
 
-- [ ] Publicar en la web la pestaña «Caffè» (o todo el documento) como CSV
+- [x] Pestaña «Caffè» publicada (Hambela en singola origine, Kiandu AB en filtro)
+- [ ] Aviso de cookies: los reels de Instagram cargan scripts de Instagram
 
 - [x] Planilla de Google Sheets conectada
 - [ ] Revisar con Maykol los alérgenos de la carta impresa (ver notas abajo)
