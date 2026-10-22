@@ -41,8 +41,8 @@ Si la planilla no está configurada o Google no responde, se muestra la carta in
 (pestaña «Carta» con los datos, pestaña «Istruzioni» con la guía en italiano para Maykol). Celdas en formato texto,
 desplegables en Tipo / Etichette / Orario cucina, y una nota en cada encabezado.
 
-**Para conectarla (pendiente):** *Archivo → Compartir → Publicar en la web* → hoja «Carta» → **CSV** → *Publicar*,
-y pegar la URL en `SHEET_CSV_URL` dentro de `assets/menu.js`. Mientras no esté publicada, la web usa la carta del código.
+**Conectada:** la pestaña «Carta» está publicada como CSV y su URL está en `SHEET_CSV_URL` (`assets/menu.js`).
+Si Google no responde, la web muestra la carta incluida en el código.
 
 **Columnas:**
 
@@ -121,7 +121,7 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 
 ## Pendientes
 
-- [ ] Crear la planilla de Google Sheets y pegar su URL en `SHEET_CSV_URL`
+- [x] Planilla de Google Sheets conectada
 - [ ] Revisar con Maykol los alérgenos de la carta impresa (ver notas abajo)
 - [ ] Dar de alta el sitio en Google Search Console y enviar `sitemap.xml`
 
