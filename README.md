@@ -37,16 +37,16 @@ Hoy el proveedor es WhatsApp. Para una pasarela real se agrega otro proveedor en
 La carta (`menu.html`) puede leerse de una planilla de Google, así Maykol cambia precios o platos sin tocar código.
 Si la planilla no está configurada o Google no responde, se muestra la carta incluida en `assets/menu.js`.
 
-**Configuración (una sola vez):**
+**Planilla:** [MANLY The Office — Carta del sito](https://docs.google.com/spreadsheets/d/1wTb5QEdet-uMQH8-8eo1VwHeKGCkPNCQtkUHUb727j8/edit)
+(pestaña «Carta» con los datos, pestaña «Istruzioni» con la guía en italiano para Maykol). Celdas en formato texto,
+desplegables en Tipo / Etichette / Orario cucina, y una nota en cada encabezado.
 
-1. En Google Sheets: *File → Import → Upload* → `docs/carta-google-sheets.csv` → *Replace spreadsheet*.
-2. Seleccionar la columna `prezzo` → *Format → Number → Plain text* (para que "1,5" o "8-12" no se transformen).
-3. *File → Share → Publish to web* → elegir la hoja → formato **CSV** → *Publish* → copiar la URL.
-4. Pegar esa URL en `SHEET_CSV_URL` dentro de `assets/menu.js`.
+**Conectada:** la pestaña «Carta» está publicada como CSV y su URL está en `SHEET_CSV_URL` (`assets/menu.js`).
+Si Google no responde, la web muestra la carta incluida en el código.
 
 **Columnas:**
 
-| Columna | Qué va |
+| Columna (encabezado en la planilla) | Qué va |
 |---|---|
 | `sezione_id` | identificador sin espacios (`caffetteria`, `brunch`…). Define el orden de las secciones |
 | `sezione_it` / `sezione_en` | nombre de la sección |
@@ -121,7 +121,7 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 
 ## Pendientes
 
-- [ ] Crear la planilla de Google Sheets y pegar su URL en `SHEET_CSV_URL`
+- [x] Planilla de Google Sheets conectada
 - [ ] Revisar con Maykol los alérgenos de la carta impresa (ver notas abajo)
 - [ ] Dar de alta el sitio en Google Search Console y enviar `sitemap.xml`
 

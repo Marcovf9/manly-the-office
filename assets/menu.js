@@ -214,7 +214,7 @@
      (Archivo → Compartir → Publicar en la web → CSV), la carta se lee de ahí.
      Si está vacía, o Google no responde, se usa MENU (arriba) como respaldo.
      Plantilla con todas las columnas: docs/carta-google-sheets.csv */
-  var SHEET_CSV_URL = '';
+  var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSA0xWKycQPswGf7j60kCZ9JPYe1pP0UtaJ1ofHLSO5VSt8z2kT6oCFlmZ8zO8MjqE--grRjph0Nmay/pub?gid=1890421613&single=true&output=csv';
 
   // CSV con comillas, comas y saltos de línea dentro de los campos
   function parseCSV(text) {
@@ -260,7 +260,13 @@
 
   function menuFromCsv(text) {
     var rows = parseCSV(text);
-    var head = rows.shift().map(function (h) { return h.trim().toLowerCase(); });
+    // Encabezados legibles ("Nome (IT)", "Prezzo (€)", "Codice sezione") o técnicos ("nome_it")
+    var HEAD_ALIASES = { codice_sezione: 'sezione_id', prezzo_eur: 'prezzo' };
+    var head = rows.shift().map(function (h) {
+      var k = h.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/€/g, 'eur').replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+      return HEAD_ALIASES[k] || k;
+    });
     var col = function (r, name) { var i = head.indexOf(name); return i === -1 ? '' : (r[i] || '').trim(); };
     // Las filas se suman a su sección y grupo aunque estén desordenadas en la planilla
     var sections = [], byId = {}, section = null, group = null, lastItem = null;
