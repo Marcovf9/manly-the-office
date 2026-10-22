@@ -1171,3 +1171,36 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 @media (min-width: 900px) {
   .coffees__grid { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ===== Instagram ===== */
+.ig__grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(82vw, 340px);
+  gap: var(--space-2);
+  padding: 0 0 var(--space-2);
+  margin: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+.ig__item { scroll-snap-align: start; min-width: 0; }
+.ig__item .instagram-media {
+  min-width: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.ig__item blockquote.instagram-media {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 9 / 16;
+  background: var(--paper-2);
+}
+.ig__item blockquote a { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+@media (min-width: 1100px) {
+  .ig__grid { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; }
+}
