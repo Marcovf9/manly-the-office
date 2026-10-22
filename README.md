@@ -66,7 +66,7 @@ Las filas incompletas (sin sección, nombre o precio) se ignoran. Los cambios en
 
 Tres filas fijas (`australiano`, `singola_origine`, `filtro`): Maykol completa nombre, país, productor, proceso y notas
 del singola origine y del filtro de turno. Si están vacíos, la web muestra «Chiedi al banco quale abbiamo oggi».
-URL en `COFFEES_CSV_URL` (`assets/site.js`). Requiere que la pestaña esté publicada (Publicar en la web).
+URL en `COFFEES_CSV_URL` (`assets/site.js`). La columna «Link D612» agrega «Acquista da D612» en la tarjeta. Requiere que la pestaña esté publicada (Publicar en la web).
 
 ## Instagram
 
