@@ -214,7 +214,7 @@
      (Archivo → Compartir → Publicar en la web → CSV), la carta se lee de ahí.
      Si está vacía, o Google no responde, se usa MENU (arriba) como respaldo.
      Plantilla con todas las columnas: docs/carta-google-sheets.csv */
-  var SHEET_CSV_URL = '';
+  var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSA0xWKycQPswGf7j60kCZ9JPYe1pP0UtaJ1ofHLSO5VSt8z2kT6oCFlmZ8zO8MjqE--grRjph0Nmay/pub?gid=1890421613&single=true&output=csv';
 
   // CSV con comillas, comas y saltos de línea dentro de los campos
   function parseCSV(text) {
