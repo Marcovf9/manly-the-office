@@ -17,8 +17,8 @@
       groups: [{
         items: [
           { name: 'Espresso', price: 1.5 },
-          { name: 'Specialty singolo', price: 2 },
-          { name: 'Specialty doppio', price: 4 },
+          { name: 'Specialty singolo', price: 2, desc: { it: 'singola origine D612, cambia spesso', en: 'D612 single origin, rotating' } },
+          { name: 'Specialty doppio', price: 4, desc: { it: 'singola origine D612, cambia spesso', en: 'D612 single origin, rotating' } },
           { name: 'Macchiato', price: 1.6 },
           { name: { it: 'Espresso doppio', en: 'Espresso dbl' }, price: 3 },
           { name: 'Doppio macchiato', price: 3.5 },
@@ -43,7 +43,7 @@
       id: 'filtro-freddi', title: { it: 'Filtro e freddi', en: 'Filter & iced' },
       groups: [{
         items: [
-          { name: 'Batch Brew', price: 4.5 },
+          { name: 'Batch Brew', price: 4.5, desc: { it: 'filtro D612, cambia spesso', en: 'D612 filter coffee, rotating' } },
           { name: 'Iced coffee', price: 4 },
           { name: 'Iced latte', price: 4.5 },
           { name: 'Iced Mocha', price: 5.5 },
@@ -216,25 +216,7 @@
      Plantilla con todas las columnas: docs/carta-google-sheets.csv */
   var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSA0xWKycQPswGf7j60kCZ9JPYe1pP0UtaJ1ofHLSO5VSt8z2kT6oCFlmZ8zO8MjqE--grRjph0Nmay/pub?gid=1890421613&single=true&output=csv';
 
-  // CSV con comillas, comas y saltos de línea dentro de los campos
-  function parseCSV(text) {
-    var rows = [], row = [], field = '', quoted = false;
-    for (var i = 0; i < text.length; i++) {
-      var c = text[i];
-      if (quoted) {
-        if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
-        else if (c === '"') quoted = false;
-        else field += c;
-      } else if (c === '"') quoted = true;
-      else if (c === ',') { row.push(field); field = ''; }
-      else if (c === '\n' || c === '\r') {
-        if (c === '\r' && text[i + 1] === '\n') i++;
-        row.push(field); rows.push(row); row = []; field = '';
-      } else field += c;
-    }
-    if (field !== '' || row.length) { row.push(field); rows.push(row); }
-    return rows.filter(function (r) { return r.some(function (v) { return v.trim() !== ''; }); });
-  }
+  var parseCSV = M.parseCSV;
 
   var SHEET_TAGS = { vegan: 'vg', senza_glutine: 'gf', anche_senza_glutine: 'gfAvailable', non_disponibile: 'unavailable' };
 
