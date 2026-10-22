@@ -91,6 +91,24 @@
       'shop.imgAlt': 'Etichetta di L’Australiano, la miscela di MANLY The Office',
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Firenze ·',
+      'nav.coffees': 'I nostri caffè',
+      'coffees.eyebrow': 'Al banco · D612 Coffee Roasters',
+      'coffees.title': 'I nostri caffè',
+      'coffees.lead': 'Tre caffè, tutti tostati a Firenze da D612. La miscela della casa resta sempre; singola origine e filtro cambiano spesso.',
+      'coffees.always': 'Sempre',
+      'coffees.rotating': 'Cambia spesso',
+      'coffees.ask': 'Chiedi al banco quale abbiamo oggi.',
+      'coffees.origin': 'Origine',
+      'coffees.producer': 'Produttore',
+      'coffees.process': 'Processo',
+      'coffees.notes': 'Note',
+      'coffees.roaster': 'Tostato da',
+      'coffees.buy': 'Portalo a casa',
+      'coffees.australiano.use': 'Espresso · miscela della casa',
+      'coffees.singola_origine.use': 'Specialty singolo e doppio',
+      'coffees.singola_origine.title': 'Singola origine',
+      'coffees.filtro.use': 'Batch brew',
+      'coffees.filtro.title': 'Filtro',
 
       'offer.eyebrow': 'Al banco',
       'offer.title': 'Caffè e brunch, tutti i giorni tranne il lunedì.',
@@ -236,6 +254,24 @@
       'shop.imgAlt': 'L’Australiano label, the MANLY The Office blend',
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Florence ·',
+      'nav.coffees': 'Our coffees',
+      'coffees.eyebrow': 'At the counter · D612 Coffee Roasters',
+      'coffees.title': 'Our coffees',
+      'coffees.lead': 'Three coffees, all roasted in Florence by D612. The house blend never changes; single origin and filter rotate often.',
+      'coffees.always': 'Always',
+      'coffees.rotating': 'Rotating',
+      'coffees.ask': 'Ask at the counter which one we have today.',
+      'coffees.origin': 'Origin',
+      'coffees.producer': 'Producer',
+      'coffees.process': 'Process',
+      'coffees.notes': 'Notes',
+      'coffees.roaster': 'Roasted by',
+      'coffees.buy': 'Take it home',
+      'coffees.australiano.use': 'Espresso · house blend',
+      'coffees.singola_origine.use': 'Specialty single and double shot',
+      'coffees.singola_origine.title': 'Single origin',
+      'coffees.filtro.use': 'Batch brew',
+      'coffees.filtro.title': 'Filter',
 
       'offer.eyebrow': 'At the counter',
       'offer.title': 'Coffee and brunch, every day except Monday.',
@@ -696,7 +732,7 @@
   }
 
   var REVEAL = [
-    '.section__head > *', '.product__info > *', '.card__body', '.offer__more',
+    '.section__head > *', '.product__info > *', '.card__body', '.offer__more', '.coffee',
     '.hours', '.hours__kitchen', '.place', '.place__actions', '.story__intro-text > *',
     '.chapter__body', '.welcome', '.pillar', '.press', '.footer__col',
     '.menu-head__grid > *'
@@ -888,6 +924,109 @@
     nextTimer = setTimeout(showBubble, 6000);
   }
 
+  /* ===== CSV (compartido con menu.js) =====
+     Comillas, comas y saltos de línea dentro de los campos. */
+  function parseCSV(text) {
+    var rows = [], row = [], field = '', quoted = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (quoted) {
+        if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+        else if (c === '"') quoted = false;
+        else field += c;
+      } else if (c === '"') quoted = true;
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n' || c === '\r') {
+        if (c === '\r' && text[i + 1] === '\n') i++;
+        row.push(field); rows.push(row); row = []; field = '';
+      } else field += c;
+    }
+    if (field !== '' || row.length) { row.push(field); rows.push(row); }
+    return rows.filter(function (r) { return r.some(function (v) { return v.trim() !== ''; }); });
+  }
+
+  // Filas del CSV como objetos con claves normalizadas ("Nome del caffè" -> "nome_del_caffe")
+  function csvObjects(text) {
+    var rows = parseCSV(text);
+    var head = rows.shift().map(function (h) {
+      return h.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/€/g, 'eur').replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    });
+    return rows.map(function (r) {
+      var o = {};
+      head.forEach(function (h, i) { o[h] = (r[i] || '').trim(); });
+      return o;
+    });
+  }
+
+  /* ===== I nostri caffè =====
+     L'Australiano es fijo; singola origine y filtro cambian y se cargan en la
+     pestaña «Caffè» de la planilla. Sin datos, se muestra «Chiedi al banco». */
+  var COFFEES_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSA0xWKycQPswGf7j60kCZ9JPYe1pP0UtaJ1ofHLSO5VSt8z2kT6oCFlmZ8zO8MjqE--grRjph0Nmay/pub?gid=3001&single=true&output=csv';
+
+  var COFFEES = [
+    { codice: 'australiano', nome_del_caffe: 'L’Australiano', produttore_fattoria: '80% Daniel Caldeira + 20% Mutovu',
+      processo: 'Natural', note_it: 'Cioccolato, nocciola, frutti tropicali', note_en: 'Chocolate, hazelnut, tropical fruits',
+      torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
+    { codice: 'singola_origine', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
+    { codice: 'filtro', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' }
+  ];
+
+  function coffeeSpec(label, value) {
+    return value ? '<div><dt>' + esc(t(label)) + '</dt><dd>' + esc(value) + '</dd></div>' : '';
+  }
+
+  function renderCoffees() {
+    var list = document.getElementById('coffees-list');
+    if (!list) return;
+    list.innerHTML = COFFEES.filter(function (c) { return !/^no$/i.test(c.mostrare || ''); }).map(function (c, i) {
+      var fixed = c.codice === 'australiano';
+      var title = c.nome_del_caffe || t('coffees.' + c.codice + '.title');
+      var notes = lang() === 'en' ? (c.note_en || c.note_it) : (c.note_it || c.note_en);
+      var known = !!c.nome_del_caffe;
+      return '<article class="coffee">' +
+        '<p class="coffee__top"><span class="coffee__num">' + String(i + 1).padStart(2, '0') + '</span>' +
+          '<span class="coffee__badge' + (fixed ? ' is-fixed' : '') + '">' + esc(t(fixed ? 'coffees.always' : 'coffees.rotating')) + '</span></p>' +
+        '<p class="coffee__use">' + esc(t('coffees.' + c.codice + '.use')) + '</p>' +
+        '<h3 class="coffee__name">' + esc(title) + '</h3>' +
+        (known
+          ? '<dl class="coffee__specs">' +
+              coffeeSpec('coffees.origin', c.paese) +
+              coffeeSpec('coffees.producer', c.produttore_fattoria) +
+              coffeeSpec('coffees.process', c.processo) +
+              coffeeSpec('coffees.notes', notes) +
+              coffeeSpec('coffees.roaster', c.torrefazione) +
+            '</dl>'
+          : '<p class="coffee__ask">' + esc(t('coffees.ask')) + '</p>' +
+            '<dl class="coffee__specs">' + coffeeSpec('coffees.roaster', c.torrefazione) + '</dl>') +
+        (fixed ? '<a class="link-arrow" href="#shop"><span>' + esc(t('coffees.buy')) + '</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>' : '') +
+        '</article>';
+    }).join('');
+    setupReveal(list);
+  }
+
+  function loadCoffees() {
+    if (!document.getElementById('coffees-list')) return;
+    renderCoffees();
+    document.addEventListener('langchange', renderCoffees);
+    if (!COFFEES_CSV_URL || !window.fetch) return;
+    fetch(COFFEES_CSV_URL, { cache: 'no-store' })
+      .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
+      .then(function (text) {
+        var rows = csvObjects(text).filter(function (r) { return r.codice; });
+        if (!rows.length) throw new Error('vacía');
+        // Solo los tres códigos conocidos, en su orden
+        COFFEES = COFFEES.map(function (base) {
+          var row = rows.filter(function (r) { return r.codice === base.codice; })[0];
+          return row || base;
+        });
+        renderCoffees();
+      })
+      .catch(function (err) {
+        if (window.console) console.warn('Caffè: no se pudo leer Google Sheets (' + err.message + '), uso los datos incluidos.');
+      });
+  }
+
   function setupHeader() {
     var header = document.querySelector('.header');
     if (!header) return;
@@ -898,7 +1037,7 @@
 
   /* ===== API para menu.js ===== */
   window.MANLY = {
-    BIZ: BIZ, t: t, tr: tr, esc: esc, lang: lang, range: range,
+    BIZ: BIZ, t: t, tr: tr, esc: esc, lang: lang, range: range, parseCSV: parseCSV,
     formatPrice: formatPrice, setupReveal: setupReveal, getStatus: getStatus, applyLang: applyLang
   };
 
@@ -915,6 +1054,7 @@
     setupHero();
     setupVideos();
     setupSliders();
+    loadCoffees();
     setupReveal();
     setInterval(tick, 30 * 1000);
   });

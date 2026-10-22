@@ -62,6 +62,12 @@ Si Google no responde, la web muestra la carta incluida en el código.
 
 Las filas incompletas (sin sección, nombre o precio) se ignoran. Los cambios en la planilla tardan unos minutos en verse (caché de Google).
 
+### Pestaña «Caffè»
+
+Tres filas fijas (`australiano`, `singola_origine`, `filtro`): Maykol completa nombre, país, productor, proceso y notas
+del singola origine y del filtro de turno. Si están vacíos, la web muestra «Chiedi al banco quale abbiamo oggi».
+URL en `COFFEES_CSV_URL` (`assets/site.js`). Requiere que la pestaña esté publicada (Publicar en la web).
+
 ## Google y vista previa al compartir
 
 - **Ficha para Google**: bloque `application/ld+json` (tipo `CafeOrCoffeeShop`) en el `<head>` de cada página,
@@ -120,6 +126,8 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `style:`, `docs:`, `refactor:`, `chore:`.
 
 ## Pendientes
+
+- [ ] Publicar en la web la pestaña «Caffè» (o todo el documento) como CSV
 
 - [x] Planilla de Google Sheets conectada
 - [ ] Revisar con Maykol los alérgenos de la carta impresa (ver notas abajo)
