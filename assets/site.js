@@ -92,6 +92,9 @@
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Firenze ·',
       'nav.coffees': 'I nostri caffè',
+      'ig.title': 'Dal nostro Instagram',
+      'ig.follow': 'Seguici su Instagram',
+      'ig.view': 'Guarda su Instagram',
       'coffees.eyebrow': 'Al banco · D612 Coffee Roasters',
       'coffees.title': 'I nostri caffè',
       'coffees.lead': 'Tre caffè, tutti tostati a Firenze da D612. La miscela della casa resta sempre; singola origine e filtro cambiano spesso.',
@@ -101,6 +104,8 @@
       'coffees.origin': 'Origine',
       'coffees.producer': 'Produttore',
       'coffees.process': 'Processo',
+      'coffees.variety': 'Varietà',
+      'coffees.altitude': 'Altitudine',
       'coffees.notes': 'Note',
       'coffees.roaster': 'Tostato da',
       'coffees.buy': 'Portalo a casa',
@@ -255,6 +260,9 @@
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Florence ·',
       'nav.coffees': 'Our coffees',
+      'ig.title': 'From our Instagram',
+      'ig.follow': 'Follow us on Instagram',
+      'ig.view': 'View on Instagram',
       'coffees.eyebrow': 'At the counter · D612 Coffee Roasters',
       'coffees.title': 'Our coffees',
       'coffees.lead': 'Three coffees, all roasted in Florence by D612. The house blend never changes; single origin and filter rotate often.',
@@ -264,6 +272,8 @@
       'coffees.origin': 'Origin',
       'coffees.producer': 'Producer',
       'coffees.process': 'Process',
+      'coffees.variety': 'Variety',
+      'coffees.altitude': 'Altitude',
       'coffees.notes': 'Notes',
       'coffees.roaster': 'Roasted by',
       'coffees.buy': 'Take it home',
@@ -968,8 +978,12 @@
     { codice: 'australiano', nome_del_caffe: 'L’Australiano', produttore_fattoria: '80% Daniel Caldeira + 20% Mutovu',
       processo: 'Natural', note_it: 'Cioccolato, nocciola, frutti tropicali', note_en: 'Chocolate, hazelnut, tropical fruits',
       torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
-    { codice: 'singola_origine', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
-    { codice: 'filtro', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' }
+    { codice: 'singola_origine', nome_del_caffe: 'Hambela', paese: 'Etiopia', zona: 'Hambela, Guji',
+      produttore_fattoria: 'Hambela Station', varieta: 'Heirloom', processo: 'Anaerobic natural', altitudine: '1900–2300 m',
+      note_it: 'Pesca, mirtillo', note_en: 'Peach, blueberry', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
+    { codice: 'filtro', nome_del_caffe: 'Kiandu AB', paese: 'Kenya', zona: 'Tetu, Nyeri',
+      produttore_fattoria: 'Mutheka Farmers (Kiandu Factory)', varieta: 'SL28, SL34', processo: 'Washed', altitudine: '1650 m',
+      note_it: 'Pompelmo, pesca', note_en: 'Grapefruit, peach', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' }
   ];
 
   function coffeeSpec(label, value) {
@@ -991,9 +1005,11 @@
         '<h3 class="coffee__name">' + esc(title) + '</h3>' +
         (known
           ? '<dl class="coffee__specs">' +
-              coffeeSpec('coffees.origin', c.paese) +
+              coffeeSpec('coffees.origin', [c.paese, c.zona].filter(Boolean).join(' · ')) +
               coffeeSpec('coffees.producer', c.produttore_fattoria) +
+              coffeeSpec('coffees.variety', c.varieta) +
               coffeeSpec('coffees.process', c.processo) +
+              coffeeSpec('coffees.altitude', c.altitudine) +
               coffeeSpec('coffees.notes', notes) +
               coffeeSpec('coffees.roaster', c.torrefazione) +
             '</dl>'
@@ -1027,6 +1043,26 @@
       });
   }
 
+  /* ===== Instagram =====
+     El script oficial de Instagram (que pone cookies) se carga solo cuando la
+     sección está por entrar en pantalla, para no frenar la carga inicial. */
+  function setupInstagram() {
+    var grid = document.querySelector('[data-ig]');
+    if (!grid) return;
+    function load() {
+      if (window.instgrm) { window.instgrm.Embeds.process(); return; }
+      var s = document.createElement('script');
+      s.src = 'https://www.instagram.com/embed.js';
+      s.async = true;
+      document.body.appendChild(s);
+    }
+    if (!('IntersectionObserver' in window)) { load(); return; }
+    var io = new IntersectionObserver(function (entries) {
+      if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); }
+    }, { rootMargin: '600px 0px' });
+    io.observe(grid);
+  }
+
   function setupHeader() {
     var header = document.querySelector('.header');
     if (!header) return;
@@ -1055,6 +1091,7 @@
     setupVideos();
     setupSliders();
     loadCoffees();
+    setupInstagram();
     setupReveal();
     setInterval(tick, 30 * 1000);
   });
