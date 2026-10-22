@@ -92,6 +92,11 @@
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Firenze ·',
       'nav.coffees': 'I nostri caffè',
+      'nav.hours': 'Orari',
+      'nav.storyShort': 'Storia',
+      'topbar.announce': 'L’Australiano, la nostra miscela · Ordina su WhatsApp',
+      'statement.text': 'Caffè di specialità, ospitalità australiana. A San Frediano, dal 2023.',
+      'coffees.d612': 'Acquista da D612',
       'ig.title': 'Dal nostro Instagram',
       'ig.follow': 'Seguici su Instagram',
       'ig.view': 'Guarda su Instagram',
@@ -260,6 +265,11 @@
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Florence ·',
       'nav.coffees': 'Our coffees',
+      'nav.hours': 'Hours',
+      'nav.storyShort': 'Story',
+      'topbar.announce': 'L’Australiano, our house blend · Order on WhatsApp',
+      'statement.text': 'Specialty coffee, Australian hospitality. In San Frediano, since 2023.',
+      'coffees.d612': 'Buy from D612',
       'ig.title': 'From our Instagram',
       'ig.follow': 'Follow us on Instagram',
       'ig.view': 'View on Instagram',
@@ -980,10 +990,12 @@
       torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
     { codice: 'singola_origine', nome_del_caffe: 'Hambela', paese: 'Etiopia', zona: 'Hambela, Guji',
       produttore_fattoria: 'Hambela Station', varieta: 'Heirloom', processo: 'Anaerobic natural', altitudine: '2000 m',
-      note_it: 'Pesca, bubble gum', note_en: 'Peach, bubblegum', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
+      note_it: 'Pesca, bubble gum', note_en: 'Peach, bubblegum', torrefazione: 'D612 Coffee Roasters', mostrare: 'si',
+      link: 'https://www.d612coffeeroasters.com/products/hambela-ethiopia' },
     { codice: 'filtro', nome_del_caffe: 'Kiandu AB', paese: 'Kenya', zona: 'Tetu, Nyeri',
       produttore_fattoria: 'Mutheka Farmers', varieta: 'SL28, SL34', processo: 'Washed', altitudine: '1650 m',
-      note_it: 'Pompelmo, pesca', note_en: 'Grapefruit, peach', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' }
+      note_it: 'Pompelmo, pesca', note_en: 'Grapefruit, peach', torrefazione: 'D612 Coffee Roasters', mostrare: 'si',
+      link: 'https://www.d612coffeeroasters.com/products/kiandu-ab-kenya' }
   ];
 
   function coffeeSpec(label, value) {
@@ -998,6 +1010,7 @@
       var title = c.nome_del_caffe || t('coffees.' + c.codice + '.title');
       var notes = lang() === 'en' ? (c.note_en || c.note_it) : (c.note_it || c.note_en);
       var known = !!c.nome_del_caffe;
+      var link = c.link_d612 || c.link || '';
       return '<article class="coffee">' +
         '<p class="coffee__top"><span class="coffee__num">' + String(i + 1).padStart(2, '0') + '</span>' +
           '<span class="coffee__badge' + (fixed ? ' is-fixed' : '') + '">' + esc(t(fixed ? 'coffees.always' : 'coffees.rotating')) + '</span></p>' +
@@ -1016,6 +1029,9 @@
           : '<p class="coffee__ask">' + esc(t('coffees.ask')) + '</p>' +
             '<dl class="coffee__specs">' + coffeeSpec('coffees.roaster', c.torrefazione) + '</dl>') +
         (fixed ? '<a class="link-arrow" href="#shop"><span>' + esc(t('coffees.buy')) + '</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>' : '') +
+        (!fixed && known && /^https:\/\//.test(link)
+          ? '<a class="link-arrow" href="' + esc(link) + '" target="_blank" rel="noopener"><span>' + esc(t('coffees.d612')) + '</span><svg aria-hidden="true" class="is-out"><use href="#i-arrow"/></svg></a>'
+          : '') +
         '</article>';
     }).join('');
     setupReveal(list);
