@@ -40,7 +40,9 @@ Si la planilla no está configurada o Google no responde, se muestra la carta in
 **Configuración (una sola vez):**
 
 1. En Google Sheets: *File → Import → Upload* → `docs/carta-google-sheets.csv` → *Replace spreadsheet*.
-2. Seleccionar la columna `prezzo` → *Format → Number → Plain text* (para que "1,5" o "8-12" no se transformen).
+2. Seleccionar las columnas `prezzo` y `allergeni` → *Format → Number → Plain text*. Sin esto, Sheets convierte
+   valores como "1,7,8" en una fecha (1/7/2008) o "8-12" en el 12 de agosto. Después de cambiar el formato, revisar
+   que el Farmer bagel tenga `1,7,8` en `allergeni`.
 3. *File → Share → Publish to web* → elegir la hoja → formato **CSV** → *Publish* → copiar la URL.
 4. Pegar esa URL en `SHEET_CSV_URL` dentro de `assets/menu.js`.
 
