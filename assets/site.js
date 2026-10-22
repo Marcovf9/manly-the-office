@@ -979,10 +979,10 @@
       processo: 'Natural', note_it: 'Cioccolato, nocciola, frutti tropicali', note_en: 'Chocolate, hazelnut, tropical fruits',
       torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
     { codice: 'singola_origine', nome_del_caffe: 'Hambela', paese: 'Etiopia', zona: 'Hambela, Guji',
-      produttore_fattoria: 'Hambela Station', varieta: 'Heirloom', processo: 'Anaerobic natural', altitudine: '1900–2300 m',
-      note_it: 'Pesca, mirtillo', note_en: 'Peach, blueberry', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
+      produttore_fattoria: 'Hambela Station', varieta: 'Heirloom', processo: 'Anaerobic natural', altitudine: '2000 m',
+      note_it: 'Pesca, bubble gum', note_en: 'Peach, bubblegum', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
     { codice: 'filtro', nome_del_caffe: 'Kiandu AB', paese: 'Kenya', zona: 'Tetu, Nyeri',
-      produttore_fattoria: 'Mutheka Farmers (Kiandu Factory)', varieta: 'SL28, SL34', processo: 'Washed', altitudine: '1650 m',
+      produttore_fattoria: 'Mutheka Farmers', varieta: 'SL28, SL34', processo: 'Washed', altitudine: '1650 m',
       note_it: 'Pompelmo, pesca', note_en: 'Grapefruit, peach', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' }
   ];
 
