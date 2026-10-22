@@ -260,7 +260,13 @@
 
   function menuFromCsv(text) {
     var rows = parseCSV(text);
-    var head = rows.shift().map(function (h) { return h.trim().toLowerCase(); });
+    // Encabezados legibles ("Nome (IT)", "Prezzo (€)", "Codice sezione") o técnicos ("nome_it")
+    var HEAD_ALIASES = { codice_sezione: 'sezione_id', prezzo_eur: 'prezzo' };
+    var head = rows.shift().map(function (h) {
+      var k = h.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/€/g, 'eur').replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+      return HEAD_ALIASES[k] || k;
+    });
     var col = function (r, name) { var i = head.indexOf(name); return i === -1 ? '' : (r[i] || '').trim(); };
     // Las filas se suman a su sección y grupo aunque estén desordenadas en la planilla
     var sections = [], byId = {}, section = null, group = null, lastItem = null;
