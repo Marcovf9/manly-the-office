@@ -16,7 +16,7 @@
   --paper-2: #EFE9DB;
   --ink: #1E1D1A;
   --ink-2: #4A4740;
-  --muted: #77736A;
+  --muted: #67635A;
   --line: #DCD5C5;
   --ochre: #DCCE95;
   --ochre-deep: #B89B45;
@@ -403,6 +403,8 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .drawer.is-open .drawer__nav li:nth-child(2) { transition-delay: .05s; }
 .drawer.is-open .drawer__nav li:nth-child(3) { transition-delay: .1s; }
 .drawer.is-open .drawer__nav li:nth-child(4) { transition-delay: .15s; }
+.drawer.is-open .drawer__nav li:nth-child(5) { transition-delay: .2s; }
+.drawer.is-open .drawer__nav li:nth-child(6) { transition-delay: .25s; }
 
 .drawer__info {
   display: grid;
@@ -1021,8 +1023,6 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .js .reveal-media.is-in > img,
 .js .reveal-media.is-in > video { transform: none; }
 
-.js .hero__media img { transform: scale(1.06); transition: transform 2.2s var(--ease); }
-.js .is-loaded .hero__media img { transform: scale(1); }
 .js .hero__panel > * { opacity: 0; transform: translateY(14px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
 .js .is-loaded .hero__panel > * { opacity: 1; transform: none; }
 .js .is-loaded .hero__panel > :nth-child(2) { transition-delay: .1s; }
@@ -1034,7 +1034,7 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
   .marquee__track { animation: none; }
   .drawer__nav li { opacity: 1; transform: none; transition: none; }
   .js .reveal, .js .reveal-media, .js .reveal-media > img, .js .reveal-media > video,
-  .js .hero__media img, .js .hero__panel > * {
+  .js .hero__panel > * {
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;
@@ -1410,3 +1410,10 @@ html[lang="it"] .lang-en { display: none; }
 .legal ul { display: grid; gap: 0.5rem; padding-left: 1.2rem; margin-top: 0.75rem; }
 .legal a { text-underline-offset: 3px; }
 .legal .btn { margin-top: var(--space-4); }
+
+/* Auditoría: contraste sobre ocre y espacio reservado para evitar saltos */
+.hero .eyebrow,
+.hero__rating { color: var(--ink-2); }
+.menu-nav ul { min-height: 50px; }
+/* La carta se dibuja con JS: reservar espacio para que lo de abajo no salte */
+#menu-list:empty { min-height: 200vh; }
