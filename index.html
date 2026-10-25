@@ -75,12 +75,10 @@
   </script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220' fill='none' stroke='%231E1D1A' stroke-width='9'%3E%3Ccircle cx='110' cy='110' r='104'/%3E%3Cpath d='M30 37 L49 76 L85 5 V215 M85 107 L144 209 M144 7 V212 M144 173 H197 V102 L185 34'/%3E%3C/svg%3E">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Jost:wght@300;400;500&display=swap">
+  <link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="img/acquerello-vidriera.jpg" imagesrcset="img/acquerello-vidriera-640.jpg 640w, img/acquerello-vidriera.jpg 1008w" imagesizes="(min-width: 900px) 50vw, 100vw">
-  <link rel="stylesheet" href="assets/site.css?v=202610251552">
-  <script src="assets/site.js?v=202610251552" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=202610251606">
+  <script src="assets/site.js?v=202610251606" defer></script>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#contenuto" data-i18n="skip">Vai al contenuto</a>
@@ -105,7 +103,7 @@
         <span class="status__dot" aria-hidden="true"></span>
         <span class="status__text">&nbsp;</span>
       </p>
-      <a class="topbar__announce" href="./#shop"><span data-i18n="topbar.announce">L’Australiano, la nostra miscela · Ordina su WhatsApp</span> →</a>
+      <a class="topbar__announce" href="./#shop"><span data-i18n="topbar.announce">L’Australiano, la nostra miscela · Ordina su Instagram</span> →</a>
       <a class="topbar__address" href="#" data-href="maps" target="_blank" rel="noopener">Via Pisana 48R<span class="topbar__city"> · Firenze</span></a>
     </div>
   </div>
@@ -262,11 +260,12 @@
                   <output id="qty" aria-live="polite">1</output>
                   <button type="button" data-qty="1" aria-label="Più" data-i18n-attr="aria-label:shop.more">+</button>
                 </div>
-                <button type="submit" class="btn btn--block" data-i18n="shop.cta">Ordina su WhatsApp</button>
+                <button type="submit" class="btn btn--block" data-i18n="shop.cta">Ordina su Instagram</button>
               </div>
             </div>
 
-            <p class="product__fine" data-i18n="shop.fine">Ritiro in negozio, Via Pisana 48R. Nessun pagamento online: l’ordine si conferma su WhatsApp.</p>
+            <p class="product__fine" data-i18n="shop.fine">Ritiro in negozio, Via Pisana 48R. Nessun pagamento online: l’ordine si conferma su Instagram.</p>
+            <p class="shop-notice" id="shop-notice" role="status" hidden></p>
             <p class="product__preview"><span data-i18n="shop.preview">Messaggio:</span> <q id="shop-message"></q></p>
           </form>
         </div>
@@ -404,6 +403,7 @@
 
         <div class="visit__grid">
           <div>
+            <p class="closure-note" id="closure-note" role="status" hidden></p>
             <ul class="hours" id="hours-list"></ul>
             <p class="hours__kitchen"><span data-i18n="orari.kitchen">Cucina e brunch</span><strong data-kitchen>8:30–14:00</strong></p>
 
@@ -417,11 +417,13 @@
             </div>
           </div>
 
-          <div class="map">
-            <iframe
-              src="https://www.google.com/maps?output=embed&amp;hl=it&amp;q=MANLY%20The%20Office%2C%20Via%20Pisana%2048R%2C%2050143%20Firenze"
-              title="Mappa: MANLY The Office, Via Pisana 48R, Firenze" data-i18n-attr="title:dove.mapTitle"
-              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <!-- El mapa de Google se carga solo con consentimiento (pone cookies de terceros) -->
+          <div class="map" data-embed="map">
+            <div class="embed-gate">
+              <p data-i18n="consent.mapText">La mappa è fornita da Google Maps, che usa cookie di terze parti.</p>
+              <button type="button" class="btn" data-embed-load="map" data-i18n="consent.mapLoad">Mostra la mappa</button>
+              <a class="embed-gate__alt" href="#" data-href="maps" target="_blank" rel="noopener" data-i18n="dove.openMaps">Apri in Google Maps</a>
+            </div>
           </div>
         </div>
       </div>
@@ -527,6 +529,10 @@
           <h2 class="h-lg" id="ig-title" data-i18n="ig.title">Dal nostro Instagram</h2>
           <p><a class="link-arrow" href="#" data-href="instagram" target="_blank" rel="noopener"><span data-i18n="ig.follow">Seguici su Instagram</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
         </header>
+        <div class="embed-gate embed-gate--bar" data-ig-gate>
+          <p data-i18n="consent.igText">I post sono caricati da Instagram, che usa cookie di terze parti.</p>
+          <button type="button" class="btn btn--outline" data-embed-load="instagram" data-i18n="consent.igLoad">Mostra i post</button>
+        </div>
         <ul class="ig__grid" data-ig>
           <li class="ig__item"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DerkONbMhdu/" data-instgrm-version="14">
             <a href="https://www.instagram.com/reel/DerkONbMhdu/" target="_blank" rel="noopener" data-i18n="ig.view">Guarda su Instagram</a>
@@ -577,6 +583,7 @@
         <p>Cozy Lab di Martino Maykol &amp; C. S.n.c. · <span data-i18n="footer.seat">Sede legale</span>: Piazza dei Mezzadri 20, 50014 Fiesole (FI)</p>
         <p>P. IVA / C.F. 07109160486 · © <span data-year>2026</span> MANLY The Office</p>
         <p><span data-i18n="footer.art">Illustrazione della vetrina</span>: <a href="https://www.instagram.com/qualali_studio/" target="_blank" rel="noopener">@qualali_studio</a></p>
+        <p><a href="privacy.html" data-i18n="footer.privacy">Privacy e cookie</a> · <button type="button" class="footer__link" data-consent-open data-i18n="footer.cookies">Preferenze cookie</button></p>
       </div>
     </div>
   </footer>
