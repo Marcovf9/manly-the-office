@@ -79,6 +79,26 @@ solo cuando la sección está cerca de la pantalla.
 Valoración y cantidad de reseñas de Google (`valutazione`, `recensioni`). La web redondea la cantidad hacia abajo a la
 decena (671 → «oltre 670»). URL en `INFO_CSV_URL` (`assets/site.js`); requiere que la pestaña esté publicada.
 
+### Pestaña «Chiusure»
+
+Una fila por cierre: `Dal`, `Al` (gg/mm/aaaa) y motivo opcional en IT/EN. En esos días el estado dice
+«Chiuso (motivo) · apre …», la lista de horarios marca el día como cerrado y en «Orari» aparece un aviso desde
+14 días antes. URL en `CLOSURES_CSV_URL` (`assets/site.js`). Probar con `?data=2026-08-12&ora=10:00`.
+
+## Pedidos y contacto por Instagram
+
+El botón «Ordina su Instagram» copia el pedido al portapapeles y abre el chat de Instagram de MANLY
+(`https://ig.me/m/manly_the_office_florence`), porque Instagram no permite dejar el mensaje escrito.
+El botón flotante abajo a la izquierda abre el mismo chat. El proveedor de WhatsApp sigue en el código
+(`CHECKOUT_PROVIDERS.whatsapp`) por si en el futuro tienen WhatsApp Business.
+
+## Privacidad y cookies
+
+- Aviso con «Accetta» / «Rifiuta» (`manly-consent` en el navegador). Sin aceptar, el mapa de Google y los posts
+  de Instagram no se cargan: muestran un botón para abrirlos uno por uno.
+- `privacy.html` (IT/EN) con titular, datos, cookies y derechos. **Conviene que la revise un profesional antes de publicar.**
+- Tipografías alojadas en `assets/fonts/` (sin Google Fonts).
+
 ## Google y vista previa al compartir
 
 - **Ficha para Google**: bloque `application/ld+json` (tipo `CafeOrCoffeeShop`) en el `<head>` de cada página,
@@ -149,10 +169,14 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 
 ## Pendientes
 
+- [ ] Publicar en la web las pestañas «Info» y «Chiusure»
+- [ ] Revisión de `privacy.html` por un profesional
+- [ ] Confirmar con la cocina los alérgenos base de los pancakes (hoy Nocciolotto solo tiene 8 y Maple ninguno)
+
 - [ ] Publicar en la web la pestaña «Info» (Archivo → Compartir → Publicar en la web)
 
 - [x] Pestaña «Caffè» publicada (Hambela en singola origine, Kiandu AB en filtro)
-- [ ] Aviso de cookies: los reels de Instagram cargan scripts de Instagram
+- [x] Aviso de cookies y página de privacidad
 
 - [x] Planilla de Google Sheets conectada
 - [ ] Revisar con Maykol los alérgenos de la carta impresa (ver notas abajo)
