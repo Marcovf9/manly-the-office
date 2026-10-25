@@ -145,7 +145,7 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 - [ ] Precios definitivos de L'Australiano (hoy 25 € / 100 € orientativos)
 - [x] Nombres y descripciones de la carta en italiano (de la carta impresa)
 - [x] Precios: se usan los de la carta italiana (avocado y pane senza glutine 2,5 €, New York BB 9 €)
-- [x] Horario de brunch confirmado: 8:30–14:30
+- [x] Horario de cocina y brunch: 8:30–14:00
 - [ ] Volver a ofrecer molido: `available: true` en `PRODUCT.grinds` (assets/site.js)
 - [ ] Alérgenos que faltan en la carta (Nocciolotto, Maple Pancakes, fries, bebidas)
 - [ ] Fotos que faltan o son provisorias (ver *Lista de fotos*)
