@@ -729,9 +729,9 @@
   var PRODUCT = {
     id: 'australiano',
     name: 'L’Australiano',
-    // [PENDIENTE: precios definitivos] 25 € / 100 € son orientativos
+    // 250 g confirmado por Mike; [PENDIENTE: precio de 1 kg]
     sizes: [
-      { id: '250g', label: '250 g', msg: '250g', price: 25 },
+      { id: '250g', label: '250 g', msg: '250g', price: 15 },
       { id: '1kg', label: '1 kg', msg: '1kg', price: 100 }
     ],
     grinds: [
