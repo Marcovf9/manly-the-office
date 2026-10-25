@@ -4,6 +4,11 @@
    gris de la piedra, verde de las persianas.
    ========================================================================== */
 
+/* Tipografías alojadas en la web (sin Google Fonts). Subconjunto latino: IT/EN. */
+@font-face { font-family: "Jost"; font-style: normal; font-weight: 300 500; font-display: swap; src: url("fonts/jost-latin.woff2") format("woff2"); }
+@font-face { font-family: "DM Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/dmmono-400-latin.woff2") format("woff2"); }
+@font-face { font-family: "DM Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/dmmono-500-latin.woff2") format("woff2"); }
+
 :root {
   color-scheme: light;
 
@@ -1113,7 +1118,7 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #25D366;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
   color: #fff;
   box-shadow: 0 6px 20px rgba(30, 29, 26, .25);
   transition: transform .2s var(--ease);
@@ -1298,3 +1303,110 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
   .chapter__media--square { aspect-ratio: 1 / 1; }
   .chapter__media--wide { aspect-ratio: 823 / 373; }
 }
+
+.shop-notice {
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+  font-size: 0.9rem;
+  word-break: break-word;
+}
+.shop-notice.is-ok { border-color: var(--shutter); color: var(--shutter); }
+
+/* Aviso de cierre especial en «Orari» */
+.closure-note {
+  margin-bottom: var(--space-2);
+  padding: 0.75rem 0.9rem;
+  border-left: 3px solid var(--closing);
+  background: var(--paper);
+  font-weight: 500;
+}
+
+/* ===== Consentimiento de cookies ===== */
+.consent {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 120;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.9rem;
+}
+.consent__inner {
+  display: grid;
+  gap: 0.75rem;
+  padding-block: 1rem;
+}
+.consent a { text-decoration: underline; text-underline-offset: 3px; }
+.consent__actions { display: flex; gap: 0.5rem; }
+.consent__actions .btn { flex: 1; min-height: 44px; }
+.consent .btn { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.consent .btn--outline { background: transparent; color: var(--paper); }
+@media (min-width: 900px) {
+  .consent__inner { grid-template-columns: 1fr auto; align-items: center; gap: var(--space-4); }
+  .consent__actions .btn { flex: 0 0 auto; }
+}
+/* Con el aviso abierto, el botón de contacto sube para no quedar tapado */
+.has-consent-bar .wa { bottom: calc(max(16px, env(safe-area-inset-bottom)) + 150px); }
+@media (min-width: 900px) { .has-consent-bar .wa { bottom: 96px; } }
+
+/* Mapa e Instagram antes del consentimiento */
+.embed-gate {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.9rem;
+  height: 100%;
+  padding: var(--space-3);
+  text-align: center;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+}
+.embed-gate p { max-width: 32ch; }
+.embed-gate__alt { font-size: 0.85rem; text-decoration: underline; text-underline-offset: 3px; }
+.map .embed-gate { background: var(--paper); border: 1px solid var(--line); }
+.map { filter: none; }
+.map iframe { filter: grayscale(.35) contrast(1.02); }
+.embed-gate--bar {
+  grid-auto-flow: row;
+  place-content: start;
+  justify-items: start;
+  height: auto;
+  margin-bottom: var(--space-3);
+  padding: 0;
+  text-align: left;
+}
+.embed-gate--bar[hidden] { display: none; }
+@media (min-width: 768px) {
+  .embed-gate--bar { grid-auto-flow: column; align-items: center; gap: var(--space-3); }
+  .embed-gate--bar p { max-width: none; }
+}
+.footer__link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* ===== Página de privacidad ===== */
+html[lang="en"] .lang-it,
+html[lang="it"] .lang-en { display: none; }
+.legal { padding-block: var(--space-5) var(--space-6); }
+.legal__wrap { max-width: 760px; }
+.legal h1 { margin-block: 0.5rem var(--space-4); }
+.legal h2 {
+  margin-block: var(--space-4) 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+.legal p, .legal li { color: var(--ink-2); }
+.legal p + p { margin-top: 0.75rem; }
+.legal ul { display: grid; gap: 0.5rem; padding-left: 1.2rem; margin-top: 0.75rem; }
+.legal a { text-underline-offset: 3px; }
+.legal .btn { margin-top: var(--space-4); }

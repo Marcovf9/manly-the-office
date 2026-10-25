@@ -74,18 +74,18 @@
       groups: [
         {
           items: [
-            { name: 'Farmer bagel', price: 13, a: [1, 7, 8],
+            { name: 'Farmer bagel', price: 13, a: [1, 3, 7, 8],
               desc: { it: 'pollo, insalata, pomodoro, cetriolini sottaceto, bacon, formaggio cheddar, maionese piccante',
                       en: 'chicken, salad, tomato, pickles, bacon, cheddar cheese, spicy mayo' } },
             { name: 'Bacon & cheese pancake', price: 10, a: [1, 3, 5, 7, 8],
               desc: { it: 'bacon e formaggio', en: 'bacon and melted cheese' },
               adds: [{ name: { it: 'sciroppo d’acero', en: 'maple syrup' }, price: 1 }] },
-            { name: 'Salmon bagel', price: 11, a: [1, 7, 8, 9, 11],
+            { name: 'Salmon bagel', price: 11, a: [1, 4, 7, 8, 9, 11],
               desc: { it: 'salmone, cipolla marinata, cetriolo, formaggio spalmabile con erba cipollina',
                       en: 'smoked salmon, cucumber, marinated onions, cream cheese and chives' } },
-            { name: 'BLT Bagel', price: 9.5, a: [1, 6, 7, 8, 9, 11],
+            { name: 'BLT Bagel', price: 9.5, a: [1, 3, 6, 7, 8, 9, 11],
               desc: { it: 'bacon, insalata, pomodoro e maionese', en: 'bacon, lettuce, tomato and mayo' } },
-            { name: 'ALT Bagel', price: 9.5, a: [1, 6, 7, 8, 9, 11],
+            { name: 'ALT Bagel', price: 9.5, a: [1, 3, 6, 7, 8, 9, 11],
               desc: { it: 'avocado, insalata, pomodoro e maionese', en: 'avocado, lettuce, tomato and mayo' } },
             { name: 'Avocado toast 2.0', price: 16, a: [1, 4, 5, 6, 7, 8, 11],
               desc: { it: 'pane 5 cereali, hummus di barbabietola fatto in casa, salmone affumicato, avocado, semi misti, feta, melograno (secondo stagionalità)',
@@ -116,7 +116,7 @@
       groups: [
         {
           items: [
-            { name: 'Nocciolotto Pancakes', price: 10,
+            { name: 'Nocciolotto Pancakes', price: 10, a: [8],
               desc: { it: 'crema di nocciola, frutta fresca', en: 'hazelnut cream, fresh fruit' } },
             { name: 'Maple Pancakes', price: 11,
               desc: { it: 'sciroppo d’acero, frutta fresca', en: 'maple syrup, fresh fruit' } },
@@ -192,16 +192,16 @@
         {
           title: { it: 'Vini (selezione)', en: 'Wine (selection)' },
           items: [
-            { name: { it: 'Vino rosso, bianco', en: 'Red or white wine' }, price: 7, desc: { it: 'calice', en: 'by the glass' } },
-            { name: 'Prosecco', price: 5, desc: { it: 'flute', en: 'flute' } },
-            { name: { it: 'Bottiglia', en: 'Bottle' }, price: 18 }
+            { name: { it: 'Vino rosso, bianco', en: 'Red or white wine' }, price: 7, a: [12], desc: { it: 'calice', en: 'by the glass' } },
+            { name: 'Prosecco', price: 5, a: [12], desc: { it: 'flute', en: 'flute' } },
+            { name: { it: 'Bottiglia', en: 'Bottle' }, price: 18, a: [12] }
           ]
         },
         {
           title: { it: 'Spritzando', en: 'Spritzando' },
           items: [
-            { name: 'Spritz', price: 7, desc: { it: 'Orange, Bitter Rosso, Select', en: 'Orange, Bitter Rosso, Select' } },
-            { name: 'Americano, Negroni', price: 8 },
+            { name: 'Spritz', price: 7, a: [12], desc: { it: 'Orange, Bitter Rosso, Select', en: 'Orange, Bitter Rosso, Select' } },
+            { name: 'Americano, Negroni', price: 8, a: [12] },
             { name: 'Gin selection', price: [8, 12] }
           ]
         }

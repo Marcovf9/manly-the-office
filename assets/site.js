@@ -59,6 +59,9 @@
       'status.opensToday': 'Chiuso · apre oggi alle {t}',
       'status.opensTomorrow': 'Chiuso · apre domani alle {t}',
       'status.opensOn': 'Chiuso · apre {d} alle {t}',
+      'status.closedFor': 'Chiuso ({r})',
+      'closure.day': 'Chiuso {d}',
+      'closure.range': 'Chiuso dal {a} al {b}',
 
       'hero.eyebrow': 'Specialty coffee & brunch · Dal 2023',
       'hero.lead': 'Specialty coffee in stile australiano e brunch, nel cuore di San Frediano.',
@@ -84,17 +87,32 @@
       'shop.less': 'Meno',
       'shop.more': 'Più',
       'shop.total': 'Totale',
-      'shop.cta': 'Ordina su WhatsApp',
+      'shop.cta': 'Ordina su Instagram',
       'shop.preview': 'Messaggio:',
-      'shop.fine': 'Ritiro in negozio, Via Pisana 48R. Nessun pagamento online: l’ordine si conferma su WhatsApp.',
+      'shop.fine': 'Ritiro in negozio, Via Pisana 48R. Nessun pagamento online: l’ordine si conferma su Instagram.',
+      'shop.copied': 'Messaggio copiato: incollalo nella chat di Instagram e invialo.',
+      'shop.copyFail': 'Copia questo messaggio e invialo su Instagram:',
       'shop.message': 'Ciao! Vorrei ordinare {qty} x {product} {size} {grind}, con ritiro in negozio. Mi dite come fare?',
       'shop.imgAlt': 'Etichetta di L’Australiano, la miscela di MANLY The Office',
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Firenze ·',
       'nav.coffees': 'I nostri caffè',
+      'consent.text': 'Usiamo solo cookie tecnici. La mappa di Google e i post di Instagram usano cookie di terze parti: li carichiamo solo se accetti.',
+      'consent.accept': 'Accetta',
+      'consent.reject': 'Rifiuta',
+      'consent.more': 'Privacy',
+      'consent.label': 'Preferenze cookie',
+      'consent.mapText': 'La mappa è fornita da Google Maps, che usa cookie di terze parti.',
+      'consent.mapLoad': 'Mostra la mappa',
+      'consent.igText': 'I post sono caricati da Instagram, che usa cookie di terze parti.',
+      'consent.igLoad': 'Mostra i post',
+      'footer.privacy': 'Privacy e cookie',
+      'footer.cookies': 'Preferenze cookie',
+      'meta.privacy.title': 'Privacy e cookie — MANLY The Office',
+      'meta.privacy.desc': 'Informativa sulla privacy e sui cookie del sito di MANLY The Office.',
       'nav.hours': 'Orari',
       'nav.storyShort': 'Storia',
-      'topbar.announce': 'L’Australiano, la nostra miscela · Ordina su WhatsApp',
+      'topbar.announce': 'L’Australiano, la nostra miscela · Ordina su Instagram',
       'statement.text': 'Specialty coffee, ospitalità australiana. A San Frediano, dal 2023.',
       'coffees.d612': 'Acquista da D612',
       'ig.title': 'Dal nostro Instagram',
@@ -135,9 +153,9 @@
       'offer.c2.gallery': 'Foto del brunch',
       'slider.prev': 'Foto precedente',
       'slider.next': 'Foto successiva',
-      'wa.button': 'Scrivici su WhatsApp',
+      'wa.button': 'Scrivici su Instagram',
       'wa.title': 'Ciao! Possiamo aiutarti?',
-      'wa.text': 'Scrivici su WhatsApp per domande o per ordinare L’Australiano.',
+      'wa.text': 'Scrivici su Instagram per domande o per ordinare L’Australiano.',
       'wa.close': 'Chiudi messaggio',
       'wa.prefill': 'Ciao! Ho una domanda.',
 
@@ -232,6 +250,9 @@
       'status.opensToday': 'Closed · opens today at {t}',
       'status.opensTomorrow': 'Closed · opens tomorrow at {t}',
       'status.opensOn': 'Closed · opens {d} at {t}',
+      'status.closedFor': 'Closed ({r})',
+      'closure.day': 'Closed on {d}',
+      'closure.range': 'Closed from {a} to {b}',
 
       'hero.eyebrow': 'Specialty coffee & brunch · Since 2023',
       'hero.lead': 'Australian-style specialty coffee and brunch, in the heart of San Frediano.',
@@ -257,17 +278,32 @@
       'shop.less': 'Less',
       'shop.more': 'More',
       'shop.total': 'Total',
-      'shop.cta': 'Order on WhatsApp',
+      'shop.cta': 'Order on Instagram',
       'shop.preview': 'Message:',
-      'shop.fine': 'Pick up in store, Via Pisana 48R. No online payment: the order is confirmed on WhatsApp.',
+      'shop.fine': 'Pick up in store, Via Pisana 48R. No online payment: the order is confirmed on Instagram.',
+      'shop.copied': 'Message copied: paste it in the Instagram chat and send it.',
+      'shop.copyFail': 'Copy this message and send it on Instagram:',
       'shop.message': 'Hi! I’d like to order {qty} x {product} {size} {grind}, for pickup in store. How can I do it?',
       'shop.imgAlt': 'L’Australiano label, the MANLY The Office blend',
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Florence ·',
       'nav.coffees': 'Our coffees',
+      'consent.text': 'We only use technical cookies. The Google map and Instagram posts use third-party cookies: we load them only if you accept.',
+      'consent.accept': 'Accept',
+      'consent.reject': 'Decline',
+      'consent.more': 'Privacy',
+      'consent.label': 'Cookie preferences',
+      'consent.mapText': 'The map is provided by Google Maps, which uses third-party cookies.',
+      'consent.mapLoad': 'Show the map',
+      'consent.igText': 'Posts are loaded from Instagram, which uses third-party cookies.',
+      'consent.igLoad': 'Show posts',
+      'footer.privacy': 'Privacy & cookies',
+      'footer.cookies': 'Cookie preferences',
+      'meta.privacy.title': 'Privacy & cookies — MANLY The Office',
+      'meta.privacy.desc': 'Privacy and cookie policy for the MANLY The Office website.',
       'nav.hours': 'Hours',
       'nav.storyShort': 'Story',
-      'topbar.announce': 'L’Australiano, our house blend · Order on WhatsApp',
+      'topbar.announce': 'L’Australiano, our house blend · Order on Instagram',
       'statement.text': 'Specialty coffee, Australian hospitality. In San Frediano, since 2023.',
       'coffees.d612': 'Buy from D612',
       'ig.title': 'From our Instagram',
@@ -308,9 +344,9 @@
       'offer.c2.gallery': 'Brunch photos',
       'slider.prev': 'Previous photo',
       'slider.next': 'Next photo',
-      'wa.button': 'Message us on WhatsApp',
+      'wa.button': 'Message us on Instagram',
       'wa.title': 'Hi! Can we help?',
-      'wa.text': 'Message us on WhatsApp with questions or to order L’Australiano.',
+      'wa.text': 'Message us on Instagram with questions or to order L’Australiano.',
       'wa.close': 'Close message',
       'wa.prefill': 'Hi! I have a question.',
 
@@ -489,17 +525,23 @@
   }
 
   /* ===== Hora de Florencia ===== */
-  // Para probar estados: ?giorno=2&ora=14:40  (giorno: 0 = domenica … 6 = sabato)
+  // Para probar estados: ?giorno=2&ora=14:40 (0 = domenica … 6 = sabato) o ?data=2026-08-12&ora=10:00
   var demo = (function () {
     var q = new URLSearchParams(location.search);
-    var day = q.get('giorno'), time = q.get('ora');
-    if (day === null || !/^\d{1,2}:\d{2}$/.test(time || '')) return null;
-    return { day: Number(day) % 7, minutes: toMinutes(time) };
+    var time = q.get('ora'), day = q.get('giorno'), date = q.get('data');
+    if (!/^\d{1,2}:\d{2}$/.test(time || '')) return null;
+    if (date && /^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      return { date: date, day: new Date(date + 'T12:00:00Z').getUTCDay(), minutes: toMinutes(time) };
+    }
+    if (day === null) return null;
+    var d = new Date(); d.setUTCDate(d.getUTCDate() + ((Number(day) % 7) - d.getUTCDay() + 7) % 7);
+    return { date: d.toISOString().slice(0, 10), day: Number(day) % 7, minutes: toMinutes(time) };
   })();
 
   var WEEKDAYS = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
   var romeClock = new Intl.DateTimeFormat('en-US', {
-    timeZone: BIZ.timeZone, weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false
+    timeZone: BIZ.timeZone, weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', hour12: false
   });
 
   // Siempre la hora del local, aunque el teléfono del turista esté en otra zona horaria.
@@ -507,12 +549,49 @@
     if (demo) return demo;
     var parts = {};
     romeClock.formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
-    return { day: WEEKDAYS[parts.weekday], minutes: (Number(parts.hour) % 24) * 60 + Number(parts.minute) };
+    return {
+      date: parts.year + '-' + parts.month + '-' + parts.day,
+      day: WEEKDAYS[parts.weekday],
+      minutes: (Number(parts.hour) % 24) * 60 + Number(parts.minute)
+    };
+  }
+
+  function addDays(iso, n) {
+    var d = new Date(iso + 'T12:00:00Z');
+    d.setUTCDate(d.getUTCDate() + n);
+    return d.toISOString().slice(0, 10);
+  }
+
+  function formatDate(iso, withWeekday) {
+    return new Intl.DateTimeFormat(lang() === 'it' ? 'it-IT' : 'en-GB', {
+      timeZone: 'UTC', day: 'numeric', month: 'long', weekday: withWeekday ? 'long' : undefined
+    }).format(new Date(iso + 'T12:00:00Z'));
+  }
+
+  /* ===== Cierres especiales (pestaña «Chiusure» de la planilla) ===== */
+  var CLOSURES_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSA0xWKycQPswGf7j60kCZ9JPYe1pP0UtaJ1ofHLSO5VSt8z2kT6oCFlmZ8zO8MjqE--grRjph0Nmay/pub?gid=5001&single=true&output=csv';
+  // Respaldo en el código: { from: '2026-08-10', to: '2026-08-24', it: 'Ferie estive', en: 'Summer holidays' }
+  var CLOSURES = [];
+
+  // "10/08/2026" o "2026-08-10" -> "2026-08-10"
+  function parseDate(v) {
+    v = (v || '').trim();
+    var m = v.match(/^(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{4})$/);
+    if (m) return m[3] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + m[1]).slice(-2);
+    return /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : null;
+  }
+
+  function closureOn(iso) {
+    return CLOSURES.filter(function (c) { return iso >= c.from && iso <= c.to; })[0] || null;
+  }
+
+  function closureReason(c) {
+    return c ? (lang() === 'en' ? (c.en || c.it) : (c.it || c.en)) || '' : '';
   }
 
   /* ===== Estado abierto / cerrado ===== */
   function getStatus(now) {
-    var today = BIZ.hours[now.day];
+    var today = closureOn(now.date) ? null : BIZ.hours[now.day];
     var m = now.minutes;
 
     if (today && m >= toMinutes(today[0]) && m < toMinutes(today[1])) {
@@ -523,16 +602,55 @@
       return { state: 'open', text: fmt(t('status.closesAt'), { t: showTime(today[1]) }) };
     }
 
-    // Cerrado: buscar la próxima apertura
-    for (var i = 0; i < 8; i++) {
+    // Cerrado: buscar la próxima apertura, saltando los cierres especiales
+    var closure = closureOn(now.date);
+    var prefix = closure ? t('status.closedFor').replace('{r}', closureReason(closure)).replace(' ()', '') : '';
+    for (var i = 0; i < 120; i++) {
+      var iso = addDays(now.date, i);
       var day = (now.day + i) % 7;
-      var h = BIZ.hours[day];
+      var h = closureOn(iso) ? null : BIZ.hours[day];
       if (!h || (i === 0 && m >= toMinutes(h[0]))) continue;
-      if (i === 0) return { state: 'closed', text: fmt(t('status.opensToday'), { t: showTime(h[0]) }) };
-      if (i === 1) return { state: 'closed', text: fmt(t('status.opensTomorrow'), { t: showTime(h[0]) }) };
-      return { state: 'closed', text: fmt(t('status.opensOn'), { d: t('days')[day], t: showTime(h[0]) }) };
+      var text;
+      if (i === 0) text = fmt(t('status.opensToday'), { t: showTime(h[0]) });
+      else if (i === 1) text = fmt(t('status.opensTomorrow'), { t: showTime(h[0]) });
+      else if (i < 7) text = fmt(t('status.opensOn'), { d: t('days')[day], t: showTime(h[0]) });
+      else text = fmt(t('status.opensOn'), { d: formatDate(iso, true), t: showTime(h[0]) });
+      return { state: 'closed', text: prefix ? prefix + ' · ' + text.replace(/^[^·]+·\s*/, '') : text };
     }
-    return { state: 'closed', text: '' };
+    return { state: 'closed', text: t('orari.closed') };
+  }
+
+  // Aviso en «Orari» si hay un cierre hoy o en los próximos 14 días
+  function renderClosureNote() {
+    var el = document.getElementById('closure-note');
+    if (!el) return;
+    var now = nowInFlorence();
+    var limit = addDays(now.date, 14);
+    var next = CLOSURES.filter(function (c) { return c.to >= now.date && c.from <= limit; })
+      .sort(function (a, b) { return a.from < b.from ? -1 : 1; })[0];
+    if (!next) { el.hidden = true; return; }
+    var reason = closureReason(next);
+    var span = next.from === next.to
+      ? fmt(t('closure.day'), { d: formatDate(next.from, true) })
+      : fmt(t('closure.range'), { a: formatDate(next.from), b: formatDate(next.to) });
+    el.textContent = span + (reason ? ' · ' + reason : '');
+    el.hidden = false;
+  }
+
+  function loadClosures() {
+    if (!CLOSURES_CSV_URL || !window.fetch) return;
+    fetch(CLOSURES_CSV_URL, { cache: 'no-store' })
+      .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
+      .then(function (text) {
+        CLOSURES = csvObjects(text).map(function (r) {
+          var from = parseDate(r.dal), to = parseDate(r.al) || from;
+          return from ? { from: from, to: to < from ? from : to, it: r.motivo_it || '', en: r.motivo_en || '' } : null;
+        }).filter(Boolean);
+        tick();
+      })
+      .catch(function (err) {
+        if (window.console) console.warn('Chiusure: no se pudo leer Google Sheets (' + err.message + ').');
+      });
   }
 
   function renderStatus() {
@@ -549,9 +667,11 @@
   function renderHours() {
     var list = document.getElementById('hours-list');
     if (!list) return;
-    var today = nowInFlorence().day;
+    var now = nowInFlorence();
+    var today = now.day;
     list.innerHTML = WEEK_ORDER.map(function (day) {
       var h = BIZ.hours[day];
+      if (h && closureOn(addDays(now.date, (day - today + 7) % 7))) h = null;
       var cls = (h ? '' : 'is-closed') + (day === today ? ' is-today' : '');
       return '<li class="' + cls.trim() + '"' + (day === today ? ' aria-current="date"' : '') + '>' +
         '<span class="hours__day"' + (day === today ? ' data-today="' + esc(t('orari.today')) + '"' : '') + '>' +
@@ -560,7 +680,7 @@
     }).join('');
   }
 
-  function tick() { renderStatus(); renderHours(); }
+  function tick() { renderStatus(); renderHours(); renderClosureNote(); }
   document.addEventListener('langchange', tick);
   document.addEventListener('visibilitychange', function () { if (!document.hidden) tick(); });
 
@@ -604,7 +724,7 @@
 
   /* ===== Shop =====
      Flujo: selección -> objeto `order` -> CHECKOUT.start(order).
-     Hoy CHECKOUT abre WhatsApp. Para una pasarela real basta con agregar otro
+     Hoy CHECKOUT abre el chat de Instagram. Para una pasarela real basta con agregar otro
      proveedor en CHECKOUT_PROVIDERS y apuntar CHECKOUT a él: la interfaz no cambia. */
   var PRODUCT = {
     id: 'australiano',
@@ -652,7 +772,51 @@
     });
   }
 
+  // Chat de Instagram de MANLY (ig.me abre la app o el navegador en los mensajes directos)
+  var IG_DM_URL = 'https://ig.me/m/' + BIZ.instagram;
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return legacyCopy(text); });
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+  function legacyCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    ta.remove();
+    return ok;
+  }
+
+  function showShopNotice(copied, text) {
+    var el = document.getElementById('shop-notice');
+    if (!el) return;
+    el.hidden = false;
+    el.className = 'shop-notice' + (copied ? ' is-ok' : '');
+    el.textContent = copied ? t('shop.copied') : t('shop.copyFail') + ' ' + text;
+  }
+
   var CHECKOUT_PROVIDERS = {
+    // Instagram no permite dejar el mensaje escrito: se copia al portapapeles y se abre el chat
+    instagram: {
+      start: function (order) {
+        var text = orderMessage(order);
+        var win = window.open(IG_DM_URL, '_blank');
+        if (win) win.opener = null;
+        copyText(text).then(function (ok) {
+          showShopNotice(ok, text);
+          if (!win) location.href = IG_DM_URL;
+        });
+      }
+    },
+    // Alternativa si en el futuro tienen WhatsApp Business
     whatsapp: {
       start: function (order) {
         var url = 'https://wa.me/' + BIZ.whatsapp + '?text=' + encodeURIComponent(orderMessage(order));
@@ -664,7 +828,7 @@
     // Ejemplo futuro:
     // stripe: { start: function (order) { /* POST order al backend -> redirigir a la sesión de pago */ } }
   };
-  var CHECKOUT = CHECKOUT_PROVIDERS.whatsapp;
+  var CHECKOUT = CHECKOUT_PROVIDERS.instagram;
 
   function setupShop() {
     var form = document.getElementById('shop-form');
@@ -869,19 +1033,18 @@
     });
   }
 
-  /* ===== Botón flotante de WhatsApp =====
+  /* ===== Botón flotante de contacto (Instagram) =====
      Siempre abajo a la izquierda. El mensaje aparece a los 6 s, se queda 10 s
      y vuelve cada 45 s (máximo 3 veces por visita). Si se cierra con la X,
      no vuelve a aparecer por 24 h. */
-  var WA_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>';
+  var WA_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></g></svg>';
   var WA_DISMISS_KEY = 'manly-wa-dismissed';
   var WA_DISMISS_MS = 24 * 60 * 60 * 1000;
 
-  function waUrl() {
-    return 'https://wa.me/' + BIZ.whatsapp + '?text=' + encodeURIComponent(t('wa.prefill'));
-  }
+  // Instagram no acepta texto prellenado: el botón abre directo el chat
+  function waUrl() { return IG_DM_URL; }
 
-  function setupWhatsApp() {
+  function setupContactButton() {
     var root = document.createElement('div');
     root.className = 'wa';
     root.innerHTML =
@@ -1065,9 +1228,90 @@
   /* ===== Instagram =====
      El script oficial de Instagram (que pone cookies) se carga solo cuando la
      sección está por entrar en pantalla, para no frenar la carga inicial. */
+  /* ===== Consentimiento de cookies =====
+     La web solo usa almacenamiento técnico (idioma, preferencias). El mapa de
+     Google y los posts de Instagram ponen cookies de terceros: se cargan solo
+     con «Accetta» o tocando «Mostra» en cada uno. */
+  var CONSENT_KEY = 'manly-consent';
+  var MAP_SRC = 'https://www.google.com/maps?output=embed&q=' +
+    encodeURIComponent('MANLY The Office, Via Pisana 48R, 50143 Firenze');
+
+  function getConsent() {
+    try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+  }
+  function setConsent(v) {
+    try { localStorage.setItem(CONSENT_KEY, v); } catch (e) { /* modo privado */ }
+  }
+
+  var EMBEDS = {
+    map: function () {
+      var box = document.querySelector('[data-embed="map"]');
+      if (!box || box.querySelector('iframe')) return;
+      var f = document.createElement('iframe');
+      f.src = MAP_SRC + '&hl=' + lang();
+      f.title = t('dove.mapTitle');
+      f.loading = 'lazy';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      f.allowFullscreen = true;
+      box.innerHTML = '';
+      box.appendChild(f);
+    },
+    instagram: function () {
+      var gate = document.querySelector('[data-ig-gate]');
+      if (gate) gate.hidden = true;
+      setupInstagram();
+    }
+  };
+
+  function loadEmbeds() { Object.keys(EMBEDS).forEach(function (k) { EMBEDS[k](); }); }
+
+  function setupConsent() {
+    document.addEventListener('click', function (e) {
+      var one = e.target.closest('[data-embed-load]');
+      if (one) { EMBEDS[one.getAttribute('data-embed-load')](); return; }
+      if (e.target.closest('[data-consent-open]')) showBanner();
+    });
+
+    var bar;
+    function hideBanner() { if (bar) { bar.hidden = true; document.body.classList.remove('has-consent-bar'); } }
+    function showBanner() {
+      if (!bar) {
+        bar = document.createElement('div');
+        bar.className = 'consent';
+        bar.setAttribute('role', 'dialog');
+        bar.setAttribute('aria-live', 'polite');
+        bar.setAttribute('data-i18n-attr', 'aria-label:consent.label');
+        bar.innerHTML =
+          '<div class="wrap consent__inner">' +
+            '<p><span data-i18n="consent.text"></span> <a href="privacy.html" data-i18n="consent.more"></a></p>' +
+            '<div class="consent__actions">' +
+              '<button type="button" class="btn btn--outline" data-consent="essential" data-i18n="consent.reject"></button>' +
+              '<button type="button" class="btn" data-consent="all" data-i18n="consent.accept"></button>' +
+            '</div>' +
+          '</div>';
+        document.body.appendChild(bar);
+        bar.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-consent]');
+          if (!b) return;
+          var v = b.getAttribute('data-consent');
+          setConsent(v);
+          hideBanner();
+          if (v === 'all') loadEmbeds();
+        });
+        applyLang(lang());
+      }
+      bar.hidden = false;
+      document.body.classList.add('has-consent-bar');
+    }
+
+    if (getConsent() === 'all') loadEmbeds();
+    else if (!getConsent()) showBanner();
+  }
+
   function setupInstagram() {
     var grid = document.querySelector('[data-ig]');
-    if (!grid) return;
+    if (!grid || grid.getAttribute('data-ig-ready')) return;
+    grid.setAttribute('data-ig-ready', '1');
     function load() {
       if (window.instgrm) { window.instgrm.Embeds.process(); return; }
       var s = document.createElement('script');
@@ -1127,6 +1371,7 @@
   /* ===== API para menu.js ===== */
   window.MANLY = {
     BIZ: BIZ, t: t, tr: tr, esc: esc, lang: lang, range: range, parseCSV: parseCSV,
+    setClosures: function (list) { CLOSURES = list; tick(); }, // para pruebas
     formatPrice: formatPrice, setupReveal: setupReveal, getStatus: getStatus, applyLang: applyLang
   };
 
@@ -1135,7 +1380,7 @@
      alcanza a registrar sus listeners de 'langchange' antes del primer render. */
   document.addEventListener('DOMContentLoaded', function () {
     fillLinks();
-    setupWhatsApp();
+    setupContactButton();
     setupDrawer();
     setupShop();
     setupHeader();
@@ -1144,8 +1389,9 @@
     setupVideos();
     setupSliders();
     loadCoffees();
+    loadClosures();
     loadRating();
-    setupInstagram();
+    setupConsent();
     setupReveal();
     setInterval(tick, 30 * 1000);
   });
