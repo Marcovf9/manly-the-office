@@ -23,7 +23,7 @@
       ['08:00', '15:00'], // venerdì
       ['08:00', '15:00']  // sabato
     ],
-    kitchen: ['08:30', '14:30'],
+    kitchen: ['08:30', '14:00'],
     closingSoonMinutes: 30
   };
 
@@ -49,7 +49,7 @@
       'info.contact': 'Contatti',
       'summary.week': 'Martedì–domenica, 8:00–15:00',
       'summary.monday': 'Lunedì chiuso',
-      'summary.kitchen': 'Cucina 8:30–14:30',
+      'summary.kitchen': 'Cucina 8:30–14:00',
 
       'days': ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'],
       'status.closesAt': 'Aperto · chiude alle {t}',
@@ -122,7 +122,7 @@
 
       'offer.eyebrow': 'Al banco',
       'offer.title': 'Caffè e brunch, tutti i giorni tranne il lunedì.',
-      'offer.lead': 'Una carta corta e curata: specialty coffee, brunch fino alle 14:30 e dolci in vetrina.',
+      'offer.lead': 'Una carta corta e curata: specialty coffee, brunch fino alle 14:00 e dolci in vetrina.',
       'offer.c1.title': 'Caffetteria',
       'offer.c1.meta': 'Espresso · Filtro',
       'offer.c1.text': 'Espresso, flat white, long black, batch brew e cold brew di stagione. Latte d’avena disponibile.',
@@ -168,7 +168,7 @@
       'storia.c3.p1': 'Torna a casa con un’idea chiara: aprire un posto suo. Poi arriva il Covid, e il sogno deve aspettare.',
       'storia.c4.when': '12 luglio 2023',
       'storia.c4.title': 'Si apre, a San Frediano',
-      'storia.c4.p1': 'Maykol e sua moglie Alice, che lavora anche in cucina, aprono MANLY The Office in Via Pisana.',
+      'storia.c4.p1': 'Maykol e la sua fidanzata Alice, che lavora anche in cucina, aprono MANLY The Office in Via Pisana.',
       'storia.c4.p2': 'Lo spazio è piccolo, e si fa il massimo con quello che c’è.',
       'storia.welcomeQuote': '«Come stai?»',
       'storia.welcome': 'È la prima cosa che ti chiede Maykol, appena varchi la soglia.',
@@ -222,7 +222,7 @@
       'info.contact': 'Contact',
       'summary.week': 'Tuesday–Sunday, 8:00–15:00',
       'summary.monday': 'Closed on Mondays',
-      'summary.kitchen': 'Kitchen 8:30–14:30',
+      'summary.kitchen': 'Kitchen 8:30–14:00',
 
       'days': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
       'status.closesAt': 'Open · closes at {t}',
@@ -295,7 +295,7 @@
 
       'offer.eyebrow': 'At the counter',
       'offer.title': 'Coffee and brunch, every day except Monday.',
-      'offer.lead': 'A short, considered menu: specialty coffee, brunch until 14:30 and treats in the display.',
+      'offer.lead': 'A short, considered menu: specialty coffee, brunch until 14:00 and treats in the display.',
       'offer.c1.title': 'Coffee',
       'offer.c1.meta': 'Espresso · Filter',
       'offer.c1.text': 'Espresso, flat white, long black, batch brew and seasonal cold brew. Oat milk available.',
@@ -341,7 +341,7 @@
       'storia.c3.p1': 'He comes home with one clear idea: to open his own place. Then Covid hits, and the dream has to wait.',
       'storia.c4.when': '12 July 2023',
       'storia.c4.title': 'Opening in San Frediano',
-      'storia.c4.p1': 'Maykol and his wife Alice, who also works in the kitchen, open MANLY The Office on Via Pisana.',
+      'storia.c4.p1': 'Maykol and his partner Alice, who also works in the kitchen, open MANLY The Office on Via Pisana.',
       'storia.c4.p2': 'The space is small, and they make the most of what they have.',
       'storia.welcomeQuote': '“Hey, how are you? Welcome!”',
       'storia.welcome': 'The first thing you hear when you walk in.',
