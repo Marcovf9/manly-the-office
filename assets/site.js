@@ -729,10 +729,9 @@
   var PRODUCT = {
     id: 'australiano',
     name: 'L’Australiano',
-    // [PENDIENTE: precios definitivos] 25 € / 100 € son orientativos
+    // Solo se vende la bolsa de 250 g (precio confirmado por Mike)
     sizes: [
-      { id: '250g', label: '250 g', msg: '250g', price: 25 },
-      { id: '1kg', label: '1 kg', msg: '1kg', price: 100 }
+      { id: '250g', label: '250 g', msg: '250g', price: 15 }
     ],
     grinds: [
       { id: 'grani', label: { it: 'In grani', en: 'Whole beans' }, msg: { it: 'in grani', en: 'whole beans' } },
@@ -861,6 +860,7 @@
       document.getElementById('opt-size').innerHTML = PRODUCT.sizes.map(function (s) {
         return optionHtml('size', s, formatPrice(s.price));
       }).join('');
+      document.getElementById('opt-size').classList.toggle('is-single', PRODUCT.sizes.length === 1);
       var grinds = PRODUCT.grinds.filter(function (g) { return g.available !== false; });
       document.getElementById('opt-grind').innerHTML = grinds.map(function (g) {
         return optionHtml('grind', g);
