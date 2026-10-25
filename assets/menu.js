@@ -40,7 +40,7 @@
       }]
     },
     {
-      id: 'filtro-freddi', title: { it: 'Filtro e freddi', en: 'Filter & iced' },
+      id: 'filtro-freddi', title: { it: 'Filtro e Iced Coffee', en: 'Filter & iced coffee' },
       groups: [{
         items: [
           { name: 'Batch Brew', price: 4.5, desc: { it: 'filtro D612, cambia spesso', en: 'D612 filter coffee, rotating' } },

@@ -1276,3 +1276,25 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 
 .link-arrow svg.is-out { transform: rotate(-45deg); }
 @media (hover: hover) { .link-arrow:hover svg.is-out { transform: rotate(-45deg) translateX(3px); } }
+
+/* Nombre del plato en el carrusel de brunch */
+.slider__caption {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  padding: 0.35rem 0.6rem;
+  background: rgba(246, 242, 232, .92);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* Historia: capítulos con foto, alternando lados en escritorio */
+.chapter__media--square { aspect-ratio: 1 / 1; }
+.chapter__media--wide { aspect-ratio: 823 / 373; align-self: center; }
+@media (min-width: 768px) {
+  .chapter:nth-child(even) { grid-template-columns: 7fr 5fr; }
+  .chapter:nth-child(even) .chapter__media { order: 2; }
+  .chapter__media--square { aspect-ratio: 1 / 1; }
+  .chapter__media--wide { aspect-ratio: 823 / 373; }
+}
