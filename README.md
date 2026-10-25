@@ -152,6 +152,16 @@ número para que los navegadores descarguen la versión nueva:
 V=$(date +%Y%m%d%H%M); sed -i '' -E "s#(assets/[a-z]+\.(css|js))(\?v=[0-9]+)?\"#\1?v=$V\"#g" index.html menu.html
 ```
 
+## Auditoría (Lighthouse, móvil)
+
+| Página | Rendimiento | Accesibilidad | Buenas prácticas | SEO |
+|---|---|---|---|---|
+| Inicio | 96 | 100 | 100 | 100 |
+| Menu | 99 | 100 | 100 | 100 |
+| Privacy | 99 | 100 | 100 | — (noindex a propósito) |
+
+`404.html` usa `<base href="/manly-the-office/">`: con dominio propio, cambiarlo a `<base href="/">`.
+
 ## Ramas
 
 | Rama         | Uso                                                  |
