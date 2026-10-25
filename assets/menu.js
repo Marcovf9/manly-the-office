@@ -93,12 +93,6 @@
             { name: 'Avocado toast', price: 10, a: [1, 7, 8, 11],
               desc: { it: 'pane 5 cereali, avocado, semi misti, feta, melograno (secondo stagionalità)',
                       en: 'multigrain bread, avocado, mixed seeds, feta cheese, pomegranate (seasonal)' } }
-          ]
-        },
-        {
-          title: { it: 'Da condividere', en: 'To share' },
-          items: [
-            { name: { it: 'Patate dolci', en: 'Sweet potato fries' }, price: 4.5, tags: ['unavailable'] }
           ],
           extras: [
             { name: { it: 'Avocado', en: 'Avocado' }, price: 2.5 },
