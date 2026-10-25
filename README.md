@@ -86,15 +86,17 @@ en `index.html`, `menu.html` y `sitemap.xml` (buscar `marcovf9.github.io`).
 
 ## Lista de fotos
 
-| # | Dónde | Foto definitiva | Estado |
-|---|-------|-----------------|--------|
-| 1 | Inicio | La vidriera de Via Pisana | ✅ `acquerello-vidriera.jpg` (acuarela) |
-| 2 | Shop | La bolsa de L’Australiano sobre la barra, fondo limpio, luz natural | Etiqueta nueva `australiano-etichetta.jpg` (sirve hasta tener foto de la bolsa) |
-| 3 | Al banco · Caffetteria | Carrusel de 10 fotos | ✅ `caffe-01…10.jpg` + `latte-art.jpg` |
-| 4 | Al banco · Brunch | Carrusel de 4 fotos | ✅ `avocado-toast.jpg`, `brunch-02…04.jpg` |
-| 5 | Storia · apertura | Maykol y Alice detrás de la barra | ✅ `maykol-alice.jpg` |
-| 6 | Storia 01 · Firenze | Maykol haciendo latte art | ✅ Video `en-la-barra.mp4` |
-| 7 | Storia 02 · Australia (opcional) | Maykol en Australia (archivo) | Sin foto: capítulo solo texto |
+| Dónde | Archivos |
+|---|---|
+| Inicio | `acquerello-vidriera.jpg` (acuarela de @qualali_studio) |
+| Shop | `australiano-etichetta.jpg` (etiqueta de L’Australiano) |
+| Al banco · Caffetteria | `caffe-01…13.jpg` (carrusel) |
+| Al banco · Brunch | `brunch-01…06.jpg`, en el orden del menú y con el nombre del plato: Farmer bagel, Avocado toast 2.0, Avocado toast, Pancakes, Cheesecake, Carrot cake |
+| Storia · intro | `maykol-alice.jpg` |
+| Storia 01 · Firenze | video `en-la-barra.mp4` |
+| Storia 02 · Australia | `storia-australia.jpg` |
+| Storia 03 · Pandemia | `storia-pandemia.jpg` |
+| Storia 04 · Apertura | `storia-apertura.jpg` |
 
 Fotos en `img/`, cada una en dos tamaños: `nombre.jpg` (hasta 1080 px de ancho) y `nombre-640.jpg` (para celular).
 El navegador elige solo con `srcset`/`sizes`. Video en H.264 sin audio, 540×816 (los iPhone graban en HEVC, que Chrome no reproduce).
