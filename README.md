@@ -118,6 +118,15 @@ index.html?giorno=2&ora=14:40
 
 `giorno`: 0 = domenica … 6 = sabato.
 
+## Caché
+
+`index.html` y `menu.html` cargan `assets/*.css|js?v=AAAAMMDDhhmm`. Al publicar cambios en `assets/`, actualizar ese
+número para que los navegadores descarguen la versión nueva:
+
+```bash
+V=$(date +%Y%m%d%H%M); sed -i '' -E "s#(assets/[a-z]+\.(css|js))(\?v=[0-9]+)?\"#\1?v=$V\"#g" index.html menu.html
+```
+
 ## Ramas
 
 | Rama         | Uso                                                  |
