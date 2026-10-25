@@ -31,7 +31,7 @@
   var I18N = {
     it: {
       'meta.home.title': 'MANLY The Office — Specialty coffee & brunch, Firenze',
-      'meta.home.desc': 'Specialty coffee di scuola australiana e brunch a San Frediano, Firenze. Via Pisana 48R.',
+      'meta.home.desc': 'Specialty coffee in stile australiano e brunch a San Frediano, Firenze. Via Pisana 48R.',
       'meta.menu.title': 'Il menu — MANLY The Office, Firenze',
       'meta.menu.desc': 'Caffetteria, brunch, dolci e bar di MANLY The Office, Via Pisana 48R, Firenze.',
       'skip': 'Vai al contenuto',
@@ -61,7 +61,7 @@
       'status.opensOn': 'Chiuso · apre {d} alle {t}',
 
       'hero.eyebrow': 'Specialty coffee & brunch · Dal 2023',
-      'hero.lead': 'Specialty coffee di scuola australiana e brunch, nel cuore di San Frediano.',
+      'hero.lead': 'Specialty coffee in stile australiano e brunch, nel cuore di San Frediano.',
       'hero.menu': 'Il menu',
       'hero.directions': 'Come arrivare',
       'hero.rating': '4,9 su Google · oltre 660 recensioni',
@@ -447,6 +447,9 @@
     // Fotos con texto alternativo en los dos idiomas
     document.querySelectorAll('[data-alt-' + value + ']').forEach(function (img) {
       img.alt = img.getAttribute('data-alt-' + value);
+    });
+    document.querySelectorAll('[data-text-' + value + ']').forEach(function (el) {
+      el.textContent = el.getAttribute('data-text-' + value);
     });
 
     document.title = t('meta.' + page + '.title');
