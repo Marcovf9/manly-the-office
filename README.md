@@ -74,6 +74,11 @@ Sección «Dal nostro Instagram» en `index.html` con los 6 últimos reels (cód
 Para cambiarlos, reemplazar el ID de cada reel (`/reel/ID/`) en los `blockquote`. El script de Instagram se carga
 solo cuando la sección está cerca de la pantalla.
 
+### Pestaña «Info»
+
+Valoración y cantidad de reseñas de Google (`valutazione`, `recensioni`). La web redondea la cantidad hacia abajo a la
+decena (671 → «oltre 670»). URL en `INFO_CSV_URL` (`assets/site.js`); requiere que la pestaña esté publicada.
+
 ## Google y vista previa al compartir
 
 - **Ficha para Google**: bloque `application/ld+json` (tipo `CafeOrCoffeeShop`) en el `<head>` de cada página,
@@ -143,6 +148,8 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `style:`, `docs:`, `refactor:`, `chore:`.
 
 ## Pendientes
+
+- [ ] Publicar en la web la pestaña «Info» (Archivo → Compartir → Publicar en la web)
 
 - [x] Pestaña «Caffè» publicada (Hambela en singola origine, Kiandu AB en filtro)
 - [ ] Aviso de cookies: los reels de Instagram cargan scripts de Instagram
