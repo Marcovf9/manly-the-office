@@ -64,7 +64,7 @@
       'hero.lead': 'Specialty coffee in stile australiano e brunch, nel cuore di San Frediano.',
       'hero.menu': 'Il menu',
       'hero.directions': 'Come arrivare',
-      'hero.rating': '4,9 su Google · oltre 660 recensioni',
+      'hero.rating': '{r} su Google · oltre {n} recensioni',
       'hero.alt': 'Illustrazione ad acquerello della vetrina di MANLY The Office in Via Pisana',
       'hero.credit': 'Illustrazione',
       'hero.artLink': 'Illustrazione di @qualali_studio: apri il suo Instagram',
@@ -237,7 +237,7 @@
       'hero.lead': 'Australian-style specialty coffee and brunch, in the heart of San Frediano.',
       'hero.menu': 'Menu',
       'hero.directions': 'Directions',
-      'hero.rating': '4.9 on Google · 660+ reviews',
+      'hero.rating': '{r} on Google · {n}+ reviews',
       'hero.alt': 'Watercolour illustration of the MANLY The Office shopfront on Via Pisana',
       'hero.credit': 'Illustration',
       'hero.artLink': 'Illustration by @qualali_studio: open her Instagram',
@@ -1082,6 +1082,40 @@
     io.observe(grid);
   }
 
+  /* ===== Reseñas de Google =====
+     Nota y cantidad desde la pestaña «Info» de la planilla. La cantidad se
+     redondea hacia abajo a la decena, así el texto sigue siendo cierto aunque
+     no se actualice enseguida. */
+  var INFO_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSA0xWKycQPswGf7j60kCZ9JPYe1pP0UtaJ1ofHLSO5VSt8z2kT6oCFlmZ8zO8MjqE--grRjph0Nmay/pub?gid=4001&single=true&output=csv';
+  var RATING = { valutazione: 4.9, recensioni: 670 };
+
+  function renderRating() {
+    var r = new Intl.NumberFormat(lang() === 'it' ? 'it-IT' : 'en-GB', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(RATING.valutazione);
+    var n = Math.floor(RATING.recensioni / 10) * 10;
+    document.querySelectorAll('[data-rating]').forEach(function (el) {
+      el.textContent = fmt(t('hero.rating'), { r: r, n: n });
+    });
+  }
+
+  function loadRating() {
+    if (!document.querySelector('[data-rating]')) return;
+    renderRating();
+    document.addEventListener('langchange', renderRating);
+    if (!INFO_CSV_URL || !window.fetch) return;
+    fetch(INFO_CSV_URL, { cache: 'no-store' })
+      .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
+      .then(function (text) {
+        csvObjects(text).forEach(function (row) {
+          var v = Number((row.valore || '').replace(',', '.'));
+          if (row.codice in RATING && v > 0) RATING[row.codice] = v;
+        });
+        renderRating();
+      })
+      .catch(function (err) {
+        if (window.console) console.warn('Info: no se pudo leer Google Sheets (' + err.message + '), uso los datos incluidos.');
+      });
+  }
+
   function setupHeader() {
     var header = document.querySelector('.header');
     if (!header) return;
@@ -1110,6 +1144,7 @@
     setupVideos();
     setupSliders();
     loadCoffees();
+    loadRating();
     setupInstagram();
     setupReveal();
     setInterval(tick, 30 * 1000);
