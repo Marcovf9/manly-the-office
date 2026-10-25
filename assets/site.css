@@ -1045,7 +1045,7 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .product__form { display: grid; gap: var(--space-3); }
 .product__media--label .product__tag { top: auto; bottom: 1rem; }
 
-/* Una sola macinatura disponible: ocupa todo el ancho */
+/* Una sola opción (formato o macinatura): ocupa todo el ancho */
 .choice__options.is-single { grid-template-columns: 1fr; }
 .choice__note { margin-top: 0.5rem; font-size: 0.85rem; color: var(--muted); }
 .blend { display: block; white-space: nowrap; }
