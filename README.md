@@ -192,7 +192,6 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 - [ ] Revisar con Maykol los alérgenos de la carta impresa (ver notas abajo)
 - [ ] Dar de alta el sitio en Google Search Console y enviar `sitemap.xml`
 
-- [ ] Precios definitivos de L'Australiano (hoy 25 € / 100 € orientativos)
 - [x] Nombres y descripciones de la carta en italiano (de la carta impresa)
 - [x] Precios: se usan los de la carta italiana (avocado y pane senza glutine 2,5 €, New York BB 9 €)
 - [x] Horario de cocina y brunch: 8:30–14:00
