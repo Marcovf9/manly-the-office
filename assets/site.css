@@ -440,7 +440,11 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 }
 .hero__media {
   position: relative;
-  height: calc(clamp(300px, 54svh, 620px) + var(--header-h));
+  /* Nunca menos de 100vw visibles bajo el header: con la ilustración a todo el ancho
+     (proporción 1008×1390) eso deja siempre a la vista el cartel MANLY y la firma,
+     sin depender de cómo calcula cada navegador el alto de pantalla. */
+  height: calc(max(clamp(300px, 54vh, 620px), 100vw) + var(--header-h));
+  height: calc(max(clamp(300px, 54svh, 620px), 100vw) + var(--header-h));
   overflow: hidden;
   margin: 0;
 }
