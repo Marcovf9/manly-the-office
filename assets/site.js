@@ -10,6 +10,7 @@
     phone: '+390559062024',
     whatsapp: '390559062024',
     instagram: 'manly_the_office_florence',
+    email: 'australiaitalia2023@libero.it',
     address: 'Via Pisana 48R, 50143 Firenze',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=' +
       encodeURIComponent('MANLY The Office, Via Pisana 48R, 50143 Firenze'),
@@ -204,6 +205,24 @@
       'footer.visit': 'Indirizzo',
       'footer.hours': 'Orari',
       'footer.contact': 'Contatti',
+      'nav.contact': 'Contatti',
+      'contact.eyebrow': 'Contatti',
+      'contact.title': 'Scrivici',
+      'contact.lead': 'Per informazioni, eventi e collaborazioni o per ordinare L’Australiano. Ti rispondiamo appena possibile.',
+      'contact.phone': 'Telefono',
+      'contact.copy': 'Copia indirizzo',
+      'contact.copied': 'Indirizzo copiato',
+      'contact.name': 'Nome',
+      'contact.topic': 'Argomento',
+      'contact.topic.info': 'Informazioni',
+      'contact.topic.shop': 'Ordine di L’Australiano',
+      'contact.topic.events': 'Eventi e collaborazioni',
+      'contact.topic.other': 'Altro',
+      'contact.message': 'Messaggio',
+      'contact.error': 'Scrivi il messaggio prima di continuare.',
+      'contact.send': 'Prepara l’email',
+      'contact.fine': 'Si apre la tua app di posta con il messaggio già scritto: sei tu a inviarlo. Il sito non salva né invia nulla.',
+      'contact.opened': 'Se non si è aperta nessuna app di posta, scrivici direttamente a',
       'footer.seat': 'Sede legale',
       'footer.art': 'Illustrazione della vetrina',
 
@@ -395,6 +414,24 @@
       'footer.visit': 'Address',
       'footer.hours': 'Hours',
       'footer.contact': 'Contact',
+      'nav.contact': 'Contact',
+      'contact.eyebrow': 'Contact',
+      'contact.title': 'Write to us',
+      'contact.lead': 'For information, events and collaborations, or to order L’Australiano. We’ll get back to you as soon as we can.',
+      'contact.phone': 'Phone',
+      'contact.copy': 'Copy address',
+      'contact.copied': 'Address copied',
+      'contact.name': 'Name',
+      'contact.topic': 'Subject',
+      'contact.topic.info': 'Information',
+      'contact.topic.shop': 'L’Australiano order',
+      'contact.topic.events': 'Events and collaborations',
+      'contact.topic.other': 'Other',
+      'contact.message': 'Message',
+      'contact.error': 'Please write your message first.',
+      'contact.send': 'Prepare the email',
+      'contact.fine': 'Your mail app opens with the message ready: you send it yourself. The website stores and sends nothing.',
+      'contact.opened': 'If no mail app opened, write to us directly at',
       'footer.seat': 'Registered office',
       'footer.art': 'Shopfront illustration',
 
@@ -510,6 +547,7 @@
   var LINKS = {
     maps: BIZ.mapsUrl,
     tel: 'tel:' + BIZ.phone,
+    email: 'mailto:' + BIZ.email,
     instagram: 'https://www.instagram.com/' + BIZ.instagram + '/'
   };
   function fillLinks() {
@@ -1360,6 +1398,48 @@
       });
   }
 
+  /* ===== Contatti: el formulario solo arma un email (mailto) en la app del visitante =====
+     No hay backend: nada se envía ni se guarda desde la web. */
+  function setupContactForm() {
+    document.querySelectorAll('[data-copy-email]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        copyText(BIZ.email).then(function (ok) {
+          if (!ok) return;
+          btn.textContent = t('contact.copied') + ' ✓';
+          setTimeout(function () { btn.textContent = t('contact.copy'); }, 2500);
+        });
+      });
+    });
+
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    var msg = form.elements.message;
+    var err = document.getElementById('cf-error');
+    var notice = document.getElementById('contact-notice');
+
+    function setInvalid(bad) {
+      err.hidden = !bad;
+      if (bad) msg.setAttribute('aria-invalid', 'true');
+      else msg.removeAttribute('aria-invalid');
+    }
+    msg.addEventListener('input', function () { if (msg.value.trim()) setInvalid(false); });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var body = msg.value.trim();
+      if (!body) { setInvalid(true); msg.focus(); return; }
+      setInvalid(false);
+      var name = form.elements.name.value.trim();
+      var topic = form.elements.topic;
+      var subject = 'MANLY · ' + topic.options[topic.selectedIndex].text + (name ? ' · ' + name : '');
+      location.href = 'mailto:' + BIZ.email +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body + (name ? '\n\n' + name : ''));
+      notice.hidden = false;
+      notice.textContent = t('contact.opened') + ' ' + BIZ.email;
+    });
+  }
+
   function setupHeader() {
     var header = document.querySelector('.header');
     if (!header) return;
@@ -1383,6 +1463,7 @@
     setupContactButton();
     setupDrawer();
     setupShop();
+    setupContactForm();
     setupHeader();
     applyLang(detectLang());
     setupHero();
