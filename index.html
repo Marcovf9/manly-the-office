@@ -38,6 +38,7 @@
       "https://marcovf9.github.io/manly-the-office/img/acquerello-vidriera.jpg"
     ],
     "telephone": "+39 055 906 2024",
+    "email": "australiaitalia2023@libero.it",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Via Pisana 48R",
@@ -79,8 +80,8 @@
   <link rel="preconnect" href="https://docs.google.com" crossorigin>
   <link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="img/acquerello-vidriera.jpg" imagesrcset="img/acquerello-vidriera-640.jpg 640w, img/acquerello-vidriera.jpg 1008w" imagesizes="(min-width: 900px) 50vw, 100vw">
-  <link rel="stylesheet" href="assets/site.css?v=202610260118">
-  <script src="assets/site.js?v=202610260118" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=202610261721">
+  <script src="assets/site.js?v=202610261721" defer></script>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#contenuto" data-i18n="skip">Vai al contenuto</a>
@@ -131,6 +132,7 @@
         <a href="menu.html" data-i18n="nav.menu">Il menu</a>
         <a href="./#visita" data-i18n="nav.hours">Orari</a>
         <a href="./#storia" data-i18n="nav.storyShort">Storia</a>
+        <a href="./#contatti" data-i18n="nav.contact">Contatti</a>
       </nav>
 
       <div class="lang" role="group" aria-label="Lingua" data-i18n-attr="aria-label:lang.label">
@@ -150,6 +152,7 @@
         <li><a href="./#visita"><span data-i18n="nav.visit">Orari e indirizzo</span></a></li>
         <li><a href="./#storia"><span data-i18n="nav.story">La nostra storia</span></a></li>
         <li><a href="./#instagram"><span>Instagram</span></a></li>
+        <li><a href="./#contatti"><span data-i18n="nav.contact">Contatti</span></a></li>
       </ol>
     </nav>
     <div class="wrap drawer__info">
@@ -166,7 +169,8 @@
       <div>
         <p class="eyebrow" data-i18n="info.contact">Contatti</p>
         <p><a href="#" data-href="tel">+39 055 906 2024</a></p>
-        <p><a href="#" data-href="instagram" target="_blank" rel="noopener">@manly_the_office_florence</a></p>
+        <p><a href="#" data-href="instagram" target="_blank" rel="noopener">@manly_the_office_florence</a><br><a href="mailto:australiaitalia2023@libero.it" data-href="email">australiaitalia2023@libero.it</a></p>
+        <p><a href="mailto:australiaitalia2023@libero.it" data-href="email">australiaitalia2023@libero.it</a></p>
       </div>
     </div>
   </div>
@@ -556,6 +560,62 @@
         </ul>
       </div>
     </section>
+    <!-- Contatti: canales directos y un formulario que solo arma el email en la app del visitante (no envía nada) -->
+    <section class="section contact" id="contatti" aria-labelledby="contact-title">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="contact.eyebrow">Contatti</p>
+          <h2 class="h-lg" id="contact-title" data-i18n="contact.title">Scrivici</h2>
+          <p class="lead" data-i18n="contact.lead">Per informazioni, eventi e collaborazioni o per ordinare L’Australiano. Ti rispondiamo appena possibile.</p>
+        </header>
+
+        <div class="contact__grid">
+          <ul class="contact__list">
+            <li>
+              <span class="eyebrow">Email</span>
+              <a class="contact__value" href="mailto:australiaitalia2023@libero.it" data-href="email">australiaitalia2023@libero.it</a>
+              <button type="button" class="contact__copy" data-copy-email data-i18n="contact.copy">Copia indirizzo</button>
+            </li>
+            <li>
+              <span class="eyebrow" data-i18n="contact.phone">Telefono</span>
+              <a class="contact__value" href="tel:+390559062024" data-href="tel">+39 055 906 2024</a>
+            </li>
+            <li>
+              <span class="eyebrow">Instagram</span>
+              <a class="contact__value" href="https://www.instagram.com/manly_the_office_florence/" data-href="instagram" target="_blank" rel="noopener">@manly_the_office_florence</a>
+            </li>
+            <li>
+              <span class="eyebrow" data-i18n="footer.visit">Indirizzo</span>
+              <a class="contact__value" href="#" data-href="maps" target="_blank" rel="noopener">Via Pisana 48R, 50143 Firenze</a>
+            </li>
+          </ul>
+
+          <form class="contact__form" id="contact-form" novalidate>
+            <div class="field">
+              <label for="cf-name" data-i18n="contact.name">Nome</label>
+              <input id="cf-name" name="name" type="text" autocomplete="name" maxlength="80">
+            </div>
+            <div class="field">
+              <label for="cf-topic" data-i18n="contact.topic">Argomento</label>
+              <select id="cf-topic" name="topic">
+                <option value="info" data-i18n="contact.topic.info">Informazioni</option>
+                <option value="shop" data-i18n="contact.topic.shop">Ordine di L’Australiano</option>
+                <option value="events" data-i18n="contact.topic.events">Eventi e collaborazioni</option>
+                <option value="other" data-i18n="contact.topic.other">Altro</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="cf-msg" data-i18n="contact.message">Messaggio</label>
+              <textarea id="cf-msg" name="message" rows="5" maxlength="1500" required aria-describedby="cf-error"></textarea>
+              <p class="field__error" id="cf-error" data-i18n="contact.error" hidden>Scrivi il messaggio prima di continuare.</p>
+            </div>
+            <button type="submit" class="btn btn--block" data-i18n="contact.send">Prepara l’email</button>
+            <p class="contact__fine" data-i18n="contact.fine">Si apre la tua app di posta con il messaggio già scritto: sei tu a inviarlo. Il sito non salva né invia nulla.</p>
+            <p class="shop-notice" id="contact-notice" role="status" hidden></p>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -571,7 +631,7 @@
         </div>
         <div class="footer__col">
           <h2 data-i18n="footer.contact">Contatti</h2>
-          <p><a href="#" data-href="tel">+39 055 906 2024</a><br><a href="#" data-href="instagram" target="_blank" rel="noopener">@manly_the_office_florence</a></p>
+          <p><a href="#" data-href="tel">+39 055 906 2024</a><br><a href="#" data-href="instagram" target="_blank" rel="noopener">@manly_the_office_florence</a><br><a href="mailto:australiaitalia2023@libero.it" data-href="email">australiaitalia2023@libero.it</a></p>
         </div>
       </div>
 
