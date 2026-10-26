@@ -198,7 +198,6 @@
       'essenza.p3.title': 'Un brunch per tutti',
       'essenza.p3.text': 'Pancake, banana bread fatto in casa senza glutine, bagel e avocado toast. Proviamo ad accontentare ogni esigenza alimentare, nei limiti del possibile.',
       'press.url': 'https://www.gamberorosso.it/notizie/storie/manly-the-office-firenze/',
-      'press.kicker': 'Gambero Rosso',
       'press.title': 'Il sogno australiano di un barista toscano',
       'press.meta': 'Michela Becchi · 19 gennaio 2024',
 
@@ -407,7 +406,6 @@
       'essenza.p3.title': 'Brunch for everyone',
       'essenza.p3.text': 'Pancakes, homemade gluten-free banana bread, bagels and avocado toast. We try to meet every dietary need, within reason.',
       'press.url': 'https://www.gamberorossointernational.com/news/the-australian-dream-of-a-tuscan-barista-in-florence-theres-a-new-and-young-specialty-coffee-shop-to-try/',
-      'press.kicker': 'Gambero Rosso',
       'press.title': 'The Australian dream of a Tuscan barista',
       'press.meta': 'Michela Becchi · 19 January 2024',
 
