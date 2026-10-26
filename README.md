@@ -19,7 +19,7 @@ docs/              → material de referencia (logo)
 
 | Qué                                  | Dónde                              |
 |--------------------------------------|------------------------------------|
-| Horario, teléfono, WhatsApp, IG      | `BIZ` en `assets/site.js`          |
+| Horario, teléfono, email, IG         | `BIZ` en `assets/site.js`          |
 | Textos IT / EN                       | `I18N` en `assets/site.js`         |
 | Producto del shop y precios          | `PRODUCT` en `assets/site.js`      |
 | Medio de pedido / pago               | `CHECKOUT_PROVIDERS` en `assets/site.js` |
@@ -91,6 +91,13 @@ El botón «Ordina su Instagram» copia el pedido al portapapeles y abre el chat
 (`https://ig.me/m/manly_the_office_florence`), porque Instagram no permite dejar el mensaje escrito.
 El botón flotante abajo a la izquierda abre el mismo chat. El proveedor de WhatsApp sigue en el código
 (`CHECKOUT_PROVIDERS.whatsapp`) por si en el futuro tienen WhatsApp Business.
+
+## Sección «Contatti» y email
+
+`#contatti`, al final del inicio: email, teléfono, Instagram y dirección, más un formulario «Scrivici».
+El formulario no envía nada desde la web (no hay backend): arma un `mailto:` con asunto y mensaje y abre
+la app de correo del visitante. El email está en HTML (funciona sin JavaScript) y en `BIZ.email`;
+si cambia, hay que actualizar los dos y el JSON-LD de `index.html`.
 
 ## Privacidad y cookies
 
