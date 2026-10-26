@@ -140,6 +140,8 @@ sips -s format jpeg -s formatOptions 56 --resampleWidth 1080 original.jpg --out 
 sips -s format jpeg -s formatOptions 66 --resampleWidth 640 original.jpg --out img/nombre-640.jpg
 ```
 
+
+`img/gambero-rosso.png`: logo oficial de Gambero Rosso (tomado de la cabecera de gamberorosso.it), usado sin modificar en el link a la nota.
 ## Probar estados del horario
 
 El indicador usa siempre la hora de Florencia. Para ver otros estados:
