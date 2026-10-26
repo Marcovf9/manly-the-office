@@ -783,14 +783,18 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .contact__list li { display: grid; gap: 0.3rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
 .contact__value {
   justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
   font-weight: 300;
   color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid var(--line);
   overflow-wrap: anywhere;
 }
-@media (hover: hover) { .contact__value:hover { border-bottom-color: var(--ink); } }
+.contact__value span { border-bottom: 1px solid var(--line); transition: border-color .25s; }
+.contact__icon { width: 20px; height: 20px; flex: none; color: var(--ink-2); }
+@media (hover: hover) { .contact__value:hover span { border-bottom-color: var(--ink); } }
 .contact__copy {
   justify-self: start;
   padding: 0.2rem 0;
