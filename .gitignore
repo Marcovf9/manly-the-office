@@ -1,3 +1,6 @@
 .DS_Store
 .vscode/
 *.log
+
+# Salida del build de Cloudflare Pages
+dist/
