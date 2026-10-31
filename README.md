@@ -70,9 +70,9 @@ URL en `COFFEES_CSV_URL` (`assets/site.js`). La columna «Link D612» agrega «A
 
 ## Instagram
 
-Sección «Dal nostro Instagram» en `index.html` con los 6 últimos reels (código oficial de Instagram).
-Para cambiarlos, reemplazar el ID de cada reel (`/reel/ID/`) en los `blockquote`. El script de Instagram se carga
-solo cuando la sección está cerca de la pantalla.
+Sección «Seguici su Instagram» (`#instagram`) en `index.html`: un mosaico fijo de 6 fotos propias y un botón al
+perfil. No hay embeds de Instagram, así que no se desactualiza ni pone cookies. Para que se actualice solo haría
+falta que el dueño de la cuenta autorice un servicio como Behold y reemplazar el mosaico por su código.
 
 ### Pestaña «Info»
 
@@ -101,8 +101,8 @@ si cambia, hay que actualizar los dos y el JSON-LD de `index.html`.
 
 ## Privacidad y cookies
 
-- Aviso con «Accetta» / «Rifiuta» (`manly-consent` en el navegador). Sin aceptar, el mapa de Google y los posts
-  de Instagram no se cargan: muestran un botón para abrirlos uno por uno.
+- Aviso con «Accetta» / «Rifiuta» (`manly-consent` en el navegador). Sin aceptar, el mapa de Google no se carga:
+  muestra un botón para abrirlo.
 - `privacy.html` (IT/EN) con titular, datos, cookies y derechos. **Conviene que la revise un profesional antes de publicar.**
 - Tipografías alojadas en `assets/fonts/` (sin Google Fonts).
 

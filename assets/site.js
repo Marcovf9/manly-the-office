@@ -98,15 +98,13 @@
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Firenze ·',
       'nav.coffees': 'I nostri caffè',
-      'consent.text': 'Usiamo solo cookie tecnici. La mappa di Google e i post di Instagram usano cookie di terze parti: li carichiamo solo se accetti.',
+      'consent.text': 'Usiamo solo cookie tecnici. La mappa di Google usa cookie di terze parti: la carichiamo solo se accetti.',
       'consent.accept': 'Accetta',
       'consent.reject': 'Rifiuta',
       'consent.more': 'Privacy',
       'consent.label': 'Preferenze cookie',
       'consent.mapText': 'La mappa è fornita da Google Maps, che usa cookie di terze parti.',
       'consent.mapLoad': 'Mostra la mappa',
-      'consent.igText': 'I post sono caricati da Instagram, che usa cookie di terze parti.',
-      'consent.igLoad': 'Mostra i post',
       'footer.privacy': 'Privacy e cookie',
       'footer.cookies': 'Preferenze cookie',
       'meta.privacy.title': 'Privacy e cookie — MANLY The Office',
@@ -116,9 +114,10 @@
       'topbar.announce': 'L’Australiano, la nostra miscela · Ordina su Instagram',
       'statement.text': 'Specialty coffee, ospitalità australiana. A San Frediano, dal 2023.',
       'coffees.d612': 'Acquista da D612',
-      'ig.title': 'Dal nostro Instagram',
+      'ig.title': 'Seguici su Instagram',
+      'ig.lead': 'Nuovi caffè, piatti del giorno e la vita al banco.',
       'ig.follow': 'Seguici su Instagram',
-      'ig.view': 'Guarda su Instagram',
+      'ig.open': 'Apri il profilo Instagram di MANLY The Office',
       'coffees.eyebrow': 'Al banco · D612 Coffee Roasters',
       'coffees.title': 'I nostri caffè',
       'coffees.lead': 'Tre caffè, tutti tostati a Firenze da D612. La miscela della casa resta sempre; singola origine e filtro cambiano spesso.',
@@ -306,15 +305,13 @@
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Florence ·',
       'nav.coffees': 'Our coffees',
-      'consent.text': 'We only use technical cookies. The Google map and Instagram posts use third-party cookies: we load them only if you accept.',
+      'consent.text': 'We only use technical cookies. The Google map uses third-party cookies: we load it only if you accept.',
       'consent.accept': 'Accept',
       'consent.reject': 'Decline',
       'consent.more': 'Privacy',
       'consent.label': 'Cookie preferences',
       'consent.mapText': 'The map is provided by Google Maps, which uses third-party cookies.',
       'consent.mapLoad': 'Show the map',
-      'consent.igText': 'Posts are loaded from Instagram, which uses third-party cookies.',
-      'consent.igLoad': 'Show posts',
       'footer.privacy': 'Privacy & cookies',
       'footer.cookies': 'Cookie preferences',
       'meta.privacy.title': 'Privacy & cookies — MANLY The Office',
@@ -324,9 +321,10 @@
       'topbar.announce': 'L’Australiano, our house blend · Order on Instagram',
       'statement.text': 'Specialty coffee, Australian hospitality. In San Frediano, since 2023.',
       'coffees.d612': 'Buy from D612',
-      'ig.title': 'From our Instagram',
+      'ig.title': 'Follow us on Instagram',
+      'ig.lead': 'New coffees, dishes of the day and life behind the bar.',
       'ig.follow': 'Follow us on Instagram',
-      'ig.view': 'View on Instagram',
+      'ig.open': 'Open MANLY The Office’s Instagram profile',
       'coffees.eyebrow': 'At the counter · D612 Coffee Roasters',
       'coffees.title': 'Our coffees',
       'coffees.lead': 'Three coffees, all roasted in Florence by D612. The house blend never changes; single origin and filter rotate often.',
@@ -1261,13 +1259,10 @@
       });
   }
 
-  /* ===== Instagram =====
-     El script oficial de Instagram (que pone cookies) se carga solo cuando la
-     sección está por entrar en pantalla, para no frenar la carga inicial. */
   /* ===== Consentimiento de cookies =====
      La web solo usa almacenamiento técnico (idioma, preferencias). El mapa de
-     Google y los posts de Instagram ponen cookies de terceros: se cargan solo
-     con «Accetta» o tocando «Mostra» en cada uno. */
+     Google pone cookies de terceros: se carga solo con «Accetta» o tocando
+     «Mostra la mappa». */
   var CONSENT_KEY = 'manly-consent';
   var MAP_SRC = 'https://www.google.com/maps?output=embed&q=' +
     encodeURIComponent('MANLY The Office, Via Pisana 48R, 50143 Firenze');
@@ -1291,11 +1286,6 @@
       f.allowFullscreen = true;
       box.innerHTML = '';
       box.appendChild(f);
-    },
-    instagram: function () {
-      var gate = document.querySelector('[data-ig-gate]');
-      if (gate) gate.hidden = true;
-      setupInstagram();
     }
   };
 
@@ -1342,24 +1332,6 @@
 
     if (getConsent() === 'all') loadEmbeds();
     else if (!getConsent()) showBanner();
-  }
-
-  function setupInstagram() {
-    var grid = document.querySelector('[data-ig]');
-    if (!grid || grid.getAttribute('data-ig-ready')) return;
-    grid.setAttribute('data-ig-ready', '1');
-    function load() {
-      if (window.instgrm) { window.instgrm.Embeds.process(); return; }
-      var s = document.createElement('script');
-      s.src = 'https://www.instagram.com/embed.js';
-      s.async = true;
-      document.body.appendChild(s);
-    }
-    if (!('IntersectionObserver' in window)) { load(); return; }
-    var io = new IntersectionObserver(function (entries) {
-      if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); }
-    }, { rootMargin: '600px 0px' });
-    io.observe(grid);
   }
 
   /* ===== Reseñas de Google =====
