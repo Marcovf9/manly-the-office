@@ -80,8 +80,8 @@
   <link rel="preconnect" href="https://docs.google.com" crossorigin>
   <link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="img/acquerello-vidriera.jpg" imagesrcset="img/acquerello-vidriera-640.jpg 640w, img/acquerello-vidriera.jpg 1008w" imagesizes="(min-width: 900px) 50vw, 100vw">
-  <link rel="stylesheet" href="assets/site.css?v=202610311618">
-  <script src="assets/site.js?v=202610311618" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=202610311633">
+  <script src="assets/site.js?v=202610311633" defer></script>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#contenuto" data-i18n="skip">Vai al contenuto</a>
@@ -531,38 +531,26 @@
         </a>
       </div>
     </section>
-    <!-- Instagram: últimos reels (código oficial de Instagram, se carga al acercarse) -->
+    <!-- Instagram: bloque fijo que lleva al perfil (sin embeds: no se desactualiza y no pone cookies) -->
     <section class="section ig" id="instagram" aria-labelledby="ig-title">
       <div class="wrap">
         <header class="section__head">
           <p class="eyebrow">@manly_the_office_florence</p>
-          <h2 class="h-lg" id="ig-title" data-i18n="ig.title">Dal nostro Instagram</h2>
-          <p><a class="link-arrow" href="#" data-href="instagram" target="_blank" rel="noopener"><span data-i18n="ig.follow">Seguici su Instagram</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+          <h2 class="h-lg" id="ig-title" data-i18n="ig.title">Seguici su Instagram</h2>
+          <p class="lead" data-i18n="ig.lead">Nuovi caffè, piatti del giorno e la vita al banco.</p>
         </header>
-        <div class="embed-gate embed-gate--bar" data-ig-gate>
-          <p data-i18n="consent.igText">I post sono caricati da Instagram, che usa cookie di terze parti.</p>
-          <button type="button" class="btn btn--outline" data-embed-load="instagram" data-i18n="consent.igLoad">Mostra i post</button>
-        </div>
-        <ul class="ig__grid" data-ig>
-          <li class="ig__item"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DfJlAVLgU7K/" data-instgrm-version="14">
-            <a href="https://www.instagram.com/reel/DfJlAVLgU7K/" target="_blank" rel="noopener" data-i18n="ig.view">Guarda su Instagram</a>
-          </blockquote></li>
-          <li class="ig__item"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/De90YWlgdJb/" data-instgrm-version="14">
-            <a href="https://www.instagram.com/reel/De90YWlgdJb/" target="_blank" rel="noopener" data-i18n="ig.view">Guarda su Instagram</a>
-          </blockquote></li>
-          <li class="ig__item"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/De1ztVDge8W/" data-instgrm-version="14">
-            <a href="https://www.instagram.com/reel/De1ztVDge8W/" target="_blank" rel="noopener" data-i18n="ig.view">Guarda su Instagram</a>
-          </blockquote></li>
-          <li class="ig__item"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DerkONbMhdu/" data-instgrm-version="14">
-            <a href="https://www.instagram.com/reel/DerkONbMhdu/" target="_blank" rel="noopener" data-i18n="ig.view">Guarda su Instagram</a>
-          </blockquote></li>
-          <li class="ig__item"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DehjnqAgkDn/" data-instgrm-version="14">
-            <a href="https://www.instagram.com/reel/DehjnqAgkDn/" target="_blank" rel="noopener" data-i18n="ig.view">Guarda su Instagram</a>
-          </blockquote></li>
-          <li class="ig__item"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DeMoCjkgvtq/" data-instgrm-version="14">
-            <a href="https://www.instagram.com/reel/DeMoCjkgvtq/" target="_blank" rel="noopener" data-i18n="ig.view">Guarda su Instagram</a>
-          </blockquote></li>
-        </ul>
+        <a class="ig__mosaic" href="https://www.instagram.com/manly_the_office_florence/" data-href="instagram" target="_blank" rel="noopener" aria-label="Apri il profilo Instagram di MANLY The Office" data-i18n-attr="aria-label:ig.open">
+          <ul aria-hidden="true">
+            <li><img src="img/caffe-08-640.jpg" width="640" height="853" alt="" loading="lazy" decoding="async"></li>
+            <li><img src="img/brunch-02-640.jpg" width="640" height="846" alt="" loading="lazy" decoding="async"></li>
+            <li><img src="img/caffe-03-640.jpg" width="640" height="897" alt="" loading="lazy" decoding="async"></li>
+            <li><img src="img/brunch-04-640.jpg" width="640" height="1138" alt="" loading="lazy" decoding="async"></li>
+            <li><img src="img/caffe-05-640.jpg" width="640" height="961" alt="" loading="lazy" decoding="async"></li>
+            <li><img src="img/brunch-05-640.jpg" width="640" height="897" alt="" loading="lazy" decoding="async"></li>
+          </ul>
+          <span class="ig__badge" aria-hidden="true"><svg><use href="#i-instagram"/></svg></span>
+        </a>
+        <a class="btn ig__cta" href="https://www.instagram.com/manly_the_office_florence/" data-href="instagram" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-instagram"/></svg><span data-i18n="ig.follow">Seguici su Instagram</span></a>
       </div>
     </section>
     <!-- Contatti: canales directos y un formulario que solo arma el email en la app del visitante (no envía nada) -->
