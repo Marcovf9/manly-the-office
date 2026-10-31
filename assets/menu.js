@@ -347,7 +347,7 @@
     var meta = tagsHtml(it.tags) + allergensHtml(it.a);
     var adds = (it.adds || []).map(function (x) { return '+ ' + esc(tr(x.name)) + ' ' + priceText(x.price); }).join(' · ');
     return '<li class="item">' +
-      '<span class="item__name">' + esc(tr(it.name)) + '</span>' +
+      '<span class="item__name" translate="no">' + esc(tr(it.name)) + '</span>' +
       '<span class="item__price">' + priceText(it.price) + '</span>' +
       (it.desc ? '<span class="item__desc">' + esc(tr(it.desc)) + '</span>' : '') +
       (adds ? '<span class="item__adds">' + adds + '</span>' : '') +
@@ -372,13 +372,20 @@
       return '<li>' + esc(n) + '</li>';
     }).join('');
 
+    // Un título igual en IT y EN (p. ej. «Brunch») es un nombre propio: que el traductor del navegador no lo toque
+    function keepName(title) {
+      // (desde la planilla llega como texto simple; en los datos incluidos, como { it, en } iguales)
+      var same = typeof title === 'string' || (title && title.it === title.en);
+      return same ? ' translate="no"' : '';
+    }
+
     document.getElementById('menu-nav').innerHTML = MENU.map(function (cat) {
-      return '<li><a href="#m-' + cat.id + '">' + esc(tr(cat.title)) + '</a></li>';
+      return '<li><a href="#m-' + cat.id + '"' + keepName(cat.title) + '>' + esc(tr(cat.title)) + '</a></li>';
     }).join('');
 
     list.innerHTML = MENU.map(function (cat) {
       return '<section class="menu-cat" id="m-' + cat.id + '" aria-labelledby="m-' + cat.id + '-t">' +
-        '<div class="menu-cat__head"><h2 class="menu-cat__title" id="m-' + cat.id + '-t">' + esc(tr(cat.title)) + '</h2>' +
+        '<div class="menu-cat__head"><h2 class="menu-cat__title" id="m-' + cat.id + '-t"' + keepName(cat.title) + '>' + esc(tr(cat.title)) + '</h2>' +
         (cat.kitchenNote ? '<span class="menu-cat__note">' + M.range(M.BIZ.kitchen) + '</span>' : '') + '</div>' +
         cat.groups.map(function (g) {
           return (g.title ? '<h3 class="menu-group__title">' + esc(tr(g.title)) + '</h3>' : '') +
