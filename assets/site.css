@@ -532,7 +532,8 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 }
 
 /* ===== Producto: L’Australiano ===== */
-.product__grid { display: grid; gap: var(--space-4); }
+/* minmax(0, 1fr): la columna no se ensancha por el contenido (si no, en celular se pasaba del margen) */
+.product__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
 .product__media {
   position: relative;
   aspect-ratio: 4 / 5;
@@ -616,10 +617,13 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 
 .buy {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 0.75rem;
   align-items: stretch;
 }
+/* En celulares angostos el texto del botón entra en una línea; si no, pasa a dos sin salirse */
+.buy .btn { padding-inline: 1rem; letter-spacing: 0.1em; white-space: normal; text-align: center; line-height: 1.3; }
+@media (max-width: 400px) { .qty button { width: 40px; } }
 .qty__label { display: block; }
 .qty {
   display: flex;
@@ -1127,7 +1131,7 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
   }
 }
 
-.product__form { display: grid; gap: var(--space-3); }
+.product__form { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
 .product__media--label .product__tag { top: auto; bottom: 1rem; }
 
 /* Una sola opción (formato o macinatura): ocupa todo el ancho */
