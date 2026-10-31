@@ -171,6 +171,12 @@ V=$(date +%Y%m%d%H%M); sed -i '' -E "s#(assets/[a-z]+\.(css|js))(\?v=[0-9]+)?\"#
 
 `404.html` usa `<base href="/manly-the-office/">`: con dominio propio, cambiarlo a `<base href="/">`.
 
+## Publicación (Cloudflare Pages)
+
+Proyecto `manly-the-office` en Cloudflare Pages, conectado al repo; publica la rama `produccion`.
+Build command: `sh scripts/build.sh` · Output directory: `dist`. El script copia solo los archivos públicos,
+así README, `docs/` y `scripts/` no quedan accesibles en la web.
+
 ## Ramas
 
 | Rama         | Uso                                                  |
