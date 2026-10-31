@@ -274,7 +274,7 @@
       'hero.eyebrow': 'Specialty coffee & brunch · Since 2023',
       'hero.lead': 'Australian-style specialty coffee and brunch, in the heart of San Frediano.',
       'hero.menu': 'Menu',
-      'hero.directions': 'Directions',
+      'hero.directions': 'Get directions',
       'hero.rating': '{r} on Google · {n}+ reviews',
       'hero.alt': 'Watercolour illustration of the MANLY The Office shopfront on Via Pisana',
       'hero.credit': 'Illustration',
@@ -691,7 +691,11 @@
     var s = getStatus(nowInFlorence());
     document.querySelectorAll('[data-status]').forEach(function (el) {
       el.setAttribute('data-state', s.state);
-      el.querySelector('.status__text').textContent = s.text;
+      var txt = el.querySelector('.status__text');
+      if (el.getAttribute('data-status-text') !== s.text) {
+        el.setAttribute('data-status-text', s.text);
+        txt.textContent = s.text;
+      }
     });
   }
 
@@ -703,7 +707,7 @@
     if (!list) return;
     var now = nowInFlorence();
     var today = now.day;
-    list.innerHTML = WEEK_ORDER.map(function (day) {
+    var html = WEEK_ORDER.map(function (day) {
       var h = BIZ.hours[day];
       if (h && closureOn(addDays(now.date, (day - today + 7) % 7))) h = null;
       var cls = (h ? '' : 'is-closed') + (day === today ? ' is-today' : '');
@@ -712,6 +716,11 @@
         esc(capitalize(t('days')[day])) + '</span>' +
         '<span class="hours__time">' + (h ? range(h) : esc(t('orari.closed'))) + '</span></li>';
     }).join('');
+    // Solo se reescribe si cambió: así no se pisa la traducción automática del navegador
+    if (list.getAttribute('data-html') !== html) {
+      list.setAttribute('data-html', html);
+      list.innerHTML = html;
+    }
   }
 
   function tick() { renderStatus(); renderHours(); renderClosureNote(); }
@@ -1198,8 +1207,8 @@
       link: 'https://www.d612coffeeroasters.com/products/kiandu-ab-kenya' }
   ];
 
-  function coffeeSpec(label, value) {
-    return value ? '<div><dt>' + esc(t(label)) + '</dt><dd>' + esc(value) + '</dd></div>' : '';
+  function coffeeSpec(label, value, keep) {
+    return value ? '<div><dt>' + esc(t(label)) + '</dt><dd' + (keep ? ' translate="no"' : '') + '>' + esc(value) + '</dd></div>' : '';
   }
 
   function renderCoffees() {
@@ -1214,20 +1223,20 @@
       return '<article class="coffee">' +
         '<p class="coffee__top"><span class="coffee__num">' + String(i + 1).padStart(2, '0') + '</span>' +
           '<span class="coffee__badge' + (fixed ? ' is-fixed' : '') + '">' + esc(t(fixed ? 'coffees.always' : 'coffees.rotating')) + '</span></p>' +
-        '<p class="coffee__use">' + esc(t('coffees.' + c.codice + '.use')) + '</p>' +
-        '<h3 class="coffee__name">' + esc(title) + '</h3>' +
+        '<p class="coffee__use" translate="no">' + esc(t('coffees.' + c.codice + '.use')) + '</p>' +
+        '<h3 class="coffee__name" translate="no">' + esc(title) + '</h3>' +
         (known
           ? '<dl class="coffee__specs">' +
               coffeeSpec('coffees.origin', [c.paese, c.zona].filter(Boolean).join(' · ')) +
-              coffeeSpec('coffees.producer', c.produttore_fattoria) +
-              coffeeSpec('coffees.variety', c.varieta) +
+              coffeeSpec('coffees.producer', c.produttore_fattoria, true) +
+              coffeeSpec('coffees.variety', c.varieta, true) +
               coffeeSpec('coffees.process', c.processo) +
               coffeeSpec('coffees.altitude', c.altitudine) +
               coffeeSpec('coffees.notes', notes) +
-              coffeeSpec('coffees.roaster', c.torrefazione) +
+              coffeeSpec('coffees.roaster', c.torrefazione, true) +
             '</dl>'
           : '<p class="coffee__ask">' + esc(t('coffees.ask')) + '</p>' +
-            '<dl class="coffee__specs">' + coffeeSpec('coffees.roaster', c.torrefazione) + '</dl>') +
+            '<dl class="coffee__specs">' + coffeeSpec('coffees.roaster', c.torrefazione, true) + '</dl>') +
         (fixed ? '<a class="link-arrow" href="#shop"><span>' + esc(t('coffees.buy')) + '</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>' : '') +
         (!fixed && known && /^https:\/\//.test(link)
           ? '<a class="link-arrow" href="' + esc(link) + '" target="_blank" rel="noopener"><span>' + esc(t('coffees.d612')) + '</span><svg aria-hidden="true" class="is-out"><use href="#i-arrow"/></svg></a>'
