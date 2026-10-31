@@ -81,7 +81,7 @@
       'shop.process': 'Processo',
       'shop.notes': 'Note',
       'shop.notesVal': 'Cioccolato, nocciola, frutti tropicali',
-      'shop.grindNote': 'Per ora disponibile solo in grani.',
+      'shop.grindNote': 'Per ora disponibile solo in chicchi.',
       'shop.size': 'Formato',
       'shop.grind': 'Macinatura',
       'shop.qty': 'Quantità',
@@ -93,7 +93,7 @@
       'shop.fine': 'Ritiro in negozio, Via Pisana 48R. Nessun pagamento online: l’ordine si conferma su Instagram.',
       'shop.copied': 'Messaggio copiato: incollalo nella chat di Instagram e invialo.',
       'shop.copyFail': 'Copia questo messaggio e invialo su Instagram:',
-      'shop.message': 'Ciao! Vorrei ordinare {qty} x {product} {size} {grind}, con ritiro in negozio. Mi dite come fare?',
+      'shop.message': 'Ciao! Vorrei ordinare {qty} x {product} {size} {grind}, con ritiro in negozio. C’è disponibilità?',
       'shop.imgAlt': 'Etichetta di L’Australiano, la miscela di MANLY The Office',
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Firenze ·',
@@ -301,7 +301,7 @@
       'shop.fine': 'Pick up in store, Via Pisana 48R. No online payment: the order is confirmed on Instagram.',
       'shop.copied': 'Message copied: paste it in the Instagram chat and send it.',
       'shop.copyFail': 'Copy this message and send it on Instagram:',
-      'shop.message': 'Hi! I’d like to order {qty} x {product} {size} {grind}, for pickup in store. How can I do it?',
+      'shop.message': 'Hi! I’d like to order {qty} x {product} {size} {grind}, for pickup in store. Is it available?',
       'shop.imgAlt': 'L’Australiano label, the MANLY The Office blend',
 
       'marquee': 'Specialty coffee · Brunch · San Frediano · Florence ·',
@@ -770,9 +770,9 @@
       { id: '250g', label: '250 g', msg: '250g', price: 15 }
     ],
     grinds: [
-      { id: 'grani', label: { it: 'In grani', en: 'Whole beans' }, msg: { it: 'in grani', en: 'whole beans' } },
-      // Por ahora solo se vende en grano: poner available: true para volver a ofrecerlo
-      { id: 'macinato', label: { it: 'Macinato', en: 'Ground' }, msg: { it: 'macinato', en: 'ground' }, available: false }
+      { id: 'chicchi', label: { it: 'In chicchi', en: 'Whole beans' }, msg: { it: 'in chicchi', en: 'whole beans' } },
+      // available: false oculta una opción (con una sola, se muestra como dato fijo con nota)
+      { id: 'macinato', label: { it: 'Macinato al momento', en: 'Freshly ground' }, msg: { it: 'macinato al momento', en: 'freshly ground' } }
     ],
     qty: { min: 1, max: 10 },
     fulfilment: 'pickup'
