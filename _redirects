@@ -1,0 +1,5 @@
+# Direcciones cortas y estables. El QR impreso apunta a /menu:
+# si algún día cambia el archivo del menú, se cambia solo esta línea.
+/menu    /menu.html    301
+/carta   /menu.html    301
+/privacy /privacy.html 301
