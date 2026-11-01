@@ -1024,14 +1024,6 @@
   }, { passive: true });
 
   // Hero: entrada suave de la ilustración y del texto
-  function setupHero() {
-    var hero = document.querySelector('.hero');
-    if (!hero) return;
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () { hero.classList.add('is-loaded'); });
-    });
-  }
-
   // Videos: se reproducen solo mientras están en pantalla
   function setupVideos() {
     document.querySelectorAll('video[data-autoplay]').forEach(function (video) {
@@ -1473,7 +1465,6 @@
     setupContactForm();
     setupHeader();
     applyLang(detectLang());
-    setupHero();
     setupVideos();
     setupSliders();
     loadCoffees();
