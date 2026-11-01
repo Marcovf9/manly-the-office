@@ -113,8 +113,9 @@ si cambia, hay que actualizar los dos y el JSON-LD de `index.html`.
 - **Vista previa** al compartir el link (WhatsApp, Instagram, Facebook): etiquetas `og:` + `img/og-manly.jpg` (1200×630).
 - **sitemap.xml** con las dos páginas, para enviarlo en Google Search Console.
 
-Las URLs son absolutas a `https://marcovf9.github.io/manly-the-office/`. Con dominio propio hay que reemplazarlas
-en `index.html`, `menu.html` y `sitemap.xml` (buscar `marcovf9.github.io`).
+Las URLs son absolutas a `https://manlytheoffice.it/`, el dominio propio del sitio (registrado en Aruba,
+DNS en Cloudflare, desplegado con Cloudflare Pages). Si alguna vez cambia el dominio, hay que reemplazarlas
+en `index.html`, `menu.html`, `sitemap.xml` y `robots.txt`.
 
 ## Lista de fotos
 
