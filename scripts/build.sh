@@ -4,5 +4,5 @@
 set -e
 rm -rf dist
 mkdir -p dist
-cp index.html menu.html privacy.html 404.html sitemap.xml robots.txt _redirects dist/
+cp index.html menu.html privacy.html 404.html sitemap.xml robots.txt _redirects favicon.ico favicon.svg dist/
 cp -R assets img dist/
