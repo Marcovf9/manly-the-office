@@ -122,7 +122,9 @@
       'ig.title': 'Seguici su Instagram',
       'ig.lead': 'Nuovi caffè, piatti del giorno e la vita al banco.',
       'ig.follow': 'Seguici su Instagram',
+      'reviews.eyebrow': 'Recensioni',
       'reviews.title': 'Dicono di noi',
+      'reviews.count': 'oltre {n} recensioni su Google',
       'reviews.lead': 'Alcune delle recensioni dei nostri clienti su Google.',
       'reviews.stars': '5 stelle su 5',
       'reviews.all': 'Leggi tutte le recensioni su Google',
@@ -341,7 +343,9 @@
       'ig.title': 'Follow us on Instagram',
       'ig.lead': 'New coffees, dishes of the day and life behind the bar.',
       'ig.follow': 'Follow us on Instagram',
+      'reviews.eyebrow': 'Reviews',
       'reviews.title': 'What people say',
+      'reviews.count': '{n}+ reviews on Google',
       'reviews.lead': 'A few of our guests’ reviews on Google, in their original Italian.',
       'reviews.stars': '5 out of 5 stars',
       'reviews.all': 'Read all reviews on Google',
@@ -1381,6 +1385,10 @@
     var n = Math.floor(RATING.recensioni / 10) * 10;
     document.querySelectorAll('[data-rating]').forEach(function (el) {
       el.textContent = fmt(t('hero.rating'), { r: r, n: n });
+    });
+    document.querySelectorAll('[data-rating-value]').forEach(function (el) { el.textContent = r; });
+    document.querySelectorAll('[data-rating-count]').forEach(function (el) {
+      el.textContent = fmt(t('reviews.count'), { n: n });
     });
   }
 
