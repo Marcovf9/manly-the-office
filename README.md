@@ -170,7 +170,7 @@ V=$(date +%Y%m%d%H%M); sed -i '' -E "s#(assets/[a-z]+\.(css|js))(\?v=[0-9]+)?\"#
 | Menu | 99 | 100 | 100 | 100 |
 | Privacy | 99 | 100 | 100 | — (noindex a propósito) |
 
-`404.html` usa `<base href="/manly-the-office/">`: con dominio propio, cambiarlo a `<base href="/">`.
+`404.html` usa `<base href="/">` para que estilos y links funcionen desde cualquier ruta.
 
 ## Publicación (Cloudflare Pages)
 
@@ -185,7 +185,7 @@ así README, `docs/` y `scripts/` no quedan accesibles en la web.
 | `feat/*`     | una tarea por rama, sale de `develop`                |
 | `develop`    | integración de tareas terminadas                     |
 | `main`       | versión estable y aprobada                           |
-| `produccion` | lo que se publica (GitHub Pages)                     |
+| `produccion` | lo que se publica (Cloudflare Pages)                 |
 
 Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 
