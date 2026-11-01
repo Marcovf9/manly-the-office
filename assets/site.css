@@ -534,18 +534,14 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 }
 
 @media (min-width: 900px) {
-  /* Las dos columnas dentro del mismo ancho que el resto de las secciones: la ilustración
-     arranca donde arranca el contenido y el bloque queda centrado en pantallas anchas */
   .hero {
-    grid-template-columns: repeat(2, minmax(0, calc((var(--max) - 2 * var(--gutter)) / 2)));
-    justify-content: center;
-    padding-inline: var(--gutter);
+    grid-template-columns: 1fr 1fr;
     min-height: min(calc(100svh - var(--topbar-h)), 980px);
   }
   /* La columna la define el hero; la imagen la llena sin estirarlo */
   .hero__media { height: auto; min-height: 0; }
   .hero__art { position: absolute; inset: 0; }
-  .hero__panel { padding: calc(var(--space-5) + var(--header-h)) 0 var(--space-5) var(--space-5); gap: var(--space-3); }
+  .hero__panel { padding: calc(var(--space-5) + var(--header-h)) var(--gutter) var(--space-5); gap: var(--space-3); }
   .hero__actions .btn { flex: 0 0 auto; }
 }
 
