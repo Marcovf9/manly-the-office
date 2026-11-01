@@ -208,6 +208,9 @@
       'press.url': 'https://www.gamberorosso.it/notizie/storie/manly-the-office-firenze/',
       'press.title': 'Il sogno australiano di un barista toscano',
       'press.meta': 'Michela Becchi · 19 gennaio 2024',
+      'press.rating.title': 'Punteggio bar: due tazzine',
+      'press.rating.meta': 'Scheda del locale · valutazione 2026',
+      'press.rating.cups': '2 tazzine',
 
       'footer.visit': 'Indirizzo',
       'footer.hours': 'Orari',
@@ -424,6 +427,9 @@
       'press.url': 'https://www.gamberorossointernational.com/news/the-australian-dream-of-a-tuscan-barista-in-florence-theres-a-new-and-young-specialty-coffee-shop-to-try/',
       'press.title': 'The Australian dream of a Tuscan barista',
       'press.meta': 'Michela Becchi · 19 January 2024',
+      'press.rating.title': 'Bar rating: two cups',
+      'press.rating.meta': 'Our listing · 2026 rating',
+      'press.rating.cups': '2 cups',
 
       'footer.visit': 'Address',
       'footer.hours': 'Hours',
