@@ -75,6 +75,8 @@ body {
 body.is-locked { overflow: hidden; }
 
 img, svg, video { display: block; max-width: 100%; }
+/* <picture> solo elige el formato (WebP o JPG): no debe generar caja propia */
+picture { display: contents; }
 a { color: inherit; }
 button { font: inherit; color: inherit; }
 h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
@@ -532,14 +534,18 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 }
 
 @media (min-width: 900px) {
+  /* Las dos columnas dentro del mismo ancho que el resto de las secciones: la ilustración
+     arranca donde arranca el contenido y el bloque queda centrado en pantallas anchas */
   .hero {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, calc((var(--max) - 2 * var(--gutter)) / 2)));
+    justify-content: center;
+    padding-inline: var(--gutter);
     min-height: min(calc(100svh - var(--topbar-h)), 980px);
   }
   /* La columna la define el hero; la imagen la llena sin estirarlo */
   .hero__media { height: auto; min-height: 0; }
   .hero__art { position: absolute; inset: 0; }
-  .hero__panel { padding: calc(var(--space-5) + var(--header-h)) var(--gutter) var(--space-5); gap: var(--space-3); }
+  .hero__panel { padding: calc(var(--space-5) + var(--header-h)) 0 var(--space-5) var(--space-5); gap: var(--space-3); }
   .hero__actions .btn { flex: 0 0 auto; }
 }
 
@@ -775,8 +781,67 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .place { font-style: normal; display: grid; gap: 0.25rem; margin-block: var(--space-4) var(--space-3); }
 .place__street { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem); font-weight: 300; line-height: 1.15; }
 .place__area { color: var(--muted); }
+.place__walk { margin-top: 0.35rem; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--ink-2); }
 .place__actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .place__actions .btn { flex: 1 1 180px; }
+
+/* Tempi a piedi: un percorso verticale che finisce al locale */
+.walk {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+.walk__head { display: grid; gap: var(--space-1); align-content: start; }
+.walk__lead { max-width: 46ch; color: var(--ink-2); }
+.walk__note { font-size: 0.85rem; color: var(--muted); }
+.walk__route { list-style: none; margin: 0; padding: 0; position: relative; }
+/* La línea del recorrido, de punto a punto */
+.walk__route::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1.4rem;
+  bottom: 1.4rem;
+  border-left: 2px dotted var(--ochre-deep);
+}
+.walk__stop > a,
+.walk__stop--end {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 0.7rem 0 0.7rem 1.75rem;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+.walk__stop > a::before,
+.walk__stop--end::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: var(--paper-2);
+  border: 2px solid var(--ochre-deep);
+}
+.walk__stop--end { border-bottom: 0; font-weight: 500; }
+.walk__stop--end::before { background: var(--ink); border-color: var(--ink); }
+.walk__name { min-width: 0; }
+.walk__time { flex: none; font-family: var(--mono); font-size: 0.85rem; color: var(--ink-2); }
+.walk__stop--end .walk__time { font-weight: 400; color: var(--muted); }
+@media (hover: hover) {
+  .walk__stop > a:hover .walk__name { text-decoration: underline; text-underline-offset: 3px; }
+}
+@media (min-width: 900px) {
+  .walk { grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+}
 
 .map {
   position: relative;
@@ -1119,9 +1184,11 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 
 .js .reveal-media { clip-path: inset(8% 0 0 0); transition: clip-path 1.3s var(--ease); }
 .js .reveal-media > img,
+.js .reveal-media > picture > img,
 .js .reveal-media > video { transform: scale(1.08); transition: transform 1.8s var(--ease); }
 .js .reveal-media.is-in { clip-path: inset(0 0 0 0); }
 .js .reveal-media.is-in > img,
+.js .reveal-media.is-in > picture > img,
 .js .reveal-media.is-in > video { transform: none; }
 
 .js .hero__panel > * { opacity: 0; transform: translateY(14px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
@@ -1134,7 +1201,7 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 @media (prefers-reduced-motion: reduce) {
   .marquee__track { animation: none; }
   .drawer__nav li { opacity: 1; transform: none; transition: none; }
-  .js .reveal, .js .reveal-media, .js .reveal-media > img, .js .reveal-media > video,
+  .js .reveal, .js .reveal-media, .js .reveal-media > img, .js .reveal-media > picture > img, .js .reveal-media > video,
   .js .hero__panel > * {
     opacity: 1 !important;
     transform: none !important;
@@ -1334,6 +1401,29 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 
 /* ===== Instagram =====
    Mosaico fijo de fotos propias que lleva al perfil */
+/* ===== Recensioni ===== */
+.reviews__rating { display: inline-flex; align-items: center; gap: 0.4rem; }
+.reviews__rating svg { width: 12px; height: 12px; color: var(--ochre-deep); }
+.reviews__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.review figure {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--paper-2);
+  border-radius: var(--radius);
+}
+.review__stars { display: flex; gap: 2px; color: var(--ochre-deep); }
+.review__stars svg { width: 16px; height: 16px; }
+.review__text { flex: 1; margin: 0; font-size: 1.02rem; line-height: 1.6; color: var(--ink-2); }
+.review__text p::before { content: "“"; }
+.review__text p::after { content: "”"; }
+.review__author { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--muted); }
+.reviews__cta { margin-top: var(--space-3); }
+@media (min-width: 900px) { .reviews__list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); } }
+
 .ig__mosaic { position: relative; display: block; }
 .ig__mosaic ul {
   display: grid;
