@@ -1,6 +1,6 @@
 # MANLY The Office — sitio web (boceto)
 
-Sitio mobile first, bilingüe IT/EN para **MANLY The Office**, specialty coffee & brunch en San Frediano, Firenze.
+Sitio mobile first, bilingüe IT/EN para **MANLY The Office**, specialty coffee & brunch junto a Porta San Frediano, Firenze.
 Sin frameworks ni dependencias, salvo Google Fonts (Jost + DM Mono).
 
 ## Estructura
@@ -85,6 +85,19 @@ Una fila por cierre: `Dal`, `Al` (gg/mm/aaaa) y motivo opcional en IT/EN. En eso
 «Chiuso (motivo) · apre …», la lista de horarios marca el día como cerrado y en «Orari» aparece un aviso desde
 14 días antes. URL en `CLOSURES_CSV_URL` (`assets/site.js`). Probar con `?data=2026-08-12&ora=10:00`.
 
+## Reseñas
+
+Sección «Dicono di noi» (`#recensioni`) en `index.html`: las tres reseñas destacadas en la ficha de Google Maps,
+con el texto original y el nombre abreviado (nombre + inicial), y un botón a todas las reseñas en Google.
+Son fijas: para cambiarlas se edita el HTML. La nota y la cantidad de arriba salen de la pestaña «Info».
+
+## Ubicación y tiempos a pie
+
+El local queda justo fuera de Porta San Frediano (159 m, ~2 min a pie), así que los textos dicen «appena fuori /
+a 2 minuti da Porta San Frediano» y no «nel cuore di San Frediano». La sección «A piedi dal centro» (dentro de
+`#visita`) tiene tiempos calculados con el ruteo peatonal de OpenStreetMap a ~4,8 km/h, redondeados hacia arriba;
+cada tappa abre el recorrido a pie en Google Maps.
+
 ## Pedidos y contacto por Instagram
 
 El botón «Ordina su Instagram» copia el pedido al portapapeles y abre el chat de Instagram de MANLY
@@ -132,7 +145,9 @@ en `index.html`, `menu.html`, `sitemap.xml` y `robots.txt`.
 | Storia 04 · Apertura | `storia-apertura.jpg` |
 
 Fotos en `img/`, cada una en dos tamaños: `nombre.jpg` (hasta 1080 px de ancho) y `nombre-640.jpg` (para celular).
-El navegador elige solo con `srcset`/`sizes`. Video en H.264 sin audio, 540×816 (los iPhone graban en HEVC, que Chrome no reproduce).
+Además, cada foto tiene versiones **WebP** (más livianas) a 320, 480, 640 y 828 px y a su ancho completo:
+`nombre-320.webp`, …, `nombre.webp`. En `index.html` van dentro de `<picture>`: el navegador usa el WebP del
+tamaño justo y el JPG queda de respaldo. El navegador elige solo con `srcset`/`sizes`. Video en H.264 sin audio, 540×816 (los iPhone graban en HEVC, que Chrome no reproduce).
 
 Para agregar una foto nueva (macOS, sin instalar nada):
 
@@ -140,6 +155,9 @@ Para agregar una foto nueva (macOS, sin instalar nada):
 sips -s format jpeg -s formatOptions 56 --resampleWidth 1080 original.jpg --out img/nombre.jpg
 sips -s format jpeg -s formatOptions 66 --resampleWidth 640 original.jpg --out img/nombre-640.jpg
 ```
+
+Los WebP se pueden hacer gratis en [squoosh.app](https://squoosh.app/) (formato WebP, calidad ~75, un archivo por
+ancho), y se agregan al `<picture>` de la foto copiando el formato de las demás.
 
 
 `img/gambero-rosso.png`: logo oficial de Gambero Rosso (tomado de la cabecera de gamberorosso.it), usado sin modificar en el link a la nota.

@@ -11,9 +11,9 @@
     whatsapp: '390559062024',
     instagram: 'manly_the_office_florence',
     email: 'australiaitalia2023@libero.it',
-    address: 'Via Pisana 48R, 50143 Firenze',
+    address: 'Via Pisana 48R, 50123 Firenze',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=' +
-      encodeURIComponent('MANLY The Office, Via Pisana 48R, 50143 Firenze'),
+      encodeURIComponent('MANLY The Office, Via Pisana 48R, 50123 Firenze'),
     // Índice = día de la semana (0 = domingo … 6 = sábado). null = cerrado.
     hours: [
       ['08:00', '15:00'], // domenica
@@ -32,7 +32,7 @@
   var I18N = {
     it: {
       'meta.home.title': 'MANLY The Office — Specialty coffee & brunch, Firenze',
-      'meta.home.desc': 'Specialty coffee in stile australiano e brunch a San Frediano, Firenze. Via Pisana 48R.',
+      'meta.home.desc': 'Specialty coffee in stile australiano e brunch a Firenze, a 2 minuti a piedi da Porta San Frediano. Via Pisana 48R.',
       'meta.menu.title': 'Il menu — MANLY The Office, Firenze',
       'meta.menu.desc': 'Caffetteria, brunch, dolci e bar di MANLY The Office, Via Pisana 48R, Firenze.',
       'skip': 'Vai al contenuto',
@@ -65,7 +65,7 @@
       'closure.range': 'Chiuso dal {a} al {b}',
 
       'hero.eyebrow': 'Specialty coffee & brunch · Dal 2023',
-      'hero.lead': 'Specialty coffee in stile australiano e brunch, nel cuore di San Frediano.',
+      'hero.lead': 'Specialty coffee in stile australiano e brunch, appena fuori Porta San Frediano.',
       'hero.menu': 'Il menu',
       'hero.directions': 'Come arrivare',
       'hero.rating': '{r} su Google · oltre {n} recensioni',
@@ -112,11 +112,20 @@
       'nav.hours': 'Orari',
       'nav.storyShort': 'Storia',
       'topbar.announce': 'L’Australiano, la nostra miscela · Ordina su Instagram',
-      'statement.text': 'Specialty coffee, ospitalità australiana. A San Frediano, dal 2023.',
+      'statement.text': 'Specialty coffee, ospitalità australiana. A due passi da Porta San Frediano, dal 2023.',
+      'visit.walk': 'A 2 minuti a piedi da Porta San Frediano',
+      'walk.eyebrow': 'A piedi dal centro',
+      'walk.title': 'Una passeggiata lungo l’Arno',
+      'walk.lead': 'Siamo appena fuori Porta San Frediano, sulla riva sinistra dell’Arno: dal centro si arriva a piedi in una ventina di minuti, passando per il Ponte Vecchio o lungo i lungarni.',
+      'walk.note': 'Tempi indicativi, a passo tranquillo. Tocca una tappa per il percorso.',
       'coffees.d612': 'Acquista da D612',
       'ig.title': 'Seguici su Instagram',
       'ig.lead': 'Nuovi caffè, piatti del giorno e la vita al banco.',
       'ig.follow': 'Seguici su Instagram',
+      'reviews.title': 'Dicono di noi',
+      'reviews.lead': 'Alcune delle recensioni dei nostri clienti su Google.',
+      'reviews.stars': '5 stelle su 5',
+      'reviews.all': 'Leggi tutte le recensioni su Google',
       'ig.open': 'Apri il profilo Instagram di MANLY The Office',
       'coffees.eyebrow': 'Al banco · D612 Coffee Roasters',
       'coffees.title': 'I nostri caffè',
@@ -239,7 +248,7 @@
     },
     en: {
       'meta.home.title': 'MANLY The Office — Specialty coffee & brunch, Florence',
-      'meta.home.desc': 'Australian-style specialty coffee and brunch in San Frediano, Florence. Via Pisana 48R.',
+      'meta.home.desc': 'Australian-style specialty coffee and brunch in Florence, a 2-minute walk from Porta San Frediano. Via Pisana 48R.',
       'meta.menu.title': 'Menu — MANLY The Office, Florence',
       'meta.menu.desc': 'Coffee, brunch, sweets and drinks at MANLY The Office, Via Pisana 48R, Florence.',
       'skip': 'Skip to content',
@@ -272,7 +281,7 @@
       'closure.range': 'Closed from {a} to {b}',
 
       'hero.eyebrow': 'Specialty coffee & brunch · Since 2023',
-      'hero.lead': 'Australian-style specialty coffee and brunch, in the heart of San Frediano.',
+      'hero.lead': 'Australian-style specialty coffee and brunch, just outside Porta San Frediano.',
       'hero.menu': 'Menu',
       'hero.directions': 'Get directions',
       'hero.rating': '{r} on Google · {n}+ reviews',
@@ -319,11 +328,20 @@
       'nav.hours': 'Hours',
       'nav.storyShort': 'Story',
       'topbar.announce': 'L’Australiano, our house blend · Order on Instagram',
-      'statement.text': 'Specialty coffee, Australian hospitality. In San Frediano, since 2023.',
+      'statement.text': 'Specialty coffee, Australian hospitality. A stone’s throw from Porta San Frediano, since 2023.',
+      'visit.walk': 'A 2-minute walk from Porta San Frediano',
+      'walk.eyebrow': 'On foot from the centre',
+      'walk.title': 'A stroll along the Arno',
+      'walk.lead': 'We’re just outside Porta San Frediano, on the south bank of the Arno: about a 20-minute walk from the centre, across the Ponte Vecchio or along the riverside.',
+      'walk.note': 'Approximate times at an easy pace. Tap a stop for directions.',
       'coffees.d612': 'Buy from D612',
       'ig.title': 'Follow us on Instagram',
       'ig.lead': 'New coffees, dishes of the day and life behind the bar.',
       'ig.follow': 'Follow us on Instagram',
+      'reviews.title': 'What people say',
+      'reviews.lead': 'A few of our guests’ reviews on Google, in their original Italian.',
+      'reviews.stars': '5 out of 5 stars',
+      'reviews.all': 'Read all reviews on Google',
       'ig.open': 'Open MANLY The Office’s Instagram profile',
       'coffees.eyebrow': 'At the counter · D612 Coffee Roasters',
       'coffees.title': 'Our coffees',
@@ -544,6 +562,7 @@
     maps: BIZ.mapsUrl,
     tel: 'tel:' + BIZ.phone,
     email: 'mailto:' + BIZ.email,
+    reviews: 'https://maps.google.com/?cid=3845969704588493862',
     instagram: 'https://www.instagram.com/' + BIZ.instagram + '/'
   };
   function fillLinks() {
@@ -1274,7 +1293,7 @@
      «Mostra la mappa». */
   var CONSENT_KEY = 'manly-consent';
   var MAP_SRC = 'https://www.google.com/maps?output=embed&q=' +
-    encodeURIComponent('MANLY The Office, Via Pisana 48R, 50143 Firenze');
+    encodeURIComponent('MANLY The Office, Via Pisana 48R, 50123 Firenze');
 
   function getConsent() {
     try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
