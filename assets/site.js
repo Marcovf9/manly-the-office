@@ -690,9 +690,18 @@
     el.hidden = false;
   }
 
+  /* Las planillas se piden recién cuando terminó de cargar la página: así no compiten
+     con la ilustración de la portada. Mientras tanto se ven los datos de respaldo. */
+  function fetchSheet(url) {
+    return new Promise(function (resolve) {
+      if (document.readyState === 'complete') resolve();
+      else window.addEventListener('load', resolve, { once: true });
+    }).then(function () { return fetch(url, { cache: 'no-store' }); });
+  }
+
   function loadClosures() {
     if (!CLOSURES_CSV_URL || !window.fetch) return;
-    fetch(CLOSURES_CSV_URL, { cache: 'no-store' })
+    fetchSheet(CLOSURES_CSV_URL)
       .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
       .then(function (text) {
         CLOSURES = csvObjects(text).map(function (r) {
@@ -1270,7 +1279,7 @@
     renderCoffees();
     document.addEventListener('langchange', renderCoffees);
     if (!COFFEES_CSV_URL || !window.fetch) return;
-    fetch(COFFEES_CSV_URL, { cache: 'no-store' })
+    fetchSheet(COFFEES_CSV_URL)
       .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
       .then(function (text) {
         var rows = csvObjects(text).filter(function (r) { return r.codice; });
@@ -1382,7 +1391,7 @@
     renderRating();
     document.addEventListener('langchange', renderRating);
     if (!INFO_CSV_URL || !window.fetch) return;
-    fetch(INFO_CSV_URL, { cache: 'no-store' })
+    fetchSheet(INFO_CSV_URL)
       .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
       .then(function (text) {
         csvObjects(text).forEach(function (row) {
