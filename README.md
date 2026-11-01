@@ -113,8 +113,9 @@ si cambia, hay que actualizar los dos y el JSON-LD de `index.html`.
 - **Vista previa** al compartir el link (WhatsApp, Instagram, Facebook): etiquetas `og:` + `img/og-manly.jpg` (1200×630).
 - **sitemap.xml** con las dos páginas, para enviarlo en Google Search Console.
 
-Las URLs son absolutas a `https://marcovf9.github.io/manly-the-office/`. Con dominio propio hay que reemplazarlas
-en `index.html`, `menu.html` y `sitemap.xml` (buscar `marcovf9.github.io`).
+Las URLs son absolutas a `https://manlytheoffice.it/`, el dominio propio del sitio (registrado en Aruba,
+DNS en Cloudflare, desplegado con Cloudflare Pages). Si alguna vez cambia el dominio, hay que reemplazarlas
+en `index.html`, `menu.html`, `sitemap.xml` y `robots.txt`.
 
 ## Lista de fotos
 
@@ -169,7 +170,7 @@ V=$(date +%Y%m%d%H%M); sed -i '' -E "s#(assets/[a-z]+\.(css|js))(\?v=[0-9]+)?\"#
 | Menu | 99 | 100 | 100 | 100 |
 | Privacy | 99 | 100 | 100 | — (noindex a propósito) |
 
-`404.html` usa `<base href="/manly-the-office/">`: con dominio propio, cambiarlo a `<base href="/">`.
+`404.html` usa `<base href="/">` para que estilos y links funcionen desde cualquier ruta.
 
 ## Publicación (Cloudflare Pages)
 
@@ -184,7 +185,7 @@ así README, `docs/` y `scripts/` no quedan accesibles en la web.
 | `feat/*`     | una tarea por rama, sale de `develop`                |
 | `develop`    | integración de tareas terminadas                     |
 | `main`       | versión estable y aprobada                           |
-| `produccion` | lo que se publica (GitHub Pages)                     |
+| `produccion` | lo que se publica (Cloudflare Pages)                 |
 
 Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 
