@@ -523,6 +523,8 @@
   function detectLang() {
     var stored = readStoredLang();
     if (LANGS.indexOf(stored) !== -1) return stored;
+    // Buscadores: siempre en italiano, así el título y la descripción en Google salen en italiano
+    if (/bot|crawl|spider|slurp/i.test(navigator.userAgent)) return 'it';
     var prefs = navigator.languages || [navigator.language || 'it'];
     return /^it\b/i.test(prefs[0] || '') ? 'it' : 'en';
   }
