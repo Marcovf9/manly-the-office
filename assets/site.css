@@ -1191,10 +1191,19 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .js .reveal-media.is-in > picture > img,
 .js .reveal-media.is-in > video { transform: none; }
 
+/* Entrada de la portada solo con CSS y sin opacidad 0: el texto se ve desde el primer
+   cuadro (si quedara invisible hasta que corre el JS, el celular tarda más en mostrar la página) */
+.hero__panel > * { animation: hero-rise 1s var(--ease) both; }
+.hero__panel > :nth-child(2) { animation-delay: .1s; }
+.hero__panel > :nth-child(3) { animation-delay: .2s; }
+.hero__panel > :nth-child(4) { animation-delay: .3s; }
+.hero__panel > :nth-child(5) { animation-delay: .4s; }
+@keyframes hero-rise { from { transform: translateY(14px); } }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee__track { animation: none; }
   .drawer__nav li { opacity: 1; transform: none; transition: none; }
+  .hero__panel > * { animation: none; }
   .js .reveal, .js .reveal-media, .js .reveal-media > img, .js .reveal-media > picture > img, .js .reveal-media > video {
     opacity: 1 !important;
     transform: none !important;
