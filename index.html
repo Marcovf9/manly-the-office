@@ -80,8 +80,8 @@
   <link rel="preconnect" href="https://docs.google.com" crossorigin>
   <link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="img/acquerello-vidriera.jpg" imagesrcset="img/acquerello-vidriera-640.jpg 640w, img/acquerello-vidriera.jpg 1008w" imagesizes="(min-width: 900px) 50vw, 100vw">
-  <link rel="stylesheet" href="assets/site.css?v=202610311803">
-  <script src="assets/site.js?v=202610311803" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=202611011554">
+  <script src="assets/site.js?v=202611011554" defer></script>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#contenuto" data-i18n="skip">Vai al contenuto</a>
@@ -195,7 +195,22 @@
       </figure>
       <div class="hero__panel">
         <p class="eyebrow" data-i18n="hero.eyebrow">Specialty coffee &amp; brunch · Dal 2023</p>
-        <h1 class="hero__title" id="hero-title" translate="no"><span>MANLY</span><span>The Office</span></h1>
+        <h1 class="hero__title" id="hero-title" translate="no">
+          <!-- Bandera de Australia, decorativa (sin espacio después de MANLY) -->
+          <span>MANLY<svg class="hero__flag" viewBox="0 0 1260 630" aria-hidden="true" focusable="false">
+            <clipPath id="au-uj"><path d="M0 0h60v30H0z"/></clipPath>
+            <clipPath id="au-uj-t"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath>
+            <rect width="1260" height="630" fill="#012169"/>
+            <g transform="scale(10.5)" clip-path="url(#au-uj)">
+              <path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/>
+              <path d="M0 0l60 30m0-30L0 30" stroke="#E4002B" stroke-width="4" clip-path="url(#au-uj-t)"/>
+              <path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/>
+              <path d="M30 0v30M0 15h60" stroke="#E4002B" stroke-width="6"/>
+            </g>
+            <g fill="#fff"><polygon points="315.0,378.0 333.2,434.7 388.9,413.6 355.9,463.2 407.1,493.5 347.8,498.7 356.0,557.6 315.0,514.5 274.0,557.6 282.2,498.7 222.9,493.5 274.1,463.2 241.1,413.6 296.8,434.7"/><polygon points="945.0,480.0 953.7,507.0 980.2,496.9 964.5,520.5 988.9,535.0 960.6,537.5 964.5,565.5 945.0,545.0 925.5,565.5 929.4,537.5 901.1,535.0 925.5,520.5 909.8,496.9 936.3,507.0"/><polygon points="945.0,60.0 953.7,87.0 980.2,76.9 964.5,100.5 988.9,115.0 960.6,117.5 964.5,145.5 945.0,125.0 925.5,145.5 929.4,117.5 901.1,115.0 925.5,100.5 909.8,76.9 936.3,87.0"/><polygon points="787.5,230.6 796.2,257.6 822.7,247.5 807.0,271.1 831.4,285.6 803.1,288.1 807.0,316.1 787.5,295.6 768.0,316.1 771.9,288.1 743.6,285.6 768.0,271.1 752.3,247.5 778.8,257.6"/><polygon points="1104.4,195.6 1113.1,222.6 1139.6,212.5 1123.9,236.1 1148.3,250.6 1120.0,253.1 1123.9,281.1 1104.4,260.6 1084.9,281.1 1088.8,253.1 1060.5,250.6 1084.9,236.1 1069.2,212.5 1095.7,222.6"/><polygon points="1008.0,315.0 1014.2,332.8 1033.0,333.2 1018.0,344.6 1023.5,362.6 1008.0,351.8 992.5,362.6 998.0,344.6 983.0,333.2 1001.8,332.8"/></g>
+          </svg></span>
+          <span>The Office</span>
+        </h1>
         <p class="hero__lead" data-i18n="hero.lead">Specialty coffee in stile australiano e brunch, nel cuore di San Frediano.</p>
         <div class="hero__actions">
           <a class="btn" href="menu.html" data-i18n="hero.menu">Il menu</a>
