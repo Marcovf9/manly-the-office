@@ -1,5 +1,5 @@
-# Direcciones cortas y estables. El QR impreso apunta a /menu:
-# si algún día cambia el archivo del menú, se cambia solo esta línea.
-/menu    /menu.html    301
-/carta   /menu.html    301
-/privacy /privacy.html 301
+# Cloudflare Pages ya sirve /menu y /privacy sin la extension .html
+# y redirige solo de /menu.html a /menu. No hay que anadir reglas para
+# esas rutas: crearian un bucle de redirecciones.
+# Aqui solo van alias que no existen como archivo.
+/carta  /menu  301
