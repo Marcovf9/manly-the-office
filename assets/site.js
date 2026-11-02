@@ -68,6 +68,11 @@
       'hero.lead': 'Specialty coffee in stile australiano e brunch, appena fuori Porta San Frediano.',
       'hero.menu': 'Il menu',
       'hero.directions': 'Come arrivare',
+      'hero.book': 'Prenota un tavolo',
+      'book.title': 'Prenota un tavolo',
+      'book.text': 'Prenotiamo per telefono o con un messaggio su Instagram.',
+      'book.call': 'Chiama',
+      'book.dm': 'Scrivi su Instagram',
       'hero.rating': '{r} su Google · oltre {n} recensioni',
       'hero.alt': 'Illustrazione ad acquerello della vetrina di MANLY The Office in Via Pisana',
       'hero.credit': 'Illustrazione',
@@ -289,6 +294,11 @@
       'hero.lead': 'Australian-style specialty coffee and brunch, just outside Porta San Frediano.',
       'hero.menu': 'Menu',
       'hero.directions': 'Get directions',
+      'hero.book': 'Book a table',
+      'book.title': 'Book a table',
+      'book.text': 'Book by phone or send us a message on Instagram.',
+      'book.call': 'Call',
+      'book.dm': 'Message us on Instagram',
       'hero.rating': '{r} on Google · {n}+ reviews',
       'hero.alt': 'Watercolour illustration of the MANLY The Office shopfront on Via Pisana',
       'hero.credit': 'Illustration',
@@ -575,7 +585,8 @@
     tel: 'tel:' + BIZ.phone,
     email: 'mailto:' + BIZ.email,
     reviews: 'https://maps.google.com/?cid=3845969704588493862',
-    instagram: 'https://www.instagram.com/' + BIZ.instagram + '/'
+    instagram: 'https://www.instagram.com/' + BIZ.instagram + '/',
+    dm: 'https://ig.me/m/' + BIZ.instagram
   };
   function fillLinks() {
     document.querySelectorAll('[data-href]').forEach(function (a) {
