@@ -496,13 +496,14 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 /* Bandera de Australia junto a MANLY: arriba, a la altura de las mayúsculas, con una leve inclinación */
 .hero__flag {
   display: inline-block;
-  width: 0.66em;
-  height: 0.33em;
+  width: 0.7em;
+  height: 0.392em; /* proporción del viewBox: la bandera más el margen de la onda */
   margin-left: 0.08em; /* + el letter-spacing de la Y: mismo aire que entre letras */
-  vertical-align: 0.37em;
-  border-radius: 2px;
-  box-shadow: 0 1px 3px rgba(30, 29, 26, .25);
-  transform: rotate(-5deg);
+  vertical-align: 0.35em;
+  overflow: visible;
+  /* Sombra que sigue la forma de la tela ondeando */
+  filter: drop-shadow(0 1px 1.5px rgba(30, 29, 26, .3));
+  transform: rotate(-4deg);
   transform-origin: left bottom;
 }
 .hero__title span:last-child {
