@@ -92,8 +92,8 @@
   <link rel="preconnect" href="https://docs.google.com" crossorigin>
   <link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" type="image/webp" imagesrcset="img/acquerello-vidriera-320.webp 320w, img/acquerello-vidriera-480.webp 480w, img/acquerello-vidriera-640.webp 640w, img/acquerello-vidriera-828.webp 828w, img/acquerello-vidriera.webp 1008w" imagesizes="(min-width: 900px) 50vw, 100vw" fetchpriority="high">
-  <link rel="stylesheet" href="assets/site.css?v=202611020120">
-  <script src="assets/site.js?v=202611020120" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=202611021030">
+  <script src="assets/site.js?v=202611021030" defer></script>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#contenuto" data-i18n="skip">Vai al contenuto</a>
@@ -238,6 +238,48 @@
     <section class="statement" aria-label="MANLY The Office">
       <div class="wrap">
         <p class="statement__text" data-i18n="statement.text">Specialty coffee, ospitalità australiana. A due passi da Porta San Frediano, dal 2023.</p>
+      </div>
+    </section>
+
+    <!-- Recensioni: le tre in evidenza su Google Maps (testo originale, nome abbreviato) -->
+    <section class="section reviews" id="recensioni" aria-labelledby="reviews-title">
+      <div class="wrap">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="reviews.eyebrow">Recensioni</p>
+          <h2 class="h-lg" id="reviews-title" data-i18n="reviews.title">Dicono di noi</h2>
+          <p class="lead reviews__note" data-i18n="reviews.lead">Alcune delle recensioni dei nostri clienti su Google.</p>
+        </header>
+        <a class="score" href="#" data-href="reviews" target="_blank" rel="noopener">
+          <span class="score__value" data-rating-value>4,9</span>
+          <span class="score__body">
+            <span class="score__stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
+            <span class="score__count" data-rating-count>oltre 670 recensioni su Google</span>
+          </span>
+        </a>
+        <ul class="reviews__list">
+          <li class="review">
+            <figure>
+              <p class="review__stars" role="img" aria-label="5 stelle su 5" data-i18n-attr="aria-label:reviews.stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></p>
+              <blockquote class="review__text" lang="it"><p>Bellissimo posto nel cuore di Firenze, piccolo e accogliente. Un posto dove fare un buonissimo brunch o prendere un delizioso caffè, penso il caffè più buono che abbia mai assaggiato in vita mia! Maykol, il proprietario, è stato molto gentile e accogliente. Ci ha spiegato come sceglie e prepara il caffè trasmettendoci tutta la sua passione e competenza. Torneremo presto :)</p></blockquote>
+              <figcaption class="review__author"><span translate="no">Nadia B.</span> · Google</figcaption>
+            </figure>
+          </li>
+          <li class="review">
+            <figure>
+              <p class="review__stars" role="img" aria-label="5 stelle su 5" data-i18n-attr="aria-label:reviews.stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></p>
+              <blockquote class="review__text" lang="it"><p>Uno di quei posti dove il brunch diventa un piccolo rituale da godersi senza fretta. Piatti curati, ingredienti di qualità e un’atmosfera contemporanea che ti fa sentire subito nel posto giusto. Manly è una piccola chicca a Firenze, perfetta per concedersi qualcosa di speciale. 🥑☕️</p></blockquote>
+              <figcaption class="review__author"><span translate="no">Daniele T.</span> · Google</figcaption>
+            </figure>
+          </li>
+          <li class="review">
+            <figure>
+              <p class="review__stars" role="img" aria-label="5 stelle su 5" data-i18n-attr="aria-label:reviews.stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></p>
+              <blockquote class="review__text" lang="it"><p>Grande Maykol! Un posto davvero davvero molto suggestivo. Lui e il suo staff ti fanno sentire a casa, mettendoti a tuo agio fin da subito. Tra una piacevole chiacchierata e l’altra, con lo staff, abbiamo bevuto e mangiato davvero tanto bene. Tutto particolare e di ottima qualità. Vi consiglio di farvi macchiare il caffè direttamente da Maykol, come macchia lui, nessuno 😄 Bravi ragazzi!</p></blockquote>
+              <figcaption class="review__author"><span translate="no">Brando T.</span> · Google</figcaption>
+            </figure>
+          </li>
+        </ul>
+        <a class="btn btn--outline reviews__cta" href="#" data-href="reviews" target="_blank" rel="noopener" data-i18n="reviews.all">Leggi tutte le recensioni su Google</a>
       </div>
     </section>
 
@@ -589,47 +631,6 @@
             </li>
           </ul>
         </div>
-      </div>
-    </section>
-    <!-- Recensioni: le tre in evidenza su Google Maps (testo originale, nome abbreviato) -->
-    <section class="section reviews" id="recensioni" aria-labelledby="reviews-title">
-      <div class="wrap">
-        <header class="section__head">
-          <p class="eyebrow" data-i18n="reviews.eyebrow">Recensioni</p>
-          <h2 class="h-lg" id="reviews-title" data-i18n="reviews.title">Dicono di noi</h2>
-          <p class="lead reviews__note" data-i18n="reviews.lead">Alcune delle recensioni dei nostri clienti su Google.</p>
-        </header>
-        <a class="score" href="#" data-href="reviews" target="_blank" rel="noopener">
-          <span class="score__value" data-rating-value>4,9</span>
-          <span class="score__body">
-            <span class="score__stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
-            <span class="score__count" data-rating-count>oltre 670 recensioni su Google</span>
-          </span>
-        </a>
-        <ul class="reviews__list">
-          <li class="review">
-            <figure>
-              <p class="review__stars" role="img" aria-label="5 stelle su 5" data-i18n-attr="aria-label:reviews.stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></p>
-              <blockquote class="review__text" lang="it"><p>Bellissimo posto nel cuore di Firenze, piccolo e accogliente. Un posto dove fare un buonissimo brunch o prendere un delizioso caffè, penso il caffè più buono che abbia mai assaggiato in vita mia! Maykol, il proprietario, è stato molto gentile e accogliente. Ci ha spiegato come sceglie e prepara il caffè trasmettendoci tutta la sua passione e competenza. Torneremo presto :)</p></blockquote>
-              <figcaption class="review__author"><span translate="no">Nadia B.</span> · Google</figcaption>
-            </figure>
-          </li>
-          <li class="review">
-            <figure>
-              <p class="review__stars" role="img" aria-label="5 stelle su 5" data-i18n-attr="aria-label:reviews.stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></p>
-              <blockquote class="review__text" lang="it"><p>Uno di quei posti dove il brunch diventa un piccolo rituale da godersi senza fretta. Piatti curati, ingredienti di qualità e un’atmosfera contemporanea che ti fa sentire subito nel posto giusto. Manly è una piccola chicca a Firenze, perfetta per concedersi qualcosa di speciale. 🥑☕️</p></blockquote>
-              <figcaption class="review__author"><span translate="no">Daniele T.</span> · Google</figcaption>
-            </figure>
-          </li>
-          <li class="review">
-            <figure>
-              <p class="review__stars" role="img" aria-label="5 stelle su 5" data-i18n-attr="aria-label:reviews.stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></p>
-              <blockquote class="review__text" lang="it"><p>Grande Maykol! Un posto davvero davvero molto suggestivo. Lui e il suo staff ti fanno sentire a casa, mettendoti a tuo agio fin da subito. Tra una piacevole chiacchierata e l’altra, con lo staff, abbiamo bevuto e mangiato davvero tanto bene. Tutto particolare e di ottima qualità. Vi consiglio di farvi macchiare il caffè direttamente da Maykol, come macchia lui, nessuno 😄 Bravi ragazzi!</p></blockquote>
-              <figcaption class="review__author"><span translate="no">Brando T.</span> · Google</figcaption>
-            </figure>
-          </li>
-        </ul>
-        <a class="btn btn--outline reviews__cta" href="#" data-href="reviews" target="_blank" rel="noopener" data-i18n="reviews.all">Leggi tutte le recensioni su Google</a>
       </div>
     </section>
 
