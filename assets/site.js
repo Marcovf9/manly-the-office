@@ -1237,7 +1237,8 @@
   var COFFEES_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSA0xWKycQPswGf7j60kCZ9JPYe1pP0UtaJ1ofHLSO5VSt8z2kT6oCFlmZ8zO8MjqE--grRjph0Nmay/pub?gid=3001&single=true&output=csv';
 
   var COFFEES = [
-    { codice: 'australiano', nome_del_caffe: 'L’Australiano', produttore_fattoria: '80% Daniel Caldeira + 20% Mutovu',
+    { codice: 'australiano', nome_del_caffe: 'L’Australiano', paese: 'Brasile + Ruanda', zona: 'Carmo da Cachoeira + Gikangaga',
+      produttore_fattoria: '80% Daniel Caldeira + 20% Mutovu', varieta: 'Yellow Catuai + Red Bourbon',
       processo: 'Natural', note_it: 'Cioccolato, nocciola, frutti tropicali', note_en: 'Chocolate, hazelnut, tropical fruits',
       torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
     { codice: 'singola_origine', nome_del_caffe: 'Hambela', paese: 'Etiopia', zona: 'Hambela, Guji',
