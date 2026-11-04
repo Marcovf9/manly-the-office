@@ -93,8 +93,8 @@
   <link rel="preconnect" href="https://docs.google.com" crossorigin>
   <link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" type="image/webp" imagesrcset="img/acquerello-vidriera-320.webp 320w, img/acquerello-vidriera-480.webp 480w, img/acquerello-vidriera-640.webp 640w, img/acquerello-vidriera-828.webp 828w, img/acquerello-vidriera.webp 1008w" imagesizes="(min-width: 900px) 50vw, 100vw" fetchpriority="high">
-  <link rel="stylesheet" href="assets/site.css?v=202611041000">
-  <script src="assets/site.js?v=202611041000" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=202611041100">
+  <script src="assets/site.js?v=202611041100" defer></script>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#contenuto" data-i18n="skip">Vai al contenuto</a>
@@ -483,12 +483,20 @@
           <h2 class="h-lg" id="visit-title" data-i18n="visit.title">Vieni a trovarci</h2>
         </header>
 
+        <!-- Due colonne allineate per righe: titoli, poi orari e percorso, poi indirizzo e mappa -->
         <div class="visit__grid">
-          <div>
+          <header class="visit__col-head visit__col-head--hours">
+            <p class="eyebrow" data-i18n="visit.hoursEyebrow">Orari</p>
+            <h3 class="h-md" data-i18n="visit.hoursTitle">Quando siamo aperti</h3>
+          </header>
+
+          <div class="visit__hours">
             <p class="closure-note" id="closure-note" role="status" hidden></p>
             <ul class="hours" id="hours-list"></ul>
             <p class="hours__kitchen"><span data-i18n="orari.kitchen">Cucina e brunch</span><strong data-kitchen>8:30–14:00</strong></p>
+          </div>
 
+          <div class="visit__place">
             <address class="place">
               <span class="place__street">Via Pisana 48R</span>
               <span class="place__area">50123 Firenze</span>
@@ -510,36 +518,34 @@
             </div>
           </div>
 
-          <!-- A destra: come arrivare a piedi e, sotto, la mappa -->
-          <div class="visit__aside">
-            <!-- Tempi a piedi (percorso pedonale OpenStreetMap, ~4,8 km/h); ogni tappa apre il percorso in Google Maps -->
-            <section class="walk" id="come-arrivare" aria-labelledby="walk-title">
-              <div class="walk__head">
-                <p class="eyebrow" data-i18n="walk.eyebrow">A piedi dal centro</p>
-                <h3 class="h-md" id="walk-title" data-i18n="walk.title">Una passeggiata lungo l’Arno</h3>
-                <p class="walk__lead" data-i18n="walk.lead">Siamo appena fuori Porta San Frediano, sulla riva sinistra dell’Arno: dal centro si arriva a piedi in una ventina di minuti, passando per il Ponte Vecchio o lungo i lungarni.</p>
-                <p class="walk__note" data-i18n="walk.note">Tempi indicativi, a passo tranquillo. Tocca una tappa per il percorso.</p>
-              </div>
-              <ol class="walk__route">
-                  <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Duomo+di+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Duomo</span><span class="walk__time">23 min</span></a></li>
-                  <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Piazza+della+Signoria%2C+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Piazza della Signoria</span><span class="walk__time">22 min</span></a></li>
-                  <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Stazione+di+Firenze+Santa+Maria+Novella&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Stazione Santa Maria Novella</span><span class="walk__time">18 min</span></a></li>
-                  <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Palazzo+Pitti%2C+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Palazzo Pitti</span><span class="walk__time">18 min</span></a></li>
-                  <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Ponte+Vecchio%2C+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Ponte Vecchio</span><span class="walk__time">17 min</span></a></li>
-                  <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Piazza+Santo+Spirito%2C+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Piazza Santo Spirito</span><span class="walk__time">14 min</span></a></li>
-                  <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Piazza+del+Carmine%2C+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Piazza del Carmine</span><span class="walk__time">9 min</span></a></li>
-                  <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Porta+San+Frediano%2C+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Porta San Frediano</span><span class="walk__time">2 min</span></a></li>
-                  <li class="walk__stop walk__stop--end"><span class="walk__name" translate="no">MANLY The Office</span><span class="walk__time">Via Pisana 48R</span></li>
-              </ol>
-            </section>
+          <!-- Tempi a piedi (percorso pedonale OpenStreetMap, ~4,8 km/h); ogni tappa apre il percorso in Google Maps -->
+          <header class="visit__col-head visit__col-head--walk" id="come-arrivare">
+            <p class="eyebrow" data-i18n="walk.eyebrow">A piedi dal centro</p>
+            <h3 class="h-md" id="walk-title" data-i18n="walk.title">Una passeggiata lungo l’Arno</h3>
+          </header>
 
-            <!-- El mapa de Google se carga solo con consentimiento (pone cookies de terceros) -->
-            <div class="map" data-embed="map">
-              <div class="embed-gate">
-                <p data-i18n="consent.mapText">La mappa è fornita da Google Maps, che usa cookie di terze parti.</p>
-                <button type="button" class="btn" data-embed-load="map" data-i18n="consent.mapLoad">Mostra la mappa</button>
-                <a class="embed-gate__alt" href="#" data-href="maps" target="_blank" rel="noopener" data-i18n="dove.openMaps">Apri in Google Maps</a>
-              </div>
+          <div class="walk">
+            <ol class="walk__route">
+                <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Duomo+di+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Duomo</span><span class="walk__time">23 min</span></a></li>
+                <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Piazza+della+Signoria%2C+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Piazza della Signoria</span><span class="walk__time">22 min</span></a></li>
+                <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Stazione+di+Firenze+Santa+Maria+Novella&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Stazione Santa Maria Novella</span><span class="walk__time">18 min</span></a></li>
+                <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Palazzo+Pitti%2C+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Palazzo Pitti</span><span class="walk__time">18 min</span></a></li>
+                <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Ponte+Vecchio%2C+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Ponte Vecchio</span><span class="walk__time">17 min</span></a></li>
+                <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Piazza+Santo+Spirito%2C+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Piazza Santo Spirito</span><span class="walk__time">14 min</span></a></li>
+                <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Piazza+del+Carmine%2C+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Piazza del Carmine</span><span class="walk__time">9 min</span></a></li>
+                <li class="walk__stop"><a href="https://www.google.com/maps/dir/?api=1&amp;origin=Porta+San+Frediano%2C+Firenze&amp;destination=MANLY+The+Office%2C+Via+Pisana+48R%2C+50123+Firenze&amp;travelmode=walking" target="_blank" rel="noopener"><span class="walk__name" translate="no">Porta San Frediano</span><span class="walk__time">2 min</span></a></li>
+                <li class="walk__stop walk__stop--end"><span class="walk__name" translate="no">MANLY The Office</span><span class="walk__time">Via Pisana 48R</span></li>
+            </ol>
+            <p class="walk__lead" data-i18n="walk.lead">Siamo appena fuori Porta San Frediano, sulla riva sinistra dell’Arno: dal centro si arriva a piedi in una ventina di minuti, passando per il Ponte Vecchio o lungo i lungarni.</p>
+            <p class="walk__note" data-i18n="walk.note">Tempi indicativi, a passo tranquillo. Tocca una tappa per il percorso.</p>
+          </div>
+
+          <!-- El mapa de Google se carga solo con consentimiento (pone cookies de terceros) -->
+          <div class="map" data-embed="map">
+            <div class="embed-gate">
+              <p data-i18n="consent.mapText">La mappa è fornita da Google Maps, che usa cookie di terze parti.</p>
+              <button type="button" class="btn" data-embed-load="map" data-i18n="consent.mapLoad">Mostra la mappa</button>
+              <a class="embed-gate__alt" href="#" data-href="maps" target="_blank" rel="noopener" data-i18n="dove.openMaps">Apri in Google Maps</a>
             </div>
           </div>
         </div>
