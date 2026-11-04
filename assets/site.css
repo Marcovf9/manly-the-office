@@ -791,13 +791,8 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .reserve__actions .btn { flex: 1 1 180px; }
 
 /* Tempi a piedi: un percorso verticale che finisce al locale */
-.walk {
-  display: grid;
-  gap: var(--space-3);
-  margin-top: var(--space-5);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--line);
-}
+.visit__aside { display: grid; gap: var(--space-4); }
+.walk { display: grid; gap: var(--space-3); }
 .walk__head { display: grid; gap: var(--space-1); align-content: start; }
 .walk__lead { max-width: 46ch; color: var(--ink-2); }
 .walk__note { font-size: 0.85rem; color: var(--muted); }
@@ -844,13 +839,10 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 @media (hover: hover) {
   .walk__stop > a:hover .walk__name { text-decoration: underline; text-underline-offset: 3px; }
 }
-@media (min-width: 900px) {
-  .walk { grid-template-columns: 1fr 1fr; gap: var(--space-5); }
-}
 
 .map {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--line);
   filter: grayscale(.35) contrast(1.02);
