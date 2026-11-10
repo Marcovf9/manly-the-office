@@ -219,7 +219,7 @@ Flujo: `feat/*` → `develop` → `main` → `produccion`. Merges con `--no-ff`.
 
 - [ ] Publicar en la web la pestaña «Info» (Archivo → Compartir → Publicar en la web)
 
-- [x] Pestaña «Caffè» publicada (Hambela en singola origine, Kiandu AB en filtro)
+- [x] Pestaña «Caffè» publicada (Danche en singola origine, Perlamayo en filtro)
 - [x] Aviso de cookies y página de privacidad
 
 - [x] Planilla de Google Sheets conectada
