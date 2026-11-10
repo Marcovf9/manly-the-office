@@ -1247,11 +1247,11 @@
       torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
     { codice: 'singola_origine', nome_del_caffe: 'Danche', paese: 'Etiopia', zona: 'Danche, Yirgacheffe',
       produttore_fattoria: 'Danche Station', varieta: 'Heirloom', processo: 'Washed', altitudine: '2300 m',
-      note_it: 'Limone, albicocca', note_en: 'Lemon, apricot', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
-    { codice: 'filtro', nome_del_caffe: 'Kiandu AB', paese: 'Kenya', zona: 'Tetu, Nyeri',
-      produttore_fattoria: 'Mutheka Farmers', varieta: 'SL28, SL34', processo: 'Washed', altitudine: '1650 m',
-      note_it: 'Pompelmo, pesca', note_en: 'Grapefruit, peach', torrefazione: 'D612 Coffee Roasters', mostrare: 'si',
-      link: 'https://www.d612coffeeroasters.com/products/kiandu-ab-kenya' }
+      note_it: 'Limone, albicocca', note_en: 'Lemon, apricot', torrefazione: 'D612 Coffee Roasters', mostrare: 'si',
+      link: 'https://www.d612coffeeroasters.com/collections/coffee/products/danche-ethiopia' },
+    { codice: 'filtro', nome_del_caffe: 'Perlamayo', paese: 'Perù', zona: 'Perlamayo, Huabal',
+      produttore_fattoria: 'Perlamayo Coop', varieta: 'Caturra', processo: 'Washed', altitudine: '2000 m',
+      note_it: 'Pesca, caramello mou', note_en: 'Peach, butterscotch', torrefazione: 'D612 Coffee Roasters', mostrare: 'si' }
   ];
 
   function coffeeSpec(label, value, keep) {
