@@ -93,8 +93,8 @@
   <link rel="preconnect" href="https://docs.google.com" crossorigin>
   <link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" type="image/webp" imagesrcset="img/acquerello-vidriera-320.webp 320w, img/acquerello-vidriera-480.webp 480w, img/acquerello-vidriera-640.webp 640w, img/acquerello-vidriera-828.webp 828w, img/acquerello-vidriera.webp 1008w" imagesizes="(min-width: 900px) 50vw, 100vw" fetchpriority="high">
-  <link rel="stylesheet" href="assets/site.css?v=202611111200">
-  <script src="assets/site.js?v=202611111200" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=202611111930">
+  <script src="assets/site.js?v=202611111930" defer></script>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#contenuto" data-i18n="skip">Vai al contenuto</a>
@@ -360,7 +360,7 @@
         <header class="section__head">
           <p class="eyebrow" data-i18n="coffees.eyebrow">Al banco · D612 Coffee Roasters</p>
           <h2 class="h-lg" id="coffees-title" data-i18n="coffees.title">I nostri caffè</h2>
-          <p class="lead" data-i18n="coffees.lead">Tre caffè, tutti tostati a Firenze da D612. La miscela della casa resta sempre; singola origine e filtro cambiano spesso.</p>
+          <p class="lead" data-i18n="coffees.lead">I nostri caffè, tutti tostati a Firenze da D612. La miscela della casa resta sempre; singola origine e filtro cambiano spesso.</p>
         </header>
         <div class="coffees__grid" id="coffees-list"></div>
       </div>
@@ -637,31 +637,36 @@
           </li>
         </ul>
 
+        <!-- Prensa: una fila por revista, logo a la izquierda y sus notas al lado -->
         <div class="press">
-          <img class="press__logo" src="img/gambero-rosso.png" width="150" height="38" alt="Gambero Rosso" loading="lazy" decoding="async">
-          <ul class="press__list">
-            <li>
-              <a class="press__item" href="https://www.gamberorosso.it/luoghi/locali/caffebar/manly-the-office/" target="_blank" rel="noopener">
-                <span class="press__title"><span data-i18n="press.rating.title">Punteggio bar: due tazzine</span> <span class="press__cups" role="img" aria-label="2 tazzine" data-i18n-attr="aria-label:press.rating.cups"><svg viewBox="0 0 24 24"><path d="M3 8h14v5a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z" fill="currentColor"/><path d="M17 9.5h1.5a2.5 2.5 0 0 1 0 5H16.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><svg viewBox="0 0 24 24"><path d="M3 8h14v5a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z" fill="currentColor"/><path d="M17 9.5h1.5a2.5 2.5 0 0 1 0 5H16.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></span>
-                <span class="press__meta"><span data-i18n="press.rating.meta">Scheda del locale · valutazione 2026</span> →</span>
-              </a>
-            </li>
-            <li>
-              <a class="press__item" href="https://www.gamberorosso.it/notizie/storie/manly-the-office-firenze/" target="_blank" rel="noopener" data-i18n-attr="href:press.url">
-                <span class="press__title" data-i18n="press.title">Il sogno australiano di un barista toscano</span>
-                <span class="press__meta"><span data-i18n="press.meta">Michela Becchi · 19 gennaio 2024</span> →</span>
-              </a>
-            </li>
-          </ul>
-          <p class="press__source" translate="no">The Florentine</p>
-          <ul class="press__list">
-            <li>
-              <a class="press__item" href="https://www.theflorentine.net/2023/10/03/manly-the-office-breakfast-brunch-specialty-coffee/" target="_blank" rel="noopener">
-                <span class="press__title" translate="no">Manly The Office: breakfast, brunch + specialty coffee</span>
-                <span class="press__meta"><span data-i18n="press.florentine.meta">Helen Farrell · 3 ottobre 2023</span> →</span>
-              </a>
-            </li>
-          </ul>
+          <div class="press__group">
+            <img class="press__logo" src="img/gambero-rosso.png" width="150" height="38" alt="Gambero Rosso" loading="lazy" decoding="async">
+            <ul class="press__list">
+              <li>
+                <a class="press__item" href="https://www.gamberorosso.it/luoghi/locali/caffebar/manly-the-office/" target="_blank" rel="noopener">
+                  <span class="press__title"><span data-i18n="press.rating.title">Punteggio bar: due tazzine</span> <span class="press__cups" role="img" aria-label="2 tazzine" data-i18n-attr="aria-label:press.rating.cups"><svg viewBox="0 0 24 24"><path d="M3 8h14v5a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z" fill="currentColor"/><path d="M17 9.5h1.5a2.5 2.5 0 0 1 0 5H16.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><svg viewBox="0 0 24 24"><path d="M3 8h14v5a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6z" fill="currentColor"/><path d="M17 9.5h1.5a2.5 2.5 0 0 1 0 5H16.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></span>
+                  <span class="press__meta"><span data-i18n="press.rating.meta">Scheda del locale · valutazione 2026</span> →</span>
+                </a>
+              </li>
+              <li>
+                <a class="press__item" href="https://www.gamberorosso.it/notizie/storie/manly-the-office-firenze/" target="_blank" rel="noopener" data-i18n-attr="href:press.url">
+                  <span class="press__title" data-i18n="press.title">Il sogno australiano di un barista toscano</span>
+                  <span class="press__meta"><span data-i18n="press.meta">Michela Becchi · 19 gennaio 2024</span> →</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="press__group">
+            <img class="press__logo" src="img/the-florentine.svg" width="150" height="37" alt="The Florentine" loading="lazy" decoding="async">
+            <ul class="press__list">
+              <li>
+                <a class="press__item" href="https://www.theflorentine.net/2023/10/03/manly-the-office-breakfast-brunch-specialty-coffee/" target="_blank" rel="noopener">
+                  <span class="press__title" translate="no">Manly The Office: breakfast, brunch + specialty coffee</span>
+                  <span class="press__meta"><span data-i18n="press.florentine.meta">Helen Farrell · 3 ottobre 2023</span> →</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
