@@ -1250,11 +1250,11 @@
     { codice: 'singola_origine', nome_del_caffe: 'Danche', paese: 'Etiopia', zona: 'Danche, Yirgacheffe',
       produttore_fattoria: 'Danche Station', varieta: 'Heirloom', processo: 'Washed', altitudine: '2300 m',
       note_it: 'Limone, albicocca', note_en: 'Lemon, apricot', torrefazione: 'D612 Coffee Roasters', mostrare: 'si',
-      link: 'https://www.d612coffeeroasters.com/products/danche-ethiopia' },
+      link: 'https://www.d612coffeeroasters.com/collections/coffee/products/danche-ethiopia' },
     { codice: 'filtro', nome_del_caffe: 'Danche', paese: 'Etiopia', zona: 'Danche, Yirgacheffe',
       produttore_fattoria: 'Danche Station', varieta: 'Heirloom', processo: 'Washed', altitudine: '2300 m',
       note_it: 'Limone, albicocca', note_en: 'Lemon, apricot', torrefazione: 'D612 Coffee Roasters', mostrare: 'si',
-      link: 'https://www.d612coffeeroasters.com/products/danche-ethiopia' }
+      link: 'https://www.d612coffeeroasters.com/collections/coffee/products/danche-ethiopia' }
   ];
 
   function coffeeSpec(label, value, keep) {
