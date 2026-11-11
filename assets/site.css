@@ -1030,6 +1030,8 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
   border-top: 1px solid var(--line);
 }
 .press__list { list-style: none; margin: 0; padding: 0; display: grid; }
+/* Nombre de la revista cuando no usamos su logo */
+.press__source { margin-top: var(--space-3); font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
 .press__item {
   display: grid;
   gap: 0.4rem;
