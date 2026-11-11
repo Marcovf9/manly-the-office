@@ -138,7 +138,7 @@
       'ig.open': 'Apri il profilo Instagram di MANLY The Office',
       'coffees.eyebrow': 'Al banco · D612 Coffee Roasters',
       'coffees.title': 'I nostri caffè',
-      'coffees.lead': 'Tre caffè, tutti tostati a Firenze da D612. La miscela della casa resta sempre; singola origine e filtro cambiano spesso.',
+      'coffees.lead': 'I nostri caffè, tutti tostati a Firenze da D612. La miscela della casa resta sempre; singola origine e filtro cambiano spesso.',
       'coffees.always': 'Sempre',
       'coffees.rotating': 'Cambia spesso',
       'coffees.ask': 'Chiedi al banco quale abbiamo oggi.',
@@ -154,6 +154,7 @@
       'coffees.singola_origine.use': 'Specialty singolo e doppio',
       'coffees.singola_origine.title': 'Singola origine',
       'coffees.filtro.use': 'Batch brew',
+      'coffees.both.use': 'Specialty singolo, doppio e batch brew',
       'coffees.filtro.title': 'Filtro',
 
       'offer.eyebrow': 'Al banco',
@@ -367,7 +368,7 @@
       'ig.open': 'Open MANLY The Office’s Instagram profile',
       'coffees.eyebrow': 'At the counter · D612 Coffee Roasters',
       'coffees.title': 'Our coffees',
-      'coffees.lead': 'Three coffees, all roasted in Florence by D612. The house blend never changes; single origin and filter rotate often.',
+      'coffees.lead': 'Our coffees, all roasted in Florence by D612. The house blend never changes; single origin and filter rotate often.',
       'coffees.always': 'Always',
       'coffees.rotating': 'Rotating',
       'coffees.ask': 'Ask at the counter which one we have today.',
@@ -383,6 +384,7 @@
       'coffees.singola_origine.use': 'Specialty single and double shot',
       'coffees.singola_origine.title': 'Single origin',
       'coffees.filtro.use': 'Batch brew',
+      'coffees.both.use': 'Specialty shots and batch brew',
       'coffees.filtro.title': 'Filter',
 
       'offer.eyebrow': 'At the counter',
@@ -1264,7 +1266,16 @@
   function renderCoffees() {
     var list = document.getElementById('coffees-list');
     if (!list) return;
-    list.innerHTML = COFFEES.filter(function (c) { return !/^no$/i.test(c.mostrare || ''); }).map(function (c, i) {
+    var shown = COFFEES.filter(function (c) { return !/^no$/i.test(c.mostrare || ''); });
+    // Si singola origine y filtro son el mismo café, una sola tarjeta para los dos usos
+    var byCode = {};
+    shown.forEach(function (c) { byCode[c.codice] = c; });
+    var so = byCode.singola_origine, fi = byCode.filtro;
+    var same = so && fi && so.nome_del_caffe && fi.nome_del_caffe &&
+      so.nome_del_caffe.trim().toLowerCase() === fi.nome_del_caffe.trim().toLowerCase();
+    if (same) shown = shown.filter(function (c) { return c !== fi; });
+    list.classList.toggle('is-two', shown.length === 2);
+    list.innerHTML = shown.map(function (c, i) {
       var fixed = c.codice === 'australiano';
       var title = c.nome_del_caffe || t('coffees.' + c.codice + '.title');
       var notes = lang() === 'en' ? (c.note_en || c.note_it) : (c.note_it || c.note_en);
@@ -1273,7 +1284,7 @@
       return '<article class="coffee">' +
         '<p class="coffee__top"><span class="coffee__num">' + String(i + 1).padStart(2, '0') + '</span>' +
           '<span class="coffee__badge' + (fixed ? ' is-fixed' : '') + '">' + esc(t(fixed ? 'coffees.always' : 'coffees.rotating')) + '</span></p>' +
-        '<p class="coffee__use" translate="no">' + esc(t('coffees.' + c.codice + '.use')) + '</p>' +
+        '<p class="coffee__use" translate="no">' + esc(t('coffees.' + (same && c === so ? 'both' : c.codice) + '.use')) + '</p>' +
         '<h3 class="coffee__name" translate="no">' + esc(title) + '</h3>' +
         (known
           ? '<dl class="coffee__specs">' +
