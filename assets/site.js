@@ -220,6 +220,7 @@
       'press.rating.title': 'Punteggio bar: due tazzine',
       'press.rating.meta': 'Scheda del locale · valutazione 2026',
       'press.rating.cups': '2 tazzine',
+      'press.florentine.meta': 'Helen Farrell · 3 ottobre 2023',
 
       'footer.visit': 'Indirizzo',
       'footer.hours': 'Orari',
@@ -448,6 +449,7 @@
       'press.rating.title': 'Bar rating: two cups',
       'press.rating.meta': 'Our listing · 2026 rating',
       'press.rating.cups': '2 cups',
+      'press.florentine.meta': 'Helen Farrell · 3 October 2023',
 
       'footer.visit': 'Address',
       'footer.hours': 'Hours',
@@ -1245,14 +1247,14 @@
       produttore_fattoria: '80% Daniel Caldeira + 20% Mutovu', varieta: 'Yellow Catuai + Red Bourbon',
       processo: 'Natural', note_it: 'Cioccolato, nocciola, frutti tropicali', note_en: 'Chocolate, hazelnut, tropical fruits',
       torrefazione: 'D612 Coffee Roasters', mostrare: 'si' },
-    { codice: 'singola_origine', nome_del_caffe: 'Hambela', paese: 'Etiopia', zona: 'Hambela, Guji',
-      produttore_fattoria: 'Hambela Station', varieta: 'Heirloom', processo: 'Anaerobic natural', altitudine: '2000 m',
-      note_it: 'Pesca, bubble gum', note_en: 'Peach, bubblegum', torrefazione: 'D612 Coffee Roasters', mostrare: 'si',
-      link: 'https://www.d612coffeeroasters.com/products/hambela-ethiopia' },
-    { codice: 'filtro', nome_del_caffe: 'Kiandu AB', paese: 'Kenya', zona: 'Tetu, Nyeri',
-      produttore_fattoria: 'Mutheka Farmers', varieta: 'SL28, SL34', processo: 'Washed', altitudine: '1650 m',
-      note_it: 'Pompelmo, pesca', note_en: 'Grapefruit, peach', torrefazione: 'D612 Coffee Roasters', mostrare: 'si',
-      link: 'https://www.d612coffeeroasters.com/products/kiandu-ab-kenya' }
+    { codice: 'singola_origine', nome_del_caffe: 'Danche', paese: 'Etiopia', zona: 'Danche, Yirgacheffe',
+      produttore_fattoria: 'Danche Station', varieta: 'Heirloom', processo: 'Washed', altitudine: '2300 m',
+      note_it: 'Limone, albicocca', note_en: 'Lemon, apricot', torrefazione: 'D612 Coffee Roasters', mostrare: 'si',
+      link: 'https://www.d612coffeeroasters.com/products/danche-ethiopia' },
+    { codice: 'filtro', nome_del_caffe: 'Danche', paese: 'Etiopia', zona: 'Danche, Yirgacheffe',
+      produttore_fattoria: 'Danche Station', varieta: 'Heirloom', processo: 'Washed', altitudine: '2300 m',
+      note_it: 'Limone, albicocca', note_en: 'Lemon, apricot', torrefazione: 'D612 Coffee Roasters', mostrare: 'si',
+      link: 'https://www.d612coffeeroasters.com/products/danche-ethiopia' }
   ];
 
   function coffeeSpec(label, value, keep) {
