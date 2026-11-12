@@ -203,7 +203,9 @@
       'storia.c3.when': 'Ritorno a Firenze',
       'storia.c3.title': 'Un sogno in pausa',
       'storia.c3.p1': 'Torna a casa con un’idea chiara: aprire un posto suo. Poi arriva il Covid, e il sogno deve aspettare.',
-      'storia.c3.p2': 'Il sogno aspetta, la formazione no: nel 2021 diventa Examiner del Latte Art Grading System, abilitato a valutare e certificare altri baristi nella latte art. È anche barista certificato SCA (Specialty Coffee Association).',
+      'creds.title': 'Maykol · Certificazioni',
+      'creds.lags.meta': 'Cert. n. 1280 · 2021',
+      'creds.sca.role': 'Barista certificato',
       'storia.c4.when': '12 luglio 2023',
       'storia.c4.title': 'Si apre, a San Frediano',
       'storia.c4.p1': 'Maykol e la sua fidanzata Alice, che lavora anche in cucina, aprono MANLY The Office in Via Pisana.',
@@ -434,7 +436,9 @@
       'storia.c3.when': 'Back in Florence',
       'storia.c3.title': 'A dream on hold',
       'storia.c3.p1': 'He comes home with one clear idea: to open his own place. Then Covid hits, and the dream has to wait.',
-      'storia.c3.p2': 'The dream waits, his training doesn’t: in 2021 he becomes a Latte Art Grading System Examiner, qualified to assess and certify other baristas in latte art. He is also an SCA (Specialty Coffee Association) certified barista.',
+      'creds.title': 'Maykol · Certifications',
+      'creds.lags.meta': 'Cert. no. 1280 · 2021',
+      'creds.sca.role': 'Certified barista',
       'storia.c4.when': '12 July 2023',
       'storia.c4.title': 'Opening in San Frediano',
       'storia.c4.p1': 'Maykol and his partner Alice, who also works in the kitchen, open MANLY The Office on Via Pisana.',
@@ -1436,6 +1440,11 @@
         csvObjects(text).forEach(function (row) {
           var v = Number((row.valore || '').replace(',', '.'));
           if (row.codice in RATING && v > 0) RATING[row.codice] = v;
+          // «no» oculta el recuadro de certificaciones de Maykol (por si un día deja el local)
+          if (row.codice === 'certificazioni') {
+            var show = !/^no$/i.test((row.valore || '').trim());
+            document.querySelectorAll('[data-creds]').forEach(function (el) { el.hidden = !show; });
+          }
         });
         renderRating();
       })
