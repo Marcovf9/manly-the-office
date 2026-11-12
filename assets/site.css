@@ -952,6 +952,15 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .story__intro-media { margin: 0; aspect-ratio: 4 / 5; overflow: hidden; background: var(--paper-2); }
 .story__intro-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 .story__intro-text { display: grid; gap: var(--space-3); align-content: center; }
+/* Certificazioni di Maykol: recuadro dentro de la intro de la historia */
+.creds { display: grid; gap: var(--space-2); margin-top: var(--space-2); padding: var(--space-3); background: var(--paper-2); border-left: 3px solid var(--ochre-deep); }
+.creds[hidden] { display: none; }
+.creds__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.creds__item { display: grid; gap: 0.15rem; }
+.creds__item + .creds__item { padding-top: var(--space-2); border-top: 1px solid var(--line); }
+.creds__org { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.creds__role { font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem); font-weight: 400; line-height: 1.2; }
+.creds__meta { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-2); }
 @media (min-width: 900px) {
   .story__intro { grid-template-columns: 1fr 1fr; gap: clamp(3rem, 7vw, 7rem); align-items: center; }
 }
