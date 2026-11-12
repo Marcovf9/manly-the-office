@@ -79,6 +79,9 @@ falta que el dueño de la cuenta autorice un servicio como Behold y reemplazar e
 Valoración y cantidad de reseñas de Google (`valutazione`, `recensioni`). La web redondea la cantidad hacia abajo a la
 decena (671 → «oltre 670»). URL en `INFO_CSV_URL` (`assets/site.js`); requiere que la pestaña esté publicada.
 
+La fila `certificazioni` (`si`/`no`) muestra u oculta el recuadro «Maykol · Certificazioni» de la historia
+(Examiner del Latte Art Grading System, cert. 1280, 2021; barista SCA). Con «no» desaparece sin tocar el código.
+
 ### Pestaña «Chiusure»
 
 Una fila por cierre: `Dal`, `Al` (gg/mm/aaaa) y motivo opcional en IT/EN. En esos días el estado dice
