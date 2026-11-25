@@ -407,6 +407,8 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .drawer.is-open .drawer__nav li:nth-child(4) { transition-delay: .15s; }
 .drawer.is-open .drawer__nav li:nth-child(5) { transition-delay: .2s; }
 .drawer.is-open .drawer__nav li:nth-child(6) { transition-delay: .25s; }
+.drawer.is-open .drawer__nav li:nth-child(7) { transition-delay: .3s; }
+.drawer.is-open .drawer__nav li:nth-child(8) { transition-delay: .35s; }
 
 .drawer__info {
   display: grid;
@@ -961,6 +963,24 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .creds__org { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .creds__role { font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem); font-weight: 400; line-height: 1.2; }
 .creds__meta { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-2); }
+.creds__link { justify-self: start; margin-top: var(--space-1); font-size: 0.95rem; color: var(--ink); text-underline-offset: 4px; }
+[data-corsi][hidden] { display: none !important; }
+
+/* ===== Corsi di latte art ===== */
+.corsi { background: var(--paper-2); }
+.corsi__grid { display: grid; gap: var(--space-4); }
+.corsi__head { display: grid; gap: var(--space-2); align-content: start; }
+.corsi__head .lead { max-width: 44ch; }
+.corsi__body { display: grid; gap: var(--space-3); }
+.corsi__specs { margin: 0; border-top: 1px solid var(--line); }
+.corsi__specs > div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: var(--space-2); padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+.corsi__specs dt { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 0.2rem; }
+.corsi__specs dd { margin: 0; }
+.corsi__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+.corsi__handle { font-family: var(--mono); font-size: 0.85rem; color: var(--ink-2); text-underline-offset: 4px; }
+@media (min-width: 900px) {
+  .corsi__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(3rem, 7vw, 7rem); }
+}
 @media (min-width: 900px) {
   .story__intro { grid-template-columns: 1fr 1fr; gap: clamp(3rem, 7vw, 7rem); align-items: center; }
 }

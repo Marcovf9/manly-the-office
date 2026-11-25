@@ -204,6 +204,18 @@
       'storia.c3.title': 'Un sogno in pausa',
       'storia.c3.p1': 'Torna a casa con un’idea chiara: aprire un posto suo. Poi arriva il Covid, e il sogno deve aspettare.',
       'creds.title': 'Maykol · Certificazioni',
+      'nav.courses': 'Corsi di latte art',
+      'creds.courses': 'Corsi di latte art con Maykol →',
+      'corsi.eyebrow': 'Corsi',
+      'corsi.title': 'Corsi di latte art',
+      'corsi.lead': 'Impara a disegnare nella tazza con Maykol, Examiner del Latte Art Grading System.',
+      'corsi.whenLabel': 'Quando',
+      'corsi.when': 'Il sabato dalle 15:30, dopo la chiusura del bar',
+      'corsi.whereLabel': 'Dove',
+      'corsi.where': 'Al banco di MANLY The Office, Via Pisana 48R',
+      'corsi.infoLabel': 'Iscrizioni',
+      'corsi.info': 'Date, costi e posti disponibili: scrivi direttamente a Maykol su Instagram.',
+      'corsi.cta': 'Scrivi a Maykol',
       'creds.lags.meta': 'Cert. n. 1280 · 2021',
       'creds.sca.role': 'Barista certificato',
       'storia.c4.when': '12 luglio 2023',
@@ -437,6 +449,18 @@
       'storia.c3.title': 'A dream on hold',
       'storia.c3.p1': 'He comes home with one clear idea: to open his own place. Then Covid hits, and the dream has to wait.',
       'creds.title': 'Maykol · Certifications',
+      'nav.courses': 'Latte art courses',
+      'creds.courses': 'Latte art courses with Maykol →',
+      'corsi.eyebrow': 'Courses',
+      'corsi.title': 'Latte art courses',
+      'corsi.lead': 'Learn to draw in the cup with Maykol, a Latte Art Grading System Examiner.',
+      'corsi.whenLabel': 'When',
+      'corsi.when': 'Saturdays from 3:30 pm, after the café closes',
+      'corsi.whereLabel': 'Where',
+      'corsi.where': 'At the MANLY The Office bar, Via Pisana 48R',
+      'corsi.infoLabel': 'Sign up',
+      'corsi.info': 'Dates, prices and availability: message Maykol directly on Instagram.',
+      'corsi.cta': 'Message Maykol',
       'creds.lags.meta': 'Cert. no. 1280 · 2021',
       'creds.sca.role': 'Certified barista',
       'storia.c4.when': '12 July 2023',
@@ -600,7 +624,9 @@
     email: 'mailto:' + BIZ.email,
     reviews: 'https://maps.google.com/?cid=3845969704588493862',
     instagram: 'https://www.instagram.com/' + BIZ.instagram + '/',
-    dm: 'https://ig.me/m/' + BIZ.instagram
+    dm: 'https://ig.me/m/' + BIZ.instagram,
+    mikeIg: 'https://www.instagram.com/baristamike88/',
+    mikeDm: 'https://ig.me/m/baristamike88'
   };
   function fillLinks() {
     document.querySelectorAll('[data-href]').forEach(function (a) {
@@ -1430,7 +1456,7 @@
   }
 
   function loadRating() {
-    if (!document.querySelector('[data-rating]')) return;
+    if (!document.querySelector('[data-rating], [data-creds], [data-corsi]')) return;
     renderRating();
     document.addEventListener('langchange', renderRating);
     if (!INFO_CSV_URL || !window.fetch) return;
@@ -1440,10 +1466,11 @@
         csvObjects(text).forEach(function (row) {
           var v = Number((row.valore || '').replace(',', '.'));
           if (row.codice in RATING && v > 0) RATING[row.codice] = v;
-          // «no» oculta el recuadro de certificaciones de Maykol (por si un día deja el local)
-          if (row.codice === 'certificazioni') {
+          // «no» oculta las certificaciones o los cursos de Maykol (por si un día deja el local)
+          if (row.codice === 'certificazioni' || row.codice === 'corsi') {
             var show = !/^no$/i.test((row.valore || '').trim());
-            document.querySelectorAll('[data-creds]').forEach(function (el) { el.hidden = !show; });
+            var sel = row.codice === 'corsi' ? '[data-corsi]' : '[data-creds]';
+            document.querySelectorAll(sel).forEach(function (el) { el.hidden = !show; });
           }
         });
         renderRating();
