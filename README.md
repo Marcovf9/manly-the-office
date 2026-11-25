@@ -205,6 +205,11 @@ Cloudflare Pages: build `sh scripts/build.sh`, salida `dist`. `www` redirige al 
 - Logos de Gambero Rosso y The Florentine: de sus respectivos medios, usados sin modificar para enlazar sus notas.
 - Reseñas: de sus autores en Google Maps, con el texto original y el nombre abreviado.
 
+## Derechos
+
+Repositorio público solo para mostrar el trabajo: el código no tiene licencia de uso, y la marca, los textos, las
+fotos y la ilustración pertenecen a MANLY The Office y a sus autores. Detalle en [`LICENSE`](LICENSE).
+
 ## Pendientes
 
 - [ ] Revisión de `privacy.html` por un profesional
