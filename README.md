@@ -82,6 +82,10 @@ decena (671 → «oltre 670»). URL en `INFO_CSV_URL` (`assets/site.js`); requie
 La fila `certificazioni` (`si`/`no`) muestra u oculta el recuadro «Maykol · Certificazioni» de la historia
 (Examiner del Latte Art Grading System, cert. 1280, 2021; barista SCA). Con «no» desaparece sin tocar el código.
 
+La fila `corsi` (`si`/`no`) muestra u oculta la sección «Corsi di latte art» (`#corsi`, sábados desde las 15:30,
+inscripción por mensaje al Instagram personal de Maykol, @baristamike88) y su link en el menú hamburguesa y en el
+recuadro de certificaciones.
+
 ### Pestaña «Chiusure»
 
 Una fila por cierre: `Dal`, `Al` (gg/mm/aaaa) y motivo opcional en IT/EN. En esos días el estado dice
