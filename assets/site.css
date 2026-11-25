@@ -971,7 +971,9 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .corsi__grid { display: grid; gap: var(--space-4); }
 .corsi__head { display: grid; gap: var(--space-2); align-content: start; }
 .corsi__head .lead { max-width: 44ch; }
-.corsi__body { display: grid; gap: var(--space-3); }
+.corsi__media { margin: var(--space-2) 0 0; overflow: hidden; background: var(--paper); }
+.corsi__media img { width: 100%; height: auto; }
+.corsi__body { display: grid; gap: var(--space-3); align-content: start; }
 .corsi__specs { margin: 0; border-top: 1px solid var(--line); }
 .corsi__specs > div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: var(--space-2); padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
 .corsi__specs dt { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 0.2rem; }
