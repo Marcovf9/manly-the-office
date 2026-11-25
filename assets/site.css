@@ -972,6 +972,7 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .corsi__info { display: grid; gap: var(--space-4); align-content: center; }
 .corsi__head { display: grid; gap: var(--space-2); align-content: start; }
 .corsi__head .lead { max-width: 44ch; }
+.corsi__xp { max-width: 44ch; font-size: 1.05rem; color: var(--ink); }
 .corsi__media { margin: 0; overflow: hidden; background: var(--paper); }
 .corsi__media img { width: 100%; height: auto; }
 .corsi__body { display: grid; gap: var(--space-3); align-content: start; }
