@@ -969,9 +969,10 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 /* ===== Corsi di latte art ===== */
 .corsi { background: var(--paper-2); }
 .corsi__grid { display: grid; gap: var(--space-4); }
+.corsi__info { display: grid; gap: var(--space-4); align-content: center; }
 .corsi__head { display: grid; gap: var(--space-2); align-content: start; }
 .corsi__head .lead { max-width: 44ch; }
-.corsi__media { margin: var(--space-2) 0 0; overflow: hidden; background: var(--paper); }
+.corsi__media { margin: 0; overflow: hidden; background: var(--paper); }
 .corsi__media img { width: 100%; height: auto; }
 .corsi__body { display: grid; gap: var(--space-3); align-content: start; }
 .corsi__specs { margin: 0; border-top: 1px solid var(--line); }
@@ -981,7 +982,8 @@ h1, h2, h3, h4 { font-weight: 400; line-height: 1.1; }
 .corsi__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
 .corsi__handle { font-family: var(--mono); font-size: 0.85rem; color: var(--ink-2); text-underline-offset: 4px; }
 @media (min-width: 900px) {
-  .corsi__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(3rem, 7vw, 7rem); }
+  /* Como L’Australiano: la foto a un lado y, al otro, título, datos y botón centrados con ella */
+  .corsi__grid { grid-template-columns: 1.05fr 1fr; gap: clamp(3rem, 7vw, 7rem); align-items: center; }
 }
 @media (min-width: 900px) {
   .story__intro { grid-template-columns: 1fr 1fr; gap: clamp(3rem, 7vw, 7rem); align-items: center; }
