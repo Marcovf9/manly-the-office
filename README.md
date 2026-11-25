@@ -12,6 +12,13 @@ Sitio oficial de **MANLY The Office**, cafetería de specialty coffee y brunch d
   <img src="docs/capturas/menu-celular.webp" alt="Menú en celular" width="260">
 </p>
 
+<details>
+<summary>Más capturas</summary>
+
+![Los cafés del día, cargados desde la planilla](docs/capturas/caffe-compu.webp)
+![Horarios en vivo y tiempos a pie desde el centro](docs/capturas/visita-compu.webp)
+</details>
+
 ## El proyecto
 
 Un local chico, sin equipo técnico, que necesitaba una web propia: que se vea como el lugar, que funcione bien en el
